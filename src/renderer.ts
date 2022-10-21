@@ -27,5 +27,71 @@
  */
 
 import './index.css';
+import logoImg from "./img/logo.png";
 
-console.log('👋 This message is being logged by "renderer.js", included via webpack');
+interface PreloadComm {
+    authSave: (username: string, password: string) => void;
+    authStart: () => void;
+    authVerify: (otp: string) => void;
+    authWaitForToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+}
+
+declare global {
+    interface Window {
+        COMM: PreloadComm;
+    }
+
+    interface HTMLElement {
+        value: string;
+        src: string;
+    }
+
+    interface Element {
+        src: string;
+    }
+}
+
+window.COMM.authWaitForToken((event, data) => {
+    document.getElementById('login').style.display = "none";
+    document.getElementById('otp').style.display = "flex";
+
+    document.getElementById('token').innerText = `Harap Periksa Email: ${data[0].to}`;
+});
+
+window.COMM.authError(() => {
+    document.getElementById('info').innerText = 'Username atau password salah!';
+    document.getElementById('info').style.display = 'block';
+});
+
+window.COMM.authSuccess(() => {
+    document.getElementById('info').innerText = 'Username atau password salah!';
+    document.getElementById('info').style.display = 'block';
+});
+
+document.querySelectorAll('.logo').forEach(el => {
+    el.src = logoImg;
+});
+
+function onClickSave() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("pass").value;
+    console.log(username, password);
+    window.COMM.authSave(username, password);
+}
+
+function onClickVerify() {
+    const otp = document.getElementById("token-input").value;
+    console.log(otp);
+    window.COMM.authVerify(otp);
+}
+
+function onClickStart() {
+    window.COMM.authStart();
+}
+
+document.getElementById("saveBtn").addEventListener('click', onClickSave);
+document.getElementById("startBtn").addEventListener('click', onClickStart);
+document.getElementById("otpBtn").addEventListener('click', onClickVerify);
+

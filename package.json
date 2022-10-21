@@ -13,8 +13,8 @@
   },
   "keywords": [],
   "author": {
-    "name": "=",
-    "email": "="
+    "name": "kholil (nyanyaon)",
+    "email": "its@ahmadk.me"
   },
   "license": "MIT",
   "config": {
@@ -79,6 +79,7 @@
     "electron": "21.1.1",
     "eslint": "^8.25.0",
     "eslint-plugin-import": "^2.26.0",
+    "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "node-loader": "^2.0.0",
     "style-loader": "^3.3.1",
