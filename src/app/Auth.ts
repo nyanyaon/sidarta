@@ -10,12 +10,12 @@ export class Auth {
     static async save(username: string, password: string) {
         Auth.browser = await puppeteer.launch({
             executablePath: Auth.EDGE_PATH,
-            headless: true
+            headless: false
         });
 
         const page = await Auth.browser.newPage();
 
-        await page.goto('https://aplikasi.atrbpn.go.id/internal/login', {
+        await page.goto('https://aplikasi.atrbpn.go.id/pintasan', {
             waitUntil: 'networkidle2',
         });
 
@@ -54,6 +54,10 @@ export class Auth {
             timeout: 9999999
         });
 
+        await currPage.goto('https://aplikasi.atrbpn.go.id/pintasan', {
+            waitUntil: 'networkidle2',
+        });
+
         const cookies = await currPage.cookies();
         fs.writeFileSync('./cookies.json', JSON.stringify(cookies, null, 2));
 
@@ -61,7 +65,7 @@ export class Auth {
 
         App.send('auth-success', name);
 
-        await Auth.browser.close();
+        // await Auth.browser.close();
     }
 
     static async start() {
@@ -78,7 +82,7 @@ export class Auth {
 
         console.log("cookie load");
 
-        await page.goto('https://aplikasi.atrbpn.go.id/internal/login', {
+        await page.goto('https://aplikasi.atrbpn.go.id/pintasan', {
             waitUntil: 'networkidle2',
         });
 

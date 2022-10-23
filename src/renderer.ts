@@ -65,9 +65,14 @@ window.COMM.authError(() => {
     document.getElementById('info').style.display = 'block';
 });
 
-window.COMM.authSuccess(() => {
-    document.getElementById('info').innerText = 'Username atau password salah!';
-    document.getElementById('info').style.display = 'block';
+window.COMM.authSuccess((event, data) => {
+    const loginSuccessSection = document.getElementById('login-success');
+    const otpSection = document.getElementById('otp');
+
+    loginSuccessSection.style.display = 'flex';
+    otpSection.style.display = 'none';
+
+    loginSuccessSection.innerText = data[0];
 });
 
 document.querySelectorAll('.logo').forEach(el => {
