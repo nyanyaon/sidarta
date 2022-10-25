@@ -27,7 +27,7 @@
  */
 
 import './index.css';
-import logoImg from "./img/logo.png";
+import ImageLoader from './img/ImageLoader';
 
 interface PreloadComm {
     authSave: (username: string, password: string) => void;
@@ -78,7 +78,7 @@ window.COMM.authSuccess((event, data) => {
 });
 
 document.querySelectorAll('.logo').forEach(el => {
-    el.src = logoImg;
+    el.src = ImageLoader.logo;
 });
 
 function onClickSave() {
