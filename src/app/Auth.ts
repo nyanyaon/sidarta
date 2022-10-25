@@ -1,6 +1,7 @@
 import * as edgePaths from 'edge-paths';
 import * as puppeteer from 'puppeteer-core';
 import * as fs from 'fs';
+import * as path from 'path';
 import App from './App';
 
 export class Auth {
@@ -10,7 +11,8 @@ export class Auth {
     static async save(username: string, password: string) {
         Auth.browser = await puppeteer.launch({
             executablePath: Auth.EDGE_PATH,
-            headless: false
+            userDataDir: path.join(__dirname, './datadir'),
+            headless: false,
         });
 
         const page = await Auth.browser.newPage();
@@ -71,14 +73,15 @@ export class Auth {
     static async start() {
         Auth.browser = await puppeteer.launch({
             executablePath: Auth.EDGE_PATH,
-            headless: false
+            userDataDir: path.join(__dirname, './datadir'),
+            headless: false,
         });
 
         const page = await Auth.browser.newPage();
 
-        const cookiesStr = fs.readFileSync('./cookies.json').toString();
-        const cookies = JSON.parse(cookiesStr);
-        await page.setCookie(...cookies);
+        // const cookiesStr = fs.readFileSync('./cookies.json').toString();
+        // const cookies = JSON.parse(cookiesStr);
+        // await page.setCookie(...cookies);
 
         console.log("cookie load");
 
