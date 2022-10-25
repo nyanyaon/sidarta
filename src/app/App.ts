@@ -30,6 +30,7 @@ export default class App {
         // and load the index.html of the app.
         App.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
         App.mainWindow.on('closed', App.onClosed);
+        Auth.start();
     }
 
     static start() {

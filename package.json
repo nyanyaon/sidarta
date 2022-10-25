@@ -87,8 +87,7 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
-    "edge-paths": "^2.2.1",
     "electron-squirrel-startup": "^1.0.0",
-    "puppeteer-core": "^19.0.0"
+    "puppeteer": "^19.1.2"
   }
 }
