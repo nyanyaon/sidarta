@@ -30,7 +30,7 @@ export default class App {
         // and load the index.html of the app.
         App.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
         App.mainWindow.on('closed', App.onClosed);
-        Auth.start();
+        Auth.start(true);
     }
 
     static start() {
@@ -40,7 +40,7 @@ export default class App {
         });
         
         App.ipc.handle('auth-save', async (event, ...args) => {await Auth.save(args[0], args[1])});
-        App.ipc.handle('auth-start', () => {Auth.start()});
+        App.ipc.handle('auth-start', () => {Auth.start(false)});
         App.ipc.handle('auth-verify', (event, ...data) => {Auth.verify(data[0])});
     }
 

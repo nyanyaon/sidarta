@@ -1,6 +1,5 @@
 import * as puppeteer from 'puppeteer';
 import * as fs from 'fs';
-import * as path from 'path';
 import App from './App';
 
 export class Auth {
@@ -12,7 +11,7 @@ export class Auth {
             Auth.browser = await puppeteer.launch({
                 userDataDir: './datadir',
                 args: ["--no-sandbox"],
-                headless: true,
+                headless: false,
             });
 
             const page = await Auth.browser.newPage();
@@ -33,7 +32,7 @@ export class Auth {
                 }
             });
 
-            await page.goto('https://dokumen.atrbpn.go.id/', {
+            await page.goto('https://statistik.atrbpn.go.id/', {
                 waitUntil: 'networkidle2',
             });
 
@@ -67,12 +66,15 @@ export class Auth {
 
             await currPage.waitForNetworkIdle();
 
-            const cookies = await currPage.cookies();
-            fs.writeFileSync('./cookies.json', JSON.stringify(cookies, null, 2));
-
             const name = await currPage.$eval('p > b', el => el.textContent);
-
+            
             App.send('auth-success', name);
+            
+            const client = await currPage.target().createCDPSession();
+            const cookies = (await client.send('Network.getAllCookies')).cookies;
+            fs.writeFileSync('./cookies.json', JSON.stringify(cookies, null, 2));
+            
+            await currPage.waitForNetworkIdle();
 
             // await Auth.browser.close();
         } catch (err) {
@@ -80,27 +82,36 @@ export class Auth {
         }
     }
 
-    static async start() {
-        Auth.browser = await puppeteer.launch({
-            userDataDir: './datadir',
-            args: ["--no-sandbox"],
-            headless: true,
-        });
+    static async start(headless: boolean) {
+        try {
 
-        const page = await Auth.browser.newPage();
+            Auth.browser = await puppeteer.launch({
+                userDataDir: './datadir',
+                args: ["--no-sandbox"],
+                headless,
+            });
 
-        const cookiesStr = fs.readFileSync('./cookies.json').toString();
-        const cookies = JSON.parse(cookiesStr);
-        await page.setCookie(...cookies);
+            const page = await Auth.browser.newPage();
 
-        console.log("cookie load");
+            const cookiesStr = fs.readFileSync('./cookies.json').toString();
+            const cookies = JSON.parse(cookiesStr);
+            await page.setCookie(...cookies);
 
-        await page.goto('https://aplikasi.atrbpn.go.id/pintasan', {
-            waitUntil: 'networkidle2',
-        });
+            console.log("cookie load");
 
-        const name = await page.$eval('p > b', el => el.textContent);
+            await page.goto('https://aplikasi.atrbpn.go.id/pintasan', {
+                waitUntil: 'networkidle2',
+            });
 
-        App.send('auth-success', name);
+            const name = await page.$eval('p > b', el => el.textContent);
+
+            App.send('auth-success', name);
+
+            if (headless === true) await Auth.browser.close();
+
+        } catch (err) {
+            if (headless === true) await Auth.browser.close();
+            console.log(err);
+        }
     }
 }
