@@ -28,6 +28,16 @@
 
 import './index.css';
 import ImageLoader from './img/ImageLoader';
+import { createApp } from 'vue';
+import App from './template/App.vue';
+
+createApp({
+    data() {
+        return {
+            count: 0
+        }
+    }
+}).mount('#app');
 
 interface PreloadComm {
     authSave: (username: string, password: string) => void;
