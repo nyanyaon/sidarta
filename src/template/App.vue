@@ -1,19 +1,22 @@
-<template>
-    <div>
-        <h1>
-            Hello World
-        </h1>
-    </div>
-</template>
 <script>
+import Logon from './login/Logon.vue'
+
 export default {
     name: "App",
     data: () => ({}),
-    methods: {}
+    methods: {},
+    components: {
+        Logon
+    }
 };
 </script>
-<style lang="css">
-* {
-    border: 1px solid red;
-}
-</style>
+<template>
+    <!-- <div id="main-entry" class="wrapper" style="display: none;">
+        <div class="header">
+            <img class="logo" alt="logo sidarta">
+            <h1>SIDARTA</h1>
+            <p>Sistem Digitalisasi Arsip Pertanahan</p>
+        </div>
+    </div> -->
+    <Logon/>
+</template>
