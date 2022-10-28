@@ -1,19 +1,15 @@
-<template>
-    <div>
-        <h1>
-            Hello World
-        </h1>
-    </div>
-</template>
 <script>
+import Login from './login/Login.vue';
+
 export default {
-    name: "App",
-    data: () => ({}),
-    methods: {}
+    components: {
+        Login
+    }
 };
 </script>
+<template>
+    <Login />
+</template>
 <style lang="css">
-* {
-    border: 1px solid red;
-}
+
 </style>
