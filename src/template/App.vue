@@ -16,5 +16,5 @@ export default {
             <p>Sistem Digitalisasi Arsip Pertanahan</p>
         </div>
     </div> -->
-    <Login :username="'199003062014021002'" :password="'@1234rio'"/>
+    <Login />
 </template>

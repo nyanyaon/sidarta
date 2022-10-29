@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div v-if="isLogin" class="wrapper">
         <div class="header">
             <img src="../img/logo.png" class="logo" alt="logo sidarta">
             <h1>SIDARTA</h1>
@@ -8,13 +8,13 @@
         <div id="login" class="login">
             <p id="info" class="info-error">Terjadi Kesalahan</p>
             <label for="username">Username</label>
-            <input type="text" v-model="user">
+            <input type="text" v-model="user" @change="saveUserToLocal">
             <label for="pass">Password</label>
-            <input type="password" v-model="pass">
+            <input type="password" v-model="pass" @change="savePassToLocal">
             <button @click="save">Simpan</button>
         </div>
-        <button @click="start">Mulai</button>
     </div>
+    <button @click="start">Mulai</button>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -25,13 +25,22 @@ export default defineComponent({
         return {
             user: this.username as string,
             pass: this.password as string,
+            isLogin: true,
         }
     },
     props: {
-        username: { type: String, required: true },
-        password: { type: String, required: true },
+        username: { type: String, required: false },
+        password: { type: String, required: false },
     },
     methods: {
+        saveUserToLocal(): Event {
+            window.localStorage.setItem('AUTH_USER', this.user);
+            return new Event('change');
+        },
+        savePassToLocal(): Event {
+            window.localStorage.setItem('AUTH_PASS', this.pass);;
+            return new Event('change');
+        },
         save(evt: Event): MouseEvent {
             console.log(this.user, this.pass);
             window.COMM.authSave(this.user, this.pass);
@@ -41,7 +50,17 @@ export default defineComponent({
             console.log('start');
             window.COMM.authStart(false);
             return new MouseEvent('click');
+        },
+        toggleAuth(event: Electron.IpcRenderer, data: any) {
+            this.isLogin = !this.isLogin;
         }
+    },
+    mounted() {
+        window.COMM.authSuccess(this.toggleAuth);
+
+        window.COMM.authStart(true);
+        this.user = window.localStorage.getItem('AUTH_USER');
+        this.pass = window.localStorage.getItem('AUTH_PASS');
     }
 })
 </script>

@@ -71,15 +71,3 @@ window.COMM.authError(() => {
     document.getElementById('info').style.display = 'block';
 });
 
-window.COMM.authSuccess((event, data) => {
-    document.getElementById('login').style.display = "none";
-    const loginSuccessSection = document.getElementById('login-success');
-    const otpSection = document.getElementById('otp');
-
-
-    loginSuccessSection.style.display = 'flex';
-    otpSection.style.display = 'none';
-
-    loginSuccessSection.innerText = data[0];
-});
-

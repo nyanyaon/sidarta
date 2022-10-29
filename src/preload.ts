@@ -6,7 +6,7 @@ import { contextBridge, ipcRenderer } from "electron";
 contextBridge.exposeInMainWorld('COMM', {
     authSave: (username: string, password: string) => ipcRenderer.invoke('auth:save', username, password),
     authVerify: (otp: string) => ipcRenderer.invoke('auth-verify', otp),
-    authStart: () => ipcRenderer.invoke('auth-start'),
+    authStart: (headless: boolean) => ipcRenderer.invoke('auth:start', headless),
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth-error', callback),
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth-success', callback),
     authWaitForToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth-token', callback),

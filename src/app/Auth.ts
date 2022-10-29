@@ -51,7 +51,7 @@ export class Auth {
                 waitUntil: 'networkidle2',
             });
 
-            const name = await page.$eval('p > b', el => el.textContent);
+            const name = await page.$eval('h3.welcome', el => el.textContent);
 
             App.send('auth-success', name);
 
