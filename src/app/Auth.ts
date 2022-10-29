@@ -30,42 +30,6 @@ export class Auth {
         }
     }
 
-    static async verify(otp: string) {
-        try {
-
-            const pages = await Auth.browser.defaultBrowserContext().pages();
-            const currPage = pages[1];
-
-            await currPage.type('#otp-field>input', otp);
-            await currPage.click('#kc-login');
-
-            await currPage.waitForNavigation({
-                waitUntil: 'networkidle2',
-                timeout: 9999999
-            });
-
-            await currPage.goto('https://aplikasi.atrbpn.go.id/pintasan', {
-                waitUntil: 'networkidle2',
-            });
-
-            await currPage.waitForNetworkIdle();
-
-            const name = await currPage.$eval('p > b', el => el.textContent);
-            
-            App.send('auth-success', name);
-            
-            const client = await currPage.target().createCDPSession();
-            const cookies = (await client.send('Network.getAllCookies')).cookies;
-            fs.writeFileSync('./cookies.json', JSON.stringify(cookies, null, 2));
-            
-            await currPage.waitForNetworkIdle();
-
-            // await Auth.browser.close();
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
     static async start(headless: boolean) {
         try {
 
