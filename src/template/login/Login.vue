@@ -5,7 +5,6 @@
             <h1>SIDARTA</h1>
             <p>Sistem Digitalisasi Arsip Pertanahan</p>
         </div>
-        <!-- login -->
         <div id="login" class="login">
             <p id="info" class="info-error">Terjadi Kesalahan</p>
             <label for="username">Username</label>
@@ -14,13 +13,6 @@
             <input type="password" v-model="pass">
             <button @click="save">Simpan</button>
         </div>
-        <!-- verify -->
-        <!-- <div id="otp" class="login">
-            <p id="token" class="info-token">Telah dikirimkan kepada ***@asdasd.com</p>
-            <label for="token-input">OTP</label>
-            <input type="text" id="token-input" name="token-text" value="">
-            <button id="otpBtn">Lanjut</button>
-        </div> -->
         <button @click="start">Mulai</button>
     </div>
 </template>

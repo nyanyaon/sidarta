@@ -34,6 +34,7 @@ const app = createApp(App)
 
 app.mount('#app');
 
+
 interface PreloadComm {
     authSave: (username: string, password: string) => void;
     authStart: (headless: boolean) => void;
