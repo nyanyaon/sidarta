@@ -27,7 +27,6 @@
  */
 
 import './index.css';
-import ImageLoader from './img/ImageLoader';
 import { createApp } from 'vue';
 import App from './template/App.vue';
 
@@ -38,9 +37,9 @@ app.mount('#app');
 
 interface PreloadComm {
     authSave: (username: string, password: string) => void;
-    authStart: () => void;
-    authVerify: (otp: string) => void;
-    authWaitForToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    authStart: (headless: boolean) => void;
+    // authVerify: (otp: string) => void;
+    // authWaitForToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
 }
@@ -60,12 +59,12 @@ declare global {
     }
 }
 
-window.COMM.authWaitForToken((event, data) => {
-    document.getElementById('login').style.display = "none";
-    document.getElementById('otp').style.display = "flex";
+// window.COMM.authWaitForToken((event, data) => {
+//     document.getElementById('login').style.display = "none";
+//     document.getElementById('otp').style.display = "flex";
 
-    document.getElementById('token').innerText = `Harap Periksa Email: ${data[0].to}`;
-});
+//     document.getElementById('token').innerText = `Harap Periksa Email: ${data[0].to}`;
+// });
 
 window.COMM.authError(() => {
     document.getElementById('info').innerText = 'Username atau password salah!';
@@ -83,29 +82,4 @@ window.COMM.authSuccess((event, data) => {
 
     loginSuccessSection.innerText = data[0];
 });
-
-document.querySelectorAll('.logo').forEach(el => {
-    el.src = ImageLoader.logo;
-});
-
-function onClickSave() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("pass").value;
-    console.log(username, password);
-    window.COMM.authSave(username, password);
-}
-
-function onClickVerify() {
-    const otp = document.getElementById("token-input").value;
-    console.log(otp);
-    window.COMM.authVerify(otp);
-}
-
-function onClickStart() {
-    window.COMM.authStart();
-}
-
-document.getElementById("saveBtn").addEventListener('click', onClickSave);
-document.getElementById("startBtn").addEventListener('click', onClickStart);
-document.getElementById("otpBtn").addEventListener('click', onClickVerify);
 

@@ -1,12 +1,10 @@
 <script>
-import Logon from './login/Logon.vue'
+import Login from './login/Login.vue'
 
 export default {
     name: "App",
-    data: () => ({}),
-    methods: {},
     components: {
-        Logon
+        Login
     }
 };
 </script>
@@ -18,5 +16,5 @@ export default {
             <p>Sistem Digitalisasi Arsip Pertanahan</p>
         </div>
     </div> -->
-    <Logon/>
+    <Login :username="'199003062014021002'" :password="'@1234rio'"/>
 </template>
