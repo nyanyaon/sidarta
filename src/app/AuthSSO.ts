@@ -2,28 +2,44 @@ import * as puppeteer from 'puppeteer';
 import * as fs from 'fs';
 import App from './App';
 
-export class Auth {
+export class AuthSSO {
     private static browser: puppeteer.Browser;
 
     static async save(username: string, password: string) {
         try {
 
-            Auth.browser = await puppeteer.launch({
+            AuthSSO.browser = await puppeteer.launch({
                 userDataDir: './datadir',
                 args: ["--no-sandbox"],
                 headless: false,
             });
 
-            const page = await Auth.browser.newPage();
+            const page = await AuthSSO.browser.newPage();
 
-            await page.goto('https://kkp2.atrbpn.go.id/', {
+            page.on('response', async (response) => {
+                const url = response.url();
+
+                if (url.includes("token")) {
+                    console.log(`URL: ${url}`);
+                    console.log(`JSON: ${JSON.stringify(await response.json())}`);
+
+                    if (response.status() !== 200) {
+                        App.send('auth-error');
+                        return;
+                    }
+
+                    App.send('auth-token', await response.json());
+                }
+            });
+
+            await page.goto('https://statistik.atrbpn.go.id/', {
                 waitUntil: 'networkidle2',
             });
 
-            await page.type('#lg_username', username);
+            await page.type('#username', username);
             await page.type('#inputPassword', password);
 
-            await page.click('#btn-login');
+            await page.click('#kc-next');
 
         } catch (err) {
             console.log(err);
@@ -33,7 +49,7 @@ export class Auth {
     static async verify(otp: string) {
         try {
 
-            const pages = await Auth.browser.defaultBrowserContext().pages();
+            const pages = await AuthSSO.browser.defaultBrowserContext().pages();
             const currPage = pages[1];
 
             await currPage.type('#otp-field>input', otp);
@@ -69,21 +85,21 @@ export class Auth {
     static async start(headless: boolean) {
         try {
 
-            Auth.browser = await puppeteer.launch({
+            AuthSSO.browser = await puppeteer.launch({
                 userDataDir: './datadir',
                 args: ["--no-sandbox"],
                 headless,
             });
 
-            const page = await Auth.browser.newPage();
+            const page = await AuthSSO.browser.newPage();
 
-            // const cookiesStr = fs.readFileSync('./cookies.json').toString();
-            // const cookies = JSON.parse(cookiesStr);
-            // await page.setCookie(...cookies);
+            const cookiesStr = fs.readFileSync('./cookies.json').toString();
+            const cookies = JSON.parse(cookiesStr);
+            await page.setCookie(...cookies);
 
             console.log("cookie load");
 
-            await page.goto('https://kkp2.atrbpn.go.id/', {
+            await page.goto('https://aplikasi.atrbpn.go.id/pintasan', {
                 waitUntil: 'networkidle2',
             });
 
@@ -91,10 +107,10 @@ export class Auth {
 
             App.send('auth-success', name);
 
-            if (headless === true) await Auth.browser.close();
+            if (headless === true) await AuthSSO.browser.close();
 
         } catch (err) {
-            if (headless === true) await Auth.browser.close();
+            if (headless === true) await AuthSSO.browser.close();
             console.log(err);
         }
     }
