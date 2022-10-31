@@ -73,8 +73,4 @@ export default class App {
     private static getFiles(err: NodeJS.ErrnoException, files: string[]) {
         console.log(files)
     }
-
-    static exit() {
-        App.application.quit();
-    }
 }

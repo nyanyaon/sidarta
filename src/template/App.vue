@@ -72,7 +72,7 @@ export default {
 
     this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
-    // if(!this.store.isLogin) window.COMM.authStart(false);
+    if(!this.store.isLogin) window.COMM.authStart(false);
   }
 };
 </script>

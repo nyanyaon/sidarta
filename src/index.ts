@@ -6,7 +6,7 @@ import App from "./app/App";
 
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
-  App.exit();
+  App.application.quit;
 }
 
 App.start(app, BrowserWindow);

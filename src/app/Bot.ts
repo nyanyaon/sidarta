@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer-core";
+import * as puppeteer from "puppeteer";
 import * as fs from 'fs';
 
 export interface BukuTanahOption {
