@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import { Auth } from './Auth';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -39,7 +39,18 @@ export default class App {
         });
         
         App.ipc.handle('auth:save', async (event, ...args) => {await Auth.save(args[0], args[1])});
-        App.ipc.handle('auth-start', () => {Auth.start(false)});
+        App.ipc.handle('auth:start', (event, ...args) => {Auth.start(args[0])});
+        App.ipc.handle('folder:select', (event, ...args) => {
+            dialog.showOpenDialog(App.mainWindow, {
+                properties: ['openDirectory'],
+            }).then(result => {
+                if(result.canceled) return;
+                App.send('folder:selected', result.filePaths[0]);
+            }).catch(err => {
+                console.log(err);
+            });
+            
+        });
         // App.ipc.handle('auth-verify', (event, ...data) => {Auth.verify(data[0])});
     }
 

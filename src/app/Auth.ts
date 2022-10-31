@@ -25,6 +25,15 @@ export class Auth {
 
             await page.click('#btn-login');
 
+            await page.waitForNetworkIdle();
+
+            const name = await page.$eval('h3.welcome', el => el.textContent);
+
+            App.send('auth-success', name);
+
+            await Auth.browser.close();
+
+            Auth.browser = null;
         } catch (err) {
             console.log(err);
         }
@@ -45,13 +54,13 @@ export class Auth {
             // const cookies = JSON.parse(cookiesStr);
             // await page.setCookie(...cookies);
 
-            console.log("cookie load");
+            // console.log("cookie load");
 
             await page.goto('https://kkp2.atrbpn.go.id/', {
                 waitUntil: 'networkidle2',
             });
 
-            const name = await page.$eval('p > b', el => el.textContent);
+            const name = await page.$eval('h3.welcome', el => el.textContent);
 
             App.send('auth-success', name);
 
