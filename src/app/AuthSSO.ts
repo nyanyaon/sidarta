@@ -1,4 +1,4 @@
-import * as puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer-core';
 import * as fs from 'fs';
 import App from './App';
 
@@ -28,7 +28,7 @@ export class AuthSSO {
                         return;
                     }
 
-                    App.send('auth-token', await response.json());
+                    App.send('auth:token', await response.json());
                 }
             });
 
@@ -68,7 +68,7 @@ export class AuthSSO {
 
             const name = await currPage.$eval('p > b', el => el.textContent);
             
-            App.send('auth-success', name);
+            App.send('auth:success', name);
             
             const client = await currPage.target().createCDPSession();
             const cookies = (await client.send('Network.getAllCookies')).cookies;
@@ -76,7 +76,7 @@ export class AuthSSO {
             
             await currPage.waitForNetworkIdle();
 
-            // await Auth.browser.close();
+            await AuthSSO.browser.close();
         } catch (err) {
             console.log(err);
         }
@@ -105,7 +105,7 @@ export class AuthSSO {
 
             const name = await page.$eval('p > b', el => el.textContent);
 
-            App.send('auth-success', name);
+            App.send('auth:success', name);
 
             if (headless === true) await AuthSSO.browser.close();
 

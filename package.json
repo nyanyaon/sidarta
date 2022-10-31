@@ -2,8 +2,8 @@
   "name": "sidarta-electron",
   "productName": "sidarta-electron",
   "version": "1.0.0",
-  "description": "My Electron application description",
-  "main": ".webpack/main",
+  "description": "Optimization Land Registration Document",
+  "main": "./.webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",

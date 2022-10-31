@@ -1,6 +1,6 @@
 <template>
-    <Login v-if="isLogin" />
-    <Home v-else />
+  <Home v-if="store.isLogin" />
+  <Login v-else/>
 </template>
 
 <style>
@@ -33,10 +33,10 @@
 }
 
 body {
-    background: #F3F3F3;
-    font-family: 'Montserrat';
-    margin: 0;
-    padding: 0;
+  background: #F3F3F3;
+  font-family: 'Montserrat';
+  margin: 0;
+  padding: 0;
 }
 
 .wrapper {
@@ -51,27 +51,28 @@ import Login from './login/Login.vue';
 import Home from './index/Home.vue';
 
 export default {
-    name: "App",
-    components: {
-        Login,
-        Home,
-    },
-    data() {
-        return {
-            isLogin: true,
-            store,
-        }
-    },
-    methods: {
-        toggleAuth(event: Electron.IpcRenderer, data: any) {
-            this.isLogin = !this.isLogin;
-            this.store.user = data[0];
-        }
-    },
-    mounted() {
-        window.COMM.authSuccess(this.toggleAuth);
-
-        window.COMM.authStart(true);
+  name: "App",
+  components: {
+    Login,
+    Home,
+  },
+  data() {
+    return {
+      store,
     }
+  },
+  methods: {
+    toggleAuth(event: Electron.IpcRenderer, ...data: any) {
+      window.localStorage.setItem('IS_LOGIN', JSON.stringify(true));
+      window.localStorage.setItem('USER_NAME', data[0][0]);
+    }
+  },
+  mounted() {
+    window.COMM.authSuccess(this.toggleAuth);
+
+    this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
+
+    // if(!this.store.isLogin) window.COMM.authStart(false);
+  }
 };
 </script>

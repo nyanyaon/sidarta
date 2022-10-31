@@ -103,6 +103,9 @@ export default defineComponent({
         goToHome() {
             this.$router.push('/');
         }
+    },
+    mounted() {
+        this.store.user = window.localStorage.getItem('USER_NAME');
     }
 })
 </script>

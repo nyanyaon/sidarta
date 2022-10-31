@@ -114,9 +114,8 @@ export default defineComponent({
         }
     },
     methods: {
-        goToBukuTanah(): MouseEvent {
+        goToBukuTanah() {
             this.$router.replace('/bukutanah')
-            return new MouseEvent("click");
         }
     }
 })
