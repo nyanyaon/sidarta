@@ -1,20 +1,26 @@
 <template>
-    <div class="wrapper">
-        <div class="header">
-            <img src="../img/logo.png" class="logo" alt="logo sidarta">
-            <h1>SIDARTA</h1>
-            <p>Sistem Digitalisasi Arsip Pertanahan</p>
-        </div>
-        <div id="login" class="login">
-            <p id="info" class="info-error">Terjadi Kesalahan</p>
-            <label for="username">Username</label>
-            <input type="text" v-model="user" @change="saveUserToLocal">
-            <label for="pass">Password</label>
-            <input type="password" v-model="pass" @change="savePassToLocal">
-            <button @click="save">Simpan</button>
-        </div>
+  <div class="wrapper">
+    <div class="header">
+      <img src="../img/logo.png" class="logo" alt="logo sidarta">
+      <h1>SIDARTA</h1>
+      <p>Sistem Digitalisasi Arsip Pertanahan</p>
     </div>
-    <button @click="start">Mulai</button>
+    <div v-if="txtEmailTo === ''" class="login">
+      <p class="info-error">Terjadi Kesalahan</p>
+      <label for="username">Username</label>
+      <input type="text" v-model="user" @change="saveUserToLocal">
+      <label for="pass">Password</label>
+      <input type="password" v-model="pass" @change="savePassToLocal">
+      <button @click="save">Simpan</button>
+    </div>
+    <div v-else class="login">
+      <p class="info-token">Telah dikirimkan kepada {{ txtEmailTo }}</p>
+      <label for="token">OTP</label>
+      <input type="text" name="token" v-model="token">
+      <button @click="verify">Lanjut</button>
+    </div>
+  </div>
+  <button @click="start">Mulai</button>
 </template>
 
 <style scoped>
@@ -100,40 +106,49 @@ button:hover {
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: "Login",
-    data() {
-        return {
-            user: this.username as string,
-            pass: this.password as string,
-        }
-    },
-    props: {
-        username: { type: String, required: false },
-        password: { type: String, required: false },
-    },
-    methods: {
-        saveUserToLocal(): Event {
-            window.localStorage.setItem('AUTH_USER', this.user);
-            return new Event('change');
-        },
-        savePassToLocal(): Event {
-            window.localStorage.setItem('AUTH_PASS', this.pass);;
-            return new Event('change');
-        },
-        save(evt: Event): MouseEvent {
-            console.log(this.user, this.pass);
-            window.COMM.authSave(this.user, this.pass);
-            return new MouseEvent('click');
-        },
-        start(): MouseEvent {
-            console.log('start');
-            window.COMM.authStart(false);
-            return new MouseEvent('click');
-        }
-    },
-    mounted() {
-        this.user = window.localStorage.getItem('AUTH_USER');
-        this.pass = window.localStorage.getItem('AUTH_PASS');
+  name: "Login",
+  data() {
+    return {
+      user: this.username as string,
+      pass: this.password as string,
+      token: "",
+      txtEmailTo: "",
     }
+  },
+  props: {
+    username: { type: String, required: false },
+    password: { type: String, required: false },
+  },
+  methods: {
+    saveUserToLocal(): Event {
+      window.localStorage.setItem('AUTH_USER', this.user);
+      return new Event('change');
+    },
+    savePassToLocal(): Event {
+      window.localStorage.setItem('AUTH_PASS', this.pass);;
+      return new Event('change');
+    },
+    save(evt: Event) {
+      console.log(this.user, this.pass);
+      window.COMM.authSave(this.user, this.pass);
+    },
+    start(): MouseEvent {
+      console.log('start');
+      window.COMM.authStart(false);
+      return new MouseEvent('click');
+    },
+    verify() {
+      window.COMM.authVerify(this.token);
+    },
+    renderTokenForm(event: Electron.IpcRendererEvent, ...data: any[]) {
+      this.txtEmailTo = data[0][0].to;
+    }
+  },
+  mounted() {
+    this.user = window.localStorage.getItem('AUTH_USER');
+    this.pass = window.localStorage.getItem('AUTH_PASS');
+
+    window.COMM.authToken(this.renderTokenForm);
+  }
 })
 </script>

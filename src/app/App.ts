@@ -1,13 +1,20 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
-import { Auth } from './Auth';
+import { BrowserWindow, ipcMain, dialog } from 'electron';
+import { AuthSSO } from './AuthSSO';
+import { Bot } from './Bot';
+import * as fs from 'fs';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 export default class App {
-    private static mainWindow: Electron.BrowserWindow;
-    private static application: Electron.App = app;
+    static mainWindow: Electron.BrowserWindow;
+    static application: Electron.App;
+    static BrowserWindow: any;
     private static ipc: Electron.IpcMain = ipcMain;
+
+    private static onWindowAllClosed() {
+        if (process.platform !== 'darwin') App.application.quit();
+    }
 
     private static onClosed() {
         App.mainWindow = null;
@@ -32,31 +39,39 @@ export default class App {
         App.mainWindow.on('closed', App.onClosed);
     }
 
-    static start() {
+    static start(app: Electron.App, browserWindow: typeof BrowserWindow) {
+        App.BrowserWindow = browserWindow;
+        App.application = app;
         App.application.on('window-all-closed', App.onWindowAllClosed);
         App.application.whenReady().then(() => {
             App.onReady();
         });
         
-        App.ipc.handle('auth:save', async (event, ...args) => {await Auth.save(args[0], args[1])});
-        App.ipc.handle('auth:start', (event, ...args) => {Auth.start(args[0])});
+        App.ipc.handle('auth:save', async (event, ...args) => {await AuthSSO.save(args[0], args[1])});
+        App.ipc.handle('auth:start', (event, ...args) => {AuthSSO.start(args[0])});
+        App.ipc.handle('bot:getbukutanahoption', async (event, ...args) => { 
+            const btopt = await Bot.getBukuTanahOption();
+
+            App.send('bukutanah:dataopt', btopt);
+        });
         App.ipc.handle('folder:select', (event, ...args) => {
             dialog.showOpenDialog(App.mainWindow, {
                 properties: ['openDirectory'],
             }).then(result => {
                 if(result.canceled) return;
-                App.send('folder:selected', result.filePaths[0]);
+                
+                const files = fs.readdirSync(result.filePaths[0]);
+                App.send('folder:selected', result.filePaths[0], files);
             }).catch(err => {
                 console.log(err);
             });
             
         });
-        // App.ipc.handle('auth-verify', (event, ...data) => {Auth.verify(data[0])});
+        App.ipc.handle('auth:verify', (event, ...data) => {AuthSSO.verify(data[0])});
     }
 
-    private static onWindowAllClosed() {
-        if (process.platform !== 'darwin') App.application.quit();
-        
+    private static getFiles(err: NodeJS.ErrnoException, files: string[]) {
+        console.log(files)
     }
 
     static exit() {
