@@ -27,24 +27,37 @@
  */
 
 import { createApp } from 'vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './template/App.vue';
+import BukuTanah from './template/index/BukuTanah.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faUser);
 
-const app = createApp(App);
+const router = createRouter({
+    history: createWebHashHistory(),
+    routes: [
+        { path: '/', component: App },
+        { path: '/bukutanah', component: BukuTanah },
+    ]
+});
+
+const app = createApp({});
 app.component('Fa', FontAwesomeIcon);
+app.use(router);
 app.mount('#app');
 
 
 interface PreloadComm {
     authSave: (username: string, password: string) => void;
     authStart: (headless: boolean) => void;
+    folderSelect: () => void;
     // authVerify: (otp: string) => void;
     // authWaitForToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
 }
 

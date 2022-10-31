@@ -1,13 +1,6 @@
 <template>
-    <!-- <div id="main-entry" class="wrapper" style="display: none;">
-        <div class="header">
-            <img class="logo" alt="logo sidarta">
-            <h1>SIDARTA</h1>
-            <p>Sistem Digitalisasi Arsip Pertanahan</p>
-        </div>
-    </div> -->
-    <!-- <Login v-if="isLogin" /> -->
-    <Home :nama="name"/>
+    <Login v-if="isLogin" />
+    <Home v-else />
 </template>
 
 <style>
@@ -53,6 +46,7 @@ body {
 </style>
 
 <script lang="ts">
+import { store } from '../Store';
 import Login from './login/Login.vue';
 import Home from './index/Home.vue';
 
@@ -65,13 +59,13 @@ export default {
     data() {
         return {
             isLogin: true,
-            name: "",
+            store,
         }
     },
     methods: {
         toggleAuth(event: Electron.IpcRenderer, data: any) {
             this.isLogin = !this.isLogin;
-            this.name = data[0];
+            this.store.user = data[0];
         }
     },
     mounted() {

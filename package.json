@@ -43,25 +43,25 @@
         }
       ],
       "plugins": [
-          {
-            "name": "@electron-forge/plugin-webpack",
-            "config": {
-              "mainConfig": "./webpack.main.config.js",
-              "renderer": {
-                "config": "./webpack.renderer.config.js",
-                "entryPoints": [
-                  {
-                    "html": "./src/index.html",
-                    "js": "./src/renderer.ts",
-                    "name": "main_window",
-                    "preload": {
-                      "js": "./src/preload.ts"
-                    }
+        {
+          "name": "@electron-forge/plugin-webpack",
+          "config": {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/index.html",
+                  "js": "./src/renderer.ts",
+                  "name": "main_window",
+                  "preload": {
+                    "js": "./src/preload.ts"
                   }
-                ]
-              }
+                }
+              ]
             }
           }
+        }
       ]
     }
   },
@@ -97,6 +97,7 @@
     "@types/node": "^18.11.1",
     "electron-squirrel-startup": "^1.0.0",
     "puppeteer": "^19.1.2",
-    "vue": "^3.2.41"
+    "vue": "^3.2.41",
+    "vue-router": "^4.1.6"
   }
 }
