@@ -11,7 +11,7 @@ export class AuthSSO {
             AuthSSO.browser = await puppeteer.launch({
                 userDataDir: './datadir',
                 args: ["--no-sandbox"],
-                headless: false,
+                headless: true,
             });
 
             const page = await AuthSSO.browser.newPage();
@@ -25,6 +25,7 @@ export class AuthSSO {
 
                     if (response.status() !== 200) {
                         App.send('auth-error');
+                        await AuthSSO.browser.close();
                         return;
                     }
 

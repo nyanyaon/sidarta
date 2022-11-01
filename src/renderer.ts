@@ -82,15 +82,3 @@ declare global {
     }
 }
 
-// window.COMM.authWaitForToken((event, data) => {
-//     document.getElementById('login').style.display = "none";
-//     document.getElementById('otp').style.display = "flex";
-
-//     document.getElementById('token').innerText = `Harap Periksa Email: ${data[0].to}`;
-// });
-
-// window.COMM.authError(() => {
-//     document.getElementById('info').innerText = 'Username atau password salah!';
-//     document.getElementById('info').style.display = 'block';
-// });
-

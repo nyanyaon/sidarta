@@ -88,5 +88,6 @@ typings/
 # Electron-Forge
 out/
 
-#datadir
+# Browser Cache
 datadir
+cookies.json

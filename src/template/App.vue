@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     toggleAuth(event: Electron.IpcRenderer, ...data: any) {
-      window.localStorage.setItem('IS_LOGIN', JSON.stringify(true));
+      window.localStorage.setItem('IS_LOGIN', JSON.stringify(this.store.isLogin = true));
       window.localStorage.setItem('USER_NAME', data[0][0]);
     }
   },
@@ -72,7 +72,7 @@ export default {
 
     this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
-    if(!this.store.isLogin) window.COMM.authStart(false);
+    if(!this.store.isLogin) window.COMM.authStart(true);
   }
 };
 </script>

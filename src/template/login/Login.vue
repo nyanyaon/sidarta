@@ -6,7 +6,7 @@
       <p>Sistem Digitalisasi Arsip Pertanahan</p>
     </div>
     <div v-if="txtEmailTo === ''" class="login">
-      <p class="info-error">Terjadi Kesalahan</p>
+      <p v-if="error !== ''" class="info-error">{{ error }}</p>
       <label for="username">Username</label>
       <input type="text" v-model="user" @change="saveUserToLocal">
       <label for="pass">Password</label>
@@ -20,7 +20,6 @@
       <button @click="verify">Lanjut</button>
     </div>
   </div>
-  <button @click="start">Mulai</button>
 </template>
 
 <style scoped>
@@ -29,16 +28,20 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-bottom: 2em;
 }
 
 .header h1 {
   margin: 0;
   color: #FF9D56;
-  font-size: 3em;
+  font-size: 2.4em;
 }
 
 .header p {
   margin: 0;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: #7B7B7B;
 }
 
 .logo {
@@ -57,25 +60,31 @@
 }
 
 .login label {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  font-size: 0.75em;
+  color: #393939;
 }
 
 .login input {
-  margin-bottom: 0.2rem;
-  font-size: 1em;
-  padding: 0.4rem;
-  border-radius: 0.5em;
+  margin-bottom: 0.5rem;
+  font-size: 0.75em;
+  padding: 0.5em;
+  border: 1px solid #FF9D56;
+  background: none;
+  border-radius: 0.8em;
+  font-weight: 500;
 }
 
 button {
-  font-size: 1em;
+  font-size: 0.75em;
   font-weight: 600;
   color: #fff;
   background: #FF9D56;
   border: none;
-  padding: 0.5em;
-  margin-top: 1em;
-  border-radius: 0.5em;
+  padding: 0.75em 0.5em;
+  margin-top: 3em;
+  border-radius: 0.8em;
 }
 
 button:hover {
@@ -94,11 +103,6 @@ button:hover {
   margin: 0.5em 0;
   padding: 1em;
   font-size: 0.8em;
-  display: none;
-}
-
-#otp {
-  display: none;
 }
 </style>
 
@@ -113,6 +117,7 @@ export default defineComponent({
       pass: this.password as string,
       token: "",
       txtEmailTo: "",
+      error: "",
     }
   },
   props: {
@@ -142,13 +147,17 @@ export default defineComponent({
     },
     renderTokenForm(event: Electron.IpcRendererEvent, ...data: any[]) {
       this.txtEmailTo = data[0][0].to;
-    }
+    },
+    authError(event: Electron.IpcRendererEvent, ...data: any[]) {
+      this.error = "Username atau Password salah!"
+    },
   },
   mounted() {
     this.user = window.localStorage.getItem('AUTH_USER');
     this.pass = window.localStorage.getItem('AUTH_PASS');
 
     window.COMM.authToken(this.renderTokenForm);
+    window.COMM.authError(this.authError);
   }
 })
 </script>
