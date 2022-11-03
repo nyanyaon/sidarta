@@ -5,4 +5,5 @@ export const store = reactive({
     isLogin: false,
     stateId: "ALA",
     files: [],
+    loggedTime: 0,
 });

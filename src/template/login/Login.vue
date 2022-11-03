@@ -125,22 +125,18 @@ export default defineComponent({
     password: { type: String, required: false },
   },
   methods: {
-    saveUserToLocal(): Event {
+    saveUserToLocal() {
       window.localStorage.setItem('AUTH_USER', this.user);
-      return new Event('change');
     },
-    savePassToLocal(): Event {
+    savePassToLocal() {
       window.localStorage.setItem('AUTH_PASS', this.pass);;
-      return new Event('change');
     },
     save(evt: Event) {
       console.log(this.user, this.pass);
       window.COMM.authSave(this.user, this.pass);
     },
-    start(): MouseEvent {
-      console.log('start');
+    start() {
       window.COMM.authStart(false);
-      return new MouseEvent('click');
     },
     verify() {
       window.COMM.authVerify(this.token);
