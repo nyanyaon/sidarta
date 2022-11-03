@@ -55,6 +55,7 @@ interface PreloadComm {
     authStart: (headless: boolean) => void;
     folderSelect: () => void;
     botGetBukuTanahOption: () => void;
+    botStartBukuTanah: (kecamatan: string, desa: string) => void;
     authVerify: (otp: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;

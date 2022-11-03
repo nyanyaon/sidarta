@@ -16,13 +16,13 @@
                 </datalist>
                 <label for="file-loc">Lokasi Dokumen</label>
                 <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
-                <button class="start">Mulai</button>
+                <button @click="start()" class="start">Mulai</button>
             </div>
             <div class="doc-container">
-                <h3>List Dokumen ({{ getCountFiles }})</h3>
+                <h3>List Dokumen ({{ getCountFiles }}) : ❌{{ getFilesError }} ✔{{ getFilesOk }}</h3>
                 <div v-for="file, index in getFiles" class="doc-item">
-                    <Fa icon="fa-solid fa-file-pdf" class="icon" />
-                    <p>{{ file }}</p>
+                    <Fa icon="fa-solid fa-file-pdf" :class="file.isValid ? 'icon-ready' : 'icon-error'" />
+                    <p>{{ file.nama }}</p>
                 </div>
             </div>
         </div>
@@ -39,7 +39,6 @@
     display: flex;
     flex-direction: column;
     margin-left: auto;
-    margin-right: 4em;
 }
 
 .doc-container h3 {
@@ -56,8 +55,14 @@
     align-items: center;
 }
 
-.doc-item .icon {
+.doc-item .icon-error {
     color: #FF3636;
+    font-size: 15px;
+    text-align: center;
+}
+
+.doc-item .icon-ready {
+    color: #02B334;
     font-size: 15px;
     text-align: center;
 }
@@ -126,6 +131,7 @@ import Header from './Header.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
 import { BukuTanahOption, Kecamatan, Desa } from '../../app/Bot';
+import { FileInterface } from '../../app/Fileman';
 
 export default defineComponent({
     name: "BukuTanahUploader",
@@ -142,8 +148,14 @@ export default defineComponent({
         }
     },
     computed: {
-        getFiles(): string[] {
-            return this.store.files.slice(0, 10);
+        getFiles(): FileInterface[] {
+            return this.store.files.map((val: FileInterface) => val).sort((val: FileInterface) => val.isValid ? 2 : 1).splice(0, 10);;
+        },
+        getFilesError(): number {
+            return this.store.files.filter((val: FileInterface) => !val.isValid).length;
+        },
+        getFilesOk(): number {
+            return this.store.files.filter((val: FileInterface) => val.isValid).length;
         },
         getCountFiles(): number {
             return this.store.files.length;
@@ -165,6 +177,9 @@ export default defineComponent({
     methods: {
         selectFolder() {
             window.COMM.folderSelect();
+        },
+        start() {
+            window.COMM.botStartBukuTanah(this.kecamatan, this.desa);
         },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
             this.store.files = data[1];

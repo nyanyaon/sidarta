@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld('COMM', {
     authStart: (headless: boolean) => ipcRenderer.invoke('auth:start', headless),
     folderSelect: () => ipcRenderer.invoke('folder:select'),
     botGetBukuTanahOption: () => ipcRenderer.invoke('bot:getbukutanahoption'),
+    botStartBukuTanah: (kecamatan: string, desa: string) => ipcRenderer.invoke('bot:startBukuTanah', kecamatan, desa),
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth-error', callback),
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:success', callback),
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('folder:selected', callback),
