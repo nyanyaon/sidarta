@@ -20,7 +20,7 @@ export class Fileman {
 
     extract(): FileInterface[] {
         console.log(this.files);
-        let files: FileInterface[] = this.files.map(data => {
+        const files: FileInterface[] = this.files.map(data => {
             let filename = data.replace('.pdf', '');
             if (this.type === "BT") {
                 let regex = filename.match(this.REGEXBT);

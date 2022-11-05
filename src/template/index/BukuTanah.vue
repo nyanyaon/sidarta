@@ -16,7 +16,7 @@
                 </datalist>
                 <label for="file-loc">Lokasi Dokumen</label>
                 <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
-                <button @click="start()" class="start">Mulai</button>
+                <button @click="start" class="start">Mulai</button>
             </div>
             <div class="doc-container">
                 <h3>List Dokumen ({{ getCountFiles }}) : ❌{{ getFilesError }} ✔{{ getFilesOk }}</h3>
@@ -142,6 +142,7 @@ export default defineComponent({
         return {
             fileLocBtnTxt: "Pilih",
             store,
+            files: [] as FileInterface[],
             options: {} as BukuTanahOption,
             kecamatan: "",
             desa: "",
@@ -149,16 +150,16 @@ export default defineComponent({
     },
     computed: {
         getFiles(): FileInterface[] {
-            return this.store.files.map((val: FileInterface) => val).sort((val: FileInterface) => val.isValid ? 2 : 1).splice(0, 10);;
+            return this.files.map((val: FileInterface) => val).sort((val: FileInterface) => val.isValid ? 2 : 1).splice(0, 10);;
         },
         getFilesError(): number {
-            return this.store.files.filter((val: FileInterface) => !val.isValid).length;
+            return this.files.filter((val: FileInterface) => !val.isValid).length;
         },
         getFilesOk(): number {
-            return this.store.files.filter((val: FileInterface) => val.isValid).length;
+            return this.files.filter((val: FileInterface) => val.isValid).length;
         },
         getCountFiles(): number {
-            return this.store.files.length;
+            return this.files.length;
         },
         getListKecamatan(): Kecamatan[]{
             return this.options.dataKecamatanJSON;
@@ -179,15 +180,27 @@ export default defineComponent({
             window.COMM.folderSelect();
         },
         start() {
-            window.COMM.botStartBukuTanah(this.kecamatan, this.desa);
+            const files: FileInterface[] = this.files.map((v: FileInterface) => {
+                const nama = v.nama;
+                const isValid = v.isValid;
+                const nomor = v.nomor;
+
+                return {
+                    nama,
+                    isValid,
+                    nomor,
+                }
+            });
+
+            console.log(files);
+            window.COMM.botStartBukuTanah(this.kecamatan, this.desa, files, this.fileLocBtnTxt);
         },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
-            this.store.files = data[1];
+            this.files = data[1];
             this.fileLocBtnTxt = data[0];
         },
         updateDataOpt(event: Electron.IpcRenderer, ...data: any[]) {
             this.options = data[0][0];
-            console.log(this.options);
         },
         updateKecamatan(event: Event) {
             if(this.kecamatan === "") return;

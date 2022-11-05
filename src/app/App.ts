@@ -58,7 +58,7 @@ export default class App {
         });
         App.ipc.handle('bot:startBukuTanah', async (event, ...args) => { 
             const btBot = new BukuTanahBot();
-            await btBot.start(args[0], args[1]);
+            await btBot.start(args[0], args[1], args[2], args[3]);
         });
         App.ipc.handle('folder:select', (event, ...args) => {
             dialog.showOpenDialog(App.mainWindow, {

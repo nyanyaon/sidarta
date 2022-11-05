@@ -33,6 +33,7 @@ import BukuTanah from './template/index/BukuTanah.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { FileInterface } from './app/Fileman';
 
 library.add(faUser, faFilePdf);
 
@@ -55,7 +56,7 @@ interface PreloadComm {
     authStart: (headless: boolean) => void;
     folderSelect: () => void;
     botGetBukuTanahOption: () => void;
-    botStartBukuTanah: (kecamatan: string, desa: string) => void;
+    botStartBukuTanah: (kecamatan: string, desa: string, files: FileInterface[], loc: string) => void;
     authVerify: (otp: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;

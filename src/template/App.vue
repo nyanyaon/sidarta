@@ -110,6 +110,7 @@ export default {
             window.localStorage.removeItem('IS_LOGIN');
             window.localStorage.removeItem('USER_DATE');
             window.localStorage.removeItem('USER_NAME');
+            this.store.isLogin = false;
         }
     },
 };

@@ -1,5 +1,6 @@
 import * as puppeteer from "puppeteer";
 
+
 export interface BukuTanahOption {
     dataDesaJSON: Desa[];
     dataKecamatanJSON: Kecamatan[];

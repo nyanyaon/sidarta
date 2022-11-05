@@ -2,6 +2,7 @@
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
 import { contextBridge, ipcRenderer } from "electron";
+import { FileInterface } from './app/Fileman';
 
 contextBridge.exposeInMainWorld('COMM', {
     authSave: (username: string, password: string) => ipcRenderer.invoke('auth:save', username, password),
@@ -9,7 +10,7 @@ contextBridge.exposeInMainWorld('COMM', {
     authStart: (headless: boolean) => ipcRenderer.invoke('auth:start', headless),
     folderSelect: () => ipcRenderer.invoke('folder:select'),
     botGetBukuTanahOption: () => ipcRenderer.invoke('bot:getbukutanahoption'),
-    botStartBukuTanah: (kecamatan: string, desa: string) => ipcRenderer.invoke('bot:startBukuTanah', kecamatan, desa),
+    botStartBukuTanah: (kecamatan: string, desa: string, files: FileInterface[], loc: string) => ipcRenderer.invoke('bot:startBukuTanah', kecamatan, desa, files, loc),
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth-error', callback),
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:success', callback),
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('folder:selected', callback),
