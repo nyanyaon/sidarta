@@ -25,6 +25,8 @@ export class BukuTanahBot extends Bot {
             await page.type("#frmCariHak > span > span > span.select2-search.select2-search--dropdown > input", desa);
             await page.click("#select2-cari-hat_inputwilayah_SelectedDesa-results > li:nth-child(1)");
 
+            
+
         } catch (err) {
             console.log(err);
         }
