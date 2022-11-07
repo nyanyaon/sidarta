@@ -1,8 +1,8 @@
 {
-  "name": "sidarta-electron",
-  "productName": "sidarta-electron",
+  "name": "sidarta",
+  "productName": "sidarta",
   "version": "1.0.0",
-  "description": "Optimization Land Registration Document",
+  "description": "RPA for Optimization Land Registration Document",
   "main": "./.webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -13,18 +13,22 @@
   },
   "keywords": [],
   "author": {
-    "name": "kholil (nyanyaon)",
+    "name": "kholil",
     "email": "its@ahmadk.me"
   },
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./src/logo"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "sidarta_electron"
+            "name": "sidarta",
+            "iconUrl": "http://nyanyaon.my.id/~nyaon/res/logo.ico",
+            "setupIcon": "./src/logo.ico"
           }
         },
         {

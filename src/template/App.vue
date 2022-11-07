@@ -104,16 +104,15 @@ export default {
     mounted() {
         window.COMM.authSuccess(this.toggleAuth);
         window.COMM.appWaitDataOpt(this.setDataOpt);
-        if(window.localStorage.getItem('UPLOAD_OPTION') === null) {
-            window.COMM.botGetOption();
-        }
 
         this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
         if (!this.store.isLogin) window.COMM.authStart(true);
-    },
-    beforeUnmount() {
-        clearInterval(this.clockInterval);
+
+        if(window.localStorage.getItem('UPLOAD_OPTION') === null && this.store.isLogin) {
+            this.isLoading = true;
+            window.COMM.botGetOption();
+        }
     },
     updated() {
         if (8 - this.store.loggedTime <= 0) {
@@ -121,9 +120,9 @@ export default {
             window.localStorage.removeItem('USER_DATE');
             window.localStorage.removeItem('USER_NAME');
             window.localStorage.removeItem('UPLOAD_OPTION');
+            this.timeMs = 0;
             this.store.isLogin = false;
-            clearInterval(this.clockInterval);
         }
-    },
+    }
 };
 </script>

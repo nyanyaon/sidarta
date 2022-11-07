@@ -36,9 +36,9 @@ export class Fileman {
                 let regex = filename.match(this.REGEXSU);
                 return {
                     nama: data,
-                    tipe: regex[1],
-                    nomor: regex[5],
-                    tahun: regex[7],
+                    tipe: regex !== null ? regex[1] : "",
+                    nomor: regex !== null ? regex[5] : "",
+                    tahun: regex !== null ? regex[7] : "",
                     isValid: regex !== null ? true : false,
                 }
             }

@@ -2,7 +2,7 @@
     <Loader v-if="isLoading" />
     <Header />
     <div class="content">
-        <h2>BUKU TANAH</h2>
+        <h2>SURAT UKUR</h2>
         <div class="section">
             <div class="form-loc">
                 <label for="kecamatan">Kecamatan</label>
@@ -187,7 +187,7 @@ export default defineComponent({
                         continue;
                     }
                     
-                    file.isUploaded = await window.COMM.databaseCheck('bukutanah', file.nama);
+                    file.isUploaded = await window.COMM.databaseCheck('suratukur', file.nama);
                 }
 
                 this.isLoading = false;
@@ -197,7 +197,7 @@ export default defineComponent({
     },
     methods: {
         selectFolder() {
-            window.COMM.folderSelect('BT');
+            window.COMM.folderSelect('SU');
         },
         start() {
             const files: FileInterface[] = this.files.map((v: FileInterface) => {
@@ -206,6 +206,7 @@ export default defineComponent({
                 const isUploaded = v.isUploaded;
                 const nomor = v.nomor;
                 const tipe = v.tipe;
+                const tahun = v.tahun;
 
                 return {
                     nama,
@@ -213,10 +214,11 @@ export default defineComponent({
                     isUploaded,
                     nomor,
                     tipe,
+                    tahun,
                 }
             });
 
-            window.COMM.botStartBukuTanah(this.kecamatan, this.desa, files, this.fileLocBtnTxt);
+            window.COMM.botStartSuratUkur(this.kecamatan, this.desa, files, this.fileLocBtnTxt);
         },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
             this.files = data[1];

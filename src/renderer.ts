@@ -30,6 +30,7 @@ import { createApp } from 'vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import App from './template/App.vue';
 import BukuTanah from './template/index/BukuTanah.vue';
+import SuratUkur from './template/index/SuratUkur.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faFilePdf } from '@fortawesome/free-solid-svg-icons';
@@ -42,6 +43,7 @@ const router = createRouter({
     routes: [
         { path: '/', component: App },
         { path: '/bukutanah', component: BukuTanah },
+        { path: '/suratukur', component: SuratUkur },
     ]
 });
 
@@ -54,11 +56,12 @@ app.mount('#app');
 interface PreloadComm {
     authSave: (username: string, password: string) => void;
     authStart: (headless: boolean) => void;
-    folderSelectBT: () => void;
+    folderSelect: (tipeDok: string) => void;
     databaseCheck: (col: string, nama: string) => Promise<boolean>;
     databaseGetAll: (col: string) => Promise<any[]>;
     botGetOption: () => void;
     botStartBukuTanah: (kecamatan: string, desa: string, files: FileInterface[], loc: string) => void;
+    botStartSuratUkur: (kecamatan: string, desa: string, files: FileInterface[], loc: string) => void;
     authVerify: (otp: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;

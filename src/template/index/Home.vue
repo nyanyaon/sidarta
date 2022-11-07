@@ -6,7 +6,7 @@
             <div @click="goToBukuTanah" class="feature-box available">
                 <p>BUKU TANAH</p>
             </div>
-            <div class="feature-box available">
+            <div @click="goToSuratUkur" class="feature-box available">
                 <p>SURAT UKUR</p>
             </div>
             <div class="feature-box unavailable">
@@ -117,9 +117,13 @@ export default defineComponent({
         goToBukuTanah() {
             this.$router.replace('/bukutanah')
         },
+        goToSuratUkur() {
+            this.$router.replace('/suratukur')
+        },
     },
     async mounted() {
         this.countBukuTanah = (await window.COMM.databaseGetAll('bukutanah')).length;
+        this.countSuratUkur = (await window.COMM.databaseGetAll('suratukur')).length;
     }
 })
 </script>

@@ -3,9 +3,9 @@ import { FileInterface } from './Fileman';
 import * as fs from 'fs';
 import { ElementHandle } from 'puppeteer';
 import { Database } from './db/Database';
-import BukuTanah from './models/BukuTanah';
+import SuratUkur from './models/SuratUkur';
 
-export class BukuTanahBot extends Bot {
+export class SuratUkurBot extends Bot {
 
     async start(kecamatan: string, desa: string, files: FileInterface[], loc: string) {
         try {
@@ -13,7 +13,7 @@ export class BukuTanahBot extends Bot {
             const db = new Database();
             await db.connect();
 
-            const col = db.getCollection('bukutanah');
+            const col = db.getCollection('suratukur');
             const page = await this.browser.newPage();
 
             const cookiesStr = fs.readFileSync('./cookies.json').toString();
@@ -31,41 +31,46 @@ export class BukuTanahBot extends Bot {
                     continue;
                 }
 
-                await page.goto("https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah");
-
-                await page.waitForNetworkIdle();
+                await page.goto("https://dokumen.atrbpn.go.id/DokumenPengukuran/SuratUkur");
+                await page.waitForSelector("#cari-su_inputwilayah_SelectedDesa");
+                await page.waitForTimeout(2000);
 
                 await page.click("#divkecamatan > div > span.select2.select2-container.select2-container--default");
-                await page.type("#frmCariHak > span > span > span.select2-search.select2-search--dropdown > input", kecamatan);
-                await page.click("#select2-cari-hat_inputwilayah_SelectedKecamatan-results > li:nth-child(1)");
+                await page.type("#frmCariSU > span > span > span.select2-search.select2-search--dropdown > input", kecamatan);
+                await page.click("#select2-cari-su_inputwilayah_SelectedKecamatan-results > li:nth-child(1)");
 
                 await page.click("#divdesa > div > span.select2.select2-container.select2-container--default");
-                await page.type("#frmCariHak > span > span > span.select2-search.select2-search--dropdown > input", desa);
-                await page.click("#select2-cari-hat_inputwilayah_SelectedDesa-results > li:nth-child(1)");
+                await page.type("#frmCariSU > span > span > span.select2-search.select2-search--dropdown > input", desa);
+                await page.click("#select2-cari-su_inputwilayah_SelectedDesa-results > li:nth-child(1)");
 
-                await page.type("#NomorHak", file.nomor);
+                await page.click("#frmCariSU > div:nth-child(7) > div > span");
+                await page.type("body > span > span > span.select2-search.select2-search--dropdown > input", file.tipe);
+                await page.click("#select2-lsttipe-results > li:nth-child(1)");
 
-                await page.click("#btncarihak", { clickCount: 1, delay: 200 });
+                await page.type("#NomorSU", file.nomor);
+                await page.type("#TahunSU", file.tahun);
+
+                await page.click("#btncarisu", { clickCount: 1, delay: 200 });
                 await page.waitForNetworkIdle();
-                if (await page.waitForSelector("#listhakplaceholder > tr") == null) {
+                if(await page.waitForSelector("#listsuplaceholder > tr") == null) {
                     console.log("[ERROR] : " + file.nama + " tidak ditemukan");
                     continue;
                 }
-
-                await page.click("#listhakplaceholder > tr > td:nth-child(4)", { clickCount: 1, delay: 200 });
+                await page.click("#listsuplaceholder > tr > td:nth-child(4)", { clickCount: 1, delay: 200 });
                 await page.waitForNetworkIdle();
-                const su: string = await page.$eval("#tblDU > tbody > tr > td:nth-child(2)", (el) => el.textContent);
-                const dataSU = su.split('/');
-                await page.waitForSelector("#btnUpldArsipBT", { visible: true });
-                await page.click("#btnUpldArsipBT", { delay: 500 });
+                await page.waitForSelector("#btnUploadSU", { visible: true });
+                await page.click("#btnUploadSU", { clickCount: 1, delay: 200 });
                 await page.waitForNetworkIdle();
 
-                let upload: ElementHandle<HTMLInputElement> = await page.$("#hatsideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]") as ElementHandle<HTMLInputElement>;
+                let upload: ElementHandle<HTMLInputElement> = await page.$("#susideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]") as ElementHandle<HTMLInputElement>;
                 while (upload == null) {
                     console.log("Mencoba kembali...");
                     await page.click("#btnUpldArsipBT", { delay: 500 });
                     upload = await page.$("#hatsideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]") as ElementHandle<HTMLInputElement>;
                 }
+                // const slow3g = puppeteer.networkConditions['Slow 3G'];
+                // await page.emulateNetworkConditions(slow3g);
+
                 await upload.uploadFile(`${loc}/${file.nama}`);
                 await page.waitForNetworkIdle();
                 await page.click("#btnUpldArsipBTHAT", { clickCount: 1, delay: 200 });
@@ -74,21 +79,17 @@ export class BukuTanahBot extends Bot {
                 await page.waitForNetworkIdle();
                 await page.waitForSelector("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button");
 
-                const success = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
-                if (success !== null) {
+                let success = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                if (success) {
                     console.log(success);
-                    col.insertOne(new BukuTanah(
+                    col.insertOne(new SuratUkur(
                         file.nama,
                         file.nomor,
                         file.tipe,
+                        file.tahun,
                         kecamatan,
                         desa,
-                        new Date(),
-                        {
-                            nomor: dataSU[0],
-                            desa: dataSU[1],
-                            tahun: dataSU[2],
-                        },
+                        new Date()
                     ));
                 }
                 await page.click("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button");
