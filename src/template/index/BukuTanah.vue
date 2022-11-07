@@ -1,4 +1,5 @@
 <template>
+    <Loader v-if="isLoading" />
     <Header />
     <div class="content">
         <h2>BUKU TANAH</h2>
@@ -22,7 +23,7 @@
                 <h3>List Dokumen ({{ getCountFiles }}) : ❌{{ getFilesError }} ✔{{ getFilesOk }}</h3>
                 <div v-for="file, index in getFiles" class="doc-item">
                     <Fa icon="fa-solid fa-file-pdf" :class="file.isValid ? 'icon-ready' : 'icon-error'" />
-                    <p>{{ file.nama }}</p>
+                    <p>{{ file.nama }} <span v-if="file.isUploaded">👍</span></p>
                 </div>
             </div>
         </div>
@@ -128,24 +129,27 @@
 
 <script lang="ts">
 import Header from './Header.vue';
+import Loader from './Loader.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
-import { BukuTanahOption, Kecamatan, Desa } from '../../app/Bot';
+import { UploadOption, Kecamatan, Desa } from '../../app/Bot';
 import { FileInterface } from '../../app/Fileman';
 
 export default defineComponent({
     name: "BukuTanahUploader",
     components: {
-        Header
+        Header,
+        Loader,
     },
     data() {
         return {
             fileLocBtnTxt: "Pilih",
             store,
             files: [] as FileInterface[],
-            options: {} as BukuTanahOption,
+            options: {} as UploadOption,
             kecamatan: "",
             desa: "",
+            isLoading: false,
         }
     },
     computed: {
@@ -167,7 +171,7 @@ export default defineComponent({
         getListDesa(): Desa[]{
             if(this.kecamatan === "") return this.options.dataDesaJSON;
 
-            const options: BukuTanahOption = this.options;
+            const options: UploadOption = this.options;
             const kec = options.dataKecamatanJSON.find(value => value.nama === this.kecamatan);
             if(kec === undefined) return;
             const listdesa = options.dataDesaJSON.filter(value => value.induk === kec.wilayahid);
@@ -175,36 +179,54 @@ export default defineComponent({
             return listdesa;
         }
     },
+    watch: {
+        files: {
+            async handler(newValue) {
+                for(const file of newValue) {
+                    if(!file.isValid) {
+                        continue;
+                    }
+                    
+                    file.isUploaded = await window.COMM.databaseCheck('bukutanah', file.nama);
+                }
+
+                this.isLoading = false;
+            },
+            flush: 'post',
+        }
+    },
     methods: {
         selectFolder() {
-            window.COMM.folderSelect();
+            window.COMM.folderSelectBT();
         },
         start() {
             const files: FileInterface[] = this.files.map((v: FileInterface) => {
                 const nama = v.nama;
                 const isValid = v.isValid;
+                const isUploaded = v.isUploaded;
                 const nomor = v.nomor;
+                const tipe = v.tipe;
 
                 return {
                     nama,
                     isValid,
+                    isUploaded,
                     nomor,
+                    tipe,
                 }
             });
 
-            console.log(files);
             window.COMM.botStartBukuTanah(this.kecamatan, this.desa, files, this.fileLocBtnTxt);
         },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
             this.files = data[1];
+
             this.fileLocBtnTxt = data[0];
-        },
-        updateDataOpt(event: Electron.IpcRenderer, ...data: any[]) {
-            this.options = data[0][0];
+            this.isLoading = true;
         },
         updateKecamatan(event: Event) {
             if(this.kecamatan === "") return;
-            const options: BukuTanahOption = this.options;
+            const options: UploadOption = this.options;
             const kec = options.dataKecamatanJSON.find(value => value.nama === this.kecamatan);
             const desa = options.dataDesaJSON.find(value => value.induk === kec.wilayahid);
 
@@ -212,7 +234,7 @@ export default defineComponent({
         },
         updateDesa(event: Event) {
             if(this.desa === "") return;
-            const options: BukuTanahOption = this.options;
+            const options: UploadOption = this.options;
             const desa = options.dataDesaJSON.find(value => value.nama === this.desa);
             const kec = options.dataKecamatanJSON.find(value => value.wilayahid === desa.induk);
 
@@ -221,8 +243,7 @@ export default defineComponent({
     },
     mounted() {
         window.COMM.folderSelected(this.updateFolderSelect);
-        window.COMM.bukutanahWaitData(this.updateDataOpt);
-        window.COMM.botGetBukuTanahOption();
+        this.options = JSON.parse(window.localStorage.getItem('UPLOAD_OPTION'));
     }
 });
 </script>

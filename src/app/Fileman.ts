@@ -4,6 +4,7 @@ export interface FileInterface {
     nomor:  string,
     tahun?:  string,
     isValid: boolean,
+    isUploaded?: boolean,
 }
 
 export class Fileman {
@@ -19,7 +20,6 @@ export class Fileman {
     }
 
     extract(): FileInterface[] {
-        console.log(this.files);
         const files: FileInterface[] = this.files.map(data => {
             let filename = data.replace('.pdf', '');
             if (this.type === "BT") {
@@ -28,7 +28,6 @@ export class Fileman {
                     nama: data,
                     tipe: regex !== null ? regex[3].slice(8, 9) : "",
                     nomor: regex !== null ? regex[3].slice(-5) : "",
-                    tahun: "0",
                     isValid: regex !== null ? true : false,
                 }
             }
@@ -44,7 +43,7 @@ export class Fileman {
                 }
             }
         });
-        console.log(files);
+
         return files;
     }
 

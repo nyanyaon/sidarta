@@ -1,7 +1,8 @@
 <template>
+    <Loader v-if="isLoading" />
     <Home v-if="store.isLogin" />
     <Login v-else />
-    <p>{{ getClock }}</p>
+    <p style="text-align: center;">{{ getClock }}</p>
 </template>
 
 <style>
@@ -50,12 +51,14 @@ body {
 import { store } from '../Store';
 import Login from './login/Login.vue';
 import Home from './index/Home.vue';
+import Loader from './index/Loader.vue';
 
 export default {
     name: "App",
     components: {
         Login,
         Home,
+        Loader,
     },
     data() {
         return {
@@ -65,13 +68,19 @@ export default {
             timeMi: 0,
             timeHo: 0,
             clockInterval: '',
+            isLoading: false,
         }
     },
     methods: {
         toggleAuth(event: Electron.IpcRenderer, ...data: any) {
-            window.localStorage.setItem('IS_LOGIN', JSON.stringify(this.store.isLogin = true));
+            window.localStorage.setItem('IS_LOGIN', JSON.stringify(true));
             window.localStorage.setItem('USER_NAME', data[0][0]);
             window.localStorage.setItem('USER_DATE', JSON.stringify(new Date()));
+            this.store.isLogin = true;
+        },
+        setDataOpt(event: Electron.IpcRenderer, ...data: any[]) {
+            window.localStorage.setItem('UPLOAD_OPTION', JSON.stringify(data[0][0]));
+            this.isLoading = false;
         },
     },
     computed: {
@@ -94,6 +103,10 @@ export default {
     },
     mounted() {
         window.COMM.authSuccess(this.toggleAuth);
+        window.COMM.appWaitDataOpt(this.setDataOpt);
+        if(window.localStorage.getItem('UPLOAD_OPTION') === null) {
+            window.COMM.botGetOption();
+        }
 
         this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
@@ -102,15 +115,14 @@ export default {
     beforeUnmount() {
         clearInterval(this.clockInterval);
     },
-    watch: {
-
-    },
     updated() {
         if (8 - this.store.loggedTime <= 0) {
             window.localStorage.removeItem('IS_LOGIN');
             window.localStorage.removeItem('USER_DATE');
             window.localStorage.removeItem('USER_NAME');
+            window.localStorage.removeItem('UPLOAD_OPTION');
             this.store.isLogin = false;
+            clearInterval(this.clockInterval);
         }
     },
 };

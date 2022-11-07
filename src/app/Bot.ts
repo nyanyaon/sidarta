@@ -1,7 +1,7 @@
 import * as puppeteer from "puppeteer";
+import * as fs from 'fs';
 
-
-export interface BukuTanahOption {
+export interface UploadOption {
     dataDesaJSON: Desa[];
     dataKecamatanJSON: Kecamatan[];
 }
@@ -41,6 +41,43 @@ export class Bot {
             args: ["--no-sandbox"],
             headless,
         });
+    }
+
+    async getOptions(): Promise<UploadOption> {
+        try {
+            this.browser = await this.init(true);
+            const page = await this.browser.newPage();
+
+            const cookiesStr = fs.readFileSync('./cookies.json').toString();
+            const cookies = JSON.parse(cookiesStr);
+            await page.setCookie(...cookies);
+
+            console.log("cookie load");
+
+            await page.goto("https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah", {
+                waitUntil: 'networkidle2',
+            });
+
+            await page.waitForNetworkIdle();
+
+            const stateId = await page.$eval("#cari-hat_inputwilayah_SelectedKabupaten > option", (el: HTMLOptionElement) => {
+                return el.value;
+            });
+
+            const desa = await page.goto(`https://dokumen.atrbpn.go.id/KriteriaPencarian/GetWilayah?kode=${stateId}&tipe=keca&inkantor=True&aktif=false`);
+            const dataDesaJSON: Desa[] = await desa.json();
+            const kecamatan = await page.goto(`https://dokumen.atrbpn.go.id/KriteriaPencarian/GetWilayah?kode=${stateId}&tipe=kabk&inkantor=True&aktif=false`);
+            const dataKecamatanJSON: Kecamatan[] = await kecamatan.json();
+
+            await this.exit();
+
+            return {
+                dataDesaJSON,
+                dataKecamatanJSON
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     async exit() {

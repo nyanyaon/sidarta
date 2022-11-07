@@ -54,14 +54,16 @@ app.mount('#app');
 interface PreloadComm {
     authSave: (username: string, password: string) => void;
     authStart: (headless: boolean) => void;
-    folderSelect: () => void;
-    botGetBukuTanahOption: () => void;
+    folderSelectBT: () => void;
+    databaseCheck: (col: string, nama: string) => Promise<boolean>;
+    databaseGetAll: (col: string) => Promise<any[]>;
+    botGetOption: () => void;
     botStartBukuTanah: (kecamatan: string, desa: string, files: FileInterface[], loc: string) => void;
     authVerify: (otp: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
-    bukutanahWaitData: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
 }
 
