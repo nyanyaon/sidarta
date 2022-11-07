@@ -6,7 +6,6 @@ export default class BukuTanah {
         public nomor: string,
         public type: string,
         public uploadAt: Date,
-        public suID: string,
-        public id?: ObjectId,
+        public suID: string
     ) {}
 }
