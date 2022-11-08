@@ -5,6 +5,7 @@ import { BukuTanahBot } from './BukuTanahBot';
 import { FileInterface, Fileman } from './Fileman';
 import { Database } from './db/Database';
 import { SuratUkurBot } from './SuratUkurBot';
+import { getEdgePath } from 'edge-paths'
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -43,6 +44,7 @@ export default class App {
             {
                 label: 'Sistem',
                 submenu: [
+                    { role: 'toggleDevTools' },
                     { role: 'quit', label: 'keluar' }
                 ]
             },
@@ -82,8 +84,19 @@ export default class App {
             App.onReady();
         });
 
-        App.ipc.handle('auth:save', async (event, ...args) => { await AuthSSO.save(args[0], args[1]) });
-        App.ipc.handle('auth:start', (event, ...args) => { AuthSSO.start(args[0]) });
+        //COMM
+        App.ipc.handle('app:checkBrowser', (event, ...args) => { 
+            const EDGE_PATH: string = getEdgePath();
+
+            if(fs.existsSync(EDGE_PATH)) {
+                return true
+            } else {
+                return false
+            }
+         });
+        App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
+        App.ipc.handle('auth:save', async (event, ...args) => { await new AuthSSO().save(args[0], args[1]) });
+        App.ipc.handle('auth:start', (event, ...args) => { new AuthSSO().start(args[0]) });
         App.ipc.handle('bot:getOption', async (event, ...args) => {
             const bot = new BukuTanahBot();
             const upopt = await bot.getOptions();
@@ -139,7 +152,7 @@ export default class App {
             return data;
         });
 
-        App.ipc.handle('auth:verify', (event, ...data) => { AuthSSO.verify(data[0]) });
+        App.ipc.handle('auth:verify', (event, ...data) => { new AuthSSO().verify(data[0]) });
     }
 
     private static getFiles(err: NodeJS.ErrnoException, files: string[]) {

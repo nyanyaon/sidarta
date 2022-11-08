@@ -54,6 +54,8 @@ app.mount('#app');
 
 
 interface PreloadComm {
+    appCheckBrowser: () => boolean;
+    appOpenExternal: (url: string) => void;
     authSave: (username: string, password: string) => void;
     authStart: (headless: boolean) => void;
     folderSelect: (tipeDok: string) => void;

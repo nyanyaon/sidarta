@@ -5,6 +5,8 @@ import { contextBridge, ipcRenderer } from "electron";
 import { FileInterface } from './app/Fileman';
 
 contextBridge.exposeInMainWorld('COMM', {
+    appOpenExternal: (url: string) => ipcRenderer.invoke('app:openExternal', url),
+    appCheckBrowser: () => ipcRenderer.invoke('app:checkBrowser'),
     authSave: (username: string, password: string) => ipcRenderer.invoke('auth:save', username, password),
     authVerify: (otp: string) => ipcRenderer.invoke('auth:verify', otp),
     authStart: (headless: boolean) => ipcRenderer.invoke('auth:start', headless),

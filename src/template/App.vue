@@ -1,4 +1,5 @@
 <template>
+    <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh"/>
     <Loader v-if="isLoading" />
     <Home v-if="store.isLogin" />
     <Login v-else />
@@ -35,7 +36,7 @@
 }
 
 body {
-    background: #F3F3F3;
+    background: #fcfbfb;
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
@@ -52,6 +53,7 @@ import { store } from '../Store';
 import Login from './login/Login.vue';
 import Home from './index/Home.vue';
 import Loader from './index/Loader.vue';
+import Modal from './index/Modal.vue';
 
 export default {
     name: "App",
@@ -59,6 +61,7 @@ export default {
         Login,
         Home,
         Loader,
+        Modal,
     },
     data() {
         return {
@@ -67,8 +70,9 @@ export default {
             timeSe: 0,
             timeMi: 0,
             timeHo: 0,
-            clockInterval: '',
+            clockInterval: {},
             isLoading: false,
+            isBrowserExist: true,
         }
     },
     methods: {
@@ -82,15 +86,16 @@ export default {
             window.localStorage.setItem('UPLOAD_OPTION', JSON.stringify(data[0][0]));
             this.isLoading = false;
         },
+        unduh() {
+            window.COMM.appOpenExternal('https://www.microsoft.com/en-us/edge?form=MA13FJ');
+        }
     },
     computed: {
         getClock() {
             if (this.store.isLogin) {
-                this.clockInterval = setInterval(() => {
-                    let logTime: string = JSON.parse(window.localStorage.getItem('USER_DATE'));
-                    let timeInDate = new Date(logTime);
-                    let now = Date.now();
-                    this.timeMs = now - timeInDate.getTime();
+                this.clockInterval = window.setInterval(() => {
+                    const timeInDate = new Date(JSON.parse(window.localStorage.getItem('USER_DATE')));
+                    this.timeMs = Date.now() - timeInDate.getTime();
                     this.timeHo = this.timeMs / (1000 * 60 * 60);
                     this.timeMi = (this.timeHo - Math.floor(this.timeHo)) * 60;
                     this.timeSe = (this.timeMi - Math.floor(this.timeMi)) * 60;
@@ -105,6 +110,7 @@ export default {
         window.COMM.authSuccess(this.toggleAuth);
         window.COMM.appWaitDataOpt(this.setDataOpt);
 
+        this.isBrowserExist = window.COMM.appCheckBrowser();
         this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
         if (!this.store.isLogin) window.COMM.authStart(true);
@@ -120,6 +126,7 @@ export default {
             window.localStorage.removeItem('USER_DATE');
             window.localStorage.removeItem('USER_NAME');
             window.localStorage.removeItem('UPLOAD_OPTION');
+            window.clearInterval(this.clockInterval);
             this.timeMs = 0;
             this.store.isLogin = false;
         }

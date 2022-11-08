@@ -1,4 +1,5 @@
-import * as puppeteer from "puppeteer";
+import * as puppeteer from "puppeteer-core";
+import { getEdgePath } from "edge-paths";
 import * as fs from 'fs';
 
 export interface UploadOption {
@@ -36,10 +37,13 @@ export class Bot {
     browser: puppeteer.Browser;
 
     async init(headless: boolean = true): Promise<puppeteer.Browser> {
+        const EDGE_PATH = getEdgePath();
+
         return await puppeteer.launch({
             userDataDir: './datadir',
             args: ["--no-sandbox"],
             headless,
+            executablePath: EDGE_PATH,
         });
     }
 

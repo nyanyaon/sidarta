@@ -1,7 +1,7 @@
 import { Bot } from './Bot';
 import { FileInterface } from './Fileman';
 import * as fs from 'fs';
-import { ElementHandle } from 'puppeteer';
+import { ElementHandle } from 'puppeteer-core';
 import { Database } from './db/Database';
 import BukuTanah from './models/BukuTanah';
 

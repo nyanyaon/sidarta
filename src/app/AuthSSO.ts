@@ -1,18 +1,15 @@
-import * as puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer-core';
+import { Bot } from './Bot';
 import * as fs from 'fs';
 import App from './App';
 
-export class AuthSSO {
-    private static browser: puppeteer.Browser;
+export class AuthSSO extends Bot {
+    static browser: puppeteer.Browser;
 
-    static async save(username: string, password: string) {
+    async save(username: string, password: string) {
         try {
 
-            AuthSSO.browser = await puppeteer.launch({
-                userDataDir: './datadir',
-                args: ["--no-sandbox"],
-                headless: true,
-            });
+            AuthSSO.browser = await this.init(false);
 
             const page = await AuthSSO.browser.newPage();
 
@@ -47,7 +44,7 @@ export class AuthSSO {
         }
     }
 
-    static async verify(otp: string) {
+    async verify(otp: string) {
         try {
 
             const pages = await AuthSSO.browser.defaultBrowserContext().pages();
@@ -83,16 +80,12 @@ export class AuthSSO {
         }
     }
 
-    static async start(headless: boolean) {
+    async start(headless: boolean) {
         try {
 
-            AuthSSO.browser = await puppeteer.launch({
-                userDataDir: './datadir',
-                args: ["--no-sandbox"],
-                headless,
-            });
+            this.browser = await this.init(true);
 
-            const page = await AuthSSO.browser.newPage();
+            const page = await this.browser.newPage();
 
             const cookiesStr = fs.readFileSync('./cookies.json').toString();
             const cookies = JSON.parse(cookiesStr);
@@ -108,10 +101,10 @@ export class AuthSSO {
 
             App.send('auth:success', name);
 
-            if (headless === true) await AuthSSO.browser.close();
+            if (headless === true) await this.browser.close();
 
         } catch (err) {
-            if (headless === true) await AuthSSO.browser.close();
+            if (headless === true) await this.browser.close();
             console.log(err);
         }
     }

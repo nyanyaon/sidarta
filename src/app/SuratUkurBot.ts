@@ -1,7 +1,7 @@
 import { Bot } from './Bot';
 import { FileInterface } from './Fileman';
 import * as fs from 'fs';
-import { ElementHandle } from 'puppeteer';
+import { ElementHandle } from 'puppeteer-core';
 import { Database } from './db/Database';
 import SuratUkur from './models/SuratUkur';
 
@@ -33,7 +33,6 @@ export class SuratUkurBot extends Bot {
 
                 await page.goto("https://dokumen.atrbpn.go.id/DokumenPengukuran/SuratUkur");
                 await page.waitForSelector("#cari-su_inputwilayah_SelectedDesa");
-                await page.waitForTimeout(2000);
 
                 await page.click("#divkecamatan > div > span.select2.select2-container.select2-container--default");
                 await page.type("#frmCariSU > span > span > span.select2-search.select2-search--dropdown > input", kecamatan);
