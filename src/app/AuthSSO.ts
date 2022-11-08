@@ -9,7 +9,7 @@ export class AuthSSO extends Bot {
     async save(username: string, password: string) {
         try {
 
-            AuthSSO.browser = await this.init(false);
+            AuthSSO.browser = await this.init(true);
 
             const page = await AuthSSO.browser.newPage();
 

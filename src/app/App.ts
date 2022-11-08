@@ -44,7 +44,6 @@ export default class App {
             {
                 label: 'Sistem',
                 submenu: [
-                    { role: 'toggleDevTools' },
                     { role: 'quit', label: 'keluar' }
                 ]
             },
