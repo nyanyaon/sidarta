@@ -1,7 +1,7 @@
 import * as puppeteer from "puppeteer";
 import * as fs from 'fs';
 
-export interface BukuTanahOption {
+export interface UploadOption {
     dataDesaJSON: Desa[];
     dataKecamatanJSON: Kecamatan[];
 }
@@ -28,18 +28,25 @@ export interface Kecamatan {
     validsampai?: Date;
 }
 
+export interface BotInterface {
+    start(kecamatan: string, desa: string): void;
+}
+
 export class Bot {
-    private static browser: puppeteer.Browser;
+    browser: puppeteer.Browser;
 
-    static async getBukuTanahOption(): Promise<BukuTanahOption> {
+    async init(headless: boolean = true): Promise<puppeteer.Browser> {
+        return await puppeteer.launch({
+            userDataDir: './datadir',
+            args: ["--no-sandbox"],
+            headless,
+        });
+    }
+
+    async getOptions(): Promise<UploadOption> {
         try {
-            Bot.browser = await puppeteer.launch({
-                userDataDir: './datadir',
-                args: ["--no-sandbox"],
-                headless: true,
-            });
-
-            const page = await Bot.browser.newPage();
+            this.browser = await this.init(true);
+            const page = await this.browser.newPage();
 
             const cookiesStr = fs.readFileSync('./cookies.json').toString();
             const cookies = JSON.parse(cookiesStr);
@@ -62,13 +69,19 @@ export class Bot {
             const kecamatan = await page.goto(`https://dokumen.atrbpn.go.id/KriteriaPencarian/GetWilayah?kode=${stateId}&tipe=kabk&inkantor=True&aktif=false`);
             const dataKecamatanJSON: Kecamatan[] = await kecamatan.json();
 
+            await this.exit();
+
             return {
                 dataDesaJSON,
                 dataKecamatanJSON
             }
         } catch (err) {
             console.log(err);
-
         }
+    }
+
+    async exit() {
+        this.browser.close();
+        this.browser = null;
     }
 }

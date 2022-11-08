@@ -1,8 +1,10 @@
 import { reactive } from "vue";
+import { FileInterface } from './app/Fileman'
 
 export const store = reactive({
     user: "none",
     isLogin: false,
     stateId: "ALA",
-    files: [],
+    files: [] as FileInterface[],
+    loggedTime: 0,
 });

@@ -6,7 +6,7 @@
             <div @click="goToBukuTanah" class="feature-box available">
                 <p>BUKU TANAH</p>
             </div>
-            <div class="feature-box available">
+            <div @click="goToSuratUkur" class="feature-box available">
                 <p>SURAT UKUR</p>
             </div>
             <div class="feature-box unavailable">
@@ -23,7 +23,7 @@
             </div>
             <div class="statistic-item">
                 <p> {{ getSum  }}</p>
-                <span>BULAN INI</span>
+                <span>TOTAL</span>
             </div>
             <div class="statistic-item">
                 <p> {{ countSuratUkur  }}</p>
@@ -100,12 +100,12 @@ import Header from './Header.vue';
 export default defineComponent({
     name: "Home",
     components: {
-        Header
+        Header,
     },
     data() {
         return {
-            countBukuTanah: 1000,
-            countSuratUkur: 2000,
+            countBukuTanah: 0,
+            countSuratUkur: 0,
         }
     },
     computed: {
@@ -116,7 +116,14 @@ export default defineComponent({
     methods: {
         goToBukuTanah() {
             this.$router.replace('/bukutanah')
-        }
+        },
+        goToSuratUkur() {
+            this.$router.replace('/suratukur')
+        },
+    },
+    async mounted() {
+        this.countBukuTanah = (await window.COMM.databaseGetAll('bukutanah')).length;
+        this.countSuratUkur = (await window.COMM.databaseGetAll('suratukur')).length;
     }
 })
 </script>
