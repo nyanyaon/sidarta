@@ -84,15 +84,18 @@ export default class App {
         });
 
         //COMM
-        App.ipc.handle('app:checkBrowser', (event, ...args) => { 
-            const EDGE_PATH: string = getEdgePath();
+        App.ipc.handle('app:checkBrowser', (event, ...args) => {
+            try {
+                const EDGE_PATH: string = getEdgePath();
 
-            if(fs.existsSync(EDGE_PATH)) {
-                return true
-            } else {
+                if (fs.existsSync(EDGE_PATH)) {
+                    return true
+                }
+            } catch (err) {
+                console.log(err);
                 return false
             }
-         });
+        });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
         App.ipc.handle('auth:save', async (event, ...args) => { await new AuthSSO().save(args[0], args[1]) });
         App.ipc.handle('auth:start', (event, ...args) => { new AuthSSO().start(args[0]) });

@@ -41,9 +41,13 @@
 }
 .brand h1 {
   margin: 0;
-  color: #FF9D56;
+  color: #0c0c0c;
   font-size: 1em;
   font-weight: 700;
+}
+
+.brand h1:hover {
+  color: #FF9D56;
 }
 
 .brand p {

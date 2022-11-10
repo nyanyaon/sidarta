@@ -1,5 +1,5 @@
 <template>
-    <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh"/>
+    <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh" />
     <Loader v-if="isLoading" />
     <Home v-if="store.isLogin" />
     <Login v-else />
@@ -121,7 +121,7 @@ export default {
         }
     },
     updated() {
-        if (8 - this.store.loggedTime <= 0) {
+        if (8 - this.store.loggedTime <= 0 && this.store.isLogin) {
             window.localStorage.removeItem('IS_LOGIN');
             window.localStorage.removeItem('USER_DATE');
             window.localStorage.removeItem('USER_NAME');
@@ -129,6 +129,7 @@ export default {
             window.clearInterval(this.clockInterval);
             this.timeMs = 0;
             this.store.isLogin = false;
+            window.location.reload();
         }
     }
 };

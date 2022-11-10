@@ -32,6 +32,7 @@ export class SuratUkurBot extends Bot {
                 }
 
                 await page.goto("https://dokumen.atrbpn.go.id/DokumenPengukuran/SuratUkur");
+                await page.waitForNetworkIdle();
                 await page.waitForSelector("#cari-su_inputwilayah_SelectedDesa");
 
                 await page.click("#divkecamatan > div > span.select2.select2-container.select2-container--default");
