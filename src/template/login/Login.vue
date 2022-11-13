@@ -108,6 +108,7 @@ button:hover {
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { store } from '../../Store';
 
 export default defineComponent({
   name: "Login",
@@ -118,6 +119,7 @@ export default defineComponent({
       token: "",
       txtEmailTo: "",
       error: "",
+      store,
     }
   },
   props: {
@@ -131,15 +133,16 @@ export default defineComponent({
     savePassToLocal() {
       window.localStorage.setItem('AUTH_PASS', this.pass);;
     },
-    save(evt: Event) {
-      console.log(this.user, this.pass);
-      window.COMM.authSave(this.user, this.pass);
+    async save(evt: Event) {
+      this.store.isLoading = true;
+      this.store.isLoading = await window.COMM.authSave(this.user, this.pass);
     },
     start() {
       window.COMM.authStart(false);
     },
-    verify() {
-      window.COMM.authVerify(this.token);
+    async verify() {
+      this.store.isLoading = true;
+      await window.COMM.authVerify(this.token);
     },
     renderTokenForm(event: Electron.IpcRendererEvent, ...data: any[]) {
       this.txtEmailTo = data[0][0].to;

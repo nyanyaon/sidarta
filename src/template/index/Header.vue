@@ -12,8 +12,13 @@
             <div class="info">
                 <p><span v-html="getUserNama"></span></p>
             </div>
-            <div class="box">
-                <Fa icon="fa-solid fa-user" class="icon"/>
+            <div class="box" @mouseenter="inHandler" @mouseleave="outHandler">
+                <div v-if="hover">
+                    <Fa icon="fa-solid fa-right-from-bracket" class="icon" @click="logout" />
+                </div>
+                <div v-else>
+                    <Fa icon="fa-solid fa-user" class="icon" />
+                </div>
             </div>
         </div>
     </div>
@@ -26,36 +31,39 @@
     margin-left: 2em;
     margin-right: 2em;
 }
+
 .brand {
     display: flex;
     flex-direction: row;
     margin-right: auto;
 }
+
 .brand img {
     height: 38px;
     width: auto;
 }
 
 .brand-info {
-  margin-left: 0.875em;
+    margin-left: 0.875em;
 }
+
 .brand h1 {
-  margin: 0;
-  color: #0c0c0c;
-  font-size: 1em;
-  font-weight: 700;
+    margin: 0;
+    color: #0c0c0c;
+    font-size: 1em;
+    font-weight: 700;
 }
 
 .brand h1:hover {
-  color: #FF9D56;
+    color: #FF9D56;
 }
 
 .brand p {
-  margin: 0;
-  margin-top: 3px;
-  color: #000000;
-  font-size: 0.625em;
-  font-weight: 700;
+    margin: 0;
+    margin-top: 3px;
+    color: #000000;
+    font-size: 0.625em;
+    font-weight: 700;
 }
 
 .user {
@@ -76,12 +84,22 @@
     display: flex;
     align-items: center;
 }
+
 .user .icon {
     padding: 0.3em;
-    background: #FF9D56;
-    color: #F3F3F3;
+    color: #FF9D56;
+    background: #fcfbfb;
     border-radius: 0.2em;
-    font-size: 21px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.user .icon:hover {
+    padding: 0.3em;
+    background: #FF9D56;
+    color: #fcfbfb;
+    border-radius: 0.2em;
+    font-size: 1.2rem;
     text-align: center;
 }
 </style>
@@ -94,7 +112,8 @@ export default defineComponent({
     name: "Header",
     data() {
         return {
-            store
+            store,
+            hover: false,
         }
     },
     computed: {
@@ -106,6 +125,22 @@ export default defineComponent({
     methods: {
         goToHome() {
             this.$router.push('/');
+        },
+        inHandler(evt: MouseEvent) {
+            setTimeout(() => {
+                this.hover = true;
+            }, 1000);
+        },
+        outHandler(evt: MouseEvent) {
+            this.hover = false;
+        },
+        logout() {
+            window.COMM.authLogout();
+            window.localStorage.removeItem('IS_LOGIN');
+            window.localStorage.removeItem('USER_DATE');
+            window.localStorage.removeItem('USER_NAME');
+            window.localStorage.removeItem('UPLOAD_OPTION');
+            window.location.reload();
         }
     },
     mounted() {

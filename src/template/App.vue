@@ -1,6 +1,6 @@
 <template>
     <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh" />
-    <Loader v-if="isLoading" />
+    <Loader />
     <Home v-if="store.isLogin" />
     <Login v-else />
     <p style="text-align: center;">{{ getClock }}</p>
@@ -71,7 +71,6 @@ export default {
             timeMi: 0,
             timeHo: 0,
             clockInterval: {},
-            isLoading: false,
             isBrowserExist: true,
         }
     },
@@ -80,11 +79,12 @@ export default {
             window.localStorage.setItem('IS_LOGIN', JSON.stringify(true));
             window.localStorage.setItem('USER_NAME', data[0][0]);
             window.localStorage.setItem('USER_DATE', JSON.stringify(new Date()));
-            this.store.isLogin = true;
+            this.store.isLoading = false;
+            window.location.reload();
         },
         setDataOpt(event: Electron.IpcRenderer, ...data: any[]) {
             window.localStorage.setItem('UPLOAD_OPTION', JSON.stringify(data[0][0]));
-            this.isLoading = false;
+            this.store.isLoading = false;
         },
         unduh() {
             window.COMM.appOpenExternal('https://www.microsoft.com/en-us/edge?form=MA13FJ');
@@ -116,7 +116,7 @@ export default {
         if (!this.store.isLogin) window.COMM.authStart(true);
 
         if(window.localStorage.getItem('UPLOAD_OPTION') === null && this.store.isLogin) {
-            this.isLoading = true;
+            this.store.isLoading = true;
             window.COMM.botGetOption();
         }
     },

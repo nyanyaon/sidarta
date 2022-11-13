@@ -1,14 +1,16 @@
 <template>
-    <Loader v-if="isLoading" />
+    <Loader />
     <Header />
     <div class="content">
         <h2>BUKU TANAH</h2>
         <div class="section">
             <div class="form-loc">
                 <label for="kecamatan">Kecamatan</label>
-                <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text" id="kecamatan" name="kecamatan">
+                <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text" :data-kecid="kecamatanId"
+                    id="kecamatan" name="kecamatan">
                 <datalist id="listkecamatan">
-                    <option v-for="item in getListKecamatan" :value="item.nama"></option>
+                    <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan"
+                        :value="item.nama"></option>
                 </datalist>
                 <label for="desa">Desa</label>
                 <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
@@ -148,8 +150,8 @@ export default defineComponent({
             files: [] as FileInterface[],
             options: {} as UploadOption,
             kecamatan: "",
+            kecamatanId: "",
             desa: "",
-            isLoading: false,
         }
     },
     computed: {
@@ -165,32 +167,32 @@ export default defineComponent({
         getCountFiles(): number {
             return this.files.length;
         },
-        getListKecamatan(): Kecamatan[]{
+        getListKecamatan(): Kecamatan[] {
             return this.options.dataKecamatanJSON;
         },
-        getListDesa(): Desa[]{
-            if(this.kecamatan === "") return this.options.dataDesaJSON;
+        getListDesa(): Desa[] {
+            if (this.kecamatan === "") return this.options.dataDesaJSON;
 
             const options: UploadOption = this.options;
             const kec = options.dataKecamatanJSON.find(value => value.nama === this.kecamatan);
-            if(kec === undefined) return;
+            if (kec === undefined) return;
             const listdesa = options.dataDesaJSON.filter(value => value.induk === kec.wilayahid);
 
             return listdesa;
-        }
+        },
     },
     watch: {
         files: {
             async handler(newValue) {
-                for(const file of newValue) {
-                    if(!file.isValid) {
+                for (const file of newValue) {
+                    if (!file.isValid) {
                         continue;
                     }
-                    
+
                     file.isUploaded = await window.COMM.databaseCheck('bukutanah', file.nama);
                 }
 
-                this.isLoading = false;
+                this.store.isLoading = false;
             },
             flush: 'post',
         }
@@ -216,30 +218,39 @@ export default defineComponent({
                 }
             });
 
-            window.COMM.botStartBukuTanah(this.kecamatan, this.desa, files, this.fileLocBtnTxt);
+            const options: UploadOption = this.options;
+
+            window.COMM.botStartBukuTanah(this.kecamatan, this.kecamatanId, this.desa, files, this.fileLocBtnTxt);
         },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
             this.files = data[1];
 
             this.fileLocBtnTxt = data[0];
-            this.isLoading = true;
+            this.store.isLoading = true;
         },
         updateKecamatan(event: Event) {
-            if(this.kecamatan === "") return;
+            if (this.kecamatan === "") return;
             const options: UploadOption = this.options;
             const kec = options.dataKecamatanJSON.find(value => value.nama === this.kecamatan);
             const desa = options.dataDesaJSON.find(value => value.induk === kec.wilayahid);
-
+            
             this.desa = desa.nama;
+            this.updateKecId();
         },
         updateDesa(event: Event) {
-            if(this.desa === "") return;
+            if (this.desa === "") return;
             const options: UploadOption = this.options;
             const desa = options.dataDesaJSON.find(value => value.nama === this.desa);
             const kec = options.dataKecamatanJSON.find(value => value.wilayahid === desa.induk);
 
             this.kecamatan = kec.nama;
+            this.updateKecId();
         },
+        updateKecId() {
+            const datalist = document.querySelector('datalist').options;
+            const dataArr = Array.from(datalist);
+            this.kecamatanId = dataArr.find(val => val.value === this.kecamatan).dataset.kecId;
+        }
     },
     mounted() {
         window.COMM.folderSelected(this.updateFolderSelect);

@@ -33,10 +33,11 @@ import BukuTanah from './template/index/BukuTanah.vue';
 import SuratUkur from './template/index/SuratUkur.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUser, faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faFilePdf, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
+import { Kecamatan } from './app/Bot';
 
-library.add(faUser, faFilePdf);
+library.add(faUser, faFilePdf, faRightFromBracket);
 
 const router = createRouter({
     history: createMemoryHistory(),
@@ -55,16 +56,17 @@ app.mount('#app');
 
 interface PreloadComm {
     appCheckBrowser: () => boolean;
+    authLogout: () => void;
     appOpenExternal: (url: string) => void;
-    authSave: (username: string, password: string) => void;
+    authSave: (username: string, password: string) => Promise<boolean>;
+    authVerify: (otp: string) => Promise<boolean>;
     authStart: (headless: boolean) => void;
     folderSelect: (tipeDok: string) => void;
     databaseCheck: (col: string, nama: string) => Promise<boolean>;
     databaseGetAll: (col: string) => Promise<any[]>;
     botGetOption: () => void;
-    botStartBukuTanah: (kecamatan: string, desa: string, files: FileInterface[], loc: string) => void;
-    botStartSuratUkur: (kecamatan: string, desa: string, files: FileInterface[], loc: string) => void;
-    authVerify: (otp: string) => void;
+    botStartBukuTanah: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => void;
+    botStartSuratUkur: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;

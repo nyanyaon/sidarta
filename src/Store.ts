@@ -7,4 +7,5 @@ export const store = reactive({
     stateId: "ALA",
     files: [] as FileInterface[],
     loggedTime: 0,
+    isLoading: false,
 });

@@ -7,13 +7,14 @@ import BukuTanah from './models/BukuTanah';
 
 export class BukuTanahBot extends Bot {
 
-    async start(kecamatan: string, desa: string, files: FileInterface[], loc: string) {
+    async start(kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) {
         try {
-            this.browser = await this.init(false);
             const db = new Database();
             await db.connect();
 
             const col = db.getCollection('bukutanah');
+            this.browser = await this.init(false);
+
             const page = await this.browser.newPage();
 
             const cookiesStr = fs.readFileSync('./cookies.json').toString();
@@ -35,9 +36,17 @@ export class BukuTanahBot extends Bot {
 
                 await page.waitForNetworkIdle();
 
+                
                 await page.click("#divkecamatan > div > span.select2.select2-container.select2-container--default");
                 await page.type("#frmCariHak > span > span > span.select2-search.select2-search--dropdown > input", kecamatan);
-                await page.click("#select2-cari-hat_inputwilayah_SelectedKecamatan-results > li:nth-child(1)");
+                
+                const correctId = await page.$$eval("#select2-cari-hat_inputwilayah_SelectedKecamatan-results > li", (listel, kec) => {
+                    const elId = listel.find((el) => el.id.search(kec)).id;
+                    return elId;
+                }, kecamatanId);
+
+
+                await page.click("#"+correctId);
 
                 await page.click("#divdesa > div > span.select2.select2-container.select2-container--default");
                 await page.type("#frmCariHak > span > span > span.select2-search.select2-search--dropdown > input", desa);
@@ -77,6 +86,7 @@ export class BukuTanahBot extends Bot {
                 const success = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
                 if (success !== null) {
                     console.log(success);
+
                     col.insertOne(new BukuTanah(
                         file.nama,
                         file.nomor,

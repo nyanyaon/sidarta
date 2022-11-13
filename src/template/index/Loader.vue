@@ -1,5 +1,5 @@
 <template>
-  <div class="modal">
+  <div v-if="store.isLoading" class="modal">
     <div class="lds-ripple">
       <div></div>
       <div></div>
@@ -70,11 +70,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { store } from '../../Store';
 
 export default defineComponent({
     name: "Loader",
     data() {
         return {
+          store,
         }
     },
 })

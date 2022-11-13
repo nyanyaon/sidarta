@@ -44,7 +44,8 @@ export default class App {
             {
                 label: 'Sistem',
                 submenu: [
-                    { role: 'quit', label: 'keluar' }
+                    { role: 'quit', label: 'Keluar' },
+                    { role: 'toggleDevTools' },
                 ]
             },
             {
@@ -61,8 +62,8 @@ export default class App {
                         label: 'Pelajari',
                         click: async () => {
                             await shell.openExternal('https://sidarta.nyanyaon.my.id');
-                        },
-                    }
+                        }
+                    },
                 ]
             }
         ];
@@ -89,12 +90,17 @@ export default class App {
                 const EDGE_PATH: string = getEdgePath();
 
                 if (fs.existsSync(EDGE_PATH)) {
-                    return true
+                    return true;
                 }
             } catch (err) {
                 console.log(err);
-                return false
+                return false;
             }
+        });
+        App.ipc.handle('auth:logout', async (event, ...args) => {
+            fs.unlink('./cookies.json', (err) =>{
+                console.log(err);
+            });
         });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
         App.ipc.handle('auth:save', async (event, ...args) => { await new AuthSSO().save(args[0], args[1]) });
@@ -107,11 +113,11 @@ export default class App {
         });
         App.ipc.handle('bot:startBukuTanah', async (event, ...args) => {
             const bot = new BukuTanahBot();
-            await bot.start(args[0], args[1], args[2], args[3]);
+            await bot.start(args[0], args[1], args[2], args[3], args[4]);
         });
         App.ipc.handle('bot:startSuratUkur', async (event, ...args) => {
             const bot = new SuratUkurBot();
-            await bot.start(args[0], args[1], args[2], args[3]);
+            await bot.start(args[0], args[1], args[2], args[3], args[4]);
         });
         App.ipc.handle('folder:select', (event, ...args) => {
             dialog.showOpenDialog(App.mainWindow, {

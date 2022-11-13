@@ -7,7 +7,7 @@ import SuratUkur from './models/SuratUkur';
 
 export class SuratUkurBot extends Bot {
 
-    async start(kecamatan: string, desa: string, files: FileInterface[], loc: string) {
+    async start(kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) {
         try {
             this.browser = await this.init(false);
             const db = new Database();
@@ -37,7 +37,14 @@ export class SuratUkurBot extends Bot {
 
                 await page.click("#divkecamatan > div > span.select2.select2-container.select2-container--default");
                 await page.type("#frmCariSU > span > span > span.select2-search.select2-search--dropdown > input", kecamatan);
-                await page.click("#select2-cari-su_inputwilayah_SelectedKecamatan-results > li:nth-child(1)");
+                
+                const correctId = await page.$$eval("#select2-cari-su_inputwilayah_SelectedKecamatan-results > li", (listel, kec) => {
+                    const elId = listel.find((el) => el.id.search(kec)).id;
+                    return elId;
+                }, kecamatanId);
+
+
+                await page.click("#"+correctId);
 
                 await page.click("#divdesa > div > span.select2.select2-container.select2-container--default");
                 await page.type("#frmCariSU > span > span > span.select2-search.select2-search--dropdown > input", desa);
@@ -65,7 +72,7 @@ export class SuratUkurBot extends Bot {
                 let upload: ElementHandle<HTMLInputElement> = await page.$("#susideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]") as ElementHandle<HTMLInputElement>;
                 while (upload == null) {
                     console.log("Mencoba kembali...");
-                    await page.click("#btnUpldArsipBT", { delay: 500 });
+                    await page.click("#btnUploadSU", { delay: 500 });
                     upload = await page.$("#hatsideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]") as ElementHandle<HTMLInputElement>;
                 }
                 // const slow3g = puppeteer.networkConditions['Slow 3G'];

@@ -13,6 +13,9 @@ export class AuthSSO extends Bot {
 
             const page = await AuthSSO.browser.newPage();
 
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42"');
+            await page.setBypassCSP(false);
+
             page.on('response', async (response) => {
                 const url = response.url();
 
@@ -38,6 +41,8 @@ export class AuthSSO extends Bot {
             await page.type('#inputPassword', password);
 
             await page.click('#kc-next');
+
+            return false;
 
         } catch (err) {
             console.log(err);
@@ -65,16 +70,18 @@ export class AuthSSO extends Bot {
             await currPage.waitForNetworkIdle();
 
             const name = await currPage.$eval('p > b', el => el.textContent);
-            
+
             App.send('auth:success', name);
-            
+
             const client = await currPage.target().createCDPSession();
             const cookies = (await client.send('Network.getAllCookies')).cookies;
             fs.writeFileSync('./cookies.json', JSON.stringify(cookies, null, 2));
-            
+
             await currPage.waitForNetworkIdle();
 
             await AuthSSO.browser.close();
+
+            return false;
         } catch (err) {
             console.log(err);
         }
