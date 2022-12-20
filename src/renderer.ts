@@ -59,7 +59,7 @@ interface PreloadComm {
     authLogout: () => void;
     appOpenExternal: (url: string) => void;
     authSave: (username: string, password: string) => Promise<boolean>;
-    authVerify: (otp: string) => Promise<boolean>;
+    authVerify: (otp: string, kantor: string) => Promise<boolean>;
     authStart: (headless: boolean) => void;
     folderSelect: (tipeDok: string) => void;
     databaseCheck: (col: string, nama: string) => Promise<boolean>;
@@ -72,6 +72,8 @@ interface PreloadComm {
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    authHideOTP: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    appUpdateDialog: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
 }
 
 declare global {

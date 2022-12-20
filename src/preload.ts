@@ -10,7 +10,7 @@ contextBridge.exposeInMainWorld('COMM', {
     appCheckBrowser: () => ipcRenderer.invoke('app:checkBrowser'),
     authLogout: () => ipcRenderer.invoke('auth:logout'),
     authSave: (username: string, password: string) => ipcRenderer.invoke('auth:save', username, password),
-    authVerify: (otp: string) => ipcRenderer.invoke('auth:verify', otp),
+    authVerify: (otp: string, kantor: string) => ipcRenderer.invoke('auth:verify', otp, kantor),
     authStart: (headless: boolean) => ipcRenderer.invoke('auth:start', headless),
     folderSelect: (tipeDok: string) => ipcRenderer.invoke('folder:select', tipeDok),
     databaseCheck: (col: string, nama: string) => ipcRenderer.invoke('database:check', col, nama),
@@ -23,4 +23,6 @@ contextBridge.exposeInMainWorld('COMM', {
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('folder:selected', callback),
     appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('app:dataopt', callback),
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:token', callback),
+    authHideOTP: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:hideOTP', callback),
+    appUpdateDialog: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('app:updateDialog', callback),
 });

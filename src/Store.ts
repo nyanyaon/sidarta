@@ -8,4 +8,5 @@ export const store = reactive({
     files: [] as FileInterface[],
     loggedTime: 0,
     isLoading: false,
+    loadDialog: "Menyiapkan Aplikasi..."
 });

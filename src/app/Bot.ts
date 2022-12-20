@@ -1,6 +1,7 @@
 import * as puppeteer from "puppeteer-core";
 import { getEdgePath } from "edge-paths";
 import * as fs from 'fs';
+import App from "./App";
 
 export interface UploadOption {
     dataDesaJSON: Desa[];
@@ -41,7 +42,7 @@ export class Bot {
 
         return await puppeteer.launch({
             defaultViewport: null,
-            userDataDir: './datadir',
+            // userDataDir: './datadir',
             args: [
                 "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42",
                 "--no-sandbox",
@@ -54,19 +55,30 @@ export class Bot {
     async getOptions(): Promise<UploadOption> {
         try {
             this.browser = await this.init(true);
+            App.send('app:updateDialog', 'Memulai jendela baru...');
+
             const page = await this.browser.newPage();
 
             const cookiesStr = fs.readFileSync('./cookies.json').toString();
             const cookies = JSON.parse(cookiesStr);
             await page.setCookie(...cookies);
 
-            console.log("cookie load");
+            App.send('app:updateDialog', 'Menyiapkan Cookies...');
+
 
             await page.goto("https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah", {
                 waitUntil: 'networkidle2',
             });
+            App.send('app:updateDialog', 'Menuju Dokumen...');
+
 
             await page.waitForNetworkIdle();
+            
+            if(page.url() == 'https://dokumen.atrbpn.go.id/Account/Denied') {
+                await this.exit();
+            }
+
+            App.send('app:updateDialog', 'Menyiapkan data...');
 
             const stateId = await page.$eval("#cari-hat_inputwilayah_SelectedKabupaten > option", (el: HTMLOptionElement) => {
                 return el.value;
@@ -74,8 +86,11 @@ export class Bot {
 
             const desa = await page.goto(`https://dokumen.atrbpn.go.id/KriteriaPencarian/GetWilayah?kode=${stateId}&tipe=keca&inkantor=True&aktif=false`);
             const dataDesaJSON: Desa[] = await desa.json();
+            App.send('app:updateDialog', 'Data desa sukses...');
+
             const kecamatan = await page.goto(`https://dokumen.atrbpn.go.id/KriteriaPencarian/GetWilayah?kode=${stateId}&tipe=kabk&inkantor=True&aktif=false`);
             const dataKecamatanJSON: Kecamatan[] = await kecamatan.json();
+            App.send('app:updateDialog', 'Data kecamatan sukses...');
 
             await this.exit();
 

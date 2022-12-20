@@ -97,6 +97,7 @@ export default class App {
                 return false;
             }
         });
+
         App.ipc.handle('auth:logout', async (event, ...args) => {
             fs.unlink('./cookies.json', (err) =>{
                 console.log(err);
@@ -160,7 +161,7 @@ export default class App {
             return data;
         });
 
-        App.ipc.handle('auth:verify', (event, ...data) => { new AuthSSO().verify(data[0]) });
+        App.ipc.handle('auth:verify', (event, ...data) => { new AuthSSO().verify(data[0], data[1]) });
     }
 
     private static getFiles(err: NodeJS.ErrnoException, files: string[]) {

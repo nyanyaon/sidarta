@@ -1,5 +1,6 @@
 <template>
     <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh" />
+    <Modal v-if="isDenied" btn="Keluar" content="Akun yang anda gunakan tidak memenuhi syarat aplikasi, mohon masuk menggunakan akun yang lain" :handler="logout" />
     <Loader />
     <Home v-if="store.isLogin" />
     <Login v-else />
@@ -72,6 +73,7 @@ export default {
             timeHo: 0,
             clockInterval: {},
             isBrowserExist: true,
+            isDenied: false,
         }
     },
     methods: {
@@ -83,11 +85,30 @@ export default {
             window.location.reload();
         },
         setDataOpt(event: Electron.IpcRenderer, ...data: any[]) {
-            window.localStorage.setItem('UPLOAD_OPTION', JSON.stringify(data[0][0]));
+            const dataOpt = JSON.stringify(data[0][0]);
+            if(dataOpt === undefined) {
+                this.isDenied = true;
+                this.store.isLoading = false;
+                return;
+            }
+
+            window.localStorage.setItem('UPLOAD_OPTION', dataOpt);
+            
             this.store.isLoading = false;
         },
         unduh() {
             window.COMM.appOpenExternal('https://www.microsoft.com/en-us/edge?form=MA13FJ');
+        },
+        logout() {
+            window.COMM.authLogout();
+            window.localStorage.removeItem('IS_LOGIN');
+            window.localStorage.removeItem('USER_DATE');
+            window.localStorage.removeItem('USER_NAME');
+            window.localStorage.removeItem('UPLOAD_OPTION');
+            window.location.reload();
+        },
+        updateLoaderDialogue(event: Electron.IpcRenderer, ...data: any[]) {
+            this.store.loadDialog = data[0][0];
         }
     },
     computed: {
@@ -109,6 +130,7 @@ export default {
     mounted() {
         window.COMM.authSuccess(this.toggleAuth);
         window.COMM.appWaitDataOpt(this.setDataOpt);
+        window.COMM.appUpdateDialog(this.updateLoaderDialogue);
 
         this.isBrowserExist = window.COMM.appCheckBrowser();
         this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
