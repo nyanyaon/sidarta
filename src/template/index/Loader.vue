@@ -4,15 +4,22 @@
       <div></div>
       <div></div>
     </div>
+    <p class="dialogue">{{ store.loadDialog }}</p>
   </div>
 </template>
 
 <style scoped>
+.dialogue {
+  color: #fff;
+  margin-top: 0.75em;
+  font-weight: 500;
+}
 .modal {
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 99;
