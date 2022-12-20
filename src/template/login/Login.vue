@@ -14,9 +14,13 @@
       <button @click="save">Simpan</button>
     </div>
     <div v-else class="login">
-      <p class="info-token">Telah dikirimkan kepada {{ txtEmailTo }}</p>
-      <label for="token">OTP</label>
-      <input type="text" name="token" v-model="token">
+      <p v-if="!isOTPHide" class="info-token">Telah dikirimkan kepada {{ txtEmailTo }}</p>
+      <label v-if="!isOTPHide" for="token">OTP</label>
+      <input v-if="!isOTPHide" type="text" name="token" v-model="token">
+      <label for="kantor">Kantor</label>
+      <select name="kantor" v-model="selectedKantor">
+        <option v-for="item in kantor" v-bind:value="{ id: item.kantorid }">{{ item.kantorname }}</option>
+      </select>
       <button @click="verify">Lanjut</button>
     </div>
   </div>
@@ -76,6 +80,16 @@
   font-weight: 500;
 }
 
+.login select {
+  margin-bottom: 0.5rem;
+  font-size: 0.75em;
+  padding: 0.5em;
+  border: 1px solid #FF9D56;
+  background: none;
+  border-radius: 0.8em;
+  font-weight: 500;
+}
+
 button {
   font-size: 0.75em;
   font-weight: 600;
@@ -120,6 +134,9 @@ export default defineComponent({
       txtEmailTo: "",
       error: "",
       store,
+      isOTPHide: false,
+      kantor: [],
+      selectedKantor: {},
     }
   },
   props: {
@@ -142,14 +159,18 @@ export default defineComponent({
     },
     async verify() {
       this.store.isLoading = true;
-      await window.COMM.authVerify(this.token);
+      await window.COMM.authVerify(this.token, this.selectedKantor.id);
     },
     renderTokenForm(event: Electron.IpcRendererEvent, ...data: any[]) {
       this.txtEmailTo = data[0][0].to;
+      this.kantor = data[0][0].kantor;
     },
     authError(event: Electron.IpcRendererEvent, ...data: any[]) {
       this.error = "Username atau Password salah!"
     },
+    hide(event: Electron.IpcRendererEvent, ...data:any[]) {
+      this.isOTPHide = data[0][0];
+    }
   },
   mounted() {
     this.user = window.localStorage.getItem('AUTH_USER');
@@ -157,6 +178,7 @@ export default defineComponent({
 
     window.COMM.authToken(this.renderTokenForm);
     window.COMM.authError(this.authError);
+    window.COMM.authHideOTP(this.hide);
   }
 })
 </script>

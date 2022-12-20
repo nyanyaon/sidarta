@@ -2,6 +2,7 @@ import * as puppeteer from 'puppeteer-core';
 import { Bot } from './Bot';
 import * as fs from 'fs';
 import App from './App';
+import { HTTPResponse } from 'puppeteer';
 
 export class AuthSSO extends Bot {
     static browser: puppeteer.Browser;
@@ -9,29 +10,12 @@ export class AuthSSO extends Bot {
     async save(username: string, password: string) {
         try {
 
-            AuthSSO.browser = await this.init(true);
+            AuthSSO.browser = await this.init(false);
 
             const page = await AuthSSO.browser.newPage();
 
             await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42"');
             await page.setBypassCSP(false);
-
-            page.on('response', async (response) => {
-                const url = response.url();
-
-                if (url.includes("token")) {
-                    console.log(`URL: ${url}`);
-                    console.log(`JSON: ${JSON.stringify(await response.json())}`);
-
-                    if (response.status() !== 200) {
-                        App.send('auth-error');
-                        await AuthSSO.browser.close();
-                        return;
-                    }
-
-                    App.send('auth:token', await response.json());
-                }
-            });
 
             await page.goto('https://statistik.atrbpn.go.id/', {
                 waitUntil: 'networkidle2',
@@ -42,6 +26,36 @@ export class AuthSSO extends Bot {
 
             await page.click('#kc-next');
 
+
+            const resHandler = await page.waitForResponse(async (res) => {
+                const url = res.url();
+
+                if (url.includes("token")) {
+                    console.log(`URL: ${url}`);
+                    console.log(`JSON: ${JSON.stringify(await res.json())}`);
+
+                    if (res.status() !== 200) {
+                        App.send('auth-error');
+                        await AuthSSO.browser.close();
+                        return;
+                    }
+
+                    App.send('auth:token', await res.json());
+                }
+
+                return true;
+            });
+
+            const otpInput = await page.$('#otp-field>input');
+
+
+            if(otpInput === null) {
+                App.send('auth:hideOTP', true);
+            }
+
+            resHandler.ok();
+
+
             return false;
 
         } catch (err) {
@@ -49,26 +63,37 @@ export class AuthSSO extends Bot {
         }
     }
 
-    async verify(otp: string) {
+    async verify(otp: string, kantor: string) {
         try {
 
             const pages = await AuthSSO.browser.defaultBrowserContext().pages();
             const currPage = pages[1];
+            
+            const otpInput = await currPage.$('#otp-field>input');
 
-            await currPage.type('#otp-field>input', otp);
+            if(otpInput !== null) {
+                otpInput.type(otp);
+            }
+
+            await currPage.select('#kantor', kantor);
+
             await currPage.click('#kc-login');
-
+            App.send('app:updateDialog', 'Menekan tombol...');
+            
             await currPage.waitForNavigation({
                 waitUntil: 'networkidle2',
                 timeout: 9999999
             });
-
+            App.send('app:updateDialog', 'Sukses...');
+            
             await currPage.goto('https://aplikasi.atrbpn.go.id/pintasan', {
                 waitUntil: 'networkidle2',
             });
-
+            App.send('app:updateDialog', 'Menuju pintasan...');
+            
             await currPage.waitForNetworkIdle();
-
+            App.send('app:updateDialog', 'Jaringan stabil...');
+            
             const name = await currPage.$eval('p > b', el => el.textContent);
 
             App.send('auth:success', name);
