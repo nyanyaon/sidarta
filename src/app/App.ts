@@ -5,7 +5,6 @@ import { BukuTanahBot } from './BukuTanahBot';
 import { FileInterface, Fileman } from './Fileman';
 import { Database } from './db/Database';
 import { SuratUkurBot } from './SuratUkurBot';
-import { getEdgePath } from 'edge-paths'
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -87,7 +86,7 @@ export default class App {
         //COMM
         App.ipc.handle('app:checkBrowser', (event, ...args) => {
             try {
-                const EDGE_PATH: string = getEdgePath();
+                const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 
                 if (fs.existsSync(EDGE_PATH)) {
                     return true;

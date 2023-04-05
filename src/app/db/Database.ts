@@ -1,11 +1,11 @@
 import * as mongoDB from 'mongodb';
 
 export class Database {
-    private _dbname: string = "darta";
+    private _dbname = "darta";
     private _db: mongoDB.Db;
 
     async connect() {
-        const client: mongoDB.MongoClient = new mongoDB.MongoClient("mongodb://root:12345@nyanyaon.my.id/");
+        const client: mongoDB.MongoClient = new mongoDB.MongoClient("mongodb://spntb:geoserver23@103.52.114.166");
 
         await client.connect();
 

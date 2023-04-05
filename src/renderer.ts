@@ -35,7 +35,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faFilePdf, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
-import { Kecamatan } from './app/Bot';
 
 library.add(faUser, faFilePdf, faRightFromBracket);
 

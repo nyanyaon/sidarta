@@ -10,7 +10,7 @@ export class AuthSSO extends Bot {
     async save(username: string, password: string) {
         try {
 
-            AuthSSO.browser = await this.init(false);
+            AuthSSO.browser = await this.init(true);
 
             const page = await AuthSSO.browser.newPage();
 
@@ -72,7 +72,7 @@ export class AuthSSO extends Bot {
             const otpInput = await currPage.$('#otp-field>input');
 
             if(otpInput !== null) {
-                otpInput.type(otp);
+                await otpInput.type(otp);
             }
 
             await currPage.select('#kantor', kantor);
@@ -85,16 +85,16 @@ export class AuthSSO extends Bot {
                 timeout: 9999999
             });
             App.send('app:updateDialog', 'Sukses...');
-            
-            await currPage.goto('https://aplikasi.atrbpn.go.id/pintasan', {
-                waitUntil: 'networkidle2',
-            });
+
             App.send('app:updateDialog', 'Menuju pintasan...');
+        
+            await currPage.goto('https://aplikasi.atrbpn.go.id/pintasan');
             
-            await currPage.waitForNetworkIdle();
             App.send('app:updateDialog', 'Jaringan stabil...');
-            
-            const name = await currPage.$eval('p > b', el => el.textContent);
+
+            await currPage.waitForNavigation();
+
+            const name = await currPage.$eval('body > header > div.container.text-center > p > b', el => el.textContent);
 
             App.send('auth:success', name);
 
@@ -103,6 +103,8 @@ export class AuthSSO extends Bot {
             fs.writeFileSync('./cookies.json', JSON.stringify(cookies, null, 2));
 
             await currPage.waitForNetworkIdle();
+
+            await currPage.close();
 
             await AuthSSO.browser.close();
 

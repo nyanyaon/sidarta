@@ -99,7 +99,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "@types/node": "^18.11.1",
-    "edge-paths": "^2.2.1",
     "electron-squirrel-startup": "^1.0.0",
     "mongodb": "^4.11.0",
     "puppeteer": "^19.1.2",

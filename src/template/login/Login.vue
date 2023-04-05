@@ -159,6 +159,7 @@ export default defineComponent({
     },
     async verify() {
       this.store.isLoading = true;
+      console.log(this.token)
       await window.COMM.authVerify(this.token, this.selectedKantor.id);
     },
     renderTokenForm(event: Electron.IpcRendererEvent, ...data: any[]) {

@@ -1,5 +1,4 @@
 import * as puppeteer from "puppeteer-core";
-import { getEdgePath } from "edge-paths";
 import * as fs from 'fs';
 import App from "./App";
 
@@ -38,7 +37,7 @@ export class Bot {
     browser: puppeteer.Browser;
 
     async init(headless: boolean = true): Promise<puppeteer.Browser> {
-        const EDGE_PATH = getEdgePath();
+        const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 
         return await puppeteer.launch({
             defaultViewport: null,
