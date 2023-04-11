@@ -5,6 +5,7 @@ import { BukuTanahBot } from './BukuTanahBot';
 import { FileInterface, Fileman } from './Fileman';
 import { Database } from './db/Database';
 import { SuratUkurBot } from './SuratUkurBot';
+import { Browser } from 'puppeteer';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -14,6 +15,8 @@ export default class App {
     public static application: Electron.App;
     static BrowserWindow: any;
     private static ipc: Electron.IpcMain = ipcMain;
+    static bot: Browser;
+    static sso: AuthSSO;
 
     private static onWindowAllClosed() {
         if (process.platform !== 'darwin') App.application.quit();
@@ -103,8 +106,6 @@ export default class App {
             });
         });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
-        App.ipc.handle('auth:save', async (event, ...args) => { await new AuthSSO().save(args[0], args[1]) });
-        App.ipc.handle('auth:start', (event, ...args) => { new AuthSSO().start(args[0]) });
         App.ipc.handle('bot:getOption', async (event, ...args) => {
             const bot = new BukuTanahBot();
             const upopt = await bot.getOptions();
@@ -160,7 +161,12 @@ export default class App {
             return data;
         });
 
-        App.ipc.handle('auth:verify', (event, ...data) => { new AuthSSO().verify(data[0], data[1]) });
+        App.ipc.handle('auth:save', async (event, ...args) => { 
+            App.sso =  new AuthSSO();
+            App.sso.save(args[0], args[1]);
+        });
+        App.ipc.handle('auth:start', (event, ...args) => { new AuthSSO().start(args[0]) });
+        App.ipc.handle('auth:verify', (event, ...data) => { App.sso.verify(data[0], data[1]) });
     }
 
     private static getFiles(err: NodeJS.ErrnoException, files: string[]) {

@@ -5,14 +5,14 @@ import App from './App';
 import { HTTPResponse } from 'puppeteer';
 
 export class AuthSSO extends Bot {
-    static browser: puppeteer.Browser;
+    browser: puppeteer.Browser;
 
     async save(username: string, password: string) {
         try {
 
-            AuthSSO.browser = await this.init(true);
+            this.browser = await this.init(false);
 
-            const page = await AuthSSO.browser.newPage();
+            const page = await this.browser.newPage();
 
             await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42"');
             await page.setBypassCSP(false);
@@ -36,7 +36,7 @@ export class AuthSSO extends Bot {
 
                     if (res.status() !== 200) {
                         App.send('auth-error');
-                        await AuthSSO.browser.close();
+                        await this.browser.close();
                         return;
                     }
 
@@ -66,7 +66,7 @@ export class AuthSSO extends Bot {
     async verify(otp: string, kantor: string) {
         try {
 
-            const pages = await AuthSSO.browser.defaultBrowserContext().pages();
+            const pages = await this.browser.pages();
             const currPage = pages[1];
             
             const otpInput = await currPage.$('#otp-field>input');
@@ -106,7 +106,7 @@ export class AuthSSO extends Bot {
 
             await currPage.close();
 
-            await AuthSSO.browser.close();
+            await this.browser.close();
 
             return false;
         } catch (err) {
@@ -117,7 +117,7 @@ export class AuthSSO extends Bot {
     async start(headless: boolean) {
         try {
 
-            this.browser = await this.init(true);
+            this.browser = await this.init(false);
 
             const page = await this.browser.newPage();
 

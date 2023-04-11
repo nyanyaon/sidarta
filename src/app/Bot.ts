@@ -103,7 +103,7 @@ export class Bot {
     }
 
     async exit() {
-        this.browser.close();
+        await this.browser.close();
         this.browser = null;
     }
 }
