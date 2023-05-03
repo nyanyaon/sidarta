@@ -150,7 +150,7 @@ export default {
     },
     mounted() {
         window.COMM.authSuccess(this.toggleAuth);
-        // window.COMM.appWaitDataOpt(this.setDataOpt);
+        window.COMM.appWaitDataOpt(this.setDataOpt);
         window.COMM.appUpdateDialog(this.updateLoaderDialogue);
 
         this.isBrowserExist = window.COMM.appCheckBrowser();
@@ -158,10 +158,10 @@ export default {
 
         if (!this.store.isLogin) window.COMM.authStart(true);
 
-        // if(window.localStorage.getItem('UPLOAD_OPTION') === null && this.store.isLogin) {
-        //     this.store.isLoading = true;
-        //     window.COMM.botGetOption();
-        // }
+        if(window.localStorage.getItem('UPLOAD_OPTION') === null && this.store.isLogin) {
+            this.store.isLoading = true;
+            window.COMM.botGetOption();
+        }
     },
     updated() {
         if (8 - this.store.loggedTime <= 0 && this.store.isLogin) {
