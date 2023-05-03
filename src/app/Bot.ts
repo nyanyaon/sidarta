@@ -53,7 +53,7 @@ export class Bot {
 
     async getOptions(): Promise<UploadOption> {
         try {
-            this.browser = await this.init(true);
+            this.browser = await this.init(false);
             App.send('app:updateDialog', 'Memulai jendela baru...');
 
             const page = await this.browser.newPage();

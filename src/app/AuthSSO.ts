@@ -102,11 +102,7 @@ export class AuthSSO extends Bot {
             const cookies = (await client.send('Network.getAllCookies')).cookies;
             fs.writeFileSync('./cookies.json', JSON.stringify(cookies, null, 2));
 
-            await currPage.waitForNetworkIdle();
-
-            await currPage.close();
-
-            await this.browser.close();
+            await this.close();
 
             return false;
         } catch (err) {
@@ -114,10 +110,14 @@ export class AuthSSO extends Bot {
         }
     }
 
+    async close() {
+        await this.browser.close();
+    }
+
     async start(headless: boolean) {
         try {
 
-            this.browser = await this.init(false);
+            this.browser = await this.init(true);
 
             const page = await this.browser.newPage();
 

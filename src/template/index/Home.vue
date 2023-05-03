@@ -9,8 +9,8 @@
             <div @click="goToSuratUkur" class="feature-box available">
                 <p>SURAT UKUR</p>
             </div>
-            <div class="feature-box unavailable">
-                <p>COMING SOON</p>
+            <div @click="goToValidasiPersil" class="feature-box available">
+                <p>VALIDASI PERSIL</p>
             </div>
         </div>
     </div>
@@ -115,15 +115,18 @@ export default defineComponent({
     },
     methods: {
         goToBukuTanah() {
-            this.$router.replace('/bukutanah')
+            this.$router.replace('/bukutanah');
         },
         goToSuratUkur() {
-            this.$router.replace('/suratukur')
+            this.$router.replace('/suratukur');
         },
+        goToValidasiPersil() {
+            this.$router.replace('/validasipersil');
+        }
     },
-    async mounted() {
-        this.countBukuTanah = (await window.COMM.databaseGetAll('bukutanah')).length;
-        this.countSuratUkur = (await window.COMM.databaseGetAll('suratukur')).length;
-    }
+    // async mounted() {
+    //     this.countBukuTanah = (await window.COMM.databaseGetAll('bukutanah')).length;
+    //     this.countSuratUkur = (await window.COMM.databaseGetAll('suratukur')).length;
+    // }
 })
 </script>

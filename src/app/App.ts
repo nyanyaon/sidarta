@@ -166,7 +166,9 @@ export default class App {
             App.sso.save(args[0], args[1]);
         });
         App.ipc.handle('auth:start', (event, ...args) => { new AuthSSO().start(args[0]) });
-        App.ipc.handle('auth:verify', (event, ...data) => { App.sso.verify(data[0], data[1]) });
+        App.ipc.handle('auth:verify', (event, ...data) => { 
+            App.sso.verify(data[0], data[1]);
+        });
     }
 
     private static getFiles(err: NodeJS.ErrnoException, files: string[]) {

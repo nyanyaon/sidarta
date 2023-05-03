@@ -12,13 +12,8 @@
             <div class="info">
                 <p><span v-html="getUserNama"></span></p>
             </div>
-            <div class="box" @mouseenter="inHandler" @mouseleave="outHandler">
-                <div v-if="hover">
-                    <Fa icon="fa-solid fa-right-from-bracket" class="icon" @click="logout" />
-                </div>
-                <div v-else>
-                    <Fa icon="fa-solid fa-user" class="icon" />
-                </div>
+            <div class="box">
+                <Fa icon="fa-solid fa-power-off" class="icon" @click="logout" />
             </div>
         </div>
     </div>
@@ -113,7 +108,6 @@ export default defineComponent({
     data() {
         return {
             store,
-            hover: false,
         }
     },
     computed: {
@@ -126,19 +120,12 @@ export default defineComponent({
         goToHome() {
             this.$router.push('/');
         },
-        inHandler(evt: MouseEvent) {
-            setTimeout(() => {
-                this.hover = true;
-            }, 1000);
-        },
-        outHandler(evt: MouseEvent) {
-            this.hover = false;
-        },
         logout() {
             window.COMM.authLogout();
             window.localStorage.removeItem('IS_LOGIN');
             window.localStorage.removeItem('USER_DATE');
             window.localStorage.removeItem('USER_NAME');
+            window.localStorage.removeItem('USER_KANTOR');
             window.localStorage.removeItem('UPLOAD_OPTION');
             window.location.reload();
         }

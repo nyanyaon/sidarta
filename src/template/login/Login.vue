@@ -148,7 +148,10 @@ export default defineComponent({
       window.localStorage.setItem('AUTH_USER', this.user);
     },
     savePassToLocal() {
-      window.localStorage.setItem('AUTH_PASS', this.pass);;
+      window.localStorage.setItem('AUTH_PASS', this.pass);
+    },
+    saveKantorToLocal() {
+      window.localStorage.setItem('USER_KANTOR', JSON.stringify(this.selectedKantor))
     },
     async save(evt: Event) {
       this.store.isLoading = true;
@@ -159,8 +162,9 @@ export default defineComponent({
     },
     async verify() {
       this.store.isLoading = true;
-      console.log(this.token)
+      console.log(this.token);
       await window.COMM.authVerify(this.token, this.selectedKantor.id);
+      this.saveKantorToLocal();
     },
     renderTokenForm(event: Electron.IpcRendererEvent, ...data: any[]) {
       this.txtEmailTo = data[0][0].to;

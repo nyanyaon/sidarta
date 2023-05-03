@@ -5,6 +5,9 @@
     <Home v-if="store.isLogin" />
     <Login v-else />
     <p style="text-align: center;">{{ getClock }}</p>
+    <div class="section">
+        <a href="http://" class="donate-btn">DONASI!</a>
+    </div>
 </template>
 
 <style>
@@ -47,6 +50,24 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.donate-btn {
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #fff;
+  background: #FF9D56;
+  border: none;
+  padding: 0.8em 0.8em;
+  margin-top: 3em;
+  border-radius: 0 0.8em 0.8em 0;
+  position: absolute;
+  bottom: 5%;
+  text-decoration: none;
+}
+
+.donate-btn:hover {
+  background: #D67026;
+}
 </style>
 
 <script lang="ts">
@@ -88,7 +109,7 @@ export default {
             const dataOpt = JSON.stringify(data[0][0]);
             if(dataOpt === undefined) {
                 this.isDenied = true;
-                this.store.isLoading = false;
+                this.store.isLoading = true;
                 return;
             }
 
@@ -129,7 +150,7 @@ export default {
     },
     mounted() {
         window.COMM.authSuccess(this.toggleAuth);
-        window.COMM.appWaitDataOpt(this.setDataOpt);
+        // window.COMM.appWaitDataOpt(this.setDataOpt);
         window.COMM.appUpdateDialog(this.updateLoaderDialogue);
 
         this.isBrowserExist = window.COMM.appCheckBrowser();
@@ -137,10 +158,10 @@ export default {
 
         if (!this.store.isLogin) window.COMM.authStart(true);
 
-        if(window.localStorage.getItem('UPLOAD_OPTION') === null && this.store.isLogin) {
-            this.store.isLoading = true;
-            window.COMM.botGetOption();
-        }
+        // if(window.localStorage.getItem('UPLOAD_OPTION') === null && this.store.isLogin) {
+        //     this.store.isLoading = true;
+        //     window.COMM.botGetOption();
+        // }
     },
     updated() {
         if (8 - this.store.loggedTime <= 0 && this.store.isLogin) {

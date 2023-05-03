@@ -31,12 +31,13 @@ import { createRouter, createMemoryHistory } from 'vue-router';
 import App from './template/App.vue';
 import BukuTanah from './template/index/BukuTanah.vue';
 import SuratUkur from './template/index/SuratUkur.vue';
+import ValidasiPersil from './template/index/ValidasiPersil.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUser, faFilePdf, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faFilePdf, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
 
-library.add(faUser, faFilePdf, faRightFromBracket);
+library.add(faUser, faFilePdf, faPowerOff);
 
 const router = createRouter({
     history: createMemoryHistory(),
@@ -44,6 +45,7 @@ const router = createRouter({
         { path: '/', component: App },
         { path: '/bukutanah', component: BukuTanah },
         { path: '/suratukur', component: SuratUkur },
+        { path: '/validasipersil', component: ValidasiPersil },
     ]
 });
 
