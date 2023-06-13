@@ -6,6 +6,7 @@ import { FileInterface, Fileman } from './Fileman';
 import { Database } from './db/Database';
 import { SuratUkurBot } from './SuratUkurBot';
 import { Browser } from 'puppeteer';
+import { Bot } from './Bot';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -107,7 +108,7 @@ export default class App {
         });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
         App.ipc.handle('bot:getOption', async (event, ...args) => {
-            const bot = new BukuTanahBot();
+            const bot = new Bot();
             const upopt = await bot.getOptions();
 
             App.send('app:dataopt', upopt);

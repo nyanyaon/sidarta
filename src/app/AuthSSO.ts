@@ -5,7 +5,6 @@ import App from './App';
 import { HTTPResponse } from 'puppeteer';
 
 export class AuthSSO extends Bot {
-    browser: puppeteer.Browser;
 
     async save(username: string, password: string) {
         try {

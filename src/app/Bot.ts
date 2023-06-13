@@ -41,7 +41,7 @@ export class Bot {
 
         return await puppeteer.launch({
             defaultViewport: null,
-            // userDataDir: './datadir',
+            userDataDir: './datadir',
             args: [
                 "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42",
                 "--no-sandbox",
@@ -54,9 +54,13 @@ export class Bot {
     async getOptions(): Promise<UploadOption> {
         try {
             this.browser = await this.init(false);
+            
             App.send('app:updateDialog', 'Memulai jendela baru...');
 
             const page = await this.browser.newPage();
+
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42"');
+            await page.setBypassCSP(false);
 
             const cookiesStr = fs.readFileSync('./cookies.json').toString();
             const cookies = JSON.parse(cookiesStr);
@@ -64,14 +68,13 @@ export class Bot {
 
             App.send('app:updateDialog', 'Menyiapkan Cookies...');
 
-
-            await page.goto("https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah", {
-                waitUntil: 'networkidle2',
+            await page.goto("https://dokumen.atrbpn.go.id/", {
+                waitUntil: "networkidle2",
             });
+
+            await page.waitForNetworkIdle({timeout: 0});
+
             App.send('app:updateDialog', 'Menuju Dokumen...');
-
-
-            await page.waitForNetworkIdle();
             
             if(page.url() == 'https://dokumen.atrbpn.go.id/Account/Denied') {
                 await this.exit();

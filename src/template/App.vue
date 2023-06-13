@@ -109,7 +109,7 @@ export default {
             const dataOpt = JSON.stringify(data[0][0]);
             if(dataOpt === undefined) {
                 this.isDenied = true;
-                this.store.isLoading = true;
+                this.store.isLoading = false;
                 return;
             }
 
