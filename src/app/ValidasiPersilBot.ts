@@ -2,12 +2,20 @@ import App from './App';
 import { Bot } from './Bot';
 import * as fs from 'fs';
 
+interface StatusValidasi {
+    [key: string]: string | number | boolean;
+    pid: string;
+    nib: string;
+    status: string;
+    success: boolean;
+}
+
 
 export class ValidasiPersilBot extends Bot {
     async start(user: string, pass: string, kabupatenId: string,kecamatanId: string, desaId: string, fileLoc: string) {
         try {
             const rStream = fs.createReadStream(fileLoc, {encoding: "utf-8"});
-            const arrNibPid: any[] = [];
+            const arrStatusValidasi: StatusValidasi[] = [];
             let totalnib: number;
             let nib: string;
 
@@ -47,10 +55,10 @@ export class ValidasiPersilBot extends Bot {
                 if (request.url().includes('QueryByNIB')) {
                     const text = await response.text();
                     const json = JSON.parse(text);
-                    arrNibPid[json.data[0].PersilId] = {
+                    arrStatusValidasi.push({
                         pid: json.data[0].PersilId,
                         nib: json.data[0].Nomor,
-                    };
+                    } as StatusValidasi);
                     page.evaluate((pid) => {
                         fetch("https://peta.atrbpn.go.id/DataSpasial/ValidasiBidang", {
                             "headers": {
@@ -72,11 +80,12 @@ export class ValidasiPersilBot extends Bot {
 
                 if (request.url().includes('ValidasiBidang')) {
                     const text = await response.text();
-                    const pid: any = request.postData().replace("pid=", "");
+                    const pid = request.postData().replace("pid=", "");
                     const jsonObj = JSON.parse(text);
-                    arrNibPid[pid].status = jsonObj.Message;
-                    arrNibPid[pid].success = jsonObj.Status;
-                    App.send('botvalidasi:status', arrNibPid[pid]);
+                    const indexStatusValidasi = arrStatusValidasi.findIndex(val => val.pid === pid);
+                    arrStatusValidasi[indexStatusValidasi].status = jsonObj.Message;
+                    arrStatusValidasi[indexStatusValidasi].success = jsonObj.Status;
+                    App.send('botvalidasi:status', arrStatusValidasi[indexStatusValidasi]);
                 }
             });
 

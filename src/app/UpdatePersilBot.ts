@@ -2,6 +2,11 @@ import App from './App';
 import { Bot } from './Bot';
 import * as fs from 'fs';
 
+interface NIPID {
+    pid: string;
+    nib: string;
+    status: string;
+}
 
 export class UpdatePersilBot extends Bot {
     async start(user: string, pass: string, kecamatanId: string, desaId: string, fileLoc: string) {
@@ -9,7 +14,7 @@ export class UpdatePersilBot extends Bot {
             const rStream = fs.createReadStream(fileLoc, {encoding: "utf-8"});
             const wStream = fs.createWriteStream('tmp.csv', {encoding: "utf-8"});
             wStream.write('persilid,nib,status,berhasil\n');
-            const arrNibPid: any[] = [];
+            const arrNibPid: NIPID[] = [];
             let totalnib: number;
             let nib: string;
 
@@ -56,6 +61,7 @@ export class UpdatePersilBot extends Bot {
                     arrNibPid[json.data[0].PersilId] = {
                         pid: json.data[0].PersilId,
                         nib: json.data[0].Nomor,
+                        status: "",
                     };
                     console.log(json.data[0].PersilId);
                     page.evaluate((pid) => {
@@ -73,7 +79,7 @@ export class UpdatePersilBot extends Bot {
                             },
                             "referrer": "https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah",
                             "referrerPolicy": "strict-origin-when-cross-origin",
-                            "body": "pid=05D8F87BE8D52219E053031D0B0A84AA&tid=7",
+                            "body": "pid=" + pid + "&tid=7",
                             "method": "POST",
                             "mode": "cors",
                             "credentials": "include"
