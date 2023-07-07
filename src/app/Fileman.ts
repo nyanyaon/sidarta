@@ -21,9 +21,9 @@ export class Fileman {
 
     extract(): FileInterface[] {
         const files: FileInterface[] = this.files.map(data => {
-            let filename = data.replace('.pdf', '');
+            const filename = data.replace('.pdf', '');
             if (this.type === "BT") {
-                let regex = filename.match(this.REGEXBT);
+                const regex = filename.match(this.REGEXBT);
                 return {
                     nama: data,
                     tipe: regex !== null ? regex[3].slice(8, 9) : "",
@@ -33,7 +33,7 @@ export class Fileman {
             }
 
             if (this.type === "SU") {
-                let regex = filename.match(this.REGEXSU);
+                const regex = filename.match(this.REGEXSU);
                 return {
                     nama: data,
                     tipe: regex !== null ? regex[1] : "",
