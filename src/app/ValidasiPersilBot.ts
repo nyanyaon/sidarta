@@ -130,7 +130,6 @@ export class ValidasiPersilBot extends Bot {
             });
 
 
-
             // End line Comp
 
             // await page.click("#petapendaftaran > div.menu-panel.ol-control > button.btn-toggle");
