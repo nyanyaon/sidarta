@@ -1,0 +1,112 @@
+[
+    {
+        "wilayahid": "5bbe9dd8e9c44bf5b28c584e39eb46de",
+        "kode": "230110",
+        "nama": "Batulayar",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "7d817ee6f51341f398c63b0c2b5e4dcd",
+        "kode": "230103",
+        "nama": "Gerung",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "EA040405C2F39BD3E043031D0B0AD096",
+        "kode": "230109",
+        "nama": "Gunungsari",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "2e89f343d2644c39a3838294cf7eee72",
+        "kode": "230109",
+        "nama": "Gunungsari",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "48f545ff917241419527124f6f89c9f1",
+        "kode": "230104",
+        "nama": "Kediri",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "331f6276eceb418091531ef9eecd4378",
+        "kode": "230105",
+        "nama": "Kuripan",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "3a0c0054470345f8900cc14e62e42550",
+        "kode": "230106",
+        "nama": "Labuapi",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "47247fe08259432a99821741c4c14cde",
+        "kode": "230102",
+        "nama": "Lembar",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "07847f3aba08438e8789353436106eb7",
+        "kode": "230108",
+        "nama": "Lingsar",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "a4e74ef9a2e249dc9428b1e5ca2236e0",
+        "kode": "230107",
+        "nama": "Narmada",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "b9c93a6d63de408ea856db29e6c31ff5",
+        "kode": "230101",
+        "nama": "Sekotong",
+        "tipewilayahid": 5,
+        "induk": "c494ce8dcb944375b806839433d0feea",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    }
+]

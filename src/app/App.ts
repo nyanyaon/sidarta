@@ -1,12 +1,13 @@
-import { BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions } from 'electron';
+import { session, BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions } from 'electron';
 import { AuthSSO } from './AuthSSO';
 import * as fs from 'fs';
 import { BukuTanahBot } from './BukuTanahBot';
-import { FileInterface, Fileman } from './Fileman';
+import { Fileman } from './Fileman';
 import { Database } from './db/Database';
 import { SuratUkurBot } from './SuratUkurBot';
 import { Browser } from 'puppeteer';
 import { Bot } from './Bot';
+import { ValidasiPersilBot } from './ValidasiPersilBot';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -42,6 +43,15 @@ export default class App {
             },
         });
 
+        session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+            callback({
+              responseHeaders: {
+                ...details.responseHeaders,
+                'Content-Security-Policy': ['script-src \'self\' https://www.googletagmanager.com \'unsafe-inline\' \'unsafe-eval\'']
+              }
+            })
+          });
+
         const template: MenuItemConstructorOptions[] = [
             // { role: 'fileMenu' }
             {
@@ -51,24 +61,6 @@ export default class App {
                     { role: 'toggleDevTools' },
                 ]
             },
-            {
-                role: 'help',
-                label: 'Bantuan',
-                submenu: [
-                    {
-                        label: 'Tentang',
-                        click: async () => {
-                            await shell.openExternal('https://github.com/nyanyaon');
-                        }
-                    },
-                    {
-                        label: 'Pelajari',
-                        click: async () => {
-                            await shell.openExternal('https://sidarta.nyanyaon.my.id');
-                        }
-                    },
-                ]
-            }
         ];
 
         const menu = Menu.buildFromTemplate(template);
@@ -121,6 +113,10 @@ export default class App {
             const bot = new SuratUkurBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4]);
         });
+        App.ipc.handle('bot:startValidasiPersil', async (event, ...args) => {
+            const bot = new ValidasiPersilBot();
+            await bot.start(args[0], args[1], args[2], args[3], args[4], args[5]);
+        });
         App.ipc.handle('folder:select', (event, ...args) => {
             dialog.showOpenDialog(App.mainWindow, {
                 properties: ['openDirectory'],
@@ -133,7 +129,23 @@ export default class App {
             }).catch(err => {
                 console.log(err);
             });
+        });
 
+        App.ipc.handle('file:select', (event, ...args) => {
+            dialog.showOpenDialog(App.mainWindow, {
+                properties: ['openFile'],
+                filters: [
+                    { name: 'CSV', extensions: ['csv'] },
+                    { name: 'All Files', extensions: ['*'] }
+                ]
+            }).then(async (result) => {
+                if (result.canceled) return;
+
+                console.log(result.filePaths);
+                App.send('file:selected', result.filePaths[0]);
+            }).catch(err => {
+                console.log(err);
+            });
         });
 
         App.ipc.handle('database:check', async (event, ...args) => {

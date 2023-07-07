@@ -1,0 +1,812 @@
+[
+    {
+        "wilayahid": "9877E114181B8DBDE0400B0A92141DEC",
+        "kode": "23050104",
+        "nama": "ADU",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "0FD21ADBCDB16387E053131D0B0A7AB8",
+        "kode": "23050812",
+        "nama": "ANAMINA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(1420048800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BC49DDBE0400B0A92141DE9",
+        "kode": "23050205",
+        "nama": "BADA",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBAF526EE0400B0A92144647",
+        "kode": "23050512",
+        "nama": "BAKAJAYA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BC79DDBE0400B0A92141DE9",
+        "kode": "23050207",
+        "nama": "BALI",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98792223BEB5D579E0400B0A92144643",
+        "kode": "23050804",
+        "nama": "BANGGO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9873FB8C40A99B97E0400B0A92140DE0",
+        "kode": "23050501",
+        "nama": "BARA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBBD526EE0400B0A92144647",
+        "kode": "23050606",
+        "nama": "BERINGINJAYA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BDA374EE0400B0A92144645",
+        "kode": "23050608",
+        "nama": "CALABAI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E114181D8DBDE0400B0A92141DEC",
+        "kode": "23050105",
+        "nama": "CEMPIJAYA",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9873FB8C40A89B97E0400B0A92140DE0",
+        "kode": "23050102",
+        "nama": "DAHA",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBAE526EE0400B0A92144647",
+        "kode": "23050211",
+        "nama": "DOREBARA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BDF374EE0400B0A92144645",
+        "kode": "23050307",
+        "nama": "DOROKOBO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98792223BEB7D579E0400B0A92144643",
+        "kode": "23050806",
+        "nama": "DOROMELO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBBA526EE0400B0A92144647",
+        "kode": "23050604",
+        "nama": "DOROPETI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BC69DDBE0400B0A92141DE9",
+        "kode": "23050206",
+        "nama": "DOROTANGGA",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9873FB8C40A79B97E0400B0A92140DE0",
+        "kode": "23050101",
+        "nama": "HU U",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A2694FEE1C4E204BE0400B0A9A1459B1",
+        "kode": "23050108",
+        "nama": "JALA",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(1298916000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BC89DDBE0400B0A92141DE9",
+        "kode": "23050703",
+        "nama": "JAMBU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F59A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB5526EE0400B0A92144647",
+        "kode": "23050602",
+        "nama": "KADINDI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BDC374EE0400B0A92144645",
+        "kode": "23050609",
+        "nama": "KADINDI BARAT",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F6C3A09EA27CE0400B0A92144641",
+        "kode": "23050810",
+        "nama": "KAMPASI MECI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E114181F8DBDE0400B0A92141DEC",
+        "kode": "23050505",
+        "nama": "KANDAI DUA",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E11418228DBDE0400B0A92141DEC",
+        "kode": "23050202",
+        "nama": "KANDAI SATU",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB0526EE0400B0A92144647",
+        "kode": "23050212",
+        "nama": "KAREKE",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E11418248DBDE0400B0A92141DEC",
+        "kode": "23050203",
+        "nama": "KARIJAWA",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "F450E19ECB43BD6BE043141D0B0ABFB0",
+        "kode": "23050611",
+        "nama": "KAROMBO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(1388509200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBAB526EE0400B0A92144647",
+        "kode": "23050209",
+        "nama": "KATUA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBBB526EE0400B0A92144647",
+        "kode": "23050302",
+        "nama": "KEMPO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BCD9DDBE0400B0A92141DE9",
+        "kode": "23050404",
+        "nama": "KIWU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F19A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BD9374EE0400B0A92144645",
+        "kode": "23050304",
+        "nama": "KONTE",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBAD526EE0400B0A92144647",
+        "kode": "23050210",
+        "nama": "KRAMABURA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BD19DDBE0400B0A92141DE9",
+        "kode": "23050406",
+        "nama": "KRAMAT",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F19A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BD09DDBE0400B0A92141DE9",
+        "kode": "23050802",
+        "nama": "KWANGKO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98792223BEB6D579E0400B0A92144643",
+        "kode": "23050805",
+        "nama": "LANCIJAYA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BCB9DDBE0400B0A92141DE9",
+        "kode": "23050403",
+        "nama": "LASI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F19A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "98790BE70BE1374EE0400B0A92144645",
+        "kode": "23050701",
+        "nama": "LEPADI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F59A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BCA9DDBE0400B0A92141DE9",
+        "kode": "23050704",
+        "nama": "LUNE",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F59A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBAA526EE0400B0A92144647",
+        "kode": "23050510",
+        "nama": "MADAPRAMA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BE2374EE0400B0A92144645",
+        "kode": "23050402",
+        "nama": "MALAJU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F19A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB4526EE0400B0A92144647",
+        "kode": "23050213",
+        "nama": "MANGGEASI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB6526EE0400B0A92144647",
+        "kode": "23050214",
+        "nama": "MANGGENAE",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A26A323475035B75E0400B0A9A14186B",
+        "kode": "23050107",
+        "nama": "MARADA",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(1298916000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E114181A8DBDE0400B0A92141DEC",
+        "kode": "23050503",
+        "nama": "MATUA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E11418208DBDE0400B0A92141DEC",
+        "kode": "23050201",
+        "nama": "MBAWI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BE0374EE0400B0A92144645",
+        "kode": "23050401",
+        "nama": "MBUJU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F19A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E114181C8DBDE0400B0A92141DEC",
+        "kode": "23050504",
+        "nama": "MONTABARU",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBAC526EE0400B0A92144647",
+        "kode": "23050511",
+        "nama": "MUMBU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BDE374EE0400B0A92144645",
+        "kode": "23050610",
+        "nama": "NANGAKARA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB8526EE0400B0A92144647",
+        "kode": "23050603",
+        "nama": "NANGAMIRO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BD29DDBE0400B0A92141DE9",
+        "kode": "23050803",
+        "nama": "NANGATUMPU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9873FB8C40AA9B97E0400B0A92140DE0",
+        "kode": "23050502",
+        "nama": "NOWA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98792223BEB9D579E0400B0A92144643",
+        "kode": "23050808",
+        "nama": "NUSAJAYA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F6C3A09CA27CE0400B0A92144641",
+        "kode": "23050208",
+        "nama": "O O",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB3526EE0400B0A92144647",
+        "kode": "23050601",
+        "nama": "PEKAT",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BC29DDBE0400B0A92141DE9",
+        "kode": "23050204",
+        "nama": "POTU",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB2526EE0400B0A92144647",
+        "kode": "23050513",
+        "nama": "RABABAKA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BE3374EE0400B0A92144645",
+        "kode": "23050702",
+        "nama": "RANGGO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F59A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9873FB8C40AB9B97E0400B0A92140DE0",
+        "kode": "23050103",
+        "nama": "RASABOU",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BC59DDBE0400B0A92141DE9",
+        "kode": "23050509",
+        "nama": "RIWO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BC39DDBE0400B0A92141DE9",
+        "kode": "23050508",
+        "nama": "SANEO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E114181E8DBDE0400B0A92141DEC",
+        "kode": "23050106",
+        "nama": "SAWE",
+        "tipewilayahid": 6,
+        "induk": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A26A716A69B99EAAE0400B0A9A14259F",
+        "kode": "23050514",
+        "nama": "SERAKAPI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(1298916000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E11418238DBDE0400B0A92141DEC",
+        "kode": "23050507",
+        "nama": "SIMPASAI",
+        "tipewilayahid": 7,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BDD374EE0400B0A92144645",
+        "kode": "23050306",
+        "nama": "SONGGAJA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBBC526EE0400B0A92144647",
+        "kode": "23050605",
+        "nama": "SORINOMO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB7526EE0400B0A92144647",
+        "kode": "23050215",
+        "nama": "SORISAKOLO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528EF9A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "1734044DB7A0659EE053031D0B0A3FDA",
+        "kode": "23050612",
+        "nama": "SORITATANGA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(1420048800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BCE9DDBE0400B0A92141DE9",
+        "kode": "23050801",
+        "nama": "SORIUTU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBBE526EE0400B0A92144647",
+        "kode": "23050303",
+        "nama": "SORO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "0FD2504DD76419B5E053021D0B0A2201",
+        "kode": "23050308",
+        "nama": "SORO BARAT",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(1420048800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98792223BEB8D579E0400B0A92144643",
+        "kode": "23050807",
+        "nama": "SUKADAMAI",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F7E1BBB9526EE0400B0A92144647",
+        "kode": "23050301",
+        "nama": "TAA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BD8374EE0400B0A92144645",
+        "kode": "23050607",
+        "nama": "TAMBORA",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F39A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F6C3A09DA27CE0400B0A92144641",
+        "kode": "23050809",
+        "nama": "TANJU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BCF9DDBE0400B0A92141DE9",
+        "kode": "23050405",
+        "nama": "TAROPO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F19A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877F6C3A09FA27CE0400B0A92144641",
+        "kode": "23050811",
+        "nama": "TEKASIRE",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F69A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "BDECED42324C6D1EE0400B0A9A143CF8",
+        "kode": "23050706",
+        "nama": "TEMBA LAE",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F59A50E0400B0A92141DF0",
+        "validsejak": "/Date(1333213200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98790BE70BDB374EE0400B0A92144645",
+        "kode": "23050305",
+        "nama": "TOLOKALO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F09A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877E11418218DBDE0400B0A92141DEC",
+        "kode": "23050506",
+        "nama": "WAWONDURU",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F29A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9877BAD92BCC9DDBE0400B0A92141DE9",
+        "kode": "23050705",
+        "nama": "WOKO",
+        "tipewilayahid": 6,
+        "induk": "9877BE5528F59A50E0400B0A92141DF0",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    }
+]

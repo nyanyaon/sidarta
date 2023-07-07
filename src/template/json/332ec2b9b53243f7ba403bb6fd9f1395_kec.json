@@ -1,0 +1,202 @@
+[
+    {
+        "wilayahid": "98EB15FA5B728E79E0400B0A921431F4",
+        "kode": "230610",
+        "nama": "Ambalawi",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(979491600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB00239517D461E0400B0A921431F6",
+        "kode": "230604",
+        "nama": "BELO",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98E9F552BF9EDBE8E0400B0A921431F8",
+        "kode": "230602",
+        "nama": "BOLO",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB15FA5B708E79E0400B0A921431F4",
+        "kode": "230608",
+        "nama": "DONGGO",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9BAEC59A483F3940E0400B0A921447C6",
+        "kode": "230609",
+        "nama": "DONGGO.",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": "/Date(979491600000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "98EB35CF923CE87FE0400B0A92145E15",
+        "kode": "230618",
+        "nama": "LAMBITU",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(1150045200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB22EA7B30F970E0400B0A92145E17",
+        "kode": "230612",
+        "nama": "LAMBU",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(979491600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB21596A700717E0400B0A92145E11",
+        "kode": "230611",
+        "nama": "LANGGUDU",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(979491600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB22EA7B33F970E0400B0A92145E17",
+        "kode": "230613",
+        "nama": "MADAPANGGA",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(979491600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98E9E02EC5C5FE1AE0400B0A92143206",
+        "kode": "230601",
+        "nama": "MONTA",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(979491600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB22AD8EA894E6E0400B0A92145E19",
+        "kode": "230616",
+        "nama": "PALIBELO",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(1150045200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB22AD8EA994E6E0400B0A92145E19",
+        "kode": "230617",
+        "nama": "PARADO",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(1150045200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB15FA5B718E79E0400B0A921431F4",
+        "kode": "230609",
+        "nama": "SANGGAR",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(979491600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9B241B08A274411BE0400B0A92144257",
+        "kode": "230601",
+        "nama": "SANGGAR.",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": "/Date(979491600000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "98EB15FA5B6E8E79E0400B0A921431F4",
+        "kode": "230606",
+        "nama": "SAPE",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "98EB22AD8EA594E6E0400B0A92145E19",
+        "kode": "230615",
+        "nama": "SOROMANDI",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(1150045200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB22AD8EA494E6E0400B0A92145E19",
+        "kode": "230614",
+        "nama": "TAMBORA",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(979491600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB15FA5B6D8E79E0400B0A921431F4",
+        "kode": "230605",
+        "nama": "WAWO",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB15FA5B6F8E79E0400B0A921431F4",
+        "kode": "230607",
+        "nama": "WERA",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98EB00239516D461E0400B0A921431F6",
+        "kode": "230603",
+        "nama": "WOHA",
+        "tipewilayahid": 5,
+        "induk": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "validsejak": "/Date(-359708400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    }
+]

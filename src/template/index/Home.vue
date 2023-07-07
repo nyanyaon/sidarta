@@ -1,78 +1,114 @@
 <template>
     <Header />
     <div class="section">
-        <h2>FITUR KAMI</h2>
+        <h2>REKAP VALIDASI PERSIL</h2>
         <div class="feature-container">
-            <div @click="goToBukuTanah" class="feature-box available">
-                <p>BUKU TANAH</p>
+            <div class="feature-box available">
+                <p class="context">Lombok<br/> Barat</p>
+                <p class="total">90</p>
             </div>
-            <div @click="goToSuratUkur" class="feature-box available">
-                <p>SURAT UKUR</p>
+            <div class="feature-box available">
+                <p class="context">Lombok<br/> Tengah</p>
+                <p class="total">90</p>
             </div>
-            <div @click="goToValidasiPersil" class="feature-box available">
-                <p>VALIDASI PERSIL</p>
+            <div class="feature-box available">
+                <p class="context">Lombok<br/> Timur</p>
+                <p class="total">90</p>
             </div>
-        </div>
-    </div>
-    <div class="section">
-        <h2>STATISTK</h2>
-        <div class="statistic-container">
-            <div class="statistic-item">
-                <p> {{ countBukuTanah  }}</p>
-                <span>BUKU TANAH</span>
+            <div class="feature-box available">
+                <p class="context">Lombok<br/> Utara</p>
+                <p class="total">90</p>
             </div>
-            <div class="statistic-item">
-                <p> {{ getSum  }}</p>
-                <span>TOTAL</span>
+            <div class="feature-box available">
+                <p class="context">Kota<br/> Mataram</p>
+                <p class="total">90</p>
             </div>
-            <div class="statistic-item">
-                <p> {{ countSuratUkur  }}</p>
-                <span>SURAT UKUR</span>
+            <div class="feature-box available">
+                <p class="context">Sumbawa<br/> Barat</p>
+                <p class="total">90</p>
+            </div>
+            <div class="feature-box available">
+                <p class="context">Sumbawa</p>
+                <p class="total">90</p>
+            </div>
+            <div class="feature-box available">
+                <p class="context">Dompu</p>
+                <p class="total">90</p>
+            </div>
+            <div class="feature-box available">
+                <p class="context">Kota<br/> Bima</p>
+                <p class="total">90</p>
+            </div>
+            <div class="feature-box available">
+                <p class="context">Kabupaten<br/> Bima</p>
+                <p class="total">90</p>
+            </div>
+            <div class="feature-box available bg-green">
+                <p class="context">Total</p>
+                <p class="total">900</p>
+            </div>
+            <div @click="goToValidasiPersil" class="feature-box available bg-orange">
+                <p class="context">Validasi<br/> Persil</p>
+                <p class="total">GO</p>
             </div>
         </div>
     </div>
 </template>
 
 <style lang="css" scoped>
-.statistic-item {
-    text-align: center;
-    margin-left: auto;
+.bg-green {
+    background: #1FC374!important;
+}
+
+.bg-orange {
+    background: #FF9D56!important;
+}
+
+.feature-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 1em;
+    row-gap: 1em;
+}
+
+.feature-box {
+    margin: 0 auto;
+    display: flex;
+    width: 178px;
+    height: 73px;
+    padding: 1em;
+    border-radius: 0.8em;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.feature-box .context {
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    color: #F4F4F4;
+    justify-content: center;
     margin-right: auto;
 }
-.statistic-item span {
-    font-size: 0.75em;
-    font-weight: 700;
-    color: #FF7F22;
-}
-.statistic-item p {
-    margin: 0;
-    font-size: 2.25em;
-    font-weight: 700;
-    color: #393939;
-}
-.statistic-container {
-    display: flex;
-    flex-direction: row;
-}
-.feature-container {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-}
-.feature-box {
+
+.feature-box .total {
     color: #F4F4F4;
+    text-align: right;
     font-size: 2em;
-    font-weight: 700;
-    margin: 0 auto;
-    padding: 1em;
-    border-radius: 1.25em;
-    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    justify-content: center;
 }
+
 .available {
-    background: #FF614A;
+    background: #00B2FF;
 }
+
 .available:hover {
-    background: #CC4E3B;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
 }
 
 .unavailable {
@@ -90,6 +126,7 @@
     font-size: 1em;
     color: #7B7B7B;
     font-weight: 700;
+    line-height: normal;
 }
 </style>
 

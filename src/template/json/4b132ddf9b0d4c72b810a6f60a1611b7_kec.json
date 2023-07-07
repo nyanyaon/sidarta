@@ -1,0 +1,82 @@
+[
+    {
+        "wilayahid": "B1A9AEA943E7F387E0400B0A9A143AEB",
+        "kode": "230905",
+        "nama": "Brang Ene",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1A9AE117C2F038EE0400B0A9A143AE9",
+        "kode": "230906",
+        "nama": "Brang Rea",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1AB0DC2B6101E45E0400B0A9A1450BE",
+        "kode": "230902",
+        "nama": "Jereweh",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "B1AA4FFFE3295EA9E0400B0A9A142576",
+        "kode": "230903",
+        "nama": "Maluk",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1AA77C1EB28E023E0400B0A9A142DB8",
+        "kode": "230908",
+        "nama": "Poto Tano",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1A9EF67A1E0EB33E0400B0A9A144ACF",
+        "kode": "230901",
+        "nama": "Sekongkang",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1A9AE117C3C038EE0400B0A9A143AE9",
+        "kode": "230907",
+        "nama": "Seteluk",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1AA78257E352152E0400B0A9A142DB4",
+        "kode": "230904",
+        "nama": "Taliwang",
+        "tipewilayahid": 5,
+        "induk": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    }
+]

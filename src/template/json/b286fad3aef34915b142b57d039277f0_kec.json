@@ -1,0 +1,242 @@
+[
+    {
+        "wilayahid": "5a6b0f3620e8431f99c7dfcab0cf7a69",
+        "kode": "230416",
+        "nama": " Rhee",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "ed497563bb6c47849a6604eb4d603328",
+        "kode": "230402",
+        "nama": "Alas",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "8146bbd22ca0482b8bac3e84095e592e",
+        "kode": "230412",
+        "nama": "ALAS BARAT",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "e041d2f098cd458b85b63aaaa50b2a5b",
+        "kode": "230404",
+        "nama": "Batu Lante ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "f206759a52f247318c57647fd1928851",
+        "kode": "230415",
+        "nama": "Buer ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "61ca681a651b4cc7a5a5b22145a14885",
+        "kode": "230411",
+        "nama": "Empang  ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "0742a33cdeb749299d085ea59090af52",
+        "kode": "230414",
+        "nama": "Labangka",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "ecb3e5b05446419db26a5a4d633bad7b",
+        "kode": "230413",
+        "nama": "Lab.Badas ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "a1f28b7d451041d78c0aad68ca316f74",
+        "kode": "230423",
+        "nama": "Lantung",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "7fee9d34cf424033b114fe00a9311f9a",
+        "kode": "230409",
+        "nama": "Lape",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "53c41a7d5ac84da1ae4363e4f64264a9",
+        "kode": "230424",
+        "nama": "Lenangguar",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "aedc23b3ca584773b2633f9f75f78f81",
+        "kode": "230421",
+        "nama": "Lopok",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "3e8eb2239a6d4d818eb4300409cb6f75",
+        "kode": "230401",
+        "nama": "Lunyuk",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "4cff7e17353b4c67a853ee21f793d841",
+        "kode": "230419",
+        "nama": "Maronge",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "fb228fc35ec640368aa110c22212ebda",
+        "kode": "230406",
+        "nama": "Moyo Hilir  ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "41a8ea3251314d24ba6d999e82287dcf",
+        "kode": "230407",
+        "nama": "Moyo Hulu",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "e2cc248ebc5f46d7b488853b9c6ee19d",
+        "kode": "230418",
+        "nama": "Moyo utara",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "be7404c30226431995274142a7970fdf",
+        "kode": "230422",
+        "nama": "Orong Telu",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "0d24d4c666954208bbca795845eb14b3",
+        "kode": "230410",
+        "nama": "Plampang ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "e59e0585d52a40759cfdb8a17c8233c3",
+        "kode": "230408",
+        "nama": "Ropang",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "cf1444c443844796bad68f7c3295b6d2",
+        "kode": "230405",
+        "nama": "Sumbawa ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "b47f3d064c6b434fadcc77d500129368",
+        "kode": "230420",
+        "nama": "Tarano",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "e12555b5970e4937bbfbf453d1c6870a",
+        "kode": "230417",
+        "nama": "Unter iwis",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "ffe8c3c5fd674eeea54fbc339829eac7",
+        "kode": "230403",
+        "nama": "Utan ",
+        "tipewilayahid": 5,
+        "induk": "b286fad3aef34915b142b57d039277f0",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    }
+]

@@ -2,7 +2,6 @@
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
 import { contextBridge, ipcRenderer } from "electron";
-import { Kecamatan } from "./app/Bot";
 import { FileInterface } from './app/Fileman';
 
 contextBridge.exposeInMainWorld('COMM', {
@@ -12,15 +11,19 @@ contextBridge.exposeInMainWorld('COMM', {
     authSave: (username: string, password: string) => ipcRenderer.invoke('auth:save', username, password),
     authVerify: (otp: string, kantor: string) => ipcRenderer.invoke('auth:verify', otp, kantor),
     authStart: (headless: boolean) => ipcRenderer.invoke('auth:start', headless),
-    folderSelect: (tipeDok: string) => ipcRenderer.invoke('folder:select', tipeDok),
     databaseCheck: (col: string, nama: string) => ipcRenderer.invoke('database:check', col, nama),
     databaseGetAll: (col: string) => ipcRenderer.invoke('database:getAll', col),
     botGetOption: () => ipcRenderer.invoke('bot:getOption'),
     botStartBukuTanah: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => ipcRenderer.invoke('bot:startBukuTanah', kecamatan, kecamatanId, desa, files, loc),
     botStartSuratUkur: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => ipcRenderer.invoke('bot:startSuratUkur', kecamatan, kecamatanId, desa, files, loc),
+    botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => ipcRenderer.invoke('bot:startValidasiPersil', user, pass, kabupatenId, kecamatanId, desaId, fileLoc),
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth-error', callback),
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:success', callback),
+    folderSelect: (tipeDok: string) => ipcRenderer.invoke('folder:select', tipeDok),
+    fileSelect: () => ipcRenderer.invoke('file:select'),
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('folder:selected', callback),
+    fileSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('file:selected', callback),
+    botValidasiStatus: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('botvalidasi:status', callback),
     appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('app:dataopt', callback),
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:token', callback),
     authHideOTP: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:hideOTP', callback),

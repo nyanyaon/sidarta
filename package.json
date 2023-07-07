@@ -104,6 +104,7 @@
     "node-fetch": "^3.3.1",
     "puppeteer": "^19.1.2",
     "puppeteer-core": "^19.2.2",
+    "universal-analytics": "^0.5.3",
     "vue": "^3.2.41",
     "vue-router": "^4.1.6"
   }

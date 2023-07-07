@@ -1,0 +1,122 @@
+[
+    {
+        "wilayahid": "B2ECB3406B3A4025E0400B0A9A141D8D",
+        "kode": "230208",
+        "nama": "Batukliang",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2EE4D624021F7EAE0400B0A9A143FB0",
+        "kode": "230212",
+        "nama": "Batukliang Utara",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2ED519FF13ACC69E0400B0A9A1407BD",
+        "kode": "230204",
+        "nama": "Janapria",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2ED4F712D7712ACE0400B0A9A140812",
+        "kode": "230206",
+        "nama": "Jonggat",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2EE274A46D411A3E0400B0A9A14369F",
+        "kode": "230209",
+        "nama": "Kopang",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2ED523D7B7AFE61E0400B0A9A140818",
+        "kode": "230205",
+        "nama": "Praya",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2ED5BBF378D8F54E0400B0A9A140A87",
+        "kode": "230201",
+        "nama": "Praya Barat",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2EE4283A6EFB6ACE0400B0A9A143CA3",
+        "kode": "230211",
+        "nama": "Praya Barat Daya",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2EE3FA4F5D07236E0400B0A9A143CA6",
+        "kode": "230210",
+        "nama": "Praya Tengah",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2ED509D2C1B2C16E0400B0A9A14074C",
+        "kode": "230203",
+        "nama": "Praya Timur",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2ECBDA515F79ABCE0400B0A9A14208D",
+        "kode": "230207",
+        "nama": "Pringgarata",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B2ED4FE9488C1581E0400B0A9A140746",
+        "kode": "230202",
+        "nama": "Pujut",
+        "tipewilayahid": 5,
+        "induk": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    }
+]

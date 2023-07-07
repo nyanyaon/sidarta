@@ -1,0 +1,122 @@
+[
+    {
+        "wilayahid": "98ABCE52F188E826E0400B0A92143A26",
+        "kode": "230803",
+        "nama": "Asakota",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(1078160400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ABCE52F18CE826E0400B0A92143A26",
+        "kode": "230804",
+        "nama": "Mpunda",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(1167670800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ABCE52F190E826E0400B0A92143A26",
+        "kode": "230805",
+        "nama": "Raba",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(1167670800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A00ED5F4ACDBC9ACE0400B0A9A146245",
+        "kode": "230608",
+        "nama": "Rasanae",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": "/Date(1088614800000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9A9258724ACBD38CE0400B0A92140D5F",
+        "kode": "230608",
+        "nama": "Rasanae",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": "/Date(1088614800000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9A8F3D6B341BD0EAE0400B0A92142796",
+        "kode": "230608",
+        "nama": "RasanaE",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": "/Date(962384400000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9AE064EF2108A711E0400B0A921436BD",
+        "kode": "230608",
+        "nama": "RasanaE Barat",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": "/Date(1088614800000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "98ABDCA672FF014BE0400B0A92143A22",
+        "kode": "230801",
+        "nama": "RasanaE Barat",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(1072976400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9A8EFF73E6EC027CE0400B0A92142197",
+        "kode": "230801",
+        "nama": "RASANAE BARAT",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(1088614800000)/",
+        "validsampai": "/Date(1151686800000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9B31F6C837FF4CC6E0400B0A92142356",
+        "kode": "230608",
+        "nama": "RasanaE Timur",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": "/Date(1088614800000)/",
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "98ABDFFDA6ACCA1BE0400B0A92143A20",
+        "kode": "230802",
+        "nama": "RasanaE Timur",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(1072976400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9AA41981E0C6CD07E0400B0A92142768",
+        "kode": "230802",
+        "nama": "RASANAE TIMUR",
+        "tipewilayahid": 5,
+        "induk": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "validsejak": "/Date(1088614800000)/",
+        "validsampai": "/Date(1167584400000)/",
+        "statusgeometri": 0
+    }
+]

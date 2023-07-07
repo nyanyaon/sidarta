@@ -1,0 +1,82 @@
+[
+    {
+        "wilayahid": "9877BE5528EF9A50E0400B0A92141DF0",
+        "kode": "230502",
+        "nama": "DOMPU",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9877BAD92BC19DDBE0400B0A92141DE9",
+        "kode": "230501",
+        "nama": "Huu",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9877BE5528F09A50E0400B0A92141DF0",
+        "kode": "230503",
+        "nama": "KEMPO",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9877BE5528F19A50E0400B0A92141DF0",
+        "kode": "230504",
+        "nama": "KILO",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9877BE5528F69A50E0400B0A92141DF0",
+        "kode": "230508",
+        "nama": "MANGGELEWA",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9877BE5528F59A50E0400B0A92141DF0",
+        "kode": "230507",
+        "nama": "PAJO",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9877BE5528F39A50E0400B0A92141DF0",
+        "kode": "230506",
+        "nama": "PEKAT",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "9877BE5528F29A50E0400B0A92141DF0",
+        "kode": "230505",
+        "nama": "WOJA",
+        "tipewilayahid": 5,
+        "induk": "3a75a95a6cef4334ae9376962b1d773a",
+        "validsejak": "/Date(-292575600000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    }
+]

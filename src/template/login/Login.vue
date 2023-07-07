@@ -1,9 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="header">
-      <img src="../img/logo.png" class="logo" alt="logo sidarta">
-      <h1>SIDARTA</h1>
-      <p>Sistem Digitalisasi Arsip Pertanahan</p>
+      <h1>SIAP VALID</h1>
+      <p>Validasi Persil Bidang</p>
     </div>
     <div v-if="txtEmailTo === ''" class="login">
       <p v-if="error !== ''" class="info-error">{{ error }}</p>
@@ -28,7 +27,7 @@
 
 <style scoped>
 .header {
-  margin-top: 2em;
+  margin-top: 6em;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -37,7 +36,7 @@
 
 .header h1 {
   margin: 0;
-  color: #FF9D56;
+  color: #00B2FF;
   font-size: 2.4em;
 }
 
@@ -74,7 +73,7 @@
   margin-bottom: 0.5rem;
   font-size: 0.75em;
   padding: 0.5em;
-  border: 1px solid #FF9D56;
+  border: 1px solid #00B2FF;
   background: none;
   border-radius: 0.8em;
   font-weight: 500;
@@ -84,7 +83,7 @@
   margin-bottom: 0.5rem;
   font-size: 0.75em;
   padding: 0.5em;
-  border: 1px solid #FF9D56;
+  border: 1px solid #00B2FF;
   background: none;
   border-radius: 0.8em;
   font-weight: 500;
@@ -94,7 +93,7 @@ button {
   font-size: 0.75em;
   font-weight: 600;
   color: #fff;
-  background: #FF9D56;
+  background: #00B2FF;
   border: none;
   padding: 0.75em 0.5em;
   margin-top: 3em;
@@ -102,7 +101,7 @@ button {
 }
 
 button:hover {
-  background: #D67026;
+  background: #1193ca;
 }
 
 .info-token {
