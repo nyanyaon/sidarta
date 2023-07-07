@@ -7,15 +7,9 @@ export class ValidasiPersilBot extends Bot {
     async start(user: string, pass: string, kabupatenId: string,kecamatanId: string, desaId: string, fileLoc: string) {
         try {
             const rStream = fs.createReadStream(fileLoc, {encoding: "utf-8"});
-            const wStream = fs.createWriteStream('tmp.csv', {encoding: "utf-8"});
-            wStream.write('persilid,nib,status,berhasil\n');
             const arrNibPid: any[] = [];
             let totalnib: number;
             let nib: string;
-
-            wStream.on("error", (err) => {
-                console.log(err);
-            });
 
             rStream.on("error", (err) => {
                 console.log(err);
@@ -83,7 +77,6 @@ export class ValidasiPersilBot extends Bot {
                     arrNibPid[pid].status = jsonObj.Message;
                     arrNibPid[pid].success = jsonObj.Status;
                     App.send('botvalidasi:status', arrNibPid[pid]);
-                    wStream.write(`${arrNibPid[pid].pid},${arrNibPid[pid].nib},${arrNibPid[pid].status},${jsonObj.Status}\n`);
                 }
             });
 

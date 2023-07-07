@@ -48,7 +48,7 @@
 <style scoped>
 .section {
     display: flex;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .doc-container {
@@ -134,6 +134,10 @@
     padding: 0.5em 1em;
     margin-bottom: 0.625em;
     border-radius: 1rem;
+}
+
+.form-loc button:hover {
+    cursor: pointer;
 }
 
 .start {
@@ -246,8 +250,12 @@ export default defineComponent({
             if (this.kabupaten === "") return;
             this.updateKabId();
             const kab = kabJson.find(value => value.wilayahid === this.kabupatenId);
-            this.kecJson = require('../json/' + kab.wilayahid + '_kec.json');
-            this.desaJson = require('../json/' + kab.wilayahid + '_desa.json');
+            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_kec.json')
+            .then(res => res.json())
+            .then(json => { this.kecJson = json });
+            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
+            .then(res => res.json())
+            .then(json => { this.desaJson = json });
         },
         updateKecamatan(event: Event) {
             if (this.kecamatan === "") return;

@@ -21,7 +21,7 @@
 <style lang="css" scoped>
 .header {
     display: flex;
-    margin-top: 0.3em;
+    margin-top: 0.5em;
     margin-left: 2em;
     margin-right: 2em;
 }
