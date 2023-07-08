@@ -39,7 +39,10 @@
                     <h3>GAGAL :</h3>
                     <p>{{ cGagal }} Bidang</p>
                 </div>
-                <button @click="downloadReport" class="report-btn">REPORT HASIL</button>
+                <button @click="downloadReport" class="report-btn">
+                    <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;"/> 
+                    <p class="text"> REPORT HASIL</p>
+                </button>
             </div>
         </div>
     </div>
@@ -94,11 +97,23 @@
     border-radius: 0.875em;
     background: #00B2FF;
     border: none;
-    padding: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-btn .text {
     color: #F4F4F4;
-    font-size: 0.625em;
+    font-size: 0.8em;
     font-weight: 700;
     font-family: 'Montserrat';
+    margin-left: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .form-loc {
@@ -193,6 +208,15 @@ export default defineComponent({
     },
     computed: {
         getListKabupaten(): Kabupaten[] {
+            if (this.kabupaten == "") return kabJson;
+
+            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_kec.json')
+            .then(res => res.json())
+            .then(json => { this.kecJson = json });
+            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_desa.json')
+            .then(res => res.json())
+            .then(json => { this.desaJson = json });
+
             return kabJson;
         },
         getListKecamatan(): Kecamatan[] {
@@ -218,7 +242,7 @@ export default defineComponent({
         },
         downloadReport() {
             if((this.reportJson as String[]).length < 2) {
-                alert('No Data');
+                prompt("otp");
                 return;
             }
             const text: string = (this.reportJson as String[]).join('\n');
@@ -256,6 +280,7 @@ export default defineComponent({
             fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
             .then(res => res.json())
             .then(json => { this.desaJson = json });
+            window.localStorage.setItem("USER_KAB", this.kabupaten + "," + this.kabupatenId);
         },
         updateKecamatan(event: Event) {
             if (this.kecamatan === "") return;
@@ -286,6 +311,9 @@ export default defineComponent({
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
+        const [ kab, kabId ]  = window.localStorage.getItem("USER_KAB").split(",");
+        this.kabupaten = kab;
+        this.kabupatenId = kabId;
     }
 });
 </script>
