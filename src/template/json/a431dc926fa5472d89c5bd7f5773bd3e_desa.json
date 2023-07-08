@@ -1,0 +1,2552 @@
+[
+    {
+        "wilayahid": "D25D6BA35955F208E0400B0A9A143147",
+        "kode": "23030921",
+        "nama": "Aik Prapa",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0AE6B10BB71E0400B0A9A1447F1",
+        "kode": "23031205",
+        "nama": "Aikdewa",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE706F4248B349E0400B0A92144953",
+        "kode": "23030902",
+        "nama": "Aikmel",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0C32B793A83E0400B0A9A1447F5",
+        "kode": "23030910",
+        "nama": "Aikmel Barat",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D331FD7A51FB6E0400B0A9A14042E",
+        "kode": "23030923",
+        "nama": "Aikmel Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBE96695E0400B0A92141E3D",
+        "kode": "23030907",
+        "nama": "Aikmel Utara",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C846CE0C602D6E0400B0A9A143E7D",
+        "kode": "23030811",
+        "nama": "Anggaraksa",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2D135A7E0400B0A92147542",
+        "kode": "23031301",
+        "nama": "Anjani",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F53E887E0400B0A92144957",
+        "kode": "23030802",
+        "nama": "Apitaik",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CAB2874C3EFA9E0400B0A9A1465B1",
+        "kode": "23031007",
+        "nama": "Bagik Manis",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6AAC33EEF1A0E0400B0A9A143145",
+        "kode": "23030920",
+        "nama": "Bagik Nyaka Santri",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F52E887E0400B0A92144957",
+        "kode": "23030801",
+        "nama": "Bagik Papan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADB01073DFFD12E0400B0A92147540",
+        "kode": "23031304",
+        "nama": "Bagik Payung",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C01286E41E0400B0A9214494F",
+        "kode": "23031306",
+        "nama": "Bagik Payung Selatan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CECD09F505739E0400B0A9A141B69",
+        "kode": "23031311",
+        "nama": "Bagik Payung Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E0C7EBD87C860E0400B0A9A14364E",
+        "kode": "23031409",
+        "nama": "Bandok",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1353776400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C846284596D4DE0400B0A9A143E7B",
+        "kode": "23031710",
+        "nama": "Banjar Sari",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AF08E7AFB07D8FE0400B0A921423EB",
+        "kode": "23032001",
+        "nama": "Batu Nampar",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25B872B630F935DE0400B0A9A146739",
+        "kode": "23032013",
+        "nama": "Batu Nampar Selatan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D43D8C613E03EE0400B0A9A142FBF",
+        "kode": "23030105",
+        "nama": "Batu Putik",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F56E887E0400B0A92144957",
+        "kode": "23030805",
+        "nama": "Batuyang",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADC60BE74EF0D1E0400B0A9214753E",
+        "kode": "23031405",
+        "nama": "Bebidas",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C01256E41E0400B0A9214494F",
+        "kode": "23031002",
+        "nama": "Belanting",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D531534F3766BE0400B0A9A140BB9",
+        "kode": "23031408",
+        "nama": "Beririjarak",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A36F52E0400B0A9214753C",
+        "kode": "23031504",
+        "nama": "Bilok Petung",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387860D39E0400B0A9214656D",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E0C7D5A9C761FE0400B0A9A143646",
+        "kode": "23031314",
+        "nama": "Bintang Rinjani",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D517BAAA25F3FE0400B0A9A142FBD",
+        "kode": "23031906",
+        "nama": "Borok Toyang",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BC93A0768F2F6E0400B0A9A142D6A",
+        "kode": "23031911",
+        "nama": "Boye More",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AF08E7AFAE7D8FE0400B0A921423EB",
+        "kode": "23031904",
+        "nama": "Bungtiang",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25C9471969FC89CE0400B0A9A143141",
+        "kode": "23031008",
+        "nama": "Dadap",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CCD6442604F7AE0400B0A9A14019E",
+        "kode": "23031310",
+        "nama": "Dames Damai",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25C69A1B4204235E0400B0A9A145DFA",
+        "kode": "23030110",
+        "nama": "Dane Rase",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE23C1F3EE607DE0400B0A92141E45",
+        "kode": "23030506",
+        "nama": "Danger",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6BA3598AF208E0400B0A9A143147",
+        "kode": "23031006",
+        "nama": "Dara Kunci",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D074D320A011AE0400B0A9A1454A3",
+        "kode": "23030410",
+        "nama": "Darmasari",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C845C40576CB3E0400B0A9A143E7F",
+        "kode": "23031308",
+        "nama": "Dasan Borok",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1D0503B9ADD6E0400B0A92141E43",
+        "kode": "23030604",
+        "nama": "Dasan Lekong",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE444C8A0AAC59E0400B0A92141E3F",
+        "kode": "23030704",
+        "nama": "Denggen",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3067DFC34544E0400B0A9A141F3F",
+        "kode": "23030712",
+        "nama": "Denggen Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25C48ABC8EE6D14E0400B0A9A1443FC",
+        "kode": "23032009",
+        "nama": "Ekas Buana",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D4D02E6F13CF6E0400B0A9A146785",
+        "kode": "23030313",
+        "nama": "Embung Kandong",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3CFD2BACC8B7E0400B0A9A142FBB",
+        "kode": "23030311",
+        "nama": "Embung Raja",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BD2EB36B9DF30E0400B0A9A140C40",
+        "kode": "23031914",
+        "nama": "Gadung Mas",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E0C7EBD15C860E0400B0A9A14364E",
+        "kode": "23031313",
+        "nama": "Gapuk",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADF25EFE4D944DE0400B0A921423ED",
+        "kode": "23031801",
+        "nama": "Gelanggang",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52BB8AFC3AF67ECE0400B0A9A1411B2",
+        "kode": "23030409",
+        "nama": "Gelora",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A76F52E0400B0A9214753C",
+        "kode": "23031804",
+        "nama": "Gereneng",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BE8A6B086B865E0400B0A9A142D63",
+        "kode": "23031809",
+        "nama": "Gereneng Timur",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E33377D1C6D22E0400B0A9A1440FE",
+        "kode": "23031712",
+        "nama": "Geres",
+        "tipewilayahid": 7,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E1AE295F92299E0400B0A9A1440F4",
+        "kode": "23031918",
+        "nama": "Gerisak Semanggeleng",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0C32C7A3A83E0400B0A9A1447F5",
+        "kode": "23031309",
+        "nama": "Gerung Permai",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9BBF2295449A6633E0400B0A9214578F",
+        "kode": "23030813",
+        "nama": "Gunung Malang",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325AA6F52E0400B0A9214753C",
+        "kode": "23031902",
+        "nama": "Gunung Rajak",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADF25EFE4C944DE0400B0A921423ED",
+        "kode": "23031707",
+        "nama": "Ijobalit",
+        "tipewilayahid": 7,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1D0503B7ADD6E0400B0A92141E43",
+        "kode": "23030602",
+        "nama": "Jantuk",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD12E145B80799E0400B0A9214656F",
+        "kode": "23030301",
+        "nama": "Jenggik",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2CC35A7E0400B0A92147542",
+        "kode": "23031105",
+        "nama": "Jenggik Utara",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BAE5C41E4235EE0400B0A9A140C48",
+        "kode": "23031909",
+        "nama": "Jero Gunung",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AF08E7AFB27D8FE0400B0A921423EB",
+        "kode": "23032003",
+        "nama": "Jerowaru",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BFEC7B742FF51E0400B0A9A143353",
+        "kode": "23030412",
+        "nama": "Jeruk Manis",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E0C7D5B1A761FE0400B0A9A143646",
+        "kode": "23031412",
+        "nama": "Jineng",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2CF35A7E0400B0A92147542",
+        "kode": "23031203",
+        "nama": "Jurit",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C845C40286CB3E0400B0A9A143E7F",
+        "kode": "23031206",
+        "nama": "Jurit Baru",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD6748984E5770E0400B0A921411C1",
+        "kode": "23030203",
+        "nama": "Kabar",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D68C8C2703A46E0400B0A9A142441",
+        "kode": "23030314",
+        "nama": "Kalianyar",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE706F4249B349E0400B0A92144953",
+        "kode": "23030903",
+        "nama": "Kalijaga",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6AAC33E6F1A0E0400B0A9A143145",
+        "kode": "23032110",
+        "nama": "Kalijaga Baru",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBEB6695E0400B0A92141E3D",
+        "kode": "23030909",
+        "nama": "Kalijaga Selatan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D3F5C513C816FE0400B0A9A140434",
+        "kode": "23030919",
+        "nama": "Kalijaga Tengah",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBEA6695E0400B0A92141E3D",
+        "kode": "23030908",
+        "nama": "Kalijaga Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C012C6E41E0400B0A9214494F",
+        "kode": "23031404",
+        "nama": "Karang Baru",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CBED1E16FF9FBE0400B0A9A147636",
+        "kode": "23031414",
+        "nama": "Karang Baru Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9C607377CD781760E0400B0A92142601",
+        "kode": "23030713",
+        "nama": "Kelayu",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F51E887E0400B0A92144957",
+        "kode": "23030711",
+        "nama": "Kelayu Jorong",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBE56695E0400B0A92141E3D",
+        "kode": "23030703",
+        "nama": "Kelayu Selatan",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE5DBA4216B228E0400B0A92144955",
+        "kode": "23030710",
+        "nama": "Kelayu Utara",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BAE5C4210235EE0400B0A9A140C48",
+        "kode": "23031915",
+        "nama": "Kembang Are Sampi",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "98AE7F05B47A813EE0400B0A92144951",
+        "kode": "23030904",
+        "nama": "Kembang Kerang",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0AE6A6ABB71E0400B0A9A1447F1",
+        "kode": "23030911",
+        "nama": "Kembang Kerang Daya",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AC9012A2DB5CC9E0400B0A92143EAB",
+        "kode": "23030407",
+        "nama": "Kembang Kuning",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBE86695E0400B0A92141E3D",
+        "kode": "23030709",
+        "nama": "Kembang Sari",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADB01073DEFD12E0400B0A92147540",
+        "kode": "23031303",
+        "nama": "Kerongkong",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6AAC3403F1A0E0400B0A9A143145",
+        "kode": "23030924",
+        "nama": "Keroya",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C845C40906CB3E0400B0A9A143E7F",
+        "kode": "23031708",
+        "nama": "Kerta Sari",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52BB9296D91DD87E0400B0A9A1411AC",
+        "kode": "23030107",
+        "nama": "Keruak",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F54E887E0400B0A92144957",
+        "kode": "23030803",
+        "nama": "Kerumut",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD12E145B40799E0400B0A9214656F",
+        "kode": "23030205",
+        "nama": "Keselet",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AC9012A2DC5CC9E0400B0A92143EAB",
+        "kode": "23030501",
+        "nama": "Kesik",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADE08E53DCE900E0400B0A921423EF",
+        "kode": "23031602",
+        "nama": "Ketangga",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25C69A1B4364235E0400B0A9A145DFA",
+        "kode": "23030111",
+        "nama": "Ketangga Jeraeng",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3CD02C55F068E0400B0A9A142FC1",
+        "kode": "23030108",
+        "nama": "Ketapang Raya",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2CA35A7E0400B0A92147542",
+        "kode": "23031103",
+        "nama": "Kilang",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADF25EFE4B944DE0400B0A921423ED",
+        "kode": "23031706",
+        "nama": "Korleko",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E2C1DE1C1B358E0400B0A9A144FC3",
+        "kode": "23031711",
+        "nama": "Korleko Selatan",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACEFA58106477AE0400B0A92146996",
+        "kode": "23030405",
+        "nama": "Kotaraja",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D4D02E6D93CF6E0400B0A9A146785",
+        "kode": "23030212",
+        "nama": "Kuang Baru",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D43D8C68BE03EE0400B0A9A142FBF",
+        "kode": "23030510",
+        "nama": "Kumbang",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25C622546EA336AE0400B0A9A145805",
+        "kode": "23032008",
+        "nama": "Kwang Rundun",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADE08E53DDE900E0400B0A921423EF",
+        "kode": "23031701",
+        "nama": "Labuhan Haji",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F58E887E0400B0A92144957",
+        "kode": "23030807",
+        "nama": "Labuhan Lombok",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C01276E41E0400B0A9214494F",
+        "kode": "23031004",
+        "nama": "Labuhan Pandan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9BBF229544636633E0400B0A9214578F",
+        "kode": "23030309",
+        "nama": "Lando",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3CFD2B80C8B7E0400B0A9A142FBB",
+        "kode": "23030308",
+        "nama": "Leming",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D074C35C40588E0400B0A9A1454AB",
+        "kode": "23031108",
+        "nama": "Lendang Belo",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1D0503B5ADD6E0400B0A92141E43",
+        "kode": "23030507",
+        "nama": "Lendang Nangka",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D1A7FEC7E0C4CE0400B0A9A141F41",
+        "kode": "23030509",
+        "nama": "Lendang Nangka Utara",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE706F4247B349E0400B0A92144953",
+        "kode": "23032101",
+        "nama": "Lenek",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0AE6AA3BB71E0400B0A9A1447F1",
+        "kode": "23032104",
+        "nama": "Lenek Baru",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE7F05B47C813EE0400B0A92144951",
+        "kode": "23032103",
+        "nama": "Lenek Daya",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6AAC33F8F1A0E0400B0A9A143145",
+        "kode": "23032108",
+        "nama": "Lenek Duren",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6BA35937F208E0400B0A9A143147",
+        "kode": "23032105",
+        "nama": "Lenek Kali Bambang",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE7F05B47B813EE0400B0A92144951",
+        "kode": "23032102",
+        "nama": "Lenek Lauk",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D1A7FEE070C4CE0400B0A9A141F41",
+        "kode": "23032106",
+        "nama": "Lenek Pesiraman",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D786F6A574C7FE0400B0A9A143B70",
+        "kode": "23032107",
+        "nama": "Lenek Ramban Biak",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BDCFFA5BD5D79E0400B0A9A143D1E",
+        "kode": "23031810",
+        "nama": "Lenting",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A66F52E0400B0A9214753C",
+        "kode": "23031803",
+        "nama": "Lepak",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C8462848E6D4DE0400B0A9A143E7B",
+        "kode": "23031807",
+        "nama": "Lepak Timur",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACEFA58104477AE0400B0A92146996",
+        "kode": "23030404",
+        "nama": "Loyok",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CAE15071DC4DEE0400B0A9A1465AD",
+        "kode": "23031009",
+        "nama": "Madayin",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE444C8A0CAC59E0400B0A92141E3F",
+        "kode": "23030706",
+        "nama": "Majidi",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E0C7EBD8BC860E0400B0A9A14364E",
+        "kode": "23031410",
+        "nama": "Mamben Baru",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C01296E41E0400B0A9214494F",
+        "kode": "23031401",
+        "nama": "Mamben Daya",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C012A6E41E0400B0A9214494F",
+        "kode": "23031402",
+        "nama": "Mamben Lauk",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1D0503B3ADD6E0400B0A92141E43",
+        "kode": "23030503",
+        "nama": "Masbagik Selatan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1D0503B4ADD6E0400B0A92141E43",
+        "kode": "23030504",
+        "nama": "Masbagik Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE23C1F3ED607DE0400B0A92141E45",
+        "kode": "23030505",
+        "nama": "Masbagik Utara",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52B345250401E23E0400B0A9A143EF2",
+        "kode": "23030508",
+        "nama": "Masbagik Utara Baru",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3067E10D4544E0400B0A9A141F3F",
+        "kode": "23031607",
+        "nama": "Mekar Sari",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C846284866D4DE0400B0A9A143E7B",
+        "kode": "23031806",
+        "nama": "Menceh",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BB2C2D101A352E0400B0A9A141BB2",
+        "kode": "23030112",
+        "nama": "Mendana Raya",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BAE5C4202235EE0400B0A9A140C48",
+        "kode": "23031913",
+        "nama": "Mengkuru",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACEFA58102477AE0400B0A92146996",
+        "kode": "23030403",
+        "nama": "Montong Baan",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3CFD2BD0C8B7E0400B0A9A142FBB",
+        "kode": "23030408",
+        "nama": "Montong Baan Selatan",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BBBFBC7A1C1E8E0400B0A9A142369",
+        "kode": "23030114",
+        "nama": "Montong Belae",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BD2EB36ADDF30E0400B0A9A140C40",
+        "kode": "23031912",
+        "nama": "Montong Beter",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2C935A7E0400B0A92147542",
+        "kode": "23031102",
+        "nama": "Montong Betok",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A86F52E0400B0A9214753C",
+        "kode": "23031805",
+        "nama": "Montong Tangi",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BAE5C422F235EE0400B0A9A140C48",
+        "kode": "23030209",
+        "nama": "Moyot",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D75015CFE4824E0400B0A9A14243B",
+        "kode": "23030608",
+        "nama": "Nyiur Tebel",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C01246E41E0400B0A9214494F",
+        "kode": "23031001",
+        "nama": "Obel-Obel",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D53153519766BE0400B0A9A140BB9",
+        "kode": "23031411",
+        "nama": "Otak Rarangan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6BA359ABF208E0400B0A9A143147",
+        "kode": "23031011",
+        "nama": "Padak Guar",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1D0503B8ADD6E0400B0A92141E43",
+        "kode": "23030603",
+        "nama": "Padamara",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACCED44237ED84E0400B0A92146994",
+        "kode": "23030701",
+        "nama": "Pancor",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D687CFCDA47B9E0400B0A9A14243F",
+        "kode": "23030316",
+        "nama": "Pandan Duri",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CF60E9F64A721E0400B0A9A145609",
+        "kode": "23032006",
+        "nama": "Pandan Wangi",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CBEFF6320BD24E0400B0A9A14762E",
+        "kode": "23031315",
+        "nama": "Paok Lombok",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C846281D66C04E0400B0A9A143E81",
+        "kode": "23030606",
+        "nama": "Paok Pampang",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBE46695E0400B0A92141E3D",
+        "kode": "23030502",
+        "nama": "Paokmotong",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F182E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E1AE2960D2299E0400B0A9A1440F4",
+        "kode": "23032015",
+        "nama": "Paremas",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BAE5C41EB235EE0400B0A9A140C48",
+        "kode": "23031910",
+        "nama": "Pejaring",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BAE5C41DF235EE0400B0A9A140C48",
+        "kode": "23031908",
+        "nama": "Pematung",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADDE7E6F7633DCE0400B0A921423E9",
+        "kode": "23032004",
+        "nama": "Pemongkong",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25B9DAB647E4F8DE0400B0A9A1409AC",
+        "kode": "23032012",
+        "nama": "Pene",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADE08E53DEE900E0400B0A921423EF",
+        "kode": "23031702",
+        "nama": "Peneda Gandor",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2D035A7E0400B0A92147542",
+        "kode": "23031204",
+        "nama": "Pengadangan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D161B59B13B77E0400B0A9A146789",
+        "kode": "23031208",
+        "nama": "Pengadangan Barat",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AF08E7AFAF7D8FE0400B0A921423EB",
+        "kode": "23031905",
+        "nama": "Pengkelak Mas",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D344D577AF9F2E0400B0A9A1454A5",
+        "kode": "23030211",
+        "nama": "Peresak",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2CB35A7E0400B0A92147542",
+        "kode": "23031104",
+        "nama": "Perian",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADE08E53DBE900E0400B0A921423EF",
+        "kode": "23031606",
+        "nama": "Perigi",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0C32C113A83E0400B0A9A1447F5",
+        "kode": "23031107",
+        "nama": "Pesanggrahan",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD12E145B00799E0400B0A9214656F",
+        "kode": "23030102",
+        "nama": "Pijot",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BB2BEACEAFF40E0400B0A9A141BBA",
+        "kode": "23030109",
+        "nama": "Pijot Utara",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F55E887E0400B0A92144957",
+        "kode": "23030804",
+        "nama": "Pohgading",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C846CE0A902D6E0400B0A9A143E7D",
+        "kode": "23030809",
+        "nama": "Pohgading Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE60605F57E887E0400B0A92144957",
+        "kode": "23030806",
+        "nama": "Pringgabaya",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3067E0014544E0400B0A9A141F3F",
+        "kode": "23030808",
+        "nama": "Pringgabaya Utara",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2C835A7E0400B0A92147542",
+        "kode": "23031101",
+        "nama": "Pringgajurang",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0AE6AFABB71E0400B0A9A1447F1",
+        "kode": "23031106",
+        "nama": "Pringgajurang Utara",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D5BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2CE35A7E0400B0A92147542",
+        "kode": "23031202",
+        "nama": "Pringgasela",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D11C1845F2ADFE0400B0A9A146783",
+        "kode": "23031207",
+        "nama": "Pringgasela Selatan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CAE841AC905FFE0400B0A9A146738",
+        "kode": "23031210",
+        "nama": "Pringgasela Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D5A7F70670369E0400B0A9A142444",
+        "kode": "23030115",
+        "nama": "Pulau Maringkik",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E1AE295D52299E0400B0A9A1440F4",
+        "kode": "23031608",
+        "nama": "Puncak Jeringo",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBE66695E0400B0A92141E3D",
+        "kode": "23030707",
+        "nama": "Rakam",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD674898515770E0400B0A921411C1",
+        "kode": "23030302",
+        "nama": "Rarang",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D687CFCCB47B9E0400B0A9A14243F",
+        "kode": "23030315",
+        "nama": "Rarang Batas",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACD0B0B95F9F10E0400B0A9214699A",
+        "kode": "23030307",
+        "nama": "Rarang Selatan",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "9BBF407733F03F2DE0400B0A9214578D",
+        "kode": "23030310",
+        "nama": "Rarang Tengah",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9E77D2CD35A7E0400B0A92147542",
+        "kode": "23031201",
+        "nama": "Rempung",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325AB6F52E0400B0A9214753C",
+        "kode": "23031903",
+        "nama": "Rensing",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BD2EB36CADF30E0400B0A9A140C40",
+        "kode": "23031916",
+        "nama": "Rensing Bat",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BD2EB36A7DF30E0400B0A9A140C40",
+        "kode": "23031907",
+        "nama": "Rensing Raya",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD12E145B30799E0400B0A9214656F",
+        "kode": "23030204",
+        "nama": "Rumbuk",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D517BA7C95F3FE0400B0A9A142FBD",
+        "kode": "23030207",
+        "nama": "Rumbuk Timur",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADC60BE752F0D1E0400B0A9214753E",
+        "kode": "23031503",
+        "nama": "Sajang",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387860D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD6748984D5770E0400B0A921411C1",
+        "kode": "23030202",
+        "nama": "Sakra",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D1A7FEBF50C4CE0400B0A9A141F41",
+        "kode": "23030206",
+        "nama": "Sakra Selatan",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C01266E41E0400B0A9214494F",
+        "kode": "23031003",
+        "nama": "Sambelia",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1A81DBE76695E0400B0A92141E3D",
+        "kode": "23030708",
+        "nama": "Sandubaya",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD674898555770E0400B0A921411C1",
+        "kode": "23030304",
+        "nama": "Santong",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADE08E53DAE900E0400B0A921423EF",
+        "kode": "23031605",
+        "nama": "Sapit",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0AE6BBFBB71E0400B0A9A1447F1",
+        "kode": "23032005",
+        "nama": "Sekaroh",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE444C8A0BAC59E0400B0A92141E3F",
+        "kode": "23030705",
+        "nama": "Sekarteja",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52B34524FE41E23E0400B0A9A143EF2",
+        "kode": "23030312",
+        "nama": "Selagik",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A46F52E0400B0A9214753C",
+        "kode": "23031601",
+        "nama": "Selaparang",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD4E8C14DA481EE0400B0A921411D9",
+        "kode": "23030103",
+        "nama": "Selebung Ketangga",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE444C8A09AC59E0400B0A92141E3F",
+        "kode": "23030702",
+        "nama": "Selong",
+        "tipewilayahid": 7,
+        "induk": "98ABDFFDA6AFCA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACD0B0B96E9F10E0400B0A9214699A",
+        "kode": "23030401",
+        "nama": "Semaya",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25E32AD91FA9828E0400B0A9A142E30",
+        "kode": "23031505",
+        "nama": "Sembalun",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387860D39E0400B0A9214656D",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADC60BE750F0D1E0400B0A9214753E",
+        "kode": "23031501",
+        "nama": "Sembalun Bumbung",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387860D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADC60BE751F0D1E0400B0A9214753E",
+        "kode": "23031502",
+        "nama": "Sembalun Lawang",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387860D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CF8BDB8A619C7E0400B0A9A1402EE",
+        "kode": "23031506",
+        "nama": "Sembalun Timba Gading",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387860D39E0400B0A9214656D",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25C95455684E330E0400B0A9A143B6A",
+        "kode": "23031010",
+        "nama": "Senanggalih",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D1A7FEBC80C4CE0400B0A9A141F41",
+        "kode": "23030106",
+        "nama": "Senyiur",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25C62254737336AE0400B0A9A145805",
+        "kode": "23032010",
+        "nama": "Sepapan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD4E8C14DF481EE0400B0A921411D9",
+        "kode": "23030104",
+        "nama": "Sepit",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BA15B86BA7623E0400B0A9A1409A8",
+        "kode": "23032011",
+        "nama": "Seriwe",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6AAC33C2F1A0E0400B0A9A143145",
+        "kode": "23030814",
+        "nama": "Seruni Mumbul",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AE1D0503B6ADD6E0400B0A92141E43",
+        "kode": "23030601",
+        "nama": "Setanggor",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6DC061BFDDC6E0400B0A9A14183D",
+        "kode": "23030609",
+        "nama": "Setanggor Selatan",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BB2BEAD1DFF40E0400B0A9A141BBA",
+        "kode": "23030113",
+        "nama": "Setungkep Lingsar",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACE4C20D227846E0400B0A92146998",
+        "kode": "23030402",
+        "nama": "Sikur",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D687CFCE547B9E0400B0A9A14243F",
+        "kode": "23030414",
+        "nama": "Sikur Barat",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D12500AD34F56E0400B0A9A1454A7",
+        "kode": "23030413",
+        "nama": "Sikur Selatan",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BAE5C4231235EE0400B0A9A140C48",
+        "kode": "23030210",
+        "nama": "Songak",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADDE7E6F7533DCE0400B0A921423E9",
+        "kode": "23031604",
+        "nama": "Suela",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A26F52E0400B0A9214753C",
+        "kode": "23031005",
+        "nama": "Sugian",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F18AE826E0400B0A92143A26",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25B9D79CAB961E3E0400B0A9A1409AA",
+        "kode": "23032014",
+        "nama": "Sukadamai",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AC9012A2D95CC9E0400B0A92143EAB",
+        "kode": "23030306",
+        "nama": "Sukadana",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ACCED44236ED84E0400B0A92146994",
+        "kode": "23030605",
+        "nama": "Sukamulia",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D4D02E6B03CF6E0400B0A9A146785",
+        "kode": "23030607",
+        "nama": "Sukamulia Timur",
+        "tipewilayahid": 6,
+        "induk": "98ABDFFDA6AACA1BE0400B0A92143A20",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AF08E7AFB17D8FE0400B0A921423EB",
+        "kode": "23032002",
+        "nama": "Sukaraja",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A96F52E0400B0A9214753C",
+        "kode": "23031901",
+        "nama": "Sukarara",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D6AAC33E1F1A0E0400B0A9A143145",
+        "kode": "23032109",
+        "nama": "Sukarema",
+        "tipewilayahid": 6,
+        "induk": "6FD3DFA427FB4312E053021D0B0A32F8",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD9BE325A56F52E0400B0A9214753C",
+        "kode": "23031603",
+        "nama": "Suntalangu",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1457F0799E0400B0A9214656F",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADF25EFE4E944DE0400B0A921423ED",
+        "kode": "23031802",
+        "nama": "Surabaya",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D3067E1A64544E0400B0A9A141F3F",
+        "kode": "23031808",
+        "nama": "Surabaya Utara",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387930D39E0400B0A9214656D",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD674898535770E0400B0A921411C1",
+        "kode": "23030303",
+        "nama": "Suradadi",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADB01073E0FD12E0400B0A92147540",
+        "kode": "23031305",
+        "nama": "Suralaga",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADF25EFE4A944DE0400B0A921423ED",
+        "kode": "23031705",
+        "nama": "Surya Wangi",
+        "tipewilayahid": 7,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD6748984C5770E0400B0A921411C1",
+        "kode": "23030201",
+        "nama": "Suwangi",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52AABBA3E5E1370E0400B0A9A1457E4",
+        "kode": "23030208",
+        "nama": "Suwangi Timur",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2BE98BE0400B0A921460F4",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52D517BA9845F3FE0400B0A9A142FBD",
+        "kode": "23030812",
+        "nama": "Tanak Gadang",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BDFCDC97E527CE0400B0A9A143D26",
+        "kode": "23031917",
+        "nama": "Tanak Kaken",
+        "tipewilayahid": 6,
+        "induk": "98AD12E1458E0799E0400B0A9214656F",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADE08E53E0E900E0400B0A921423EF",
+        "kode": "23031704",
+        "nama": "Tanjung",
+        "tipewilayahid": 7,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD39039DB84D28E0400B0A92146569",
+        "kode": "23030101",
+        "nama": "Tanjung Luar",
+        "tipewilayahid": 6,
+        "induk": "98ABAD6DF6D8BE0CE0400B0A92140E92",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADB01073DDFD12E0400B0A92147540",
+        "kode": "23031302",
+        "nama": "Tebaban",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C846282686C04E0400B0A9A143E81",
+        "kode": "23030810",
+        "nama": "Teko",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "D25D6AAC33C6F1A0E0400B0A9A143145",
+        "kode": "23030815",
+        "nama": "Telaga Waru",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F185E826E0400B0A92143A26",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADC60BE74FF0D1E0400B0A9214753E",
+        "kode": "23031406",
+        "nama": "Tembeng Putik",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(852055200000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AC90A6E73E2EC7E0400B0A92143EB1",
+        "kode": "23030305",
+        "nama": "Terara",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D2FE98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98ADE08E53DFE900E0400B0A921423EF",
+        "kode": "23031703",
+        "nama": "Teros",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AC9012A2DA5CC9E0400B0A92143EAB",
+        "kode": "23030406",
+        "nama": "Tete Batu",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25BFEC7B737FF51E0400B0A9A143353",
+        "kode": "23030411",
+        "nama": "Tete Batu Selatan",
+        "tipewilayahid": 6,
+        "induk": "98AC4C8B6D32E98BE0400B0A921460F4",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CAB663DC0AF91E0400B0A9A1465AF",
+        "kode": "23031209",
+        "nama": "Timba Nuh",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651C6C11DE0400B0A92143A1E",
+        "validsejak": "/Date(1336496400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52C846284516D4DE0400B0A9A143E7B",
+        "kode": "23031709",
+        "nama": "Tirtanadi",
+        "tipewilayahid": 6,
+        "induk": "98AD0E2387900D39E0400B0A9214656D",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0AE6AC7BB71E0400B0A9A1447F1",
+        "kode": "23030914",
+        "nama": "Toya",
+        "tipewilayahid": 6,
+        "induk": "98ABCE52F187E826E0400B0A92143A26",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52B345251F81E23E0400B0A9A143EF2",
+        "kode": "23031307",
+        "nama": "Tumbuh Mulia",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB0AE6BEDBB71E0400B0A9A1447F1",
+        "kode": "23032007",
+        "nama": "Wakan",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651DCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "98AD931C012B6E41E0400B0A9214494F",
+        "kode": "23031403",
+        "nama": "Wanasaba",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(-769158000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25D3CFEDBFCEFA3E0400B0A9A140BB7",
+        "kode": "23031413",
+        "nama": "Wanasaba Daya",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "A52CB9F412CB25D0E0400B0A9A1447EF",
+        "kode": "23031407",
+        "nama": "Wanasaba Lauk",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CCC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1306774800000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "D25CCD6442654F7AE0400B0A9A14019E",
+        "kode": "23031312",
+        "nama": "Waringin",
+        "tipewilayahid": 6,
+        "induk": "98ABCE2651CAC11DE0400B0A92143A1E",
+        "validsejak": "/Date(1322154000000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    }
+]

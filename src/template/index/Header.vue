@@ -1,16 +1,15 @@
 <template>
     <div class="header">
         <div class="brand" @click="goToHome">
-            <img src="../img/logo.png" class="logo" alt="logo sidarta">
             <div class="brand-info">
-                <h1>SIDARTA</h1>
-                <p>Sistem Digitalisasi Arsip Pertanahan</p>
+                <h1>SIAP VALID</h1>
+                <p>Validasi Bidang Tanah</p>
             </div>
         </div>
 
         <div class="user">
             <div class="info">
-                <p><span v-html="getUserNama"></span></p>
+                <p><span v-html="getUsername"></span></p>
             </div>
             <div class="box">
                 <Fa icon="fa-solid fa-power-off" class="icon" @click="logout" />
@@ -22,7 +21,7 @@
 <style lang="css" scoped>
 .header {
     display: flex;
-    margin-top: 2em;
+    margin-top: 0.5em;
     margin-left: 2em;
     margin-right: 2em;
 }
@@ -44,13 +43,9 @@
 
 .brand h1 {
     margin: 0;
-    color: #0c0c0c;
+    color: #00B2FF;
     font-size: 1em;
     font-weight: 700;
-}
-
-.brand h1:hover {
-    color: #FF9D56;
 }
 
 .brand p {
@@ -82,7 +77,7 @@
 
 .user .icon {
     padding: 0.3em;
-    color: #FF9D56;
+    color: #00B2FF;
     background: #fcfbfb;
     border-radius: 0.2em;
     font-size: 1.2rem;
@@ -91,7 +86,7 @@
 
 .user .icon:hover {
     padding: 0.3em;
-    background: #FF9D56;
+    background: #00B2FF;
     color: #fcfbfb;
     border-radius: 0.2em;
     font-size: 1.2rem;
@@ -111,8 +106,12 @@ export default defineComponent({
         }
     },
     computed: {
-        getUserNama() {
-            const nama: string = this.store.user;
+        getUsername() {
+            const nama = this.store.user;
+            if(nama === "none") {
+                return "Tidak Login";
+            }
+
             return nama.replace(",", ",<br />");
         }
     },
@@ -131,7 +130,7 @@ export default defineComponent({
         }
     },
     mounted() {
-        this.store.user = window.localStorage.getItem('USER_NAME');
+        // this.store.user = window.localStorage.getItem('USER_NAME');
     }
 })
 </script>

@@ -1,0 +1,52 @@
+[
+    {
+        "wilayahid": "B233A8C65FE98A41E0400B0A9A144DFD",
+        "kode": "231005",
+        "nama": "BAYAN",
+        "tipewilayahid": 5,
+        "induk": "93CEC33F55EC5A5BE040A8C010017C5B",
+        "validsejak": "/Date(1264356000000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B23475B13EC52307E0400B0A9A1442BB",
+        "kode": "231003",
+        "nama": "GANGGA",
+        "tipewilayahid": 5,
+        "induk": "93CEC33F55EC5A5BE040A8C010017C5B",
+        "validsejak": "/Date(1264356000000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B232F4EBB99BD759E0400B0A9A141B4C",
+        "kode": "231004",
+        "nama": "KAYANGAN",
+        "tipewilayahid": 5,
+        "induk": "93CEC33F55EC5A5BE040A8C010017C5B",
+        "validsejak": "/Date(1264356000000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1FC7ADC6CFD627BE0400B0A9A1468E7",
+        "kode": "231001",
+        "nama": "PEMENANG",
+        "tipewilayahid": 5,
+        "induk": "93CEC33F55EC5A5BE040A8C010017C5B",
+        "validsejak": "/Date(1264356000000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "B1FBC2812C7F7696E0400B0A9A147757",
+        "kode": "231002",
+        "nama": "TANJUNG",
+        "tipewilayahid": 5,
+        "induk": "93CEC33F55EC5A5BE040A8C010017C5B",
+        "validsejak": "/Date(1264356000000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    }
+]

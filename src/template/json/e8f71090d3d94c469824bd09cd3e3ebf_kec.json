@@ -1,0 +1,62 @@
+[
+    {
+        "wilayahid": "61253cfe78f24584a5b98a8111611614",
+        "kode": "230701",
+        "nama": "Ampenan",
+        "tipewilayahid": 5,
+        "induk": "e8f71090d3d94c469824bd09cd3e3ebf",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "aa9fe88fdbd44657a987475448147afd",
+        "kode": "230703",
+        "nama": "Cakranegara",
+        "tipewilayahid": 5,
+        "induk": "e8f71090d3d94c469824bd09cd3e3ebf",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "64fc1b2fd0974d028ff77a11982ed172",
+        "kode": "230702",
+        "nama": "Mataram",
+        "tipewilayahid": 5,
+        "induk": "e8f71090d3d94c469824bd09cd3e3ebf",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "264369fab4c140758ce4cc4243a8ff45",
+        "kode": "230706",
+        "nama": "Sandubaya",
+        "tipewilayahid": 5,
+        "induk": "e8f71090d3d94c469824bd09cd3e3ebf",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "fefd3a09589745a0b8e2a261add63aa6",
+        "kode": "230704",
+        "nama": "Sekarbela",
+        "tipewilayahid": 5,
+        "induk": "e8f71090d3d94c469824bd09cd3e3ebf",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    },
+    {
+        "wilayahid": "42935321e26e4c14938e761bc7be658e",
+        "kode": "230705",
+        "nama": "Selaparang",
+        "tipewilayahid": 5,
+        "induk": "e8f71090d3d94c469824bd09cd3e3ebf",
+        "validsejak": "/Date(-769244400000)/",
+        "validsampai": null,
+        "statusgeometri": 0
+    }
+]

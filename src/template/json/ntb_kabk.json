@@ -1,0 +1,102 @@
+[
+    {
+        "wilayahid": "332ec2b9b53243f7ba403bb6fd9f1395",
+        "kode": "2306",
+        "nama": "Bima",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495114730000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "db6e8b0f5b514af2a30cb2bdcc10d138",
+        "kode": "2308",
+        "nama": "Bima",
+        "tipewilayahid": 3,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495114749000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "3a75a95a6cef4334ae9376962b1d773a",
+        "kode": "2305",
+        "nama": "Dompu",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495114725000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "c494ce8dcb944375b806839433d0feea",
+        "kode": "2301",
+        "nama": "Lombok Barat",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495115034000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "c6ab99bdd7cf444aa9baa7818648c8b3",
+        "kode": "2302",
+        "nama": "Lombok Tengah",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495115044000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "a431dc926fa5472d89c5bd7f5773bd3e",
+        "kode": "2303",
+        "nama": "Lombok Timur",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495114725000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "93CEC33F55EC5A5BE040A8C010017C5B",
+        "kode": "2310",
+        "nama": "LOMBOK UTARA",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495040400000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "e8f71090d3d94c469824bd09cd3e3ebf",
+        "kode": "2307",
+        "nama": "MATARAM",
+        "tipewilayahid": 3,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495114743000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "b286fad3aef34915b142b57d039277f0",
+        "kode": "2304",
+        "nama": "Sumbawa",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495114730000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    },
+    {
+        "wilayahid": "4b132ddf9b0d4c72b810a6f60a1611b7",
+        "kode": "2309",
+        "nama": "Sumbawa Barat",
+        "tipewilayahid": 2,
+        "induk": "bdd0eb668e5340ebafd02241a05e623b",
+        "validsejak": "/Date(1495114731000)/",
+        "validsampai": null,
+        "statusgeometri": 1
+    }
+]

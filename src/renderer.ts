@@ -34,10 +34,10 @@ import SuratUkur from './template/index/SuratUkur.vue';
 import ValidasiPersil from './template/index/ValidasiPersil.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUser, faFilePdf, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faFilePdf, faPowerOff, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
 
-library.add(faUser, faFilePdf, faPowerOff);
+library.add(faUser, faFilePdf, faPowerOff, faDownload);
 
 const router = createRouter({
     history: createMemoryHistory(),
@@ -63,14 +63,18 @@ interface PreloadComm {
     authVerify: (otp: string, kantor: string) => Promise<boolean>;
     authStart: (headless: boolean) => void;
     folderSelect: (tipeDok: string) => void;
+    fileSelect: () => void;
     databaseCheck: (col: string, nama: string) => Promise<boolean>;
     databaseGetAll: (col: string) => Promise<any[]>;
     botGetOption: () => void;
     botStartBukuTanah: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => void;
     botStartSuratUkur: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => void;
+    botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    fileSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    botValidasiStatus: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authHideOTP: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;

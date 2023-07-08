@@ -86,7 +86,7 @@ export class SuratUkurBot extends Bot {
                 await page.waitForNetworkIdle();
                 await page.waitForSelector("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button");
 
-                let success = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                const success = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
                 if (success) {
                     console.log(success);
                     col.insertOne(new SuratUkur(

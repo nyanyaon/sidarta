@@ -12,10 +12,10 @@ export interface Desa {
     kode: string;
     nama: string;
     tipewilayahid: number;
-    tipe?: any;
     induk: string;
-    validsejak: Date;
-    validsampai?: Date;
+    validsejak: string;
+    validsampai?: any;
+    statusgeometri: number;
 }
 
 export interface Kecamatan {
@@ -23,10 +23,20 @@ export interface Kecamatan {
     kode: string;
     nama: string;
     tipewilayahid: number;
-    tipe?: any;
     induk: string;
-    validsejak: Date;
-    validsampai?: Date;
+    validsejak: string;
+    validsampai?: any;
+    statusgeometri: number;
+}
+export interface Kabupaten {
+    wilayahid: string;
+    kode: string;
+    nama: string;
+    tipewilayahid: number;
+    induk: string;
+    validsejak: string;
+    validsampai?: any;
+    statusgeometri: number;
 }
 
 export interface BotInterface {
@@ -36,7 +46,7 @@ export interface BotInterface {
 export class Bot {
     browser: puppeteer.Browser;
 
-    async init(headless: boolean = true): Promise<puppeteer.Browser> {
+    async init(headless = true): Promise<puppeteer.Browser> {
         const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 
         return await puppeteer.launch({
