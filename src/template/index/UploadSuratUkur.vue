@@ -5,8 +5,20 @@
         <h2>SURAT UKUR</h2>
         <div class="section">
             <div class="form-loc">
+                <label for="user">Username</label>
+                <input @change="updateUser" v-model="user" type="text" id="user" name="user">
+                <label for="pass">Password</label>
+                <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
+                <label for="kabupaten">Kabupaten</label>
+                <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
+                    :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
+                <datalist id="listkabupaten">
+                    <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
+                        :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
+                </datalist>
                 <label for="kecamatan">Kecamatan</label>
-                <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text" :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
+                <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
+                    :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
                 <datalist id="listkecamatan">
                     <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
                 </datalist>
@@ -132,11 +144,12 @@ import Header from './Header.vue';
 import Loader from './Loader.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
-import { UploadOption, Kecamatan, Desa } from '../../app/Bot';
+import type { Kabupaten, Kecamatan, Desa } from '../../app/Bot';
 import { FileInterface } from '../../app/Fileman';
+import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
-    name: "BukuTanahUploader",
+    name: "UploadSuratUkur",
     components: {
         Header,
         Loader,
@@ -146,10 +159,17 @@ export default defineComponent({
             fileLocBtnTxt: "Pilih",
             store,
             files: [] as FileInterface[],
-            options: {} as UploadOption,
-            kecamatan: "",
-            desa: "",
+            kecJson: [] as Kecamatan[],
+            desaJson: [] as Desa[],
+            reportJson: [],
+            kabupatenId: "",
+            kabupaten: "",
             kecamatanId: "",
+            kecamatan: "",
+            desaId: "",
+            desa: "",
+            user: "",
+            pass: "",
         }
     },
     computed: {
@@ -165,34 +185,27 @@ export default defineComponent({
         getCountFiles(): number {
             return this.files.length;
         },
-        getListKecamatan(): Kecamatan[]{
-            return this.options.dataKecamatanJSON;
-        },
-        getListDesa(): Desa[]{
-            if(this.kecamatan === "") return this.options.dataDesaJSON;
+        getListKabupaten(): Kabupaten[] {
+            if (this.kabupaten == "") return kabJson;
 
-            const options: UploadOption = this.options;
-            const kec = options.dataKecamatanJSON.find(value => value.nama === this.kecamatan);
-            if(kec === undefined) return;
-            const listdesa = options.dataDesaJSON.filter(value => value.induk === kec.wilayahid);
+            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_kec.json')
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
+            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_desa.json')
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
+
+            return kabJson;
+        },
+        getListKecamatan(): Kecamatan[] {
+            return this.kecJson;
+        },
+        getListDesa(): Desa[] {
+            if (this.kecamatanId === "") return this.desaJson;
+
+            const listdesa = (this.desaJson as Desa[]).filter(value => value.induk === this.kecamatanId);
 
             return listdesa;
-        }
-    },
-    watch: {
-        files: {
-            async handler(newValue) {
-                for(const file of newValue) {
-                    if(!file.isValid) {
-                        continue;
-                    }
-                    
-                    file.isUploaded = await window.COMM.databaseCheck('suratukur', file.nama);
-                }
-
-                this.store.isLoading = false;
-            },
-            flush: 'post',
         }
     },
     methods: {
@@ -220,39 +233,64 @@ export default defineComponent({
 
             window.COMM.botStartSuratUkur(this.kecamatan, this.kecamatanId, this.desa, files, this.fileLocBtnTxt);
         },
+        updateUser(ev: Event) {
+            window.localStorage.setItem("USER", this.user);
+        },
+        updatePass(ev: Event) {
+            window.localStorage.setItem("PASS", this.pass);
+        },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
             this.files = data[1];
 
             this.fileLocBtnTxt = data[0];
             this.store.isLoading = true;
         },
+        updateKabupaten(event: Event) {
+            if (this.kabupaten === "") return;
+            this.updateKabId();
+            const kab = kabJson.find(value => value.wilayahid === this.kabupatenId);
+            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_kec.json')
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
+            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
+            window.localStorage.setItem("USER_KAB", this.kabupaten + "," + this.kabupatenId);
+        },
         updateKecamatan(event: Event) {
             if (this.kecamatan === "") return;
-            const options: UploadOption = this.options;
-            const kec = options.dataKecamatanJSON.find(value => value.nama === this.kecamatan);
-            const desa = options.dataDesaJSON.find(value => value.induk === kec.wilayahid);
-            
-            this.desa = desa.nama;
-            this.updateKecId();
         },
         updateDesa(event: Event) {
             if (this.desa === "") return;
-            const options: UploadOption = this.options;
-            const desa = options.dataDesaJSON.find(value => value.nama === this.desa);
-            const kec = options.dataKecamatanJSON.find(value => value.wilayahid === desa.induk);
+            const desa = (this.desaJson as Desa[]).find(value => value.nama === this.desa);
+            const kec = (this.kecJson as Kecamatan[]).find(value => value.wilayahid === desa.induk);
 
             this.kecamatan = kec.nama;
-            this.updateKecId();
+            this.kecamatanId = kec.wilayahid;
+            this.desaId = desa.wilayahid;
+        },
+        updateKabId() {
+            const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;
+            const dataArr = Array.from(datalist);
+            this.kabupatenId = dataArr.find(val => val.value === this.kabupaten).dataset.kabId;
         },
         updateKecId() {
-            const datalist = document.querySelector('datalist').options;
+            const datalist = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
             const dataArr = Array.from(datalist);
             this.kecamatanId = dataArr.find(val => val.value === this.kecamatan).dataset.kecId;
         },
     },
     mounted() {
+        document.title = "SIDARTA | UPLOAD SURAT UKUR"
         window.COMM.folderSelected(this.updateFolderSelect);
-        this.options = JSON.parse(window.localStorage.getItem('UPLOAD_OPTION'));
+        this.reportJson.push('pid,nib,message,isberhasil');
+        this.user = window.localStorage.getItem("USER");
+        this.pass = window.localStorage.getItem("PASS");
+        if (window.localStorage.getItem("USER_KAB") === null) {
+            const [kab, kabId] = window.localStorage.getItem("USER_KAB").split(",");
+            this.kabupatenId = kabId;
+            this.kabupaten = kab;
+        }
     }
 });
 </script>

@@ -127,9 +127,7 @@ export default class App {
         });
 
         App.ipc.handle('auth:logout', async (event, ...args) => {
-            fs.unlink('./cookies.json', (err) => {
-                console.log(err);
-            });
+            console.log("Logout");
         });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
         App.ipc.handle('bot:getOption', async (event, ...args) => {

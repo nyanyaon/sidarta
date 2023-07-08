@@ -30,7 +30,7 @@ import { createApp } from 'vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import App from './template/App.vue';
 import BukuTanah from './template/index/BukuTanah.vue';
-import SuratUkur from './template/index/SuratUkur.vue';
+import UploadSuratUkur from './template/index/UploadSuratUkur.vue';
 import ValidasiPersil from './template/index/ValidasiPersil.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -44,7 +44,7 @@ const router = createRouter({
     routes: [
         { path: '/', component: App },
         { path: '/bukutanah', component: BukuTanah },
-        { path: '/suratukur', component: SuratUkur },
+        { path: '/suratukur', component: UploadSuratUkur },
         { path: '/validasipersil', component: ValidasiPersil },
     ]
 });
