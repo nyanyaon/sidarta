@@ -1,54 +1,30 @@
 <template>
     <Header />
     <div class="section">
-        <h2>REKAP VALIDASI PERSIL</h2>
+        <h2>ALAT YANG TERSEDIA</h2>
         <div class="feature-container">
-            <div class="feature-box available">
-                <p class="context">Lombok<br/> Barat</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Lombok<br/> Tengah</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Lombok<br/> Timur</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Lombok<br/> Utara</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Kota<br/> Mataram</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Sumbawa<br/> Barat</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Sumbawa</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Dompu</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Kota<br/> Bima</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available">
-                <p class="context">Kabupaten<br/> Bima</p>
-                <p class="total">90</p>
-            </div>
-            <div class="feature-box available bg-green">
-                <p class="context">Total</p>
-                <p class="total">900</p>
-            </div>
             <div @click="goToValidasiPersil" class="feature-box available bg-orange">
                 <p class="context">Validasi<br/> Persil</p>
+                <p class="total">GO</p>
+            </div>
+            <div @click="goToUploadBukuTanah" class="feature-box available">
+                <p class="context">Upload <br/> BT</p>
+                <p class="total">GO</p>
+            </div>
+            <div @click="goToUploadSuratUkur" class="feature-box available">
+                <p class="context">Upload<br/> SU</p>
+                <p class="total">GO</p>
+            </div>
+            <div class="feature-box available">
+                <p class="context">Update<br/> Persil</p>
+                <p class="total">GO</p>
+            </div>
+            <div class="feature-box available">
+                <p class="context">Validasi<br/> BT</p>
+                <p class="total">GO</p>
+            </div>
+            <div class="feature-box available">
+                <p class="context">Validasi<br/> SU</p>
                 <p class="total">GO</p>
             </div>
         </div>
@@ -105,6 +81,7 @@
 
 .available {
     background: #00B2FF;
+    cursor: pointer;
 }
 
 .available:hover {
@@ -141,29 +118,21 @@ export default defineComponent({
     },
     data() {
         return {
-            countBukuTanah: 0,
-            countSuratUkur: 0,
-        }
-    },
-    computed: {
-        getSum() {
-            return this.countBukuTanah + this.countSuratUkur;
         }
     },
     methods: {
-        goToBukuTanah() {
+        goToUploadBukuTanah() {
             this.$router.replace('/bukutanah');
         },
-        goToSuratUkur() {
+        goToUploadSuratUkur() {
             this.$router.replace('/suratukur');
         },
         goToValidasiPersil() {
             this.$router.replace('/validasipersil');
         }
     },
-    // async mounted() {
-    //     this.countBukuTanah = (await window.COMM.databaseGetAll('bukutanah')).length;
-    //     this.countSuratUkur = (await window.COMM.databaseGetAll('suratukur')).length;
-    // }
+    mounted() {
+        document.title = "SIDARTA | HOME";
+    },
 })
 </script>

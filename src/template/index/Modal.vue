@@ -2,7 +2,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: "Loader",
+    name: "Modal",
     props: {
         content: String,
         btn: String,

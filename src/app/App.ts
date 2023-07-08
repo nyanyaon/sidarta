@@ -1,4 +1,4 @@
-import { session, BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions } from 'electron';
+import { session, BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions, autoUpdater } from 'electron';
 import { AuthSSO } from './AuthSSO';
 import * as fs from 'fs';
 import { BukuTanahBot } from './BukuTanahBot';
@@ -43,14 +43,47 @@ export default class App {
             },
         });
 
+        if (App.application.isPackaged) {
+            const server = 'https://update.electronjs.org';
+            const feed = `${server}/nyanyaon/sidarta/${process.platform}-${process.arch}/${App.application.getVersion()}`;
+
+            autoUpdater.setFeedURL({ url: feed });
+
+            autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+                const dialogOpts = {
+                    type: 'info',
+                    buttons: ['Restart', 'Later'],
+                    title: 'Application Update',
+                    message: process.platform === 'win32' ? releaseNotes : releaseName,
+                    detail:
+                        'A new version has been downloaded. Restart the application to apply the updates.'
+                };
+
+                dialog.showMessageBox(dialogOpts).then((returnValue) => {
+                    if (returnValue.response === 0) autoUpdater.quitAndInstall();
+                });
+            });
+
+            autoUpdater.on('error', (message) => {
+                console.error('There was a problem updating the application');
+                console.error(message);
+            });
+
+            setInterval(() => {
+                autoUpdater.checkForUpdates();
+            }, 1000);
+        }
+
         session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
             callback({
-              responseHeaders: {
-                ...details.responseHeaders,
-                'Content-Security-Policy': ['script-src \'self\' https://www.googletagmanager.com \'unsafe-inline\' \'unsafe-eval\'']
-              }
+                responseHeaders: {
+                    ...details.responseHeaders,
+                    'Content-Security-Policy': ['script-src \'self\' https://www.googletagmanager.com \'unsafe-inline\' \'unsafe-eval\'']
+                }
             })
-          });
+        });
+
+
 
         const template: MenuItemConstructorOptions[] = [
             // { role: 'fileMenu' }
@@ -94,7 +127,7 @@ export default class App {
         });
 
         App.ipc.handle('auth:logout', async (event, ...args) => {
-            fs.unlink('./cookies.json', (err) =>{
+            fs.unlink('./cookies.json', (err) => {
                 console.log(err);
             });
         });
@@ -174,12 +207,12 @@ export default class App {
             return data;
         });
 
-        App.ipc.handle('auth:save', async (event, ...args) => { 
-            App.sso =  new AuthSSO();
+        App.ipc.handle('auth:save', async (event, ...args) => {
+            App.sso = new AuthSSO();
             App.sso.save(args[0], args[1]);
         });
         App.ipc.handle('auth:start', (event, ...args) => { new AuthSSO().start(args[0]) });
-        App.ipc.handle('auth:verify', (event, ...data) => { 
+        App.ipc.handle('auth:verify', (event, ...data) => {
             App.sso.verify(data[0], data[1]);
         });
     }

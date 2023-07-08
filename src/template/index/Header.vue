@@ -2,8 +2,8 @@
     <div class="header">
         <div class="brand" @click="goToHome">
             <div class="brand-info">
-                <h1>SIAP VALID</h1>
-                <p>Validasi Bidang Tanah</p>
+                <h1>SIDARTA</h1>
+                <p>Menuju Kota/Kab Lengkap</p>
             </div>
         </div>
 
@@ -77,7 +77,7 @@
 
 .user .icon {
     padding: 0.3em;
-    color: #00B2FF;
+    color: #000000;
     background: #fcfbfb;
     border-radius: 0.2em;
     font-size: 1.2rem;

@@ -1,7 +1,9 @@
 <template>
     <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh" />
+    <Sawer />
     <Loader />
     <Home />
+    <Footer />
 </template>
 
 <style>
@@ -34,7 +36,7 @@
 }
 
 body {
-    background: #fcfbfb;
+    background: #FFFFFF;
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
@@ -69,6 +71,8 @@ import { store } from '../Store';
 import Home from './index/Home.vue';
 import Loader from './index/Loader.vue';
 import Modal from './index/Modal.vue';
+import Footer from './index/Footer.vue';
+import Sawer from './index/Sawer.vue';
 
 export default {
     name: "App",
@@ -76,6 +80,8 @@ export default {
         Home,
         Loader,
         Modal,
+        Footer,
+        Sawer,
     },
     data() {
         return {
@@ -104,7 +110,7 @@ export default {
         // window.COMM.appWaitDataOpt(this.setDataOpt);
         window.COMM.appUpdateDialog(this.updateLoaderDialogue);
 
-        // this.isBrowserExist = window.COMM.appCheckBrowser();
+        this.isBrowserExist = window.COMM.appCheckBrowser();
         // this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
         // if (!this.store.isLogin) window.COMM.authStart(true);

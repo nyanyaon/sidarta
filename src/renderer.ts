@@ -34,10 +34,10 @@ import SuratUkur from './template/index/SuratUkur.vue';
 import ValidasiPersil from './template/index/ValidasiPersil.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUser, faFilePdf, faPowerOff, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faFilePdf, faPowerOff, faDownload, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
 
-library.add(faUser, faFilePdf, faPowerOff, faDownload);
+library.add(faUser, faFilePdf, faPowerOff, faDownload, faXmark);
 
 const router = createRouter({
     history: createMemoryHistory(),

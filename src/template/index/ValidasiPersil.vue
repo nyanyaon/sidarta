@@ -2,7 +2,7 @@
     <Loader />
     <Header />
     <div class="content">
-        <h2>TOOL VALIDASI BIDANG TANAH</h2>
+        <h2>TOOL VALIDASI PERSIL</h2>
         <div class="section">
             <div class="form-loc">
                 <label for="user">Username</label>
@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+    <Footer />
 </template>
 
 <style scoped>
@@ -156,7 +157,7 @@
 }
 
 .start {
-    margin-top: 4em;
+    margin-top: 2em;
     background: #1FC374 !important;
 }
 
@@ -176,6 +177,7 @@
 <script lang="ts">
 import Header from './Header.vue';
 import Loader from './Loader.vue';
+import Footer from './Footer.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
@@ -186,6 +188,7 @@ export default defineComponent({
     components: {
         Header,
         Loader,
+        Footer,
     },
     data() {
         return {
@@ -306,14 +309,17 @@ export default defineComponent({
         },
     },
     mounted() {
+        document.title = "SIDARTA | VALIDASI PERSIL BOT"
         window.COMM.fileSelected(this.updateFolderSelect);
         window.COMM.botValidasiStatus(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
-        const [ kab, kabId ]  = window.localStorage.getItem("USER_KAB").split(",");
-        this.kabupaten = kab;
-        this.kabupatenId = kabId;
+        if(window.localStorage.getItem("USER_KAB") === null) {
+            const [ kab, kabId ]  = window.localStorage.getItem("USER_KAB").split(",");
+            this.kabupatenId = kabId;
+            this.kabupaten = kab;
+        }
     }
 });
 </script>
