@@ -53,7 +53,7 @@ export default class App {
             autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
                 const dialogOpts = {
                     type: 'info',
-                    buttons: ['Restart', 'Later'],
+                    buttons: ['Restart'],
                     title: 'Application Update',
                     message: process.platform === 'win32' ? releaseNotes : releaseName,
                     detail:
