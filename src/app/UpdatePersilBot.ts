@@ -2,25 +2,28 @@ import App from './App';
 import { Bot } from './Bot';
 import * as fs from 'fs';
 
-interface NIPID {
+interface StatusValidasi {
+    [key: string]: string | number | boolean;
     pid: string;
     nib: string;
     status: string;
+    success: boolean;
 }
 
-export class UpdatePersilBot extends Bot {
-    async start(user: string, pass: string, kecamatanId: string, desaId: string, fileLoc: string) {
-        try {
-            const rStream = fs.createReadStream(fileLoc, {encoding: "utf-8"});
-            const wStream = fs.createWriteStream('tmp.csv', {encoding: "utf-8"});
-            wStream.write('persilid,nib,status,berhasil\n');
-            const arrNibPid: NIPID[] = [];
-            let totalnib: number;
-            let nib: string;
+interface IStatusUpdate {
+    pid: string;
+    nib?: string;
+    status: string;
+    success: boolean;
+}
 
-            wStream.on("error", (err) => {
-                console.log(err);
-            });
+
+export class UpdatePersilBot extends Bot {
+    async startNIB(user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) {
+        try {
+            const rStream = fs.createReadStream(fileLoc, { encoding: "utf-8" });
+            const arrStatusValidasi: StatusValidasi[] = [];
+            let nib: string;
 
             rStream.on("error", (err) => {
                 console.log(err);
@@ -41,7 +44,6 @@ export class UpdatePersilBot extends Bot {
                 await page.type('#inputPassword', pass);
 
                 await page.click('#kc-next');
-                console.log("OTP");
 
                 await page.waitForNavigation({
                     timeout: 0
@@ -58,70 +60,62 @@ export class UpdatePersilBot extends Bot {
                 if (request.url().includes('QueryByNIB')) {
                     const text = await response.text();
                     const json = JSON.parse(text);
-                    arrNibPid[json.data[0].PersilId] = {
+                    arrStatusValidasi.push({
                         pid: json.data[0].PersilId,
                         nib: json.data[0].Nomor,
-                        status: "",
-                    };
-                    console.log(json.data[0].PersilId);
+                    } as StatusValidasi);
                     page.evaluate((pid) => {
-                        fetch("https://dokumen.atrbpn.go.id/DokumenHak/MutahirkanWilayahSpaPersil", {
+                        fetch("https://peta.atrbpn.go.id/DataSpasial/ValidasiBidang", {
                             "headers": {
-                              "accept": "*/*",
-                              "accept-language": "en-GB,en;q=0.9,en-US;q=0.8",
-                              "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-                              "sec-ch-ua": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Microsoft Edge\";v=\"114\"",
-                              "sec-ch-ua-mobile": "?0",
-                              "sec-ch-ua-platform": "\"Windows\"",
-                              "sec-fetch-dest": "empty",
-                              "sec-fetch-mode": "cors",
-                              "sec-fetch-site": "same-origin"
+                                "accept": "*/*",
+                                "accept-language": "en-US,en;q=0.9",
+                                "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                                "sec-fetch-dest": "empty",
+                                "sec-fetch-mode": "cors",
+                                "sec-fetch-site": "same-origin"
                             },
-                            "referrer": "https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah",
                             "referrerPolicy": "strict-origin-when-cross-origin",
-                            "body": "pid=" + pid + "&tid=7",
+                            "body": `pid=${pid}`,
                             "method": "POST",
                             "mode": "cors",
                             "credentials": "include"
-                          });
+                        });
                     }, json.data[0].PersilId);
                 }
 
                 if (request.url().includes('ValidasiBidang')) {
                     const text = await response.text();
-                    const pid: any = request.postData().replace("pid=", "");
+                    const pid = request.postData().replace("pid=", "");
                     const jsonObj = JSON.parse(text);
-                    arrNibPid[pid].status = jsonObj.Message;
-                    App.send('botvalidasi:status', jsonObj.Status);
-                    console.log(pid);
-                    console.log(text);
-                    wStream.write(`${arrNibPid[pid].pid},${arrNibPid[pid].nib},${arrNibPid[pid].status},${jsonObj.Status}\n`);
+                    const indexStatusValidasi = arrStatusValidasi.findIndex(val => val.pid === pid);
+                    arrStatusValidasi[indexStatusValidasi].status = jsonObj.Message;
+                    arrStatusValidasi[indexStatusValidasi].success = jsonObj.Status;
+                    App.send('botvalidasi:status', arrStatusValidasi[indexStatusValidasi]);
                 }
             });
 
-            console.log("Login");
-
-            const DokHATPage = await page.goto("https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah", {
+            const petaPage = await page.goto("https://peta.atrbpn.go.id/", {
                 timeout: 0,
                 waitUntil: "networkidle0",
             });
 
-            if (DokHATPage != null) {
-                console.log(DokHATPage.ok());
+            if (petaPage != null) {
+                console.log(petaPage.ok());
             }
 
-            await page.waitForSelector("#judul");
+            await page.waitForSelector("#right_col > div.x_panel > div.x_title > h2");
+
+            console.log("Peta");
 
             rStream.on("data", async (chunk) => {
                 console.log("Start Processing");
                 const str = String(chunk).split('\r\n');
                 str.shift();
                 console.log(str);
-                totalnib = str.length;
                 while ((nib = str.pop()) !== undefined) {
-                    if(nib == "") continue;
+                    if (nib == "") continue;
                     console.log(nib);
-                    const status = await page.evaluateHandle((kecamatanId, desaId, nib) => {
+                    const status = await page.evaluateHandle((kabupatenId, kecamatanId, desaId, nib) => {
                         fetch("https://peta.atrbpn.go.id/DataSpasial/QueryByNIB", {
                             "headers": {
                                 "accept": "application/json, text/javascript, */*; q=0.01",
@@ -132,7 +126,7 @@ export class UpdatePersilBot extends Bot {
                                 "sec-fetch-site": "same-origin",
                             },
                             "referrerPolicy": "strict-origin-when-cross-origin",
-                            "body": `inputwilayah.SelectedPropinsi=bdd0eb668e5340ebafd02241a05e623b&inputwilayah.SelectedKabupaten=e8f71090d3d94c469824bd09cd3e3ebf&inputwilayah.SelectedKecamatan=${kecamatanId}&inputwilayah.SelectedDesa=${desaId}&NomorBidang=${nib}&HguHpl=False&draw=1&start=0&length=20`,
+                            "body": `inputwilayah.SelectedPropinsi=bdd0eb668e5340ebafd02241a05e623b&inputwilayah.SelectedKabupaten=${kabupatenId}&inputwilayah.SelectedKecamatan=${kecamatanId}&inputwilayah.SelectedDesa=${desaId}&NomorBidang=${nib}&HguHpl=False&draw=1&start=0&length=20`,
                             "method": "POST",
                             "mode": "cors",
                             "credentials": "include"
@@ -141,42 +135,112 @@ export class UpdatePersilBot extends Bot {
                         }).then(json => {
                             return json;
                         });
-                    }, kecamatanId, desaId, nib);
+                    }, kabupatenId, kecamatanId, desaId, nib);
                     console.log(await status.jsonValue());
                 }
             });
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
+    async startPersilId(user: string, pass: string, fileLoc: string) {
+        try {
+            const rStream = fs.createReadStream(fileLoc, { encoding: "utf-8" });
+            const arrStatus: IStatusUpdate[] = [];
 
+            rStream.on("error", (err) => {
+                console.log(err);
+            });
 
-            // End line Comp
+            this.browser = await this.init(false);
 
-            // await page.click("#petapendaftaran > div.menu-panel.ol-control > button.btn-toggle");
+            const page = await this.browser.newPage();
 
-            // await page.waitForNetworkIdle();
+            await page.goto("https://aplikasi.atrbpn.go.id/pintasan");
 
-            // await page.click("#ui-id-5");
+            await page.waitForNetworkIdle({ timeout: 0 });
 
-            // await page.waitForNetworkIdle();
+            const isLogin = await page.$('body > header > div.container.text-center > p > b');
 
-            // await page.click("#divdesa > div > span.select2.select2-container.select2-container--default");
+            if (isLogin == null) {
+                await page.type('#username', user);
+                await page.type('#inputPassword', pass);
 
-            // await page.type("#frmCariNIB > span > span > span.select2-search.select2-search--dropdown > input", "Batu rotok");
+                await page.click('#kc-next');
 
-            // await page.click("#select2-cariNIB_inputwilayah_SelectedDesa-results > li");
+                await page.waitForNavigation({
+                    timeout: 0
+                });
+            }
 
-            // await page.type("#nmrBidangQnib", "01970");
+            await page.waitForNetworkIdle({
+                timeout: 0,
+            });
 
-            // await page.click("#btnCariNIB");
+            page.on('response', async (response) => {
+                const request = response.request();
 
-            // await page.waitForNetworkIdle();
+                if (request.url().includes('MutahirkanWilayahSpaPersil')) {
+                    const text = await response.text();
+                    const pid = request.postData().split('&').find(val => val.includes('pid=')).replace("pid=", "");
+                    console.log(pid);
+                    const jsonObj = JSON.parse(text);
+                    const statusValidasiData = {
+                        pid: pid,
+                        status: jsonObj.Message,
+                        success: jsonObj.Status,
+                    }
+                    console.log(statusValidasiData);
+                    arrStatus.push(statusValidasiData);
+                    App.send('bot:statushandler', statusValidasiData);
+                }
+            });
 
-            // await page.click("#tblBidangNIB > tbody > tr > td.goto-column");
+            const dokHakPage = await page.goto("https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah", {
+                timeout: 0,
+                waitUntil: "networkidle0",
+            });
 
-            // await page.waitForNetworkIdle();
+            if (dokHakPage != null) {
+                console.log(dokHakPage.ok());
+            }
 
-            // await page.mouse.click(390, 250);
+            await page.waitForSelector("#judul");
 
+            console.log("Dokumen Hak Page");
 
+            rStream.on("data", async (chunk) => {
+                console.log("Start Processing");
+                const str = String(chunk).split('\r\n');
+                str.shift();
+
+                for (const pid of str) {
+                    console.log(pid);
+                    if (pid == "") continue;
+                    page.evaluate((pid) => {
+                        fetch("https://dokumen.atrbpn.go.id/DokumenHak/MutahirkanWilayahSpaPersil", {
+                            "headers": {
+                                "accept": "*/*",
+                                "accept-language": "en-GB,en;q=0.9,en-US;q=0.8",
+                                "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                                "sec-ch-ua": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Microsoft Edge\";v=\"114\"",
+                                "sec-ch-ua-mobile": "?0",
+                                "sec-ch-ua-platform": "\"Windows\"",
+                                "sec-fetch-dest": "empty",
+                                "sec-fetch-mode": "cors",
+                                "sec-fetch-site": "same-origin"
+                            },
+                            "referrer": "https://dokumen.atrbpn.go.id/DokumenHak/HakAtasTanah",
+                            "referrerPolicy": "strict-origin-when-cross-origin",
+                            "body": "pid=" + pid + "&tid=7",
+                            "method": "POST",
+                            "mode": "cors",
+                            "credentials": "include"
+                        });
+                    }, pid);
+                }
+            });
         } catch (err) {
             console.log(err);
         }

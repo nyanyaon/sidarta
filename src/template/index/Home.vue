@@ -3,11 +3,11 @@
     <div class="section">
         <h2>ALAT YANG TERSEDIA</h2>
         <div class="feature-container">
-            <div @click="goToValidasiPersil" class="feature-box available bg-orange">
+            <div @click="goToValidasiPersil" class="feature-box available">
                 <p class="context">Validasi<br/> Persil</p>
                 <p class="total">GO</p>
             </div>
-            <div @click="goToUploadBukuTanah" class="feature-box available">
+            <div @click="goToUploadBukuTanah" class="feature-box unavailable">
                 <p class="context">Upload <br/> BT</p>
                 <p class="total">GO</p>
             </div>
@@ -15,15 +15,15 @@
                 <p class="context">Upload<br/> SU</p>
                 <p class="total">GO</p>
             </div>
-            <div class="feature-box available">
+            <div @click="goToUpdatePersil" class="feature-box available">
                 <p class="context">Update<br/> Persil</p>
                 <p class="total">GO</p>
             </div>
-            <div class="feature-box available">
+            <div class="feature-box unavailable">
                 <p class="context">Validasi<br/> BT</p>
                 <p class="total">GO</p>
             </div>
-            <div class="feature-box available">
+            <div class="feature-box unavailable">
                 <p class="context">Validasi<br/> SU</p>
                 <p class="total">GO</p>
             </div>
@@ -89,7 +89,8 @@
 }
 
 .unavailable {
-    background: #FF9D56;
+    background: #818181;
+    cursor: not-allowed;
 }
 
 .section {
@@ -129,6 +130,9 @@ export default defineComponent({
         },
         goToValidasiPersil() {
             this.$router.replace('/validasipersil');
+        },
+        goToUpdatePersil() {
+            this.$router.replace('/updatepersil');
         }
     },
     mounted() {

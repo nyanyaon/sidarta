@@ -32,6 +32,7 @@ import App from './template/App.vue';
 import BukuTanah from './template/index/BukuTanah.vue';
 import UploadSuratUkur from './template/index/UploadSuratUkur.vue';
 import ValidasiPersil from './template/index/ValidasiPersil.vue';
+import UpdatePersil from './template/index/UpdatePersil.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faFilePdf, faPowerOff, faDownload, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -46,6 +47,7 @@ const router = createRouter({
         { path: '/bukutanah', component: BukuTanah },
         { path: '/suratukur', component: UploadSuratUkur },
         { path: '/validasipersil', component: ValidasiPersil },
+        { path: '/updatepersil', component: UpdatePersil },
     ]
 });
 
@@ -68,13 +70,14 @@ interface PreloadComm {
     databaseGetAll: (col: string) => Promise<any[]>;
     botGetOption: () => void;
     botStartBukuTanah: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => void;
-    botStartSuratUkur: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => void;
+    botStartUploadSuratUkur: (user: string, pass: string, files: FileInterface[], loc: string) => void;
     botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
+    botStartUpdatePersil: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     fileSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
-    botValidasiStatus: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    botStatusHandler: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authHideOTP: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;

@@ -2,32 +2,54 @@
     <Loader />
     <Header />
     <div class="content">
-        <h2>TOOL VALIDASI PERSIL</h2>
+        <h2>TOOL UPDATE WILAYAH PERSIL</h2>
         <div class="section">
             <div class="form-loc">
-                <label for="user">Username</label>
-                <input @change="updateUser" v-model="user" type="text" id="user" name="user">
-                <label for="pass">Password</label>
-                <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
-                <label for="kabupaten">Kabupaten</label>
-                <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
+                <div class="input-type">
+                    <input v-model="inputType" type="radio" id="persilid" value="persilid" name="persilid">
+                    <label for="persilid">List PersilId</label>
+                    <input v-model="inputType" type="radio" id="nib" value="nib" name="nib" checked>
+                    <label for="nib">List NIB</label>
+                    <input v-model="inputType" type="radio" id="hak" value="hak" name="hak">
+                    <label for="hak">List NomorHak</label>
+                </div>
+                <div class="input-group">
+                    <label for="user">Username</label>
+                    <input @change="updateUser" v-model="user" type="text" id="user" name="user">
+                </div>
+                <div class="input-group">
+                    <label for="pass">Password</label>
+                    <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
+                </div>
+                <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
+                    <label for="kabupaten">Kabupaten</label>
+                    <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
                     :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
-                <datalist id="listkabupaten">
-                    <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten" :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
-                </datalist>
-                <label for="kecamatan">Kecamatan</label>
-                <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
+                    <datalist id="listkabupaten">
+                        <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten" :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
+                    </datalist>
+                </div>
+                <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
+                    <label for="kecamatan">Kecamatan</label>
+                    <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
                     :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
-                <datalist id="listkecamatan">
-                    <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
-                </datalist>
-                <label for="desa">Desa</label>
-                <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
-                <datalist id="listdesa">
-                    <option :data-kec-id="item.wilayahid" v-for="item in getListDesa" :value="item.nama"></option>
-                </datalist>
-                <label for="file-loc">Daftar NIB (*.csv)</label>
-                <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
+                    <datalist id="listkecamatan">
+                        <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
+                    </datalist>
+                </div>
+                <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
+                    <label for="desa">Desa</label>
+                    <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
+                    <datalist id="listdesa">
+                        <option :data-kec-id="item.wilayahid" v-for="item in getListDesa" :value="item.nama"></option>
+                    </datalist>
+                </div>
+                <div class="input-group">
+                    <label v-if="inputType == 'nib'" for="file-loc">Daftar NIB (*.csv)</label>
+                    <label v-if="inputType == 'persilid'" for="file-loc">Daftar PersilId (*.csv)</label>
+                    <label v-if="inputType == 'hak'" for="file-loc">Daftar Hak (*.csv)</label>
+                    <button @click="selectFile">{{ fileLocBtnTxt }}</button>
+                </div>
                 <button @click="start" class="start">Mulai</button>
             </div>
             <div class="doc-container">
@@ -124,14 +146,40 @@
     margin-right: 2em;
 }
 
-.form-loc label {
+.input-type {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.input-type label {
+    font-size: 0.625em;
+    font-weight: 700;
+    color: #7B7B7B;
+    margin-bottom: 0;
+    margin-right: 0.5em;
+}
+
+.input-type input {
+    font-size: 0.625em;
+    font-weight: 700;
+    color: #7B7B7B;
+    margin-top: 0;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
     font-size: 0.625em;
     font-weight: 700;
     color: #7B7B7B;
     margin-bottom: 0.625em;
 }
 
-.form-loc input {
+.input-group input {
     background: none;
     border: 1px solid #00B2FF;
     font-size: .8em;
@@ -207,6 +255,7 @@ export default defineComponent({
             pass: "",
             cBerhasil: 0,
             cGagal: 0,
+            inputType: "nib",
         }
     },
     computed: {
@@ -240,12 +289,12 @@ export default defineComponent({
         updatePass(ev: Event) {
             window.localStorage.setItem("PASS", this.pass);
         },
-        selectFolder() {
+        selectFile() {
             window.COMM.fileSelect();
         },
         downloadReport() {
             if((this.reportJson as String[]).length < 2) {
-                prompt("otp");
+                alert('no data');
                 return;
             }
             const text: string = (this.reportJson as String[]).join('\n');
@@ -260,9 +309,9 @@ export default defineComponent({
             URL.revokeObjectURL(link.href);
         },
         start() {
-            window.COMM.botStartValidasiPersil(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, this.fileLocBtnTxt);
+            window.COMM.botStartUpdatePersil(this.user, this.pass, this.inputType,this.kabupatenId, this.kecamatanId, this.desaId, this.fileLocBtnTxt);
         },
-        updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
+        updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
             this.fileLocBtnTxt = data[0];
         },
         updateStatusValidasi(event: Electron.IpcRenderer, data: any[]) {
@@ -310,7 +359,7 @@ export default defineComponent({
     },
     mounted() {
         document.title = "SIDARTA | VALIDASI PERSIL BOT"
-        window.COMM.fileSelected(this.updateFolderSelect);
+        window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");

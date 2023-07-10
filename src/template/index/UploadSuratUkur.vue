@@ -2,31 +2,13 @@
     <Loader />
     <Header />
     <div class="content">
-        <h2>SURAT UKUR</h2>
+        <h2>TOOL UPLOAD SURAT UKUR</h2>
         <div class="section">
             <div class="form-loc">
                 <label for="user">Username</label>
                 <input @change="updateUser" v-model="user" type="text" id="user" name="user">
                 <label for="pass">Password</label>
                 <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
-                <label for="kabupaten">Kabupaten</label>
-                <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
-                    :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
-                <datalist id="listkabupaten">
-                    <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
-                        :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
-                </datalist>
-                <label for="kecamatan">Kecamatan</label>
-                <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
-                    :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
-                <datalist id="listkecamatan">
-                    <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
-                </datalist>
-                <label for="desa">Desa</label>
-                <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
-                <datalist id="listdesa">
-                    <option v-for="item in getListDesa" :value="item.nama"></option>
-                </datalist>
                 <label for="file-loc">Lokasi Dokumen</label>
                 <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
                 <button @click="start" class="start">Mulai</button>
@@ -40,27 +22,10 @@
             </div>
         </div>
     </div>
+    <Footer />
 </template>
 
 <style scoped>
-.section {
-    display: flex;
-    margin-top: 2em;
-}
-
-.doc-container {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-}
-
-.doc-container h3 {
-    margin: 0;
-    font-size: 0.625em;
-    font-weight: 700;
-    color: #7B7B7B;
-    margin-bottom: 0.75em;
-}
 
 .doc-item {
     display: flex;
@@ -87,10 +52,77 @@
     margin-left: 0.5em;
 }
 
+.section {
+    display: flex;
+    margin-top: 1em;
+}
+
+.doc-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.doc-container h3 {
+    margin: 0;
+    font-size: 0.625em;
+    font-weight: 700;
+    margin-bottom: 0.75em;
+}
+
+.berhasil h3 {
+    color: #009721;
+    font-size: 0.625rem;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.gagal h3 {
+    color: #D70000;
+    font-size: 0.625rem;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.doc-container p {
+    color: #393939;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.report-btn {
+    border-radius: 0.875em;
+    background: #00B2FF;
+    border: none;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-btn .text {
+    color: #F4F4F4;
+    font-size: 0.8em;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    margin-left: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .form-loc {
     display: flex;
     flex-direction: column;
     width: 70%;
+    margin-right: 2em;
 }
 
 .form-loc label {
@@ -102,7 +134,7 @@
 
 .form-loc input {
     background: none;
-    border: 1px solid #FF9D56;
+    border: 1px solid #00B2FF;
     font-size: .8em;
     font-weight: 400;
     padding: 0.5em 1em;
@@ -111,7 +143,7 @@
 }
 
 .form-loc button {
-    background: #FF9D56;
+    background: #00B2FF;
     color: #F4F4F4;
     border: none;
     font-size: .8em;
@@ -121,15 +153,19 @@
     border-radius: 1rem;
 }
 
+.form-loc button:hover {
+    cursor: pointer;
+}
+
 .start {
-    margin-top: 4em;
+    margin-top: 2em;
     background: #1FC374 !important;
 }
 
 .content {
-    margin-top: 2em;
-    margin-left: 4em;
-    margin-right: 4em;
+    margin-top: 1.2em;
+    margin-left: 2.875em;
+    margin-right: 2em;
 }
 
 .content h2 {
@@ -142,17 +178,18 @@
 <script lang="ts">
 import Header from './Header.vue';
 import Loader from './Loader.vue';
+import Footer from './Footer.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
 import type { Kabupaten, Kecamatan, Desa } from '../../app/Bot';
 import { FileInterface } from '../../app/Fileman';
-import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
     name: "UploadSuratUkur",
     components: {
         Header,
         Loader,
+        Footer,
     },
     data() {
         return {
@@ -185,53 +222,16 @@ export default defineComponent({
         getCountFiles(): number {
             return this.files.length;
         },
-        getListKabupaten(): Kabupaten[] {
-            if (this.kabupaten == "") return kabJson;
-
-            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_kec.json')
-                .then(res => res.json())
-                .then(json => { this.kecJson = json });
-            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_desa.json')
-                .then(res => res.json())
-                .then(json => { this.desaJson = json });
-
-            return kabJson;
-        },
-        getListKecamatan(): Kecamatan[] {
-            return this.kecJson;
-        },
-        getListDesa(): Desa[] {
-            if (this.kecamatanId === "") return this.desaJson;
-
-            const listdesa = (this.desaJson as Desa[]).filter(value => value.induk === this.kecamatanId);
-
-            return listdesa;
-        }
     },
     methods: {
         selectFolder() {
             window.COMM.folderSelect('SU');
         },
         start() {
-            const files: FileInterface[] = this.files.map((v: FileInterface) => {
-                const nama = v.nama;
-                const isValid = v.isValid;
-                const isUploaded = v.isUploaded;
-                const nomor = v.nomor;
-                const tipe = v.tipe;
-                const tahun = v.tahun;
+            const text = JSON.stringify(this.files);
+            const files = JSON.parse(text) as FileInterface[];
 
-                return {
-                    nama,
-                    isValid,
-                    isUploaded,
-                    nomor,
-                    tipe,
-                    tahun,
-                }
-            });
-
-            window.COMM.botStartSuratUkur(this.kecamatan, this.kecamatanId, this.desa, files, this.fileLocBtnTxt);
+            window.COMM.botStartUploadSuratUkur(this.user, this.pass, files, this.fileLocBtnTxt);
         },
         updateUser(ev: Event) {
             window.localStorage.setItem("USER", this.user);
@@ -243,41 +243,6 @@ export default defineComponent({
             this.files = data[1];
 
             this.fileLocBtnTxt = data[0];
-            this.store.isLoading = true;
-        },
-        updateKabupaten(event: Event) {
-            if (this.kabupaten === "") return;
-            this.updateKabId();
-            const kab = kabJson.find(value => value.wilayahid === this.kabupatenId);
-            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_kec.json')
-                .then(res => res.json())
-                .then(json => { this.kecJson = json });
-            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
-                .then(res => res.json())
-                .then(json => { this.desaJson = json });
-            window.localStorage.setItem("USER_KAB", this.kabupaten + "," + this.kabupatenId);
-        },
-        updateKecamatan(event: Event) {
-            if (this.kecamatan === "") return;
-        },
-        updateDesa(event: Event) {
-            if (this.desa === "") return;
-            const desa = (this.desaJson as Desa[]).find(value => value.nama === this.desa);
-            const kec = (this.kecJson as Kecamatan[]).find(value => value.wilayahid === desa.induk);
-
-            this.kecamatan = kec.nama;
-            this.kecamatanId = kec.wilayahid;
-            this.desaId = desa.wilayahid;
-        },
-        updateKabId() {
-            const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;
-            const dataArr = Array.from(datalist);
-            this.kabupatenId = dataArr.find(val => val.value === this.kabupaten).dataset.kabId;
-        },
-        updateKecId() {
-            const datalist = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
-            const dataArr = Array.from(datalist);
-            this.kecamatanId = dataArr.find(val => val.value === this.kecamatan).dataset.kecId;
         },
     },
     mounted() {

@@ -4,10 +4,11 @@ import * as fs from 'fs';
 import { BukuTanahBot } from './BukuTanahBot';
 import { Fileman } from './Fileman';
 import { Database } from './db/Database';
-import { SuratUkurBot } from './SuratUkurBot';
+import { UploadSuratUkurBot } from './UploadSuratUkurBot';
 import { Browser } from 'puppeteer';
 import { Bot } from './Bot';
 import { ValidasiPersilBot } from './ValidasiPersilBot';
+import { UpdatePersilBot } from './UpdatePersilBot';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -140,13 +141,28 @@ export default class App {
             const bot = new BukuTanahBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4]);
         });
-        App.ipc.handle('bot:startSuratUkur', async (event, ...args) => {
-            const bot = new SuratUkurBot();
-            await bot.start(args[0], args[1], args[2], args[3], args[4]);
+        App.ipc.handle('bot:startUploadSuratUkur', async (event, ...args) => {
+            const bot = new UploadSuratUkurBot();
+            bot.start(args[0], args[1], args[2], args[3]);
         });
         App.ipc.handle('bot:startValidasiPersil', async (event, ...args) => {
             const bot = new ValidasiPersilBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4], args[5]);
+        });
+        App.ipc.handle('bot:startUpdatePersil', async (event, ...args) => {
+            const bot = new UpdatePersilBot();
+            const user = args[0];
+            const pass = args[1];
+            const listtype = args[2];
+            const kabupatenId = args[3];
+            const kecamatanId = args[4];
+            const desaId = args[5];
+            const fileLoc = args[6];
+
+            if(listtype == 'persilid') {
+                bot.startPersilId(user, pass, fileLoc);
+                return; 
+            }
         });
         App.ipc.handle('folder:select', (event, ...args) => {
             dialog.showOpenDialog(App.mainWindow, {

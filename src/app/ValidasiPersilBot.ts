@@ -85,7 +85,7 @@ export class ValidasiPersilBot extends Bot {
                     const indexStatusValidasi = arrStatusValidasi.findIndex(val => val.pid === pid);
                     arrStatusValidasi[indexStatusValidasi].status = jsonObj.Message;
                     arrStatusValidasi[indexStatusValidasi].success = jsonObj.Status;
-                    App.send('botvalidasi:status', arrStatusValidasi[indexStatusValidasi]);
+                    App.send('bot:statushandler', arrStatusValidasi[indexStatusValidasi]);
                 }
             });
 

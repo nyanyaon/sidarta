@@ -107,12 +107,12 @@ export default defineComponent({
     },
     computed: {
         getUsername() {
-            const nama = this.store.user;
+            const nama = window.localStorage.getItem("USER");
             if(nama === "none") {
                 return "Tidak Login";
             }
 
-            return nama.replace(",", ",<br />");
+            return nama;
         }
     },
     methods: {
@@ -120,17 +120,8 @@ export default defineComponent({
             this.$router.push('/');
         },
         logout() {
-            window.COMM.authLogout();
-            window.localStorage.removeItem('IS_LOGIN');
-            window.localStorage.removeItem('USER_DATE');
-            window.localStorage.removeItem('USER_NAME');
-            window.localStorage.removeItem('USER_KANTOR');
-            window.localStorage.removeItem('UPLOAD_OPTION');
             window.location.reload();
         }
-    },
-    mounted() {
-        // this.store.user = window.localStorage.getItem('USER_NAME');
     }
 })
 </script>

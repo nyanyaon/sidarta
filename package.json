@@ -1,7 +1,7 @@
 {
   "name": "sidarta",
   "productName": "sidarta",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "RPA for Optimization Land Registration Document",
   "main": "./.webpack/main",
   "scripts": {
@@ -54,7 +54,6 @@
               "owner": "nyanyaon",
               "name": "sidarta"
             },
-            "authToken": "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",
             "prerelease": false,
             "draft": false
           }

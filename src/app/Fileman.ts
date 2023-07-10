@@ -2,6 +2,7 @@ export interface FileInterface {
     nama: string,
     tipe: string,
     nomor:  string,
+    kodedesa?: string,
     tahun?:  string,
     isValid: boolean,
     isUploaded?: boolean,
@@ -37,6 +38,7 @@ export class Fileman {
                 return {
                     nama: data,
                     tipe: regex !== null ? regex[1] : "",
+                    kodedesa: regex !== null ? regex[3] : "",
                     nomor: regex !== null ? regex[5] : "",
                     tahun: regex !== null ? regex[7] : "",
                     isValid: regex !== null ? true : false,

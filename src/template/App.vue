@@ -1,6 +1,6 @@
 <template>
     <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh" />
-    <Sawer />
+    <Sawer v-if="isSawer"/>
     <Loader />
     <Home />
     <Footer />
@@ -93,6 +93,7 @@ export default {
             clockInterval: {},
             isBrowserExist: true,
             isDenied: false,
+            isSawer: true,
         }
     },
     methods: {
