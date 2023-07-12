@@ -27,6 +27,10 @@
                 <p class="context">Validasi<br/> SU</p>
                 <p class="total">GO</p>
             </div>
+            <div class="feature-box unavailable">
+                <p class="context">Tangguh<br/> Persil</p>
+                <p class="total">GO</p>
+            </div>
         </div>
     </div>
 </template>
@@ -44,8 +48,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    column-gap: 1em;
-    row-gap: 1em;
+    column-gap: 0.6em;
+    row-gap: 1.2em;
 }
 
 .feature-box {
@@ -103,6 +107,7 @@
     text-align: center;
     font-size: 1em;
     color: #7B7B7B;
+    margin-bottom: 2em;
     font-weight: 700;
     line-height: normal;
 }

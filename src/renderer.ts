@@ -78,6 +78,7 @@ interface PreloadComm {
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     fileSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     botStatusHandler: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
+    appUpdateHandler: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authSuccess: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authHideOTP: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;

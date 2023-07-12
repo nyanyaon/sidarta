@@ -25,6 +25,7 @@ contextBridge.exposeInMainWorld('COMM', {
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('folder:selected', callback),
     fileSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('file:selected', callback),
     botStatusHandler: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('bot:statushandler', callback),
+    appUpdateHandler: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('app:update', callback),
     appWaitDataOpt: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('app:dataopt', callback),
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:token', callback),
     authHideOTP: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('auth:hideOTP', callback),

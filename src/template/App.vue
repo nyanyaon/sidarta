@@ -1,6 +1,7 @@
 <template>
     <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh" />
     <Sawer v-if="isSawer"/>
+    <Update v-if="update.isUpdate" :msg="update.updateMsg"/>
     <Loader />
     <Home />
     <Footer />
@@ -46,24 +47,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-.donate-btn {
-  font-size: 0.75em;
-  font-weight: 600;
-  color: #fff;
-  background: #FF9D56;
-  border: none;
-  padding: 0.8em 0.8em;
-  margin-top: 3em;
-  border-radius: 0 0.8em 0.8em 0;
-  position: absolute;
-  bottom: 5%;
-  text-decoration: none;
-}
-
-.donate-btn:hover {
-  background: #D67026;
-}
 </style>
 
 <script lang="ts">
@@ -73,6 +56,7 @@ import Loader from './index/Loader.vue';
 import Modal from './index/Modal.vue';
 import Footer from './index/Footer.vue';
 import Sawer from './index/Sawer.vue';
+import Update from './index/Update.vue';
 
 export default {
     name: "App",
@@ -82,6 +66,7 @@ export default {
         Modal,
         Footer,
         Sawer,
+        Update,
     },
     data() {
         return {
@@ -93,7 +78,11 @@ export default {
             clockInterval: {},
             isBrowserExist: true,
             isDenied: false,
-            isSawer: true,
+            isSawer: false,
+            update: {
+                isUpdate: true,
+                updateMsg: "Update...", 
+            },
         }
     },
     methods: {
@@ -102,6 +91,14 @@ export default {
         },
         updateLoaderDialogue(event: Electron.IpcRenderer, ...data: any[]) {
             this.store.loadDialog = data[0][0];
+        },
+        changeToastUpdate(ev: Electron.IpcRendererEvent, data: any[]) {
+            this.update.isUpdate = data[0].isUpdate;
+            this.update.updateMsg = data[0].msg;
+            if((data[0].msg as string).includes('updated')) setTimeout(() => this.removeToastUpdate(), 3000)
+        },
+        removeToastUpdate() {
+            this.update.isUpdate = false
         }
     },
     computed: {
@@ -110,6 +107,7 @@ export default {
         // window.COMM.authSuccess(this.toggleAuth);
         // window.COMM.appWaitDataOpt(this.setDataOpt);
         window.COMM.appUpdateDialog(this.updateLoaderDialogue);
+        window.COMM.appUpdateHandler(this.changeToastUpdate);
 
         this.isBrowserExist = window.COMM.appCheckBrowser();
         // this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));

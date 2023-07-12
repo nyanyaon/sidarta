@@ -20,7 +20,7 @@ export default defineComponent({
 <template>
     <div class="modal">
         <div class="content">
-            <p>{{ title }}</p>
+            <h2>{{ title }}</h2>
             <img src="../img/barcode.png" alt="qrcode" />
             <div class="act">
                 <button @click="close">
@@ -52,26 +52,29 @@ export default defineComponent({
     font-weight: 700;
     color: #393939;
     border: 1px solid #00B2FF;
-    max-width: 232px;
-    max-height: 238px;
+    max-width: 40vw;
+    max-height: 60vh;
     align-items: center;
     border-radius: 1em;
 }
 
-p {
+h2 {
     color: #00B2FF;
     text-align: center;
-    font-size: 9px;
+    font-size: .875em;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
     font-variant: all-small-caps;
     letter-spacing: 0.81px;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 img {
-    width: 150px;
-    height: 156px;
+    width: 30vw;
+    height: auto;
 }
 
 button {
@@ -89,6 +92,6 @@ button {
 }
 
 button:hover {
-    background: #D67026;
+    background: #d62626;
 }
 </style>

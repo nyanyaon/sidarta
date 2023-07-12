@@ -1,4 +1,4 @@
-import { session, BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions, autoUpdater } from 'electron';
+import { session, BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions, autoUpdater, Notification, nativeImage } from 'electron';
 import { AuthSSO } from './AuthSSO';
 import * as fs from 'fs';
 import { BukuTanahBot } from './BukuTanahBot';
@@ -20,6 +20,7 @@ export default class App {
     private static ipc: Electron.IpcMain = ipcMain;
     static bot: Browser;
     static sso: AuthSSO;
+    static updateExecution: NodeJS.Timer;
 
     private static onWindowAllClosed() {
         if (process.platform !== 'darwin') App.application.quit();
@@ -43,37 +44,6 @@ export default class App {
                 preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
             },
         });
-
-        if (App.application.isPackaged) {
-            const server = 'https://update.electronjs.org';
-            const feed = `${server}/nyanyaon/sidarta/${process.platform}-${process.arch}/${App.application.getVersion()}`;
-
-            autoUpdater.setFeedURL({ url: feed });
-
-            autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-                const dialogOpts = {
-                    type: 'info',
-                    buttons: ['Restart'],
-                    title: 'Application Update',
-                    message: process.platform === 'win32' ? releaseNotes : releaseName,
-                    detail:
-                        'A new version has been downloaded. Restart the application to apply the updates.'
-                };
-
-                dialog.showMessageBox(dialogOpts).then((returnValue) => {
-                    if (returnValue.response === 0) autoUpdater.quitAndInstall();
-                });
-            });
-
-            autoUpdater.on('error', (message) => {
-                console.error('There was a problem updating the application');
-                console.error(message);
-            });
-
-            setInterval(() => {
-                autoUpdater.checkForUpdates();
-            }, 1000);
-        }
 
         session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
             callback({
@@ -112,6 +82,67 @@ export default class App {
         App.application.whenReady().then(() => {
             App.onReady();
         });
+
+        if (App.application.isPackaged) {
+            const server = 'https://update.electronjs.org';
+            const feed = `${server}/nyanyaon/sidarta/${process.platform}-${process.arch}/${App.application.getVersion()}`;
+
+            autoUpdater.setFeedURL({ url: feed });
+
+            autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+                const dialogOpts = {
+                    type: 'info',
+                    buttons: ['Restart'],
+                    title: 'Application Update',
+                    message: process.platform === 'win32' ? releaseNotes : releaseName,
+                    detail:
+                        'A new version has been downloaded. Restart the application to apply the updates.'
+                };
+
+                dialog.showMessageBox(dialogOpts).then((returnValue) => {
+                    if (returnValue.response === 0) autoUpdater.quitAndInstall();
+                });
+            });
+
+            autoUpdater.on('update-available', () => {
+                clearInterval(App.updateExecution);
+
+                const notif = new Notification({
+                    title: "Update Available",
+                    body: "We will donwload it for you",
+                    icon: nativeImage.createFromPath("../template/img/logo.png"),
+                });
+        
+                notif.addListener("click", async ev => {
+                    await shell.openExternal('https://nyanyaonn.my.id/');
+                });
+        
+                notif.show();
+
+                App.send('app:update', {
+                    isUpdate: true,
+                    msg: 'There\'s update!'
+                });
+            });
+
+            autoUpdater.once('update-not-available', () => {
+                App.send('app:update', {
+                    isUpdate: true,
+                    msg: 'Updated to last version'
+                });
+            });
+
+            autoUpdater.on('error', (message) => {
+                App.send('app:update', {
+                    isUpdate: true,
+                    msg: 'Update error',
+                })
+            });
+
+            App.updateExecution = setInterval(() => {
+                autoUpdater.checkForUpdates();
+            }, 60 * 1000);
+        }
 
         //COMM
         App.ipc.handle('app:checkBrowser', (event, ...args) => {
