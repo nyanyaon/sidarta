@@ -29,10 +29,11 @@
 import { createApp } from 'vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import App from './template/App.vue';
-import BukuTanah from './template/index/BukuTanah.vue';
+import UploadBukuTanah from './template/index/UploadBukuTanah.vue';
 import UploadSuratUkur from './template/index/UploadSuratUkur.vue';
 import ValidasiPersil from './template/index/ValidasiPersil.vue';
 import UpdatePersil from './template/index/UpdatePersil.vue';
+import PenangguhanPersil from './template/index/PenangguhanPersil.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faFilePdf, faPowerOff, faDownload, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -44,10 +45,11 @@ const router = createRouter({
     history: createMemoryHistory(),
     routes: [
         { path: '/', component: App },
-        { path: '/bukutanah', component: BukuTanah },
-        { path: '/suratukur', component: UploadSuratUkur },
+        { path: '/uploadbukutanah', component: UploadBukuTanah },
+        { path: '/uploadsuratukur', component: UploadSuratUkur },
         { path: '/validasipersil', component: ValidasiPersil },
         { path: '/updatepersil', component: UpdatePersil },
+        { path: '/penangguhanpersil', component: PenangguhanPersil },
     ]
 });
 
@@ -69,7 +71,7 @@ interface PreloadComm {
     databaseCheck: (col: string, nama: string) => Promise<boolean>;
     databaseGetAll: (col: string) => Promise<any[]>;
     botGetOption: () => void;
-    botStartBukuTanah: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => void;
+    botStartUploadBukuTanah: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadSuratUkur: (user: string, pass: string, files: FileInterface[], loc: string) => void;
     botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     botStartUpdatePersil: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;

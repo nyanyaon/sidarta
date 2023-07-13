@@ -80,7 +80,7 @@ export default {
             isDenied: false,
             isSawer: false,
             update: {
-                isUpdate: true,
+                isUpdate: false,
                 updateMsg: "Update...", 
             },
         }

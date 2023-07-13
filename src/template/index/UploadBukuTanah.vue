@@ -2,16 +2,14 @@
     <Loader />
     <Header />
     <div class="content">
-        <h2>TOOL UPDATE WILAYAH PERSIL</h2>
+        <h2>TOOL UPLOAD BUKU TANAH</h2>
         <div class="section">
             <div class="form-loc">
                 <div class="input-type">
-                    <input v-model="inputType" type="radio" id="persilid" value="persilid" name="persilid">
-                    <label for="persilid">List PersilId</label>
-                    <input v-model="inputType" type="radio" id="nib" value="nib" name="nib" checked>
-                    <label for="nib">List NIB</label>
-                    <input v-model="inputType" type="radio" id="hak" value="hak" name="hak">
-                    <label for="hak">List NomorHak</label>
+                    <input v-model="inputType" type="radio" id="btSimple" value="btSimple" name="btSimple" checked>
+                    <label for="btSimple">BT Simple</label>
+                    <input v-model="inputType" type="radio" id="btFull" value="btFull" name="btFull">
+                    <label for="btFull">BT Full</label>
                 </div>
                 <div class="input-group">
                     <label for="user">Username</label>
@@ -21,7 +19,7 @@
                     <label for="pass">Password</label>
                     <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
                 </div>
-                <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
+                <div class="input-group">
                     <label for="kabupaten">Kabupaten</label>
                     <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
                     :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
@@ -29,7 +27,7 @@
                         <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten" :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
                     </datalist>
                 </div>
-                <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
+                <div class="input-group">
                     <label for="kecamatan">Kecamatan</label>
                     <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
                     :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
@@ -37,7 +35,7 @@
                         <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
                     </datalist>
                 </div>
-                <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
+                <div class="input-group">
                     <label for="desa">Desa</label>
                     <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
                     <datalist id="listdesa">
@@ -45,10 +43,8 @@
                     </datalist>
                 </div>
                 <div class="input-group">
-                    <label v-if="inputType == 'nib'" for="file-loc">Daftar NIB (*.csv)</label>
-                    <label v-if="inputType == 'persilid'" for="file-loc">Daftar PersilId (*.csv)</label>
-                    <label v-if="inputType == 'hak'" for="file-loc">Daftar Hak (*.csv)</label>
-                    <button @click="selectFile">{{ fileLocBtnTxt }}</button>
+                    <label for="file-loc">Pilih Folder</label>
+                    <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
                 </div>
                 <button @click="start" class="start">Mulai</button>
             </div>
@@ -229,6 +225,8 @@ import Footer from './Footer.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
+import { FileInterface } from '../../app/Fileman';
+
 import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
@@ -255,7 +253,7 @@ export default defineComponent({
             pass: "",
             cBerhasil: 0,
             cGagal: 0,
-            inputType: "nib",
+            inputType: "btSimple",
         }
     },
     computed: {
@@ -289,8 +287,15 @@ export default defineComponent({
         updatePass(ev: Event) {
             window.localStorage.setItem("PASS", this.pass);
         },
-        selectFile() {
-            window.COMM.fileSelect();
+        selectFolder() {
+            if(this.inputType == 'btFull') {
+                window.COMM.folderSelect('BT'); 
+                return;
+            }
+            if(this.inputType == 'btSimple') {
+                window.COMM.folderSelect('BT-S'); 
+                return;
+            }
         },
         downloadReport() {
             if((this.reportJson as String[]).length < 2) {
@@ -309,7 +314,10 @@ export default defineComponent({
             URL.revokeObjectURL(link.href);
         },
         start() {
-            window.COMM.botStartUpdatePersil(this.user, this.pass, this.inputType,this.kabupatenId, this.kecamatanId, this.desaId, this.fileLocBtnTxt);
+            const text = JSON.stringify(this.files);
+            const files = JSON.parse(text) as FileInterface[];
+
+            window.COMM.botStartUploadBukuTanah(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, this.files, this.fileLocBtnTxt);
         },
         updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
             this.fileLocBtnTxt = data[0];
@@ -350,17 +358,21 @@ export default defineComponent({
             const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;
             const dataArr = Array.from(datalist);
             this.kabupatenId = dataArr.find(val => val.value === this.kabupaten).dataset.kabId;
-            window.localStorage.setItem("USER_KAB", this.kabupaten + ',' + this.kabupatenId);
         },
         updateKecId() {
             const datalist = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
             const dataArr = Array.from(datalist);
             this.kecamatanId = dataArr.find(val => val.value === this.kecamatan).dataset.kecId;
         },
+        updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
+            this.files = data[1];
+
+            this.fileLocBtnTxt = data[0];
+        },
     },
     mounted() {
-        document.title = "SIDARTA - Update Wilayah Persil"
-        window.COMM.fileSelected(this.updateFileSelect);
+        document.title = "SIDARTA - Upload Buku Tanah";
+        window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");

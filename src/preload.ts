@@ -14,7 +14,7 @@ contextBridge.exposeInMainWorld('COMM', {
     databaseCheck: (col: string, nama: string) => ipcRenderer.invoke('database:check', col, nama),
     databaseGetAll: (col: string) => ipcRenderer.invoke('database:getAll', col),
     botGetOption: () => ipcRenderer.invoke('bot:getOption'),
-    botStartBukuTanah: (kecamatan: string, kecamatanId: string, desa: string, files: FileInterface[], loc: string) => ipcRenderer.invoke('bot:startBukuTanah', kecamatan, kecamatanId, desa, files, loc),
+    botStartUploadBukuTanah: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => ipcRenderer.invoke('bot:startUploadBukuTanah', user, pass, kabupatenId, kecamatanId, desaId, files, loc),
     botStartUploadSuratUkur: (user: string, pass: string, files: FileInterface[], loc: string) => ipcRenderer.invoke('bot:startUploadSuratUkur', user, pass, files, loc),
     botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => ipcRenderer.invoke('bot:startValidasiPersil', user, pass, kabupatenId, kecamatanId, desaId, fileLoc),
     botStartUpdatePersil: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => ipcRenderer.invoke('bot:startUpdatePersil', user, pass, listtype, kabupatenId, kecamatanId, desaId, fileLoc),

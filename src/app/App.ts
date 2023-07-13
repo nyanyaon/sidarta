@@ -1,7 +1,7 @@
 import { session, BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions, autoUpdater, Notification, nativeImage } from 'electron';
 import { AuthSSO } from './AuthSSO';
 import * as fs from 'fs';
-import { BukuTanahBot } from './BukuTanahBot';
+import { UploadBukuTanahBot } from './UploadBukuTanahBot';
 import { Fileman } from './Fileman';
 import { Database } from './db/Database';
 import { UploadSuratUkurBot } from './UploadSuratUkurBot';
@@ -162,15 +162,9 @@ export default class App {
             console.log("Logout");
         });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
-        App.ipc.handle('bot:getOption', async (event, ...args) => {
-            const bot = new Bot();
-            const upopt = await bot.getOptions();
-
-            App.send('app:dataopt', upopt);
-        });
-        App.ipc.handle('bot:startBukuTanah', async (event, ...args) => {
-            const bot = new BukuTanahBot();
-            await bot.start(args[0], args[1], args[2], args[3], args[4]);
+        App.ipc.handle('bot:startUploadBukuTanah', async (event, ...args) => {
+            const bot = new UploadBukuTanahBot();
+            await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         });
         App.ipc.handle('bot:startUploadSuratUkur', async (event, ...args) => {
             const bot = new UploadSuratUkurBot();

@@ -309,13 +309,13 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA | VALIDASI PERSIL BOT"
+        document.title = "SIDARTA - Validasi Persil"
         window.COMM.fileSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
-        if(window.localStorage.getItem("USER_KAB") === null) {
+        if(window.localStorage.getItem("USER_KAB") !== null) {
             const [ kab, kabId ]  = window.localStorage.getItem("USER_KAB").split(",");
             this.kabupatenId = kabId;
             this.kabupaten = kab;

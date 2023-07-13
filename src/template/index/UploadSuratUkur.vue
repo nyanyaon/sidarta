@@ -246,12 +246,12 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA | UPLOAD SURAT UKUR"
+        document.title = "SIDARTA - Upload Surat Ukur";
         window.COMM.folderSelected(this.updateFolderSelect);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
-        if (window.localStorage.getItem("USER_KAB") === null) {
+        if (window.localStorage.getItem("USER_KAB") !== null) {
             const [kab, kabId] = window.localStorage.getItem("USER_KAB").split(",");
             this.kabupatenId = kabId;
             this.kabupaten = kab;

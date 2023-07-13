@@ -2,7 +2,7 @@
     <Loader />
     <Header />
     <div class="content">
-        <h2>TOOL UPDATE WILAYAH PERSIL</h2>
+        <h2>TOOL PENANGGUHAN PERSIL</h2>
         <div class="section">
             <div class="form-loc">
                 <div class="input-type">
@@ -232,7 +232,7 @@ import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
 import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
-    name: "ValidasiPersil",
+    name: "PenangguhanPersil",
     components: {
         Header,
         Loader,
@@ -350,7 +350,6 @@ export default defineComponent({
             const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;
             const dataArr = Array.from(datalist);
             this.kabupatenId = dataArr.find(val => val.value === this.kabupaten).dataset.kabId;
-            window.localStorage.setItem("USER_KAB", this.kabupaten + ',' + this.kabupatenId);
         },
         updateKecId() {
             const datalist = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
@@ -359,13 +358,13 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Update Wilayah Persil"
+        document.title = "SIDARTA - Penangguhan Persil"
         window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
-        if(window.localStorage.getItem("USER_KAB") !== null) {
+        if(window.localStorage.getItem("USER_KAB") === null) {
             const [ kab, kabId ]  = window.localStorage.getItem("USER_KAB").split(",");
             this.kabupatenId = kabId;
             this.kabupaten = kab;

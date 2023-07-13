@@ -10,12 +10,13 @@ export interface FileInterface {
 
 export class Fileman {
     private REGEXBT = /^(BT)(_)(\d{14})/;
+    private REGEXBTS = /^(BT)(_)(\d{6})/;
     private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})/;
 
     private files: string[];
-    private type: "SU" | "BT";
+    private type: "SU" | "BT" | "BT-S";
 
-    constructor(files: string[], type: "SU" | "BT") {
+    constructor(files: string[], type: "SU" | "BT" | "BT-S") {
         this.files = files;
         this.type = type
     }
@@ -28,6 +29,15 @@ export class Fileman {
                 return {
                     nama: data,
                     tipe: regex !== null ? regex[3].slice(8, 9) : "",
+                    nomor: regex !== null ? regex[3].slice(-5) : "",
+                    isValid: regex !== null ? true : false,
+                }
+            }
+            if (this.type === "BT-S") {
+                const regex = filename.match(this.REGEXBTS);
+                return {
+                    nama: data,
+                    tipe: regex !== null ? regex[3].slice(0, 1) : "",
                     nomor: regex !== null ? regex[3].slice(-5) : "",
                     isValid: regex !== null ? true : false,
                 }

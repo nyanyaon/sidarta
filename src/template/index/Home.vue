@@ -7,7 +7,7 @@
                 <p class="context">Validasi<br/> Persil</p>
                 <p class="total">GO</p>
             </div>
-            <div @click="goToUploadBukuTanah" class="feature-box unavailable">
+            <div @click="goToUploadBukuTanah" class="feature-box available">
                 <p class="context">Upload <br/> BT</p>
                 <p class="total">GO</p>
             </div>
@@ -27,7 +27,7 @@
                 <p class="context">Validasi<br/> SU</p>
                 <p class="total">GO</p>
             </div>
-            <div class="feature-box unavailable">
+            <div @click="goToPenangguhanPersil" class="feature-box available">
                 <p class="context">Tangguh<br/> Persil</p>
                 <p class="total">GO</p>
             </div>
@@ -128,20 +128,23 @@ export default defineComponent({
     },
     methods: {
         goToUploadBukuTanah() {
-            this.$router.replace('/bukutanah');
+            this.$router.replace('/uploadbukutanah');
         },
         goToUploadSuratUkur() {
-            this.$router.replace('/suratukur');
+            this.$router.replace('/uploadsuratukur');
         },
         goToValidasiPersil() {
             this.$router.replace('/validasipersil');
         },
         goToUpdatePersil() {
             this.$router.replace('/updatepersil');
-        }
+        },
+        goToPenangguhanPersil() {
+            this.$router.replace('/penangguhanpersil');
+        },
     },
     mounted() {
-        document.title = "SIDARTA | HOME";
+        document.title = "SIDARTA";
     },
 })
 </script>
