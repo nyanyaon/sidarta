@@ -9,9 +9,9 @@ export interface FileInterface {
 }
 
 export class Fileman {
-    private REGEXBT = /^(BT)(_)(\d{14})/;
-    private REGEXBTS = /^(BT)(_)(\d{6})/;
-    private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})/;
+    private REGEXBT = /^(BT)(_)(\d{14})(.pdf)/;
+    private REGEXBTS = /^(BT)(_)(\d{6})(.pdf)/;
+    private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})(.pdf)/;
 
     private files: string[];
     private type: "SU" | "BT" | "BT-S";
@@ -23,7 +23,7 @@ export class Fileman {
 
     extract(): FileInterface[] {
         const files: FileInterface[] = this.files.map(data => {
-            const filename = data.replace('.pdf', '');
+            const filename = data;
             if (this.type === "BT") {
                 const regex = filename.match(this.REGEXBT);
                 return {

@@ -50,12 +50,16 @@
             </div>
             <div class="doc-container">
                 <div class="berhasil">
+                    <h3>Jumlah :</h3>
+                    <p>{{ cFiles }} Berkas</p>
+                </div>
+                <div class="berhasil">
                     <h3>BERHASIL :</h3>
-                    <p>{{ cBerhasil }} Bidang</p>
+                    <p>{{ cBerhasil }} Berkas</p>
                 </div>
                 <div class="gagal">
                     <h3>GAGAL :</h3>
-                    <p>{{ cGagal }} Bidang</p>
+                    <p>{{ cGagal }} Berkas</p>
                 </div>
                 <button @click="downloadReport" class="report-btn">
                     <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;"/> 
@@ -225,7 +229,7 @@ import Footer from './Footer.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
-import { FileInterface } from '../../app/Fileman';
+import type { FileInterface } from '../../app/Fileman';
 
 import kabJson from '../json/ntb_kabk.json';
 
@@ -253,6 +257,7 @@ export default defineComponent({
             pass: "",
             cBerhasil: 0,
             cGagal: 0,
+            cFiles: 0,
             inputType: "btSimple",
         }
     },
@@ -366,6 +371,7 @@ export default defineComponent({
         },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
             this.files = data[1];
+            this.cFiles = (data[1] as FileInterface[]).filter(item => item.isValid === true).length;
 
             this.fileLocBtnTxt = data[0];
         },

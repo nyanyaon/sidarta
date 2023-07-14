@@ -78,7 +78,7 @@ export default {
             clockInterval: {},
             isBrowserExist: true,
             isDenied: false,
-            isSawer: false,
+            isSawer: true,
             update: {
                 isUpdate: false,
                 updateMsg: "Update...", 
