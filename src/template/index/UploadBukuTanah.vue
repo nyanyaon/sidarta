@@ -22,17 +22,20 @@
                 <div class="input-group">
                     <label for="kabupaten">Kabupaten</label>
                     <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
-                    :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
+                        :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
                     <datalist id="listkabupaten">
-                        <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten" :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
+                        <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
+                            :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
                     </datalist>
                 </div>
                 <div class="input-group">
                     <label for="kecamatan">Kecamatan</label>
                     <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
-                    :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
+                        :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
                     <datalist id="listkecamatan">
-                        <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
+                        <option :data-kec-id="item.wilayahid" v-for="item, index in getListKecamatan"
+                            :value="index + 1 + '.' + item.nama">
+                        </option>
                     </datalist>
                 </div>
                 <div class="input-group">
@@ -50,7 +53,7 @@
             </div>
             <div class="doc-container">
                 <div class="berhasil">
-                    <h3>Jumlah :</h3>
+                    <h3>JUMLAH :</h3>
                     <p>{{ cFiles }} Berkas</p>
                 </div>
                 <div class="berhasil">
@@ -62,7 +65,7 @@
                     <p>{{ cGagal }} Berkas</p>
                 </div>
                 <button @click="downloadReport" class="report-btn">
-                    <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;"/> 
+                    <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;" />
                     <p class="text"> REPORT HASIL</p>
                 </button>
             </div>
@@ -266,11 +269,11 @@ export default defineComponent({
             if (this.kabupaten == "") return kabJson;
 
             fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_kec.json')
-            .then(res => res.json())
-            .then(json => { this.kecJson = json });
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
             fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_desa.json')
-            .then(res => res.json())
-            .then(json => { this.desaJson = json });
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
 
             return kabJson;
         },
@@ -278,7 +281,7 @@ export default defineComponent({
             return this.kecJson;
         },
         getListDesa(): Desa[] {
-            if (this.kecamatanId === "") return this.desaJson;
+            if (this.kecamatan === "") return this.desaJson;
 
             const listdesa = (this.desaJson as Desa[]).filter(value => value.induk === this.kecamatanId);
 
@@ -293,17 +296,17 @@ export default defineComponent({
             window.localStorage.setItem("PASS", this.pass);
         },
         selectFolder() {
-            if(this.inputType == 'btFull') {
-                window.COMM.folderSelect('BT'); 
+            if (this.inputType == 'btFull') {
+                window.COMM.folderSelect('BT');
                 return;
             }
-            if(this.inputType == 'btSimple') {
-                window.COMM.folderSelect('BT-S'); 
+            if (this.inputType == 'btSimple') {
+                window.COMM.folderSelect('BT-S');
                 return;
             }
         },
         downloadReport() {
-            if((this.reportJson as String[]).length < 2) {
+            if ((this.reportJson as String[]).length < 2) {
                 alert('no data');
                 return;
             }
@@ -340,22 +343,25 @@ export default defineComponent({
             this.updateKabId();
             const kab = kabJson.find(value => value.wilayahid === this.kabupatenId);
             fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_kec.json')
-            .then(res => res.json())
-            .then(json => { this.kecJson = json });
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
             fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
-            .then(res => res.json())
-            .then(json => { this.desaJson = json });
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
             window.localStorage.setItem("USER_KAB", this.kabupaten + "," + this.kabupatenId);
         },
         updateKecamatan(event: Event) {
             if (this.kecamatan === "") return;
+
+            this.updateKecId()
         },
         updateDesa(event: Event) {
             if (this.desa === "") return;
             const desa = (this.desaJson as Desa[]).find(value => value.nama === this.desa);
+            const kecIndex = (this.kecJson as Kecamatan[]).findIndex(value => value.wilayahid === desa.induk);
             const kec = (this.kecJson as Kecamatan[]).find(value => value.wilayahid === desa.induk);
 
-            this.kecamatan = kec.nama;
+            this.kecamatan = (kecIndex + 1) + '.' + kec.nama;
             this.kecamatanId = kec.wilayahid;
             this.desaId = desa.wilayahid;
         },
@@ -383,8 +389,8 @@ export default defineComponent({
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
-        if(window.localStorage.getItem("USER_KAB") !== null) {
-            const [ kab, kabId ]  = window.localStorage.getItem("USER_KAB").split(",");
+        if (window.localStorage.getItem("USER_KAB") !== null) {
+            const [kab, kabId] = window.localStorage.getItem("USER_KAB").split(",");
             this.kabupatenId = kabId;
             this.kabupaten = kab;
         }

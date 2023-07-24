@@ -158,8 +158,8 @@ export default class App {
             }
         });
 
-        App.ipc.handle('auth:logout', async (event, ...args) => {
-            console.log("Logout");
+        App.ipc.handle('app:update', async (event, ...args) => {
+            autoUpdater.checkForUpdates();
         });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
         App.ipc.handle('bot:startUploadBukuTanah', async (event, ...args) => {

@@ -7,7 +7,7 @@ import type { FileInterface } from './app/Fileman';
 contextBridge.exposeInMainWorld('COMM', {
     appOpenExternal: (url: string) => ipcRenderer.invoke('app:openExternal', url),
     appCheckBrowser: () => ipcRenderer.invoke('app:checkBrowser'),
-    authLogout: () => ipcRenderer.invoke('auth:logout'),
+    appUpdate: () => ipcRenderer.invoke('app:update'),
     authSave: (username: string, password: string) => ipcRenderer.invoke('auth:save', username, password),
     authVerify: (otp: string, kantor: string) => ipcRenderer.invoke('auth:verify', otp, kantor),
     authStart: (headless: boolean) => ipcRenderer.invoke('auth:start', headless),

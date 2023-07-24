@@ -98,5 +98,15 @@
         "validsejak": "/Date(1495114731000)/",
         "validsampai": null,
         "statusgeometri": 1
+    },
+    {
+        "wilayahid": "61384E13FA4F4D94E040A8C0100119F1",
+        "kode": "2204",
+        "nama": "Buleleng",
+        "tipewilayahid": 2,
+        "induk": "73bb4e41d60d4445a8e0d98820a6e7ec",
+        "validsejak": "5/18/2017, 20:44",
+        "validsampai": null,
+        "statusgeometri": 1
     }
 ]

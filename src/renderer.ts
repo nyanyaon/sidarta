@@ -36,10 +36,10 @@ import UpdatePersil from './template/index/UpdatePersil.vue';
 import PenangguhanPersil from './template/index/PenangguhanPersil.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUser, faFilePdf, faPowerOff, faDownload, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faFilePdf, faDownload, faXmark, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
 
-library.add(faUser, faFilePdf, faPowerOff, faDownload, faXmark);
+library.add(faUser, faFilePdf, faDownload, faXmark, faGear);
 
 const router = createRouter({
     history: createMemoryHistory(),
@@ -61,7 +61,7 @@ app.mount('#app');
 
 interface PreloadComm {
     appCheckBrowser: () => boolean;
-    authLogout: () => void;
+    appUpdate: () => void;
     appOpenExternal: (url: string) => void;
     authSave: (username: string, password: string) => Promise<boolean>;
     authVerify: (otp: string, kantor: string) => Promise<boolean>;

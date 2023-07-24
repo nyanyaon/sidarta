@@ -12,13 +12,68 @@
                 <p><span v-html="getUsername"></span></p>
             </div>
             <div class="box">
-                <Fa icon="fa-solid fa-power-off" class="icon" @click="logout" />
+                <Fa icon="fa-solid fa-gear" class="icon" @click="openSetting" />
             </div>
+        </div>
+    </div>
+    <div v-if="showSetting" class="modal-setting">
+        <div class="content">
+            <h2>Setting</h2>
+            <button @click="doUpdate" class="setting-btn">Update</button>
+            <button @click="closeSetting" class="setting-btn">Close</button>
         </div>
     </div>
 </template>
 
 <style lang="css" scoped>
+.modal-setting {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    font-weight: 700;
+    color: #393939;
+    border: 1px solid #00B2FF;
+    align-items: center;
+    border-radius: 1em;
+}
+
+.modal-setting h2 {
+    color: #000;
+    text-align: center;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    font-variant: all-small-caps;
+    letter-spacing: 0.81px;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.setting-btn {
+    background: #00B2FF;
+    border: 1px;
+    border-radius: 0.4em;
+    font-size: 1em;
+    color: #fcfbfb;
+    padding: 0.2em 0.8em;
+    margin-bottom: 0.5em;
+}
+
 .header {
     display: flex;
     margin-top: 0.5em;
@@ -85,12 +140,7 @@
 }
 
 .user .icon:hover {
-    padding: 0.3em;
-    background: #00B2FF;
-    color: #fcfbfb;
-    border-radius: 0.2em;
-    font-size: 1.2rem;
-    text-align: center;
+    color: #00B2FF;
 }
 </style>
 
@@ -103,12 +153,13 @@ export default defineComponent({
     data() {
         return {
             store,
+            showSetting: false
         }
     },
     computed: {
         getUsername() {
             const nama = window.localStorage.getItem("USER");
-            if(nama === "none") {
+            if (nama === "none") {
                 return "Tidak Login";
             }
 
@@ -119,8 +170,15 @@ export default defineComponent({
         goToHome() {
             this.$router.push('/');
         },
-        logout() {
-            window.location.reload();
+        openSetting() {
+            this.showSetting = true;
+        },
+        closeSetting() {
+            this.showSetting = false;
+        },
+        doUpdate() {
+            console.log("update...");
+            window.COMM.appUpdate();
         }
     }
 })
