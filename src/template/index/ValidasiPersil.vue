@@ -1,6 +1,4 @@
 <template>
-    <Loader />
-    <Header />
     <div class="content">
         <h2>TOOL VALIDASI PERSIL</h2>
         <div class="section">
@@ -46,7 +44,6 @@
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <style scoped>
@@ -175,9 +172,6 @@
 </style>
 
 <script lang="ts">
-import Header from './Header.vue';
-import Loader from './Loader.vue';
-import Footer from './Footer.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
@@ -185,11 +179,6 @@ import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
     name: "ValidasiPersil",
-    components: {
-        Header,
-        Loader,
-        Footer,
-    },
     data() {
         return {
             fileLocBtnTxt: "Pilih",

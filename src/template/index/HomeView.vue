@@ -1,5 +1,4 @@
 <template>
-    <Header />
     <div class="section">
         <h2>ALAT YANG TERSEDIA</h2>
         <div class="feature-container">
@@ -118,7 +117,7 @@ import { defineComponent } from 'vue';
 import Header from './Header.vue';
 
 export default defineComponent({
-    name: "Home",
+    name: "HomeView",
     components: {
         Header,
     },

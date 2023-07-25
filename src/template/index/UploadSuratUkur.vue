@@ -1,6 +1,4 @@
 <template>
-    <Loader />
-    <Header />
     <div class="content">
         <h2>TOOL UPLOAD SURAT UKUR</h2>
         <div class="section">
@@ -22,7 +20,6 @@
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <style scoped>
@@ -176,21 +173,13 @@
 </style>
 
 <script lang="ts">
-import Header from './Header.vue';
-import Loader from './Loader.vue';
-import Footer from './Footer.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
-import type { Kabupaten, Kecamatan, Desa } from '../../app/Bot';
+import type { Kecamatan, Desa } from '../../app/Bot';
 import { FileInterface } from '../../app/Fileman';
 
 export default defineComponent({
     name: "UploadSuratUkur",
-    components: {
-        Header,
-        Loader,
-        Footer,
-    },
     data() {
         return {
             fileLocBtnTxt: "Pilih",

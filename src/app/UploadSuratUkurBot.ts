@@ -54,7 +54,7 @@ export class UploadSuratUkurBot extends Bot {
                     continue;
                 }
 
-                const desa = listdesa.find(val => val.kode == file.kodedesa);
+                const desa = listdesa.filter(val => val.validsampai === null).find(val => val.kode == file.kodedesa);
 
                 // await page.click("#divkecamatan > div > span.select2.select2-container.select2-container--default");
                 // await page.type("#frmCariSU > span > span > span.select2-search.select2-search--dropdown > input", kecamatan);

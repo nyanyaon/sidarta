@@ -1,6 +1,4 @@
 <template>
-    <Loader />
-    <Header />
     <div class="content">
         <h2>TOOL UPLOAD BUKU TANAH</h2>
         <div class="section">
@@ -25,7 +23,7 @@
                         :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
                     <datalist id="listkabupaten">
                         <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
-                            :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
+                            :value="parseWil(item.nama, item.tipewilayahid)"></option>
                     </datalist>
                 </div>
                 <div class="input-group">
@@ -42,7 +40,8 @@
                     <label for="desa">Desa</label>
                     <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
                     <datalist id="listdesa">
-                        <option :data-kec-id="item.wilayahid" v-for="item in getListDesa" :value="item.nama"></option>
+                        <option :data-kel-id="item.wilayahid" v-for="item in getListDesa"
+                            :value="parseWil(item.nama, item.tipewilayahid)"></option>
                     </datalist>
                 </div>
                 <div class="input-group">
@@ -71,7 +70,6 @@
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <style scoped>
@@ -278,17 +276,37 @@ export default defineComponent({
             return kabJson;
         },
         getListKecamatan(): Kecamatan[] {
-            return this.kecJson;
+            return (this.kecJson as Kecamatan[]).filter(value => value.validsampai === null);
         },
         getListDesa(): Desa[] {
-            if (this.kecamatan === "") return this.desaJson;
+            const listdesa = (this.desaJson as Desa[]).filter(value => value.validsampai === null)
+            if (this.kecamatan === "") return listdesa;
 
-            const listdesa = (this.desaJson as Desa[]).filter(value => value.induk === this.kecamatanId);
-
-            return listdesa;
+            return listdesa.filter(value => value.induk === this.kecamatanId);
         }
     },
     methods: {
+        parseWil(nama: string, tipe: number) {
+            let namaParsed = ''
+            switch (tipe) {
+                case 3:
+                    namaParsed = `Kota ${nama}`
+                    break;
+                case 4:
+                    namaParsed = `Kab. ${nama}`
+                    break;
+                case 6:
+                    namaParsed = `Desa ${nama}`
+                    break;
+                case 7:
+                    namaParsed = `Kel. ${nama}`
+                    break;
+                default:
+                    break;
+            }
+
+            return namaParsed
+        },
         updateUser(ev: Event) {
             window.localStorage.setItem("USER", this.user);
         },
@@ -325,7 +343,7 @@ export default defineComponent({
             const text = JSON.stringify(this.files);
             const files = JSON.parse(text) as FileInterface[];
 
-            window.COMM.botStartUploadBukuTanah(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, this.files, this.fileLocBtnTxt);
+            window.COMM.botStartUploadBukuTanah(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, files, this.fileLocBtnTxt);
         },
         updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
             this.fileLocBtnTxt = data[0];
@@ -357,13 +375,15 @@ export default defineComponent({
         },
         updateDesa(event: Event) {
             if (this.desa === "") return;
-            const desa = (this.desaJson as Desa[]).find(value => value.nama === this.desa);
-            const kecIndex = (this.kecJson as Kecamatan[]).findIndex(value => value.wilayahid === desa.induk);
-            const kec = (this.kecJson as Kecamatan[]).find(value => value.wilayahid === desa.induk);
+            const listdesa = (document.querySelector('#listdesa') as HTMLDataListElement).options;
+            const desa = Array.from(listdesa);
+            this.desaId = desa.find(val => val.value === this.desa).dataset.kelId;
+            const induk = (this.desaJson as Desa[]).find(val => val.wilayahid === this.desaId).induk;
+            const listkec = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
+            const kec = Array.from(listkec);
 
-            this.kecamatan = (kecIndex + 1) + '.' + kec.nama;
-            this.kecamatanId = kec.wilayahid;
-            this.desaId = desa.wilayahid;
+            this.kecamatanId = induk;
+            this.kecamatan = kec.find(val => val.dataset.kecId === induk).value;
         },
         updateKabId() {
             const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;

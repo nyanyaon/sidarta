@@ -3,7 +3,8 @@
     <Sawer v-if="isSawer"/>
     <Update v-if="update.isUpdate" :msg="update.updateMsg"/>
     <Loader />
-    <Home />
+    <Header />
+    <router-view />
     <Footer />
 </template>
 
@@ -51,22 +52,22 @@ body {
 
 <script lang="ts">
 import { store } from '../Store';
-import Home from './index/Home.vue';
 import Loader from './index/Loader.vue';
 import Modal from './index/Modal.vue';
 import Footer from './index/Footer.vue';
 import Sawer from './index/Sawer.vue';
 import Update from './index/Update.vue';
+import Header from './index/Header.vue';
 
 export default {
     name: "App",
     components: {
-        Home,
         Loader,
         Modal,
         Footer,
         Sawer,
         Update,
+        Header,
     },
     data() {
         return {

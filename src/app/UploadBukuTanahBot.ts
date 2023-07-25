@@ -74,6 +74,9 @@ export class UploadBukuTanahBot extends Bot {
                 // const desa = listdesa.find(val => val.kode == file.kodedesa);
 
                 await (new Promise(r => setTimeout(r, 1000)));
+                await page.select('#cari-hat_inputwilayah_SelectedKecamatan', kecamatanId);
+
+                await (new Promise(r => setTimeout(r, 1000)));
                 await page.select('#cari-hat_inputwilayah_SelectedDesa', desaId);
 
                 await (new Promise(r => setTimeout(r, 1000)));

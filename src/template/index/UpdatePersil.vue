@@ -1,6 +1,4 @@
 <template>
-    <Loader />
-    <Header />
     <div class="content">
         <h2>TOOL UPDATE WILAYAH PERSIL</h2>
         <div class="section">
@@ -68,7 +66,6 @@
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <style scoped>
@@ -233,11 +230,6 @@ import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
     name: "ValidasiPersil",
-    components: {
-        Header,
-        Loader,
-        Footer,
-    },
     data() {
         return {
             fileLocBtnTxt: "Pilih",

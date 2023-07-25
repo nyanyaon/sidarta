@@ -1,6 +1,4 @@
 <template>
-    <Loader />
-    <Header />
     <div class="content">
         <h2>TOOL PENANGGUHAN PERSIL</h2>
         <div class="section">
@@ -24,15 +22,16 @@
                 <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
                     <label for="kabupaten">Kabupaten</label>
                     <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
-                    :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
+                        :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
                     <datalist id="listkabupaten">
-                        <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten" :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
+                        <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
+                            :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
                     </datalist>
                 </div>
                 <div v-if="inputType == 'nib' || inputType == 'hak'" class="input-group">
                     <label for="kecamatan">Kecamatan</label>
                     <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
-                    :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
+                        :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
                     <datalist id="listkecamatan">
                         <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
                     </datalist>
@@ -62,13 +61,12 @@
                     <p>{{ cGagal }} Bidang</p>
                 </div>
                 <button @click="downloadReport" class="report-btn">
-                    <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;"/> 
+                    <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;" />
                     <p class="text"> REPORT HASIL</p>
                 </button>
             </div>
         </div>
     </div>
-    <Footer />
 </template>
 
 <style scoped>
@@ -223,9 +221,6 @@
 </style>
 
 <script lang="ts">
-import Header from './Header.vue';
-import Loader from './Loader.vue';
-import Footer from './Footer.vue';
 import { store } from '../../Store';
 import { defineComponent } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
@@ -233,11 +228,6 @@ import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
     name: "PenangguhanPersil",
-    components: {
-        Header,
-        Loader,
-        Footer,
-    },
     data() {
         return {
             fileLocBtnTxt: "Pilih",
@@ -263,11 +253,11 @@ export default defineComponent({
             if (this.kabupaten == "") return kabJson;
 
             fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_kec.json')
-            .then(res => res.json())
-            .then(json => { this.kecJson = json });
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
             fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_desa.json')
-            .then(res => res.json())
-            .then(json => { this.desaJson = json });
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
 
             return kabJson;
         },
@@ -293,7 +283,7 @@ export default defineComponent({
             window.COMM.fileSelect();
         },
         downloadReport() {
-            if((this.reportJson as String[]).length < 2) {
+            if ((this.reportJson as String[]).length < 2) {
                 alert('no data');
                 return;
             }
@@ -309,7 +299,7 @@ export default defineComponent({
             URL.revokeObjectURL(link.href);
         },
         start() {
-            window.COMM.botStartUpdatePersil(this.user, this.pass, this.inputType,this.kabupatenId, this.kecamatanId, this.desaId, this.fileLocBtnTxt);
+            window.COMM.botStartUpdatePersil(this.user, this.pass, this.inputType, this.kabupatenId, this.kecamatanId, this.desaId, this.fileLocBtnTxt);
         },
         updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
             this.fileLocBtnTxt = data[0];
@@ -327,11 +317,11 @@ export default defineComponent({
             this.updateKabId();
             const kab = kabJson.find(value => value.wilayahid === this.kabupatenId);
             fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_kec.json')
-            .then(res => res.json())
-            .then(json => { this.kecJson = json });
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
             fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
-            .then(res => res.json())
-            .then(json => { this.desaJson = json });
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
             window.localStorage.setItem("USER_KAB", this.kabupaten + "," + this.kabupatenId);
         },
         updateKecamatan(event: Event) {
@@ -364,8 +354,8 @@ export default defineComponent({
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
-        if(window.localStorage.getItem("USER_KAB") === null) {
-            const [ kab, kabId ]  = window.localStorage.getItem("USER_KAB").split(",");
+        if (window.localStorage.getItem("USER_KAB") === null) {
+            const [kab, kabId] = window.localStorage.getItem("USER_KAB").split(",");
             this.kabupatenId = kabId;
             this.kabupaten = kab;
         }

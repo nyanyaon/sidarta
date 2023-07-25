@@ -28,23 +28,24 @@
 
 import { createApp } from 'vue';
 import { createRouter, createMemoryHistory } from 'vue-router';
-import App from './template/App.vue';
 import UploadBukuTanah from './template/index/UploadBukuTanah.vue';
 import UploadSuratUkur from './template/index/UploadSuratUkur.vue';
 import ValidasiPersil from './template/index/ValidasiPersil.vue';
 import UpdatePersil from './template/index/UpdatePersil.vue';
-import PenangguhanPersil from './template/index/PenangguhanPersil.vue'
+import PenangguhanPersil from './template/index/PenangguhanPersil.vue';
+import App from './template/App.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faFilePdf, faDownload, faXmark, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
+import HomeView from './template/index/HomeView.vue';
 
 library.add(faUser, faFilePdf, faDownload, faXmark, faGear);
 
 const router = createRouter({
     history: createMemoryHistory(),
     routes: [
-        { path: '/', component: App },
+        { path: '/', component: HomeView },
         { path: '/uploadbukutanah', component: UploadBukuTanah },
         { path: '/uploadsuratukur', component: UploadSuratUkur },
         { path: '/validasipersil', component: ValidasiPersil },
@@ -53,7 +54,7 @@ const router = createRouter({
     ]
 });
 
-const app = createApp({});
+const app = createApp(App);
 app.component('Fa', FontAwesomeIcon);
 app.use(router);
 app.mount('#app');
