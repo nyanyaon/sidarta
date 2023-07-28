@@ -3,13 +3,26 @@
 
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SKKXFJCWR"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYPD4WZ4PJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'G-4SKKXFJCWR');
+    // gtag('config', 'G-MYPD4WZ4PJ');
+
+    gtag('config', 'G-MYPD4WZ4PJ', {
+      'send_page_view': false
+    });
+
+    gtag('get', 'G-MYPD4WZ4PJ', 'client_id', (clientId) => {
+      window.clientId = clientId;
+      console.log(clientId);
+    });
+    gtag('get', 'G-MYPD4WZ4PJ', 'session_id', (sessionId) => {
+      window.sessionId = sessionId;
+      console.log(sessionId);
+    });
   </script>
   <meta charset="UTF-8" />
   <title>SIDARTA</title>
@@ -17,7 +30,6 @@
 
 <body>
   <div id="app">
-    <router-view></router-view>
   </div>
 </body>
 

@@ -3,31 +3,31 @@
         <h2>ALAT YANG TERSEDIA</h2>
         <div class="feature-container">
             <div @click="goToValidasiPersil" class="feature-box available">
-                <p class="context">Validasi<br/> Persil</p>
+                <p class="context">Validasi<br /> Persil</p>
                 <p class="total">GO</p>
             </div>
             <div @click="goToUploadBukuTanah" class="feature-box available">
-                <p class="context">Upload <br/> BT</p>
+                <p class="context">Upload <br /> BT</p>
                 <p class="total">GO</p>
             </div>
             <div @click="goToUploadSuratUkur" class="feature-box available">
-                <p class="context">Upload<br/> SU</p>
+                <p class="context">Upload<br /> SU</p>
                 <p class="total">GO</p>
             </div>
             <div @click="goToUpdatePersil" class="feature-box available">
-                <p class="context">Update<br/> Persil</p>
+                <p class="context">Update<br /> Persil</p>
                 <p class="total">GO</p>
             </div>
             <div class="feature-box unavailable">
-                <p class="context">Validasi<br/> BT</p>
+                <p class="context">Validasi<br /> BT</p>
                 <p class="total">GO</p>
             </div>
             <div class="feature-box unavailable">
-                <p class="context">Validasi<br/> SU</p>
+                <p class="context">Validasi<br /> SU</p>
                 <p class="total">GO</p>
             </div>
             <div @click="goToPenangguhanPersil" class="feature-box available">
-                <p class="context">Tangguh<br/> Persil</p>
+                <p class="context">Tangguh<br /> Persil</p>
                 <p class="total">GO</p>
             </div>
         </div>
@@ -36,11 +36,11 @@
 
 <style lang="css" scoped>
 .bg-green {
-    background: #1FC374!important;
+    background: #1FC374 !important;
 }
 
 .bg-orange {
-    background: #FF9D56!important;
+    background: #FF9D56 !important;
 }
 
 .feature-container {
@@ -113,18 +113,12 @@
 </style>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import Header from './Header.vue';
+import { defineComponent, inject } from 'vue';
+import { useAppStore } from '../store/app';
+import { mapWritableState } from 'pinia';
 
 export default defineComponent({
     name: "HomeView",
-    components: {
-        Header,
-    },
-    data() {
-        return {
-        }
-    },
     methods: {
         goToUploadBukuTanah() {
             this.$router.replace('/uploadbukutanah');
@@ -142,8 +136,17 @@ export default defineComponent({
             this.$router.replace('/penangguhanpersil');
         },
     },
+    computed: {
+        ...mapWritableState(useAppStore, ['showSawer'])
+    },
     mounted() {
         document.title = "SIDARTA";
+
+        this.showSawer = true;
+        console.log(window.clientId);
+
+        const pageView = inject('page_view') as Function;
+        pageView();
     },
 })
 </script>

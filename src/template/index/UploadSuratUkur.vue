@@ -173,8 +173,7 @@
 </style>
 
 <script lang="ts">
-import { store } from '../../Store';
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import type { Kecamatan, Desa } from '../../app/Bot';
 import { FileInterface } from '../../app/Fileman';
 
@@ -183,7 +182,6 @@ export default defineComponent({
     data() {
         return {
             fileLocBtnTxt: "Pilih",
-            store,
             files: [] as FileInterface[],
             kecJson: [] as Kecamatan[],
             desaJson: [] as Desa[],
@@ -236,6 +234,8 @@ export default defineComponent({
     },
     mounted() {
         document.title = "SIDARTA - Upload Surat Ukur";
+        const pageView = inject('page_view') as Function;
+        pageView();
         window.COMM.folderSelected(this.updateFolderSelect);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
@@ -247,4 +247,4 @@ export default defineComponent({
         }
     }
 });
-</script>
+</script>../../app

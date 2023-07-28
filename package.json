@@ -1,7 +1,7 @@
 {
   "name": "sidarta",
   "productName": "sidarta",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "RPA for Optimization Land Registration Document",
   "main": "./.webpack/main",
   "scripts": {
@@ -95,7 +95,7 @@
     "@typescript-eslint/parser": "^5.40.1",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
     "css-loader": "^6.7.1",
-    "electron": "21.1.1",
+    "electron": "^25.3.1",
     "eslint": "^8.25.0",
     "eslint-plugin-import": "^2.26.0",
     "file-loader": "^6.2.0",
@@ -103,7 +103,7 @@
     "node-loader": "^2.0.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.1",
-    "typescript": "~4.5.4",
+    "typescript": "^4.5.4",
     "vue-loader": "^17.0.0",
     "vue-template-compiler": "^2.7.13"
   },
@@ -113,12 +113,13 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/vue-fontawesome": "^3.0.1",
+    "@types/gtag.js": "^0.0.12",
     "@types/node": "^18.11.1",
     "electron-squirrel-startup": "^1.0.0",
     "mongodb": "^4.11.0",
     "node-fetch": "^3.3.1",
-    "puppeteer": "^19.1.2",
-    "puppeteer-core": "^19.2.2",
+    "pinia": "^2.1.4",
+    "puppeteer-core": "^20.9.0",
     "universal-analytics": "^0.5.3",
     "vue": "^3.2.41",
     "vue-router": "^4.1.6"

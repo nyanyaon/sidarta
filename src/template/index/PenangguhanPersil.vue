@@ -221,8 +221,7 @@
 </style>
 
 <script lang="ts">
-import { store } from '../../Store';
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
 import kabJson from '../json/ntb_kabk.json';
 
@@ -231,7 +230,6 @@ export default defineComponent({
     data() {
         return {
             fileLocBtnTxt: "Pilih",
-            store,
             kecJson: [] as Kecamatan[],
             desaJson: [] as Desa[],
             reportJson: [],
@@ -348,7 +346,9 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Penangguhan Persil"
+        document.title = "SIDARTA - Penangguhan Persil";
+        const pageView = inject('page_view') as Function;
+        pageView();
         window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
@@ -361,4 +361,4 @@ export default defineComponent({
         }
     }
 });
-</script>
+</script>../../app

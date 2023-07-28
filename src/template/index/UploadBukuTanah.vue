@@ -224,11 +224,7 @@
 </style>
 
 <script lang="ts">
-import Header from './Header.vue';
-import Loader from './Loader.vue';
-import Footer from './Footer.vue';
-import { store } from '../../Store';
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
 import type { FileInterface } from '../../app/Fileman';
 
@@ -236,15 +232,9 @@ import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
     name: "ValidasiPersil",
-    components: {
-        Header,
-        Loader,
-        Footer,
-    },
     data() {
         return {
             fileLocBtnTxt: "Pilih",
-            store,
             kecJson: [] as Kecamatan[],
             desaJson: [] as Desa[],
             reportJson: [],
@@ -404,6 +394,8 @@ export default defineComponent({
     },
     mounted() {
         document.title = "SIDARTA - Upload Buku Tanah";
+        const pageView = inject('page_view') as Function;
+        pageView();
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
@@ -416,4 +408,4 @@ export default defineComponent({
         }
     }
 });
-</script>
+</script>../../app

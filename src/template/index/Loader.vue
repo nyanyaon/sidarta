@@ -1,10 +1,10 @@
 <template>
-  <div v-if="store.isLoading" class="modal">
+  <div v-if="false" class="modal">
     <div class="lds-ripple">
       <div></div>
       <div></div>
     </div>
-    <p class="dialogue">{{ store.loadDialog }}</p>
+    <p class="dialogue"></p>
   </div>
 </template>
 
@@ -77,14 +77,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { store } from '../../Store';
 
 export default defineComponent({
     name: "Loader",
-    data() {
-        return {
-          store,
-        }
-    },
 })
-</script>
+</script>../../app

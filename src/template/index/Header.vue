@@ -19,6 +19,7 @@
     <div v-if="showSetting" class="modal-setting">
         <div class="content">
             <h2>Setting</h2>
+            <button @click="doLogin" class="setting-btn">Login</button>
             <button @click="doUpdate" class="setting-btn">Update</button>
             <button @click="closeSetting" class="setting-btn">Close</button>
         </div>
@@ -46,8 +47,10 @@
     font-weight: 700;
     color: #393939;
     border: 1px solid #00B2FF;
-    align-items: center;
     border-radius: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
 }
 
 .modal-setting h2 {
@@ -72,6 +75,10 @@
     color: #fcfbfb;
     padding: 0.2em 0.8em;
     margin-bottom: 0.5em;
+}
+
+.setting-btn:hover {
+    cursor: pointer;
 }
 
 .header {
@@ -145,15 +152,15 @@
 </style>
 
 <script lang="ts">
-import { store } from '../../Store';
 import { defineComponent } from 'vue';
+import { useAppStore } from '../store/app';
+import { mapWritableState } from 'pinia';
 
 export default defineComponent({
     name: "Header",
     data() {
         return {
-            store,
-            showSetting: false
+            showSetting: false,
         }
     },
     computed: {
@@ -164,7 +171,8 @@ export default defineComponent({
             }
 
             return nama;
-        }
+        },
+        ...mapWritableState(useAppStore, ['showLogin']),
     },
     methods: {
         goToHome() {
@@ -179,7 +187,12 @@ export default defineComponent({
         doUpdate() {
             console.log("update...");
             window.COMM.appUpdate();
+        },
+        doLogin() {
+            this.showLogin = true;
+            this.showSetting = false;
         }
     }
 })
 </script>
+../../app

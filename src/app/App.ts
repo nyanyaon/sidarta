@@ -1,12 +1,12 @@
 import { session, BrowserWindow, ipcMain, dialog, Menu, shell, MenuItemConstructorOptions, autoUpdater, Notification, nativeImage } from 'electron';
+import type { MessageBoxOptions } from 'electron';
 import { AuthSSO } from './AuthSSO';
 import * as fs from 'fs';
 import { UploadBukuTanahBot } from './UploadBukuTanahBot';
 import { Fileman } from './Fileman';
 import { Database } from './db/Database';
 import { UploadSuratUkurBot } from './UploadSuratUkurBot';
-import { Browser } from 'puppeteer';
-import { Bot } from './Bot';
+import type { Browser } from 'puppeteer-core';
 import { ValidasiPersilBot } from './ValidasiPersilBot';
 import { UpdatePersilBot } from './UpdatePersilBot';
 
@@ -41,6 +41,9 @@ export default class App {
             width: 800,
             icon: '../logo.ico',
             webPreferences: {
+                nodeIntegration: false,
+                nodeIntegrationInWorker: true,
+                contextIsolation: true,
                 preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
             },
         });
@@ -49,7 +52,12 @@ export default class App {
             callback({
                 responseHeaders: {
                     ...details.responseHeaders,
-                    'Content-Security-Policy': ['script-src \'self\' https://www.googletagmanager.com \'unsafe-inline\' \'unsafe-eval\'']
+                    'Content-Security-Policy': ['script-src \'self\' https: https://www.googletagmanager.com https://accounts.google.com/  \'unsafe-inline\' \'unsafe-eval\''],
+                    // 'Content-Security-Policy-Report-Only': ['script-src https://accounts.google.com/gsi/client; frame-src https://accounts.google.com/gsi/; connect-src https://accounts.google.com/gsi/;'],
+                    // 'Cross-Origin-Opener-Policy': ['same-origin-allow-popups'],
+                    // 'Cross-Origin-Embedder-Policy': ['require-corp'],
+                    // 'Cross-Origin-Resource-Policy': ['cross-origin'],
+                    // 'Referrer-Policy': ['no-referrer-when-downgrade'],
                 }
             })
         });
@@ -62,7 +70,7 @@ export default class App {
                 label: 'Sistem',
                 submenu: [
                     { role: 'quit', label: 'Keluar' },
-                    { role: 'toggleDevTools' },
+                    { role: 'toggleDevTools', label: 'Dev' },
                 ]
             },
         ];
@@ -77,6 +85,7 @@ export default class App {
 
     static start(app: Electron.App, browserWindow: typeof BrowserWindow) {
         App.BrowserWindow = browserWindow;
+        app.disableHardwareAcceleration();
         App.application = app;
         App.application.on('window-all-closed', App.onWindowAllClosed);
         App.application.whenReady().then(() => {
@@ -97,7 +106,7 @@ export default class App {
                     message: process.platform === 'win32' ? releaseNotes : releaseName,
                     detail:
                         'A new version has been downloaded. Restart the application to apply the updates.'
-                };
+                } as MessageBoxOptions;
 
                 dialog.showMessageBox(dialogOpts).then((returnValue) => {
                     if (returnValue.response === 0) autoUpdater.quitAndInstall();
@@ -112,11 +121,11 @@ export default class App {
                     body: "We will donwload it for you",
                     icon: nativeImage.createFromPath("../template/img/logo.png"),
                 });
-        
+
                 notif.addListener("click", async ev => {
                     await shell.openExternal('https://nyanyaonn.my.id/');
                 });
-        
+
                 notif.show();
 
                 App.send('app:update', {
@@ -184,9 +193,9 @@ export default class App {
             const desaId = args[5];
             const fileLoc = args[6];
 
-            if(listtype == 'persilid') {
+            if (listtype == 'persilid') {
                 bot.startPersilId(user, pass, fileLoc);
-                return; 
+                return;
             }
         });
         App.ipc.handle('folder:select', (event, ...args) => {

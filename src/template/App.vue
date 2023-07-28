@@ -1,8 +1,11 @@
 <template>
-    <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu" :handler="unduh" />
-    <Sawer v-if="isSawer"/>
-    <Update v-if="update.isUpdate" :msg="update.updateMsg"/>
+    <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu"
+        :handler="unduh" />
+    <Sawer v-if="showSawer" />
+    <Update v-if="update.isUpdate" :msg="update.updateMsg" />
     <Loader />
+    <DisclaimerModal v-if="showDisclaimer"/>
+    <LoginModal v-if="showLogin" />
     <Header />
     <router-view />
     <Footer />
@@ -51,13 +54,17 @@ body {
 </style>
 
 <script lang="ts">
-import { store } from '../Store';
 import Loader from './index/Loader.vue';
 import Modal from './index/Modal.vue';
 import Footer from './index/Footer.vue';
 import Sawer from './index/Sawer.vue';
 import Update from './index/Update.vue';
 import Header from './index/Header.vue';
+import LoginModal from './index/LoginModal.vue';
+import DisclaimerModal from './index/DisclaimerModal.vue';
+import { useAppStore } from './store/app';
+import { mapWritableState } from 'pinia'
+import { provide } from 'vue';
 
 export default {
     name: "App",
@@ -68,21 +75,40 @@ export default {
         Sawer,
         Update,
         Header,
+        LoginModal,
+        DisclaimerModal,
+    },
+    setup() {
+        provide('page_view', () => {
+            console.log("page_view from " + document.title)
+            console.log("clientid from " + window.clientId)
+            fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-MYPD4WZ4PJ&api_secret=ZFBVYNP8TEWtQKJKL7v7hg", {
+                method: "POST",
+                body: JSON.stringify({
+                    "client_id": "sidarta."+window.clientId,
+                    "events": [
+                        {
+                            "name": "page_view",
+                            "params": {
+                                "page_title": document.title,
+                                "page_location": document.location.pathname,
+                                "session_id": "das_"+window.sessionId,
+                            }
+                        }
+                    ]
+                })
+            }).then(val => {
+                console.log("okay");
+            });
+        })
     },
     data() {
         return {
-            store,
-            timeMs: 0,
-            timeSe: 0,
-            timeMi: 0,
-            timeHo: 0,
-            clockInterval: {},
             isBrowserExist: true,
             isDenied: false,
-            isSawer: true,
             update: {
                 isUpdate: false,
-                updateMsg: "Update...", 
+                updateMsg: "Update...",
             },
         }
     },
@@ -96,17 +122,27 @@ export default {
         changeToastUpdate(ev: Electron.IpcRendererEvent, data: any[]) {
             this.update.isUpdate = data[0].isUpdate;
             this.update.updateMsg = data[0].msg;
-            if((data[0].msg as string).includes('updated')) setTimeout(() => this.removeToastUpdate(), 3000)
+            if ((data[0].msg as string).includes('updated')) setTimeout(() => this.removeToastUpdate(), 3000)
         },
         removeToastUpdate() {
-            this.update.isUpdate = false
+            this.update.isUpdate = false;
         }
     },
     computed: {
+        ...mapWritableState(useAppStore, ['showLogin', 'showSawer', 'showDisclaimer']),
     },
-    mounted() {
+    mounted: function () {
+        // const hasVisit = localStorage.getItem('USER_AGREE');
+        // if(hasVisit === null) {
+        //     this.showDisclaimer = true;
+        // }
         // window.COMM.authSuccess(this.toggleAuth);
         // window.COMM.appWaitDataOpt(this.setDataOpt);
+        const user = window.localStorage.getItem('USER');
+        const pass = window.localStorage.getItem('PASS');
+        if (user !== '' && pass !== '') {
+            this.showLogin = false;
+        }
         window.COMM.appUpdateDialog(this.updateLoaderDialogue);
         window.COMM.appUpdateHandler(this.changeToastUpdate);
 

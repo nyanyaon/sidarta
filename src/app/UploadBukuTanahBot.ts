@@ -8,17 +8,17 @@ export class UploadBukuTanahBot extends Bot {
 
     async start(user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) {
         try {
-            let file = '';
+            let fileSaved = '';
             if(fs.existsSync('temp.csv')) {
-                file = fs.readFileSync('temp.csv', {encoding: "utf-8"});
+                fileSaved = fs.readFileSync('temp.csv', {encoding: "utf-8"});
             }
             const wStream = fs.createWriteStream('temp.csv', {encoding: "utf-8"});
             wStream.write(`nama,isupload`);
-            wStream.write(file);
+            wStream.write(fileSaved);
 
             const data = [];
 
-            for(const row of file.split('\r\n')) {
+            for(const row of fileSaved.split('\r\n')) {
                 const [nama, success] = row.split(',');
                 data.push({
                     nama,
@@ -64,9 +64,10 @@ export class UploadBukuTanahBot extends Bot {
             // const listdesa = JSON.parse(textWilayah) as Desa[];
 
             for (const file of files) {
-                if (data.find(val => val.nama = file.nama).success === '1') {
-                    continue;
-                }
+                console.log('Nomor : ' + file.nomor);
+                // if (data.find(val => val.nama == file.nama).success === '1') {
+                //     continue;
+                // }
 
                 if (!file.isValid) {
                     continue;
@@ -106,9 +107,13 @@ export class UploadBukuTanahBot extends Bot {
                     upload = await page.$("#hatsideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]");
                 }
                 console.log("Upload File");
-                await (new Promise(r => setTimeout(r, 2000)));
-                await upload.uploadFile(`${loc}/${file.nama}`);
-                await page.waitForSelector("#previewerCt.pdfobject-container", { timeout: 0 });
+                // await (new Promise(r => setTimeout(r, 2000)));
+                await upload.uploadFile(`${loc}\\${file.nama}`);
+                let preview = await page.$("#previewerCt.pdfobject-container");
+                while(preview == null) {
+                    await upload.uploadFile(`${loc}\\${file.nama}`);
+                    preview = await page.$("#previewerCt.pdfobject-container");
+                }
                 await page.$eval("#btnUpldArsipBTHAT", (el: HTMLButtonElement) => el.click());
                 await page.waitForSelector("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", { timeout: 0 });
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());

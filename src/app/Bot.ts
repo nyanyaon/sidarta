@@ -14,7 +14,7 @@ export interface Desa {
     tipewilayahid: number;
     induk: string;
     validsejak: string;
-    validsampai?: any;
+    validsampai?: string;
     statusgeometri: number;
 }
 
@@ -45,9 +45,9 @@ export interface BotInterface {
 
 export class Bot {
     browser: puppeteer.Browser;
+    EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 
     async init(headless = true): Promise<puppeteer.Browser> {
-        const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 
         return await puppeteer.launch({
             defaultViewport: null,
@@ -57,7 +57,7 @@ export class Bot {
                 "--no-sandbox",
             ],
             headless,
-            executablePath: EDGE_PATH,
+            executablePath: this.EDGE_PATH,
         });
     }
 

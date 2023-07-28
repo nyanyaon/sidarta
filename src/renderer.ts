@@ -27,6 +27,7 @@
  */
 
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import UploadBukuTanah from './template/index/UploadBukuTanah.vue';
 import UploadSuratUkur from './template/index/UploadSuratUkur.vue';
@@ -55,7 +56,9 @@ const router = createRouter({
 });
 
 const app = createApp(App);
+const pinia = createPinia();
 app.component('Fa', FontAwesomeIcon);
+app.use(pinia)
 app.use(router);
 app.mount('#app');
 
@@ -91,6 +94,9 @@ interface PreloadComm {
 declare global {
     interface Window {
         COMM: PreloadComm;
+        dataLayer: Array<any>;
+        clientId: string;
+        sessionId: string;
     }
 
     interface HTMLElement {
@@ -106,4 +112,3 @@ declare global {
         value: string;
     }
 }
-

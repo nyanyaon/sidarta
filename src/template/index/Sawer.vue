@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapWritableState } from 'pinia';
+import { useAppStore } from '../store/app';
 
 export default defineComponent({
     name: "Sawer",
@@ -8,10 +10,12 @@ export default defineComponent({
             title: "Donasi Seikhlasnya akan sangat membantu kami!!",
         }
     },
+    computed: {
+        ...mapWritableState(useAppStore, ['showSawer'])
+    },
     methods: {
         close() {
-            const modal = document.querySelector(".modal");
-            modal.remove();
+            this.showSawer = false
         }
     },
 })
