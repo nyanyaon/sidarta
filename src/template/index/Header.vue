@@ -9,7 +9,7 @@
 
         <div class="user">
             <div class="info">
-                <p><span v-html="getUsername"></span></p>
+                <p>{{ getUsername }}</p>
             </div>
             <div class="box">
                 <Fa icon="fa-solid fa-gear" class="icon" @click="openSetting" />

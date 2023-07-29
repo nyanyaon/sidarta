@@ -141,10 +141,7 @@ export default defineComponent({
     },
     mounted() {
         document.title = "SIDARTA";
-
         this.showSawer = true;
-        console.log(window.clientId);
-
         const pageView = inject('page_view') as Function;
         pageView();
     },

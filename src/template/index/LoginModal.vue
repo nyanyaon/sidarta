@@ -13,7 +13,7 @@
                 </div>
                 <div class="input-group">
                     <button @click="save" class="primary">Save</button>
-                    <button v-if="isAgree !== null" @click="close" class="secondary">Close</button>
+                    <button v-if="isAgree" @click="close" class="secondary">Close</button>
                 </div>
             </div>
         </div>
@@ -105,16 +105,19 @@
 import { ref, onMounted } from 'vue'
 import { useAppStore } from '../store/app'
 
+
 const appStore = useAppStore()
 const username = ref('')
 const password = ref('')
-const isAgree = localStorage.getItem('USER_AGREE')
+const isAgree = JSON.parse(localStorage.getItem('FIRST_OPEN'))
 
 function save() {
+    const userid = btoa(username.value)
     window.localStorage.setItem('USER', username.value)
     window.localStorage.setItem('PASS', password.value)
+    window.localStorage.setItem('USERID', userid)
+    window.localStorage.setItem('FIRST_OPEN', JSON.stringify(true))
     appStore.showLogin = false
-    appStore.showDisclaimer = true
 }
 
 function close() {

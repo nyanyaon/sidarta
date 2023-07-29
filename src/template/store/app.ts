@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
 
 export const useAppStore = defineStore('app', {
-    state: () => ({ showLogin: true, showSawer: true, showDisclaimer: false }),
+    state: () => ({ showLogin: false, showSawer: true, showDisclaimer: false }),
 })

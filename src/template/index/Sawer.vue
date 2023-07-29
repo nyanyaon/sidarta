@@ -63,7 +63,7 @@ export default defineComponent({
 }
 
 h2 {
-    color: #00B2FF;
+    color: #000000;
     text-align: center;
     font-size: .875em;
     font-style: normal;

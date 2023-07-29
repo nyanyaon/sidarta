@@ -102,9 +102,34 @@ import { useAppStore } from '../store/app'
 const appStore = useAppStore()
 
 function doAgree() {
-    console.log("Agree")
+    fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-MYPD4WZ4PJ&api_secret=ZFBVYNP8TEWtQKJKL7v7hg", {
+        method: "POST",
+        body: JSON.stringify({
+            "client_id": "sidarta." + localStorage.getItem('CLIENTID'),
+            "user_id": localStorage.getItem('USERID'),
+            "user_properties": {
+                "Country": localStorage.getItem('COUNTRY'),
+                "City": localStorage.getItem('CITY')
+            },
+            "events": [
+                {
+                    "name": "disclaimer_agree",
+                    "params": {
+                        "page_title": document.title,
+                        "session_id": "das_" + localStorage.getItem('SESSIONID'),
+                        "engagement_time_msec": "100",
+                        "user_country": localStorage.getItem('COUNTRY'),
+                        "sha_user_id": localStorage.getItem('USERID')
+                    }
+                }
+            ]
+        })
+    }).then(val => {
+        console.log("Session Start");
+    });
+    localStorage.setItem('FIRST_OPEN', JSON.stringify(false))
     appStore.showDisclaimer = false
-    window.localStorage.setItem('USER_AGREE', JSON.stringify(true))
+    appStore.showLogin = true
 }
 
 </script>

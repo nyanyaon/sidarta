@@ -4,7 +4,7 @@
     <Sawer v-if="showSawer" />
     <Update v-if="update.isUpdate" :msg="update.updateMsg" />
     <Loader />
-    <DisclaimerModal v-if="showDisclaimer"/>
+    <DisclaimerModal v-if="showDisclaimer" />
     <LoginModal v-if="showLogin" />
     <Header />
     <router-view />
@@ -80,19 +80,23 @@ export default {
     },
     setup() {
         provide('page_view', () => {
-            console.log("page_view from " + document.title)
-            console.log("clientid from " + window.clientId)
             fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-MYPD4WZ4PJ&api_secret=ZFBVYNP8TEWtQKJKL7v7hg", {
                 method: "POST",
                 body: JSON.stringify({
-                    "client_id": "sidarta."+window.clientId,
+                    "client_id": "sidarta." + localStorage.getItem('CLIENTID'),
+                    "user_id": localStorage.getItem('USERID'),
+                    "user_properties": {
+                        "Country": localStorage.getItem('COUNTRY'),
+                        "City": localStorage.getItem('CITY')
+                    },
                     "events": [
                         {
                             "name": "page_view",
                             "params": {
                                 "page_title": document.title,
                                 "page_location": document.location.pathname,
-                                "session_id": "das_"+window.sessionId,
+                                "session_id": "das_" + localStorage.getItem('SESSIONID'),
+                                "engagement_time_msec": "100"
                             }
                         }
                     ]
@@ -138,15 +142,79 @@ export default {
         // }
         // window.COMM.authSuccess(this.toggleAuth);
         // window.COMM.appWaitDataOpt(this.setDataOpt);
-        const user = window.localStorage.getItem('USER');
-        const pass = window.localStorage.getItem('PASS');
-        if (user !== '' && pass !== '') {
-            this.showLogin = false;
+        const FIRST_OPEN = localStorage.getItem('FIRST_OPEN');
+        if (FIRST_OPEN === null) {
+            this.showDisclaimer = true;
         }
         window.COMM.appUpdateDialog(this.updateLoaderDialogue);
         window.COMM.appUpdateHandler(this.changeToastUpdate);
 
+        const clientId = localStorage.getItem('CLIENTID');
+        const sessionId = localStorage.getItem('SESSIONID');
+
+        if (crypto && clientId === null && sessionId === null) {
+            console.log('Crypto available');
+            const array = new Uint32Array(3);
+            crypto.getRandomValues(array);
+
+            const clientId = `${array[0]}.${array[1]}`;
+            const sessionId = `${array[2]}`;
+
+            localStorage.setItem('CLIENTID', clientId);
+            localStorage.setItem('SESSIONID', sessionId);
+        }
+
+        if ("geolocation" in navigator) {
+            console.log('Location services available');
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log(position)
+                const location = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+                console.log(location);
+                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=AIzaSyAuwWs0PK3xt9qr6KXuyjMuVZeo959dONE&result_type=administrative_area_level_1`).then((res) => res.json()).then(json => {
+                    const city = json.results[0].address_components[0].long_name;
+                    const country = json.results[0].address_components[1].long_name;
+
+                    localStorage.setItem('COUNTRY', country);
+                    localStorage.setItem('CITY', city);
+
+                    console.log(`City ${city}, country ${country}`);
+                });
+            }, function (err) {
+                console.log(err);
+            }, {
+                enableHighAccuracy: true
+            });
+        }
+
         this.isBrowserExist = window.COMM.appCheckBrowser();
+
+        fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-MYPD4WZ4PJ&api_secret=ZFBVYNP8TEWtQKJKL7v7hg", {
+            method: "POST",
+            body: JSON.stringify({
+                "client_id": "sidarta." + localStorage.getItem('CLIENTID'),
+                "user_id": localStorage.getItem('USERID'),
+                "user_properties": {
+                    "Country": localStorage.getItem('COUNTRY'),
+                    "City": localStorage.getItem('CITY')
+                },
+                "events": [
+                    {
+                        "name": "open_app",
+                        "params": {
+                            "page_title": document.title,
+                            "session_id": "das_" + localStorage.getItem('SESSIONID'),
+                            "engagement_time_msec": "100",
+                            "user_country": localStorage.getItem('COUNTRY')
+                        }
+                    }
+                ]
+            })
+        }).then(val => {
+            console.log("Session Start");
+        });
         // this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
         // if (!this.store.isLogin) window.COMM.authStart(true);
