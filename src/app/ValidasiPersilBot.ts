@@ -159,14 +159,6 @@ export class ValidasiPersilBot extends Bot {
 
             // await page.click("#btnCariNIB");
 
-            // await page.waitForNetworkIdle();
-
-            // await page.click("#tblBidangNIB > tbody > tr > td.goto-column");
-
-            // await page.waitForNetworkIdle();
-
-            // await page.mouse.click(390, 250);
-
 
         } catch (err) {
             console.log(err);

@@ -215,6 +215,7 @@ export default defineComponent({
             window.COMM.folderSelect('SU');
         },
         start() {
+            window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
             const text = JSON.stringify(this.files);
             const files = JSON.parse(text) as FileInterface[];
 

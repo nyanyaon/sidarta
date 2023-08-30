@@ -15,6 +15,7 @@ export default defineComponent({
     },
     methods: {
         close() {
+            window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
             this.showSawer = false
         }
     },

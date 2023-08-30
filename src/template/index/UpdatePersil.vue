@@ -297,6 +297,7 @@ export default defineComponent({
             URL.revokeObjectURL(link.href);
         },
         start() {
+            window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
             window.COMM.botStartUpdatePersil(this.user, this.pass, this.inputType, this.kabupatenId, this.kecamatanId, this.desaId, this.fileLocBtnTxt);
         },
         updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
