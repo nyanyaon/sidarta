@@ -1,13 +1,13 @@
 <template>
     <div class="content">
-        <h2>TOOL UPLOAD BUKU TANAH</h2>
+        <h2>TOOL UPLOAD SURAT UKUR KJSB</h2>
         <div class="section">
             <div class="form-loc">
                 <div class="input-type">
-                    <input v-model="inputType" type="radio" id="btSimple" value="btSimple" name="btSimple" checked>
-                    <label for="btSimple">BT Simple</label>
-                    <input v-model="inputType" type="radio" id="btFull" value="btFull" name="btFull">
-                    <label for="btFull">BT Full</label>
+                    <input v-model="inputType" type="radio" id="btSimple" value="btSimple" name="suSimple" checked>
+                    <label for="btSimple">SU Simple</label>
+                    <input v-model="inputType" type="radio" id="btFull" value="btFull" name="suFull">
+                    <label for="btFull">SU Full</label>
                 </div>
                 <div class="input-group">
                     <label for="user">Username</label>
@@ -231,7 +231,7 @@ import type { FileInterface } from '../../app/Fileman';
 import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
-    name: "UploadBukuTanah",
+    name: "UploadSuratUkurKJSB",
     data() {
         return {
             fileLocBtnTxt: "Pilih",
@@ -249,7 +249,7 @@ export default defineComponent({
             cBerhasil: 0,
             cGagal: 0,
             cFiles: 0,
-            inputType: "btSimple",
+            inputType: "suSimple",
         }
     },
     computed: {
@@ -304,12 +304,12 @@ export default defineComponent({
             window.localStorage.setItem("PASS", this.pass);
         },
         selectFolder() {
-            if (this.inputType == 'btFull') {
-                window.COMM.folderSelect('BT');
+            if (this.inputType == 'suFull') {
+                window.COMM.folderSelect('SU');
                 return;
             }
-            if (this.inputType == 'btSimple') {
-                window.COMM.folderSelect('BT-S');
+            if (this.inputType == 'suSimple') {
+                window.COMM.folderSelect('SU-S');
                 return;
             }
         },
@@ -330,11 +330,11 @@ export default defineComponent({
             URL.revokeObjectURL(link.href);
         },
         start() {
-            window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
+            // window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
             const text = JSON.stringify(this.files);
             const files = JSON.parse(text) as FileInterface[];
 
-            window.COMM.botStartUploadBukuTanah(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, files, this.fileLocBtnTxt);
+            window.COMM.botStartUploadSuratUkurKJSB(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, files, this.fileLocBtnTxt);
         },
         updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
             this.fileLocBtnTxt = data[0];
@@ -394,9 +394,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Buku Tanah";
-        const pageView = inject('page_view') as Function;
-        pageView();
+        document.title = "SIDARTA - Upload Surat Ukur KJSB";;
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
@@ -409,4 +407,4 @@ export default defineComponent({
         }
     }
 });
-</script>../../app
+</script>

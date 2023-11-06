@@ -1,7 +1,7 @@
 <template>
     <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu"
         :handler="unduh" />
-    <Sawer v-if="showSawer" />
+    <!-- <Sawer v-if="showSawer" /> -->
     <Update v-if="update.isUpdate" :msg="update.updateMsg" />
     <Loader />
     <DisclaimerModal v-if="showDisclaimer" />
@@ -64,7 +64,6 @@ import LoginModal from './index/LoginModal.vue';
 import DisclaimerModal from './index/DisclaimerModal.vue';
 import { useAppStore } from './store/app';
 import { mapWritableState } from 'pinia'
-import { provide } from 'vue';
 
 export default {
     name: "App",
@@ -77,34 +76,6 @@ export default {
         Header,
         LoginModal,
         DisclaimerModal,
-    },
-    setup() {
-        provide('page_view', () => {
-            fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-MYPD4WZ4PJ&api_secret=ZFBVYNP8TEWtQKJKL7v7hg", {
-                method: "POST",
-                body: JSON.stringify({
-                    "client_id": "sidarta." + localStorage.getItem('CLIENTID'),
-                    "user_id": localStorage.getItem('USERID'),
-                    "user_properties": {
-                        "Country": localStorage.getItem('COUNTRY'),
-                        "City": localStorage.getItem('CITY')
-                    },
-                    "events": [
-                        {
-                            "name": "page_view",
-                            "params": {
-                                "page_title": document.title,
-                                "page_location": document.location.pathname,
-                                "session_id": "das_" + localStorage.getItem('SESSIONID'),
-                                "engagement_time_msec": "100"
-                            }
-                        }
-                    ]
-                })
-            }).then(val => {
-                console.log("okay");
-            });
-        })
     },
     data() {
         return {
@@ -164,57 +135,8 @@ export default {
             localStorage.setItem('SESSIONID', sessionId);
         }
 
-        if ("geolocation" in navigator) {
-            console.log('Location services available');
-            navigator.geolocation.getCurrentPosition(function (position) {
-                console.log(position)
-                const location = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                }
-                console.log(location);
-                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=AIzaSyAuwWs0PK3xt9qr6KXuyjMuVZeo959dONE&result_type=administrative_area_level_1`).then((res) => res.json()).then(json => {
-                    const city = json.results[0].address_components[0].long_name;
-                    const country = json.results[0].address_components[1].long_name;
-
-                    localStorage.setItem('COUNTRY', country);
-                    localStorage.setItem('CITY', city);
-
-                    console.log(`City ${city}, country ${country}`);
-                });
-            }, function (err) {
-                console.log(err);
-            }, {
-                enableHighAccuracy: true
-            });
-        }
-
         this.isBrowserExist = window.COMM.appCheckBrowser();
 
-        fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-MYPD4WZ4PJ&api_secret=ZFBVYNP8TEWtQKJKL7v7hg", {
-            method: "POST",
-            body: JSON.stringify({
-                "client_id": "sidarta." + localStorage.getItem('CLIENTID'),
-                "user_id": localStorage.getItem('USERID'),
-                "user_properties": {
-                    "Country": localStorage.getItem('COUNTRY'),
-                    "City": localStorage.getItem('CITY')
-                },
-                "events": [
-                    {
-                        "name": "open_app",
-                        "params": {
-                            "page_title": document.title,
-                            "session_id": "das_" + localStorage.getItem('SESSIONID'),
-                            "engagement_time_msec": "100",
-                            "user_country": localStorage.getItem('COUNTRY')
-                        }
-                    }
-                ]
-            })
-        }).then(val => {
-            console.log("Session Start");
-        });
         // this.store.isLogin = JSON.parse(window.localStorage.getItem('IS_LOGIN'));
 
         // if (!this.store.isLogin) window.COMM.authStart(true);

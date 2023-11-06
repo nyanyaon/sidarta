@@ -248,4 +248,4 @@ export default defineComponent({
         }
     }
 });
-</script>../../app
+</script>

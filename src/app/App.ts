@@ -9,6 +9,9 @@ import { UploadSuratUkurBot } from './UploadSuratUkurBot';
 import type { Browser } from 'puppeteer-core';
 import { ValidasiPersilBot } from './ValidasiPersilBot';
 import { UpdatePersilBot } from './UpdatePersilBot';
+import { EntryFisikPTSLBot } from './EntryFisikPTSLBot';
+import { UploadSuratUkurKJSBBot } from './UploadSuratUkurKJSBBot';
+import { UploadBukuTanahKJSBBot } from './UploadBukuTanahKJSBBot';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -41,7 +44,7 @@ export default class App {
             width: 800,
             icon: '../logo.ico',
             webPreferences: {
-                nodeIntegration: false,
+                nodeIntegration: true,
                 nodeIntegrationInWorker: true,
                 contextIsolation: true,
                 preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
@@ -114,7 +117,6 @@ export default class App {
             });
 
             autoUpdater.on('update-available', () => {
-                clearInterval(App.updateExecution);
 
                 const notif = new Notification({
                     title: "Update Available",
@@ -122,7 +124,7 @@ export default class App {
                     icon: nativeImage.createFromPath("../template/img/logo.png"),
                 });
 
-                notif.addListener("click", async ev => {
+                notif.addListener("click", async () => {
                     await shell.openExternal('https://nyanyaonn.my.id/');
                 });
 
@@ -175,12 +177,24 @@ export default class App {
             const bot = new UploadBukuTanahBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         });
+        App.ipc.handle('bot:startUploadBukuTanahKJSB', async (event, ...args) => {
+            const bot = new UploadBukuTanahKJSBBot();
+            await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        });
+        App.ipc.handle('bot:startUploadSuratUkurKJSB', (event, ...args) => {
+            const bot = new UploadSuratUkurKJSBBot();
+            bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        });
         App.ipc.handle('bot:startUploadSuratUkur', async (event, ...args) => {
             const bot = new UploadSuratUkurBot();
             bot.start(args[0], args[1], args[2], args[3]);
         });
         App.ipc.handle('bot:startValidasiPersil', async (event, ...args) => {
             const bot = new ValidasiPersilBot();
+            await bot.start(args[0], args[1], args[2], args[3], args[4], args[5]);
+        });
+        App.ipc.handle('bot:startEntryFisikPTSL', async (event, ...args) => {
+            const bot = new EntryFisikPTSLBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4], args[5]);
         });
         App.ipc.handle('bot:startUpdatePersil', async (event, ...args) => {

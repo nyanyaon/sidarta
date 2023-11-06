@@ -1,9 +1,9 @@
 export interface FileInterface {
     nama: string,
     tipe: string,
-    nomor:  string,
+    nomor: string,
     kodedesa?: string,
-    tahun?:  string,
+    tahun?: string,
     isValid: boolean,
     isUploaded?: boolean,
 }
@@ -12,11 +12,12 @@ export class Fileman {
     private REGEXBT = /^(BT)(_)(\d{14})(.pdf)/;
     private REGEXBTS = /^(BT)(_)(\d{6})(.pdf)/;
     private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})(.pdf)/;
+    private REGEXSUS = /^(SU|GS|PLL|SUS|GT)(_)(\d{5})(_)(\d{4})(.pdf)/;
 
     private files: string[];
-    private type: "SU" | "BT" | "BT-S";
+    private type: "SU" | "BT" | "BT-S" | "SU-S";
 
-    constructor(files: string[], type: "SU" | "BT" | "BT-S") {
+    constructor(files: string[], type: "SU" | "BT" | "BT-S" | "SU-S") {
         this.files = files;
         this.type = type
     }
@@ -51,6 +52,17 @@ export class Fileman {
                     kodedesa: regex !== null ? regex[3] : "",
                     nomor: regex !== null ? regex[5] : "",
                     tahun: regex !== null ? regex[7] : "",
+                    isValid: regex !== null ? true : false,
+                }
+            }
+
+            if (this.type === "SU-S") {
+                const regex = filename.match(this.REGEXSUS);
+                return {
+                    nama: data,
+                    tipe: regex !== null ? regex[1] : "",
+                    nomor: regex !== null ? regex[3] : "",
+                    tahun: regex !== null ? regex[5] : "",
                     isValid: regex !== null ? true : false,
                 }
             }

@@ -1,13 +1,11 @@
 <template>
     <div class="content">
-        <h2>TOOL UPLOAD BUKU TANAH</h2>
+        <h2>TOOL ENTRY FISIK PTSL</h2>
         <div class="section">
             <div class="form-loc">
                 <div class="input-type">
-                    <input v-model="inputType" type="radio" id="btSimple" value="btSimple" name="btSimple" checked>
-                    <label for="btSimple">BT Simple</label>
-                    <input v-model="inputType" type="radio" id="btFull" value="btFull" name="btFull">
-                    <label for="btFull">BT Full</label>
+                    <input v-model="inputType" type="radio" id="csvDataEntry" value="csvDataEntry" name="csvDataEntry">
+                    <label for="csvDataEntry">List Data Entry</label>
                 </div>
                 <div class="input-group">
                     <label for="user">Username</label>
@@ -17,51 +15,44 @@
                     <label for="pass">Password</label>
                     <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
                 </div>
-                <div class="input-group">
+                <div v-if="inputType == 'csvDataEntry' || inputType == 'hak'" class="input-group">
                     <label for="kabupaten">Kabupaten</label>
                     <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
                         :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
                     <datalist id="listkabupaten">
                         <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
-                            :value="parseWil(item.nama, item.tipewilayahid)"></option>
+                            :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
                     </datalist>
                 </div>
-                <div class="input-group">
+                <div v-if="inputType == 'csvDataEntry' || inputType == 'hak'" class="input-group">
                     <label for="kecamatan">Kecamatan</label>
                     <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
                         :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
                     <datalist id="listkecamatan">
-                        <option :data-kec-id="item.wilayahid" v-for="item, index in getListKecamatan"
-                            :value="index + 1 + '.' + item.nama">
-                        </option>
+                        <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
                     </datalist>
                 </div>
-                <div class="input-group">
+                <div v-if="inputType == 'csvDataEntry' || inputType == 'hak'" class="input-group">
                     <label for="desa">Desa</label>
                     <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
                     <datalist id="listdesa">
-                        <option :data-kel-id="item.wilayahid" v-for="item in getListDesa"
-                            :value="parseWil(item.nama, item.tipewilayahid)"></option>
+                        <option :data-kec-id="item.wilayahid" v-for="item in getListDesa" :value="item.nama"></option>
                     </datalist>
                 </div>
                 <div class="input-group">
-                    <label for="file-loc">Pilih Folder</label>
-                    <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
+                    <label for="file-loc">Daftar Entry (*.csv)</label>
+                    <button @click="selectFile">{{ fileLocBtnTxt }}</button>
                 </div>
                 <button @click="start" class="start">Mulai</button>
             </div>
             <div class="doc-container">
                 <div class="berhasil">
-                    <h3>JUMLAH :</h3>
-                    <p>{{ cFiles }} Berkas</p>
-                </div>
-                <div class="berhasil">
                     <h3>BERHASIL :</h3>
-                    <p>{{ cBerhasil }} Berkas</p>
+                    <p>{{ cBerhasil }} Bidang</p>
                 </div>
                 <div class="gagal">
                     <h3>GAGAL :</h3>
-                    <p>{{ cGagal }} Berkas</p>
+                    <p>{{ cGagal }} Bidang</p>
                 </div>
                 <button @click="downloadReport" class="report-btn">
                     <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;" />
@@ -226,12 +217,10 @@
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
 import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
-import type { FileInterface } from '../../app/Fileman';
-
 import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
-    name: "UploadBukuTanah",
+    name: "EntryFisikPTSL",
     data() {
         return {
             fileLocBtnTxt: "Pilih",
@@ -248,8 +237,7 @@ export default defineComponent({
             pass: "",
             cBerhasil: 0,
             cGagal: 0,
-            cFiles: 0,
-            inputType: "btSimple",
+            inputType: "csvDataEntry",
         }
     },
     computed: {
@@ -266,52 +254,25 @@ export default defineComponent({
             return kabJson;
         },
         getListKecamatan(): Kecamatan[] {
-            return (this.kecJson as Kecamatan[]).filter(value => value.validsampai === null);
+            return this.kecJson;
         },
         getListDesa(): Desa[] {
-            const listdesa = (this.desaJson as Desa[]).filter(value => value.validsampai === null)
-            if (this.kecamatan === "") return listdesa;
+            if (this.kecamatanId === "") return this.desaJson;
 
-            return listdesa.filter(value => value.induk === this.kecamatanId);
+            const listdesa = (this.desaJson as Desa[]).filter(value => value.induk === this.kecamatanId);
+
+            return listdesa;
         }
     },
     methods: {
-        parseWil(nama: string, tipe: number) {
-            let namaParsed = ''
-            switch (tipe) {
-                case 3:
-                    namaParsed = `Kota ${nama}`
-                    break;
-                case 4:
-                    namaParsed = `Kab. ${nama}`
-                    break;
-                case 6:
-                    namaParsed = `Desa ${nama}`
-                    break;
-                case 7:
-                    namaParsed = `Kel. ${nama}`
-                    break;
-                default:
-                    break;
-            }
-
-            return namaParsed
-        },
         updateUser(ev: Event) {
             window.localStorage.setItem("USER", this.user);
         },
         updatePass(ev: Event) {
             window.localStorage.setItem("PASS", this.pass);
         },
-        selectFolder() {
-            if (this.inputType == 'btFull') {
-                window.COMM.folderSelect('BT');
-                return;
-            }
-            if (this.inputType == 'btSimple') {
-                window.COMM.folderSelect('BT-S');
-                return;
-            }
+        selectFile() {
+            window.COMM.fileSelect();
         },
         downloadReport() {
             if ((this.reportJson as String[]).length < 2) {
@@ -330,11 +291,8 @@ export default defineComponent({
             URL.revokeObjectURL(link.href);
         },
         start() {
-            window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
-            const text = JSON.stringify(this.files);
-            const files = JSON.parse(text) as FileInterface[];
-
-            window.COMM.botStartUploadBukuTanah(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, files, this.fileLocBtnTxt);
+            // window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
+            window.COMM.botStartEntryFisikPTSL(this.user, this.pass, this.inputType, this.kabupatenId, this.kecamatanId, this.desaId, this.fileLocBtnTxt);
         },
         updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
             this.fileLocBtnTxt = data[0];
@@ -361,43 +319,33 @@ export default defineComponent({
         },
         updateKecamatan(event: Event) {
             if (this.kecamatan === "") return;
-
-            this.updateKecId()
         },
         updateDesa(event: Event) {
             if (this.desa === "") return;
-            const listdesa = (document.querySelector('#listdesa') as HTMLDataListElement).options;
-            const desa = Array.from(listdesa);
-            this.desaId = desa.find(val => val.value === this.desa).dataset.kelId;
-            const induk = (this.desaJson as Desa[]).find(val => val.wilayahid === this.desaId).induk;
-            const listkec = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
-            const kec = Array.from(listkec);
+            const desa = (this.desaJson as Desa[]).find(value => value.nama === this.desa);
+            const kec = (this.kecJson as Kecamatan[]).find(value => value.wilayahid === desa.induk);
 
-            this.kecamatanId = induk;
-            this.kecamatan = kec.find(val => val.dataset.kecId === induk).value;
+            this.kecamatan = kec.nama;
+            this.kecamatanId = kec.wilayahid;
+            this.desaId = desa.wilayahid;
         },
         updateKabId() {
             const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;
             const dataArr = Array.from(datalist);
             this.kabupatenId = dataArr.find(val => val.value === this.kabupaten).dataset.kabId;
+            window.localStorage.setItem("USER_KAB", this.kabupaten + ',' + this.kabupatenId);
         },
         updateKecId() {
             const datalist = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
             const dataArr = Array.from(datalist);
             this.kecamatanId = dataArr.find(val => val.value === this.kecamatan).dataset.kecId;
         },
-        updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
-            this.files = data[1];
-            this.cFiles = (data[1] as FileInterface[]).filter(item => item.isValid === true).length;
-
-            this.fileLocBtnTxt = data[0];
-        },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Buku Tanah";
+        document.title = "SIDARTA - Entry Fisik PTSL"
         const pageView = inject('page_view') as Function;
         pageView();
-        window.COMM.folderSelected(this.updateFolderSelect);
+        window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
@@ -409,4 +357,4 @@ export default defineComponent({
         }
     }
 });
-</script>../../app
+</script>

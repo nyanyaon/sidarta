@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <h2>TOOL UPLOAD BUKU TANAH</h2>
+        <h2>TOOL UPLOAD BUKU TANAH KJSB</h2>
         <div class="section">
             <div class="form-loc">
                 <div class="input-type">
@@ -231,7 +231,7 @@ import type { FileInterface } from '../../app/Fileman';
 import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
-    name: "UploadBukuTanah",
+    name: "UploadBukuTanahKJSB",
     data() {
         return {
             fileLocBtnTxt: "Pilih",
@@ -330,11 +330,11 @@ export default defineComponent({
             URL.revokeObjectURL(link.href);
         },
         start() {
-            window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
+            // window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
             const text = JSON.stringify(this.files);
             const files = JSON.parse(text) as FileInterface[];
 
-            window.COMM.botStartUploadBukuTanah(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, files, this.fileLocBtnTxt);
+            window.COMM.botStartUploadBukuTanahKJSB(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, files, this.fileLocBtnTxt);
         },
         updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
             this.fileLocBtnTxt = data[0];
@@ -394,9 +394,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Buku Tanah";
-        const pageView = inject('page_view') as Function;
-        pageView();
+        document.title = "SIDARTA - Upload Buku Tanah KJSB";
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');

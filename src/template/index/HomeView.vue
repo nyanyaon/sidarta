@@ -30,6 +30,18 @@
                 <p class="context">Tangguh<br /> Persil</p>
                 <p class="total">GO</p>
             </div>
+            <div @click="gotoEntryFisikPTSL" class="feature-box available">
+                <p class="context">Entry Fisik<br /> PTSL</p>
+                <p class="total">GO</p>
+            </div>
+            <div @click="gotoSuratUkurKJSB" class="feature-box available">
+                <p class="context">Surat Ukur<br /> KJSB</p>
+                <p class="total">GO</p>
+            </div>
+            <div @click="gotoBukuTanahKJSB" class="feature-box available">
+                <p class="context">Buku Tanah<br /> KJSB</p>
+                <p class="total">GO</p>
+            </div>
         </div>
     </div>
 </template>
@@ -135,6 +147,15 @@ export default defineComponent({
         goToPenangguhanPersil() {
             this.$router.replace('/penangguhanpersil');
         },
+        gotoEntryFisikPTSL() {
+            this.$router.replace('/entryfisikptsl');
+        },
+        gotoSuratUkurKJSB() {
+            this.$router.replace('/suratukurkjsb');
+        },
+        gotoBukuTanahKJSB() {
+            this.$router.replace('/bukutanahkjsb');
+        },
     },
     computed: {
         ...mapWritableState(useAppStore, ['showSawer'])
@@ -142,8 +163,6 @@ export default defineComponent({
     mounted() {
         document.title = "SIDARTA";
         this.showSawer = true;
-        const pageView = inject('page_view') as Function;
-        pageView();
     },
 })
 </script>

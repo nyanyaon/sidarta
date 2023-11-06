@@ -34,12 +34,15 @@ import UploadSuratUkur from './template/index/UploadSuratUkur.vue';
 import ValidasiPersil from './template/index/ValidasiPersil.vue';
 import UpdatePersil from './template/index/UpdatePersil.vue';
 import PenangguhanPersil from './template/index/PenangguhanPersil.vue';
+import EntryFisikPTSL from './template/index/EntryFisikPTSL.vue';
+import UploadSuratUkurKJSB from './template/index/UploadSuratUkurKJSB.vue';
 import App from './template/App.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faFilePdf, faDownload, faXmark, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FileInterface } from './app/Fileman';
 import HomeView from './template/index/HomeView.vue';
+import UploadBukuTanahKJSB from './template/index/UploadBukuTanahKJSB.vue';
 
 library.add(faUser, faFilePdf, faDownload, faXmark, faGear);
 
@@ -52,6 +55,9 @@ const router = createRouter({
         { path: '/validasipersil', component: ValidasiPersil },
         { path: '/updatepersil', component: UpdatePersil },
         { path: '/penangguhanpersil', component: PenangguhanPersil },
+        { path: '/entryfisikptsl', component: EntryFisikPTSL },
+        { path: '/suratukurkjsb', component: UploadSuratUkurKJSB },
+        { path: '/bukutanahkjsb', component: UploadBukuTanahKJSB },
     ]
 });
 
@@ -76,9 +82,12 @@ interface PreloadComm {
     databaseGetAll: (col: string) => Promise<any[]>;
     botGetOption: () => void;
     botStartUploadBukuTanah: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
+    botStartUploadBukuTanahKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
+    botStartUploadSuratUkurKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadSuratUkur: (user: string, pass: string, files: FileInterface[], loc: string) => void;
     botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     botStartUpdatePersil: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
+    botStartEntryFisikPTSL: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     authToken: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     authError: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
     folderSelected: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => void;
