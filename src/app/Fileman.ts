@@ -9,8 +9,8 @@ export interface FileInterface {
 }
 
 export class Fileman {
-    private REGEXBT = /^(BT)(_)(\d{14})(.pdf)/;
-    private REGEXBTS = /^(BT)(_)(\d{6})(.pdf)/;
+    private REGEXBT = /^(M|GB|GU)(_)(\d{14})(.pdf)/;
+    private REGEXBTS = /^(M|GB|GU)(_)(\d{5})(.pdf)/;
     private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})(.pdf)/;
     private REGEXSUS = /^(SU|GS|PLL|SUS|GT)(_)(\d{5})(_)(\d{4})(.pdf)/;
 
@@ -38,8 +38,8 @@ export class Fileman {
                 const regex = filename.match(this.REGEXBTS);
                 return {
                     nama: data,
-                    tipe: regex !== null ? regex[3].slice(0, 1) : "",
-                    nomor: regex !== null ? regex[3].slice(-5) : "",
+                    tipe: regex !== null ? regex[1] : "",
+                    nomor: regex !== null ? regex[3] : "",
                     isValid: regex !== null ? true : false,
                 }
             }

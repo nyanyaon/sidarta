@@ -282,7 +282,7 @@ export default defineComponent({
                 case 3:
                     namaParsed = `Kota ${nama}`
                     break;
-                case 4:
+                case 2:
                     namaParsed = `Kab. ${nama}`
                     break;
                 case 6:
@@ -395,8 +395,6 @@ export default defineComponent({
     },
     mounted() {
         document.title = "SIDARTA - Upload Buku Tanah";
-        const pageView = inject('page_view') as Function;
-        pageView();
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
@@ -409,4 +407,4 @@ export default defineComponent({
         }
     }
 });
-</script>../../app
+</script>

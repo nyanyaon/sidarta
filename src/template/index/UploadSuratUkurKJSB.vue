@@ -282,7 +282,7 @@ export default defineComponent({
                 case 3:
                     namaParsed = `Kota ${nama}`
                     break;
-                case 4:
+                case 2:
                     namaParsed = `Kab. ${nama}`
                     break;
                 case 6:
@@ -394,7 +394,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Surat Ukur KJSB";;
+        document.title = "SIDARTA - Upload Surat Ukur Lura";;
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');

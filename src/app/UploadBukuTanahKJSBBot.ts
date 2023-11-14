@@ -1,30 +1,34 @@
+import App from './App';
 import { Bot } from './Bot';
-import type { Desa } from './Bot';
 import { FileInterface } from './Fileman';
 import * as fs from 'fs';
-import { ElementHandle } from 'puppeteer-core';
+import * as path from 'path';
 
 export class UploadBukuTanahKJSBBot extends Bot {
 
     async start(user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) {
         try {
             let fileSaved = '';
-            if(fs.existsSync('temp.csv')) {
-                fileSaved = fs.readFileSync('temp.csv', {encoding: "utf-8"});
+            if(!fs.existsSync('temp.csv')) {
+                fs.writeFileSync('temp.csv', 'nama,isupload\n');
             }
+
             const wStream = fs.createWriteStream('temp.csv', {encoding: "utf-8"});
-            wStream.write(`nama,isupload`);
+            fileSaved = fs.readFileSync('temp.csv', {encoding: "utf-8"});
             wStream.write(fileSaved);
 
             const data = [];
 
-            for(const row of fileSaved.split('\r\n')) {
+            for(const row of fileSaved.split('\n')) {
                 const [nama, success] = row.split(',');
                 data.push({
                     nama,
                     success
                 });
             }
+
+            data.pop();
+            data.shift();
 
             this.browser = await this.init(false);
 
@@ -65,9 +69,9 @@ export class UploadBukuTanahKJSBBot extends Bot {
 
             for (const file of files) {
                 console.log('Nomor : ' + file.nomor);
-                // if (data.find(val => val.nama == file.nama).success === '1') {
-                //     continue;
-                // }
+                if (data.find(val => val.nama == file.nama).success === '1') {
+                    continue;
+                }
 
                 if (!file.isValid) {
                     continue;
@@ -82,7 +86,15 @@ export class UploadBukuTanahKJSBBot extends Bot {
                 await page.select('#cari-hat_inputwilayah_SelectedDesa', desaId);
 
                 await (new Promise(r => setTimeout(r, 1000)));
-                await page.select("#listtipehak", file.tipe);
+                let tipehak = "0";
+                switch (file.tipe) {
+                    case "M":
+                        tipehak = "1"
+                        break;
+                    default:
+                        break;
+                }
+                await page.select("#listtipehak", tipehak);
 
                 await (new Promise(r => setTimeout(r, 1000)));
                 await page.type("#NomorHak", file.nomor);
@@ -109,20 +121,36 @@ export class UploadBukuTanahKJSBBot extends Bot {
                 }
                 console.log("Upload File");
                 await (new Promise(r => setTimeout(r, 1000)));
-                await upload.uploadFile(`${loc}/${file.nama}`);
+                const fullpath = path.join(loc,file.nama);
+                console.log(fullpath);
+                await upload.uploadFile(fullpath);
                 let preview = await page.$("#previewerCt.pdfobject-container");
                 while(preview == null) {
-                    await upload.uploadFile(`${loc}/${file.nama}`);
+                    console.log("Mencoba Upload kembali...");
+                    await upload.uploadFile(fullpath);
                     preview = await page.$("#previewerCt.pdfobject-container");
                 }
                 await page.$eval("#btnUpldArsipBTHAT", (el: HTMLButtonElement) => el.click());
                 await page.waitForSelector("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", { timeout: 0 });
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
-                const resUpload = await page.waitForResponse(res => res.request().url().includes('/SimpanArsip') && res.status() == 200, {timeout:0});
-                const success = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
-                if(success) {
+                const resUpload = await page.waitForResponse(res => res.request().url().includes('/SimpanArsip'), {timeout:0});
+                const statusUpload = resUpload.status();
+                console.log(statusUpload);
+                const status = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                if(statusUpload === 200) {
+                    App.send('bot:statushandler', {
+                        nama: file.nama,
+                        status: status,
+                        success: true,
+                    });
                     wStream.write(`${file.nama},1\n`);
+                } else {
+                    App.send('bot:statushandler', {
+                        nama: file.nama,
+                        status: status,
+                        success: false,
+                    });
                 }
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
                 await (new Promise(r => setTimeout(r, 1000)));

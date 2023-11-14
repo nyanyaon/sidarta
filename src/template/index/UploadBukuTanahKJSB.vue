@@ -282,7 +282,7 @@ export default defineComponent({
                 case 3:
                     namaParsed = `Kota ${nama}`
                     break;
-                case 4:
+                case 2:
                     namaParsed = `Kab. ${nama}`
                     break;
                 case 6:
@@ -322,7 +322,7 @@ export default defineComponent({
             const blob = new Blob([text], { type: "text/csv" });
 
             const link = document.createElement('a');
-            link.download = `${this.kabupaten}_${this.kecamatan}_${this.desa}.csv`;
+            link.download = `Report Upload BT_${this.kabupaten}_${this.kecamatan}_${this.desa}.csv`;
 
             link.href = URL.createObjectURL(blob);
             link.click();
@@ -340,7 +340,8 @@ export default defineComponent({
             this.fileLocBtnTxt = data[0];
         },
         updateStatusValidasi(event: Electron.IpcRenderer, data: any[]) {
-            (this.reportJson as String[]).push(`${data[0].pid},${data[0].nib},${data[0].status},${data[0].success}`);
+            console.log(data);
+            (this.reportJson as String[]).push(`${data[0].nama},${data[0].status},${data[0].success}`);
             if (data[0].success == true) {
                 this.cBerhasil++
             } else {
@@ -394,10 +395,10 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Buku Tanah KJSB";
+        document.title = "SIDARTA - Upload Buku Tanah Lura";
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
-        this.reportJson.push('pid,nib,message,isberhasil');
+        this.reportJson.push('nama,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
         if (window.localStorage.getItem("USER_KAB") !== null) {
@@ -407,4 +408,4 @@ export default defineComponent({
         }
     }
 });
-</script>../../app
+</script>

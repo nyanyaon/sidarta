@@ -3,13 +3,13 @@
 </template>
   
 <style scoped>
-    #footer {
-        position: absolute;
-        bottom: 0;
-        width: 100vw;
-        height: 19px;
-        background: #00B2FF;
-    }
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 19px;
+    background: #00B2FF;
+}
 </style>
   
 <script lang="ts">

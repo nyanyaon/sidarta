@@ -18,14 +18,14 @@
                 <p class="context">Update<br /> Persil</p>
                 <p class="total">GO</p>
             </div>
-            <div class="feature-box unavailable">
+            <!-- <div class="feature-box unavailable">
                 <p class="context">Validasi<br /> BT</p>
                 <p class="total">GO</p>
             </div>
             <div class="feature-box unavailable">
                 <p class="context">Validasi<br /> SU</p>
                 <p class="total">GO</p>
-            </div>
+            </div> -->
             <div @click="goToPenangguhanPersil" class="feature-box available">
                 <p class="context">Tangguh<br /> Persil</p>
                 <p class="total">GO</p>
@@ -34,19 +34,42 @@
                 <p class="context">Entry Fisik<br /> PTSL</p>
                 <p class="total">GO</p>
             </div>
-            <div @click="gotoSuratUkurKJSB" class="feature-box available">
-                <p class="context">Surat Ukur<br /> KJSB</p>
+            <div @click="gotoSuratUkurKJSB" class="bg-green feature-box available">
+                <p class="context">Surat Ukur<br /> Lura</p>
                 <p class="total">GO</p>
             </div>
-            <div @click="gotoBukuTanahKJSB" class="feature-box available">
-                <p class="context">Buku Tanah<br /> KJSB</p>
+            <div @click="gotoBukuTanahKJSB" class="bg-green feature-box available">
+                <p class="context">Buku Tanah<br /> Lura</p>
                 <p class="total">GO</p>
             </div>
         </div>
     </div>
+    <div class="logoveea">
+        <img src="../img/Logo2.png" alt="logo veea">
+        <p>Copyright 2022 By <br/> VEEA UTAMA TECH</p>
+    </div>
 </template>
 
 <style lang="css" scoped>
+.logoveea {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 1.5em;
+}
+
+.logoveea img {
+    height: 34px;
+    width: auto;
+}
+
+.logoveea p {
+    font-size: 0.7em;
+    font-weight: 700;
+}
 .bg-green {
     background: #1FC374 !important;
 }

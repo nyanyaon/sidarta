@@ -343,8 +343,6 @@ export default defineComponent({
     },
     mounted() {
         document.title = "SIDARTA - Entry Fisik PTSL"
-        const pageView = inject('page_view') as Function;
-        pageView();
         window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');

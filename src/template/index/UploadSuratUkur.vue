@@ -235,8 +235,6 @@ export default defineComponent({
     },
     mounted() {
         document.title = "SIDARTA - Upload Surat Ukur";
-        const pageView = inject('page_view') as Function;
-        pageView();
         window.COMM.folderSelected(this.updateFolderSelect);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
