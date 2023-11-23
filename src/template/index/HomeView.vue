@@ -42,6 +42,10 @@
                 <p class="context">Buku Tanah<br /> Lura</p>
                 <p class="total">GO</p>
             </div>
+            <div class="feature-box unavailable">
+                <p class="context">Warkah<br /> Lura</p>
+                <p class="total">GO</p>
+            </div>
         </div>
     </div>
     <div class="logoveea">
