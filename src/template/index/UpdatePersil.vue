@@ -347,7 +347,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Update Wilayah Persil"
+        document.title = "AutoMate - Update Wilayah Persil"
         window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');

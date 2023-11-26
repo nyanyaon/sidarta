@@ -1,5 +1,7 @@
+import App from './App';
 import { Bot } from './Bot';
 import { FileInterface } from './Fileman';
+import * as path from 'path';
 
 
 export class UploadSuratUkurKJSBBot extends Bot {
@@ -75,7 +77,45 @@ export class UploadSuratUkurKJSBBot extends Bot {
 
                 await (new Promise(r => setTimeout(r, 1000)));
                 await page.$eval("#btncarisu", (el: HTMLButtonElement) => el.click());
-                // await page.waitForNetworkIdle();
+
+                const responseDaftarSU = await page.waitForResponse((res) => res.url().includes("/DaftarSuratUkur") && res.status() == 200, {timeout: 0});
+                
+                const statusDaftarDok = await responseDaftarSU.text();
+                if(statusDaftarDok === "noresults") {
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    console.log("Nggak ada");
+                    await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.$eval("#btnbuatsu", (el: HTMLButtonElement) => el.click());
+                    await page.waitForSelector("#entrymodal", { visible: true });
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.select("#SelectedProgram", "DE");
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.select("#tambahsu_inputwilayah_SelectedDesa", desaId);
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.type("#Nomor", file.nomor);
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.$eval("#Tahun", (el: HTMLInputElement) => el.value = "");
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.type("#Tahun", file.tahun);
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.$eval("#frmBuatSU > div.row > div > button", (el: HTMLButtonElement) => el.click());
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.$eval("#cfmdlgsu > input.btn.btn-success", (el) => el.click());
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el) => el.click());
+
+                    await (new Promise(r => setTimeout(r, 1000)));
+                    await page.$eval("#btncarisu", (el: HTMLButtonElement) => el.click());
+                }
+
                 const listsu = await page.waitForSelector("#listsuplaceholder > tr", { timeout: 0 });
                 if ( listsu == null) {
                     console.log("[ERROR] : " + file.nama + " tidak ditemukan");
@@ -96,10 +136,11 @@ export class UploadSuratUkurKJSBBot extends Bot {
                     upload = await page.$("#hatsideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]");
                 }
 
-                await upload.uploadFile(`${loc}/${file.nama}`);
+                const fullpath = path.join(loc,file.nama);
+                await upload.uploadFile(fullpath);
                 let preview = await page.$("#previewerCt.pdfobject-container");
                 while(preview == null) {
-                    await upload.uploadFile(`${loc}/${file.nama}`);
+                    await upload.uploadFile(fullpath);
                     preview = await page.$("#previewerCt.pdfobject-container");
                 }
                 await (new Promise(r => setTimeout(r, 1000)));
@@ -108,8 +149,22 @@ export class UploadSuratUkurKJSBBot extends Bot {
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
                 const resUpload = await page.waitForResponse(res => res.request().url().includes('/SimpanArsip') && res.status() == 200, {timeout:0});
-                const success = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
-                console.log(success);
+                const statusUpload = resUpload.status();
+                const status = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                if(statusUpload === 200) {
+                    App.send('bot:statushandler', {
+                        nama: file.nama,
+                        status: status,
+                        success: true,
+                    });
+                    // wStream.write(`${file.nama},1\n`);
+                } else {
+                    App.send('bot:statushandler', {
+                        nama: file.nama,
+                        status: status,
+                        success: false,
+                    });
+                }
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
                 await (new Promise(r => setTimeout(r, 1000)));
                 await page.reload();

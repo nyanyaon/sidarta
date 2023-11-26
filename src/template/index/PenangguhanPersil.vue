@@ -347,9 +347,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Penangguhan Persil";
-        const pageView = inject('page_view') as Function;
-        pageView();
+        document.title = "AutoMate - Penangguhan Persil";
         window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');

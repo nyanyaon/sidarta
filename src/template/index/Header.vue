@@ -1,9 +1,10 @@
 <template>
     <div class="header">
         <div class="brand" @click="goToHome">
+            <img src="../img/Logo.png" alt="AutoMate"/>
             <div class="brand-info">
-                <h1>SIDARTA</h1>
-                <p>Menuju Kota/Kab Lengkap</p>
+                <h1>AutoMate</h1>
+                <p>Your Daily Bot</p>
             </div>
         </div>
 
@@ -83,6 +84,7 @@
 
 .header {
     display: flex;
+    align-items: center;
     margin-top: 0.5em;
     margin-left: 2em;
     margin-right: 2em;
@@ -91,11 +93,12 @@
 .brand {
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin-right: auto;
 }
 
 .brand img {
-    height: 38px;
+    height: 40px;
     width: auto;
 }
 
@@ -195,4 +198,3 @@ export default defineComponent({
     }
 })
 </script>
-../../app

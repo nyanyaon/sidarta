@@ -234,7 +234,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Surat Ukur";
+        document.title = "AutoMate - Upload Surat Ukur";
         window.COMM.folderSelected(this.updateFolderSelect);
         this.reportJson.push('pid,nib,message,isberhasil');
         this.user = window.localStorage.getItem("USER");

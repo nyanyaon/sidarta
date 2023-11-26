@@ -56,11 +56,6 @@ export default class App {
                 responseHeaders: {
                     ...details.responseHeaders,
                     'Content-Security-Policy': ['script-src \'self\' https: https://www.googletagmanager.com https://accounts.google.com/  \'unsafe-inline\' \'unsafe-eval\''],
-                    // 'Content-Security-Policy-Report-Only': ['script-src https://accounts.google.com/gsi/client; frame-src https://accounts.google.com/gsi/; connect-src https://accounts.google.com/gsi/;'],
-                    // 'Cross-Origin-Opener-Policy': ['same-origin-allow-popups'],
-                    // 'Cross-Origin-Embedder-Policy': ['require-corp'],
-                    // 'Cross-Origin-Resource-Policy': ['cross-origin'],
-                    // 'Referrer-Policy': ['no-referrer-when-downgrade'],
                 }
             })
         });
@@ -277,9 +272,5 @@ export default class App {
         App.ipc.handle('auth:verify', (event, ...data) => {
             App.sso.verify(data[0], data[1]);
         });
-    }
-
-    private static getFiles(err: NodeJS.ErrnoException, files: string[]) {
-        console.log(files)
     }
 }

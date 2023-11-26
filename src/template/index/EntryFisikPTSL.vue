@@ -342,7 +342,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Entry Fisik PTSL"
+        document.title = "AutoMate - Entry Fisik PTSL"
         window.COMM.fileSelected(this.updateFileSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');

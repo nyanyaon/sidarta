@@ -2,21 +2,21 @@
     <div class="section">
         <h2>ALAT YANG TERSEDIA</h2>
         <div class="feature-container">
-            <div @click="goToValidasiPersil" class="feature-box available">
+            <div @click="goToValidasiPersil" class="feature-box status-warn available">
+                <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Validasi<br /> Persil</p>
-                <p class="total">GO</p>
             </div>
-            <div @click="goToUploadBukuTanah" class="feature-box available">
+            <div @click="goToUploadBukuTanah" class="feature-box status-warn available">
+                <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Upload <br /> BT</p>
-                <p class="total">GO</p>
             </div>
-            <div @click="goToUploadSuratUkur" class="feature-box available">
+            <div @click="goToUploadSuratUkur" class="feature-box status-warn available">
+                <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Upload<br /> SU</p>
-                <p class="total">GO</p>
             </div>
-            <div @click="goToUpdatePersil" class="feature-box available">
+            <div @click="goToUpdatePersil" class="feature-box status-warn available">
+                <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Update<br /> Persil</p>
-                <p class="total">GO</p>
             </div>
             <!-- <div class="feature-box unavailable">
                 <p class="context">Validasi<br /> BT</p>
@@ -26,25 +26,25 @@
                 <p class="context">Validasi<br /> SU</p>
                 <p class="total">GO</p>
             </div> -->
-            <div @click="goToPenangguhanPersil" class="feature-box available">
+            <div @click="goToPenangguhanPersil" class="feature-box status-warn available">
+                <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Tangguh<br /> Persil</p>
-                <p class="total">GO</p>
             </div>
-            <div @click="gotoEntryFisikPTSL" class="feature-box available">
+            <div @click="gotoEntryFisikPTSL" class="feature-box status-error available">
+                <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Entry Fisik<br /> PTSL</p>
-                <p class="total">GO</p>
             </div>
-            <div @click="gotoSuratUkurKJSB" class="bg-green feature-box available">
-                <p class="context">Surat Ukur<br /> Lura</p>
-                <p class="total">GO</p>
+            <div @click="gotoSuratUkurKJSB" class="feature-box status-ready available">
+                <img src="../img/logo-lura.png" alt="PT Lura Karya" />
+                <p class="context">Upload<br /> SU</p>
             </div>
-            <div @click="gotoBukuTanahKJSB" class="bg-green feature-box available">
-                <p class="context">Buku Tanah<br /> Lura</p>
-                <p class="total">GO</p>
+            <div @click="gotoBukuTanahKJSB" class="feature-box status-ready available">
+                <img src="../img/logo-lura.png" alt="PT Lura Karya" />
+                <p class="context">Upload<br /> BT</p>
             </div>
-            <div class="feature-box unavailable">
-                <p class="context">Warkah<br /> Lura</p>
-                <p class="total">GO</p>
+            <div class="feature-box status-error unavailable">
+                <img src="../img/logo-lura.png" alt="PT Lura Karya" />
+                <p class="context">Upload<br /> Warkah</p>
             </div>
         </div>
     </div>
@@ -82,6 +82,18 @@
     background: #FF9D56 !important;
 }
 
+.status-ready {
+    border-left: 5px solid #33FF00;
+}
+
+.status-warn {
+    border-left: 5px solid #FFC736;
+}
+
+.status-error {
+    border-left: 5px solid #FF3636;
+}
+
 .feature-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -96,9 +108,14 @@
     width: 178px;
     height: 73px;
     padding: 1em;
-    border-radius: 0.8em;
     align-items: center;
     box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+.feature-box img {
+    height: 60px;
+    widows: auto;
 }
 
 .feature-box .context {
@@ -109,6 +126,7 @@
     color: #F4F4F4;
     justify-content: center;
     margin-right: auto;
+    margin-left: 0.7em;
 }
 
 .feature-box .total {
@@ -188,7 +206,7 @@ export default defineComponent({
         ...mapWritableState(useAppStore, ['showSawer'])
     },
     mounted() {
-        document.title = "SIDARTA";
+        document.title = "AutoMate by VEEA UTAMA TECH";
         this.showSawer = true;
     },
 })

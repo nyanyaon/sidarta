@@ -4,6 +4,8 @@ export interface FileInterface {
     nomor: string,
     kodedesa?: string,
     tahun?: string,
+    nomorX?: string,
+    tipeUrut?: string,
     isValid: boolean,
     isUploaded?: boolean,
 }
@@ -13,13 +15,14 @@ export class Fileman {
     private REGEXBTS = /^(M|GB|GU)(_)(\d{5})(.pdf)/;
     private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})(.pdf)/;
     private REGEXSUS = /^(SU|GS|PLL|SUS|GT)(_)(\d{5})(_)(\d{4})(.pdf)/;
+    private REGEXW = /^(W)(_)(\d{5})(-|~)(\d{5})(_)(\d{4})(.pdf)/;
 
     private files: string[];
-    private type: "SU" | "BT" | "BT-S" | "SU-S";
+    private type: "SU" | "BT" | "BT-S" | "SU-S" | "W";
 
-    constructor(files: string[], type: "SU" | "BT" | "BT-S" | "SU-S") {
+    constructor(files: string[], type: "SU" | "BT" | "BT-S" | "SU-S" | "W") {
         this.files = files;
-        this.type = type
+        this.type = type;
     }
 
     extract(): FileInterface[] {
@@ -63,6 +66,19 @@ export class Fileman {
                     tipe: regex !== null ? regex[1] : "",
                     nomor: regex !== null ? regex[3] : "",
                     tahun: regex !== null ? regex[5] : "",
+                    isValid: regex !== null ? true : false,
+                }
+            }
+
+            if (this.type === "W") {
+                const regex = filename.match(this.REGEXW);
+                return {
+                    nama: data,
+                    tipe: regex !== null ? regex[1] : "",
+                    nomor: regex !== null ? regex[3] : "",
+                    tipeUrut: regex !== null ? regex[4] : "",
+                    nomorX: regex !== null ? regex[5]: "",
+                    tahun: regex !== null ? regex[7] : "",
                     isValid: regex !== null ? true : false,
                 }
             }

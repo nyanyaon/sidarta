@@ -394,10 +394,10 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Surat Ukur Lura";;
+        document.title = "AutoMate - Upload Surat Ukur Lura";;
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
-        this.reportJson.push('pid,nib,message,isberhasil');
+        this.reportJson.push('nama,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
         if (window.localStorage.getItem("USER_KAB") !== null) {

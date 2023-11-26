@@ -121,7 +121,6 @@ button:hover {
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { store } from '../../Store';
 
 export default defineComponent({
   name: "Login",
@@ -132,7 +131,6 @@ export default defineComponent({
       token: "",
       txtEmailTo: "",
       error: "",
-      store,
       isOTPHide: false,
       kantor: [],
       selectedKantor: {},
@@ -186,4 +184,3 @@ export default defineComponent({
   }
 })
 </script>
-../../app

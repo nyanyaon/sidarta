@@ -394,7 +394,7 @@ export default defineComponent({
         },
     },
     mounted() {
-        document.title = "SIDARTA - Upload Buku Tanah";
+        document.title = "AutoMate - Upload Buku Tanah";
         window.COMM.folderSelected(this.updateFolderSelect);
         window.COMM.botStatusHandler(this.updateStatusValidasi);
         this.reportJson.push('pid,nib,message,isberhasil');
