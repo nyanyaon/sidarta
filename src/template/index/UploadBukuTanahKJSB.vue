@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <h2>TOOL UPLOAD BUKU TANAH KJSB</h2>
+        <h2>TOOL UPLOAD BUKU TANAH PT.LURA</h2>
         <div class="section">
             <div class="form-loc">
                 <div class="input-type">

@@ -12,6 +12,7 @@ import { UpdatePersilBot } from './UpdatePersilBot';
 import { EntryFisikPTSLBot } from './EntryFisikPTSLBot';
 import { UploadSuratUkurKJSBBot } from './UploadSuratUkurKJSBBot';
 import { UploadBukuTanahKJSBBot } from './UploadBukuTanahKJSBBot';
+import { UploadWarkahKJSBBot } from './UploadWarkahKJSBBot';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -179,6 +180,10 @@ export default class App {
         App.ipc.handle('bot:startUploadSuratUkurKJSB', (event, ...args) => {
             const bot = new UploadSuratUkurKJSBBot();
             bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        });
+        App.ipc.handle('bot:startUploadWarkahKJSB', (event, ...args) => {
+            const bot = new UploadWarkahKJSBBot();
+            bot.start(args[0], args[1], args[2], args[3], args[4]);
         });
         App.ipc.handle('bot:startUploadSuratUkur', async (event, ...args) => {
             const bot = new UploadSuratUkurBot();

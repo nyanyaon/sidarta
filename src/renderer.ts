@@ -36,6 +36,7 @@ import UpdatePersil from './template/index/UpdatePersil.vue';
 import PenangguhanPersil from './template/index/PenangguhanPersil.vue';
 import EntryFisikPTSL from './template/index/EntryFisikPTSL.vue';
 import UploadSuratUkurKJSB from './template/index/UploadSuratUkurKJSB.vue';
+import UploadWarkahKJSB from './template/index/UploadWarkahKJSB.vue';
 import App from './template/App.vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -58,6 +59,7 @@ const router = createRouter({
         { path: '/entryfisikptsl', component: EntryFisikPTSL },
         { path: '/suratukurkjsb', component: UploadSuratUkurKJSB },
         { path: '/bukutanahkjsb', component: UploadBukuTanahKJSB },
+        { path: '/warkahkjsb', component: UploadWarkahKJSB },
     ]
 });
 
@@ -84,6 +86,7 @@ interface PreloadComm {
     botStartUploadBukuTanah: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadBukuTanahKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadSuratUkurKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
+    botStartUploadWarkahKJSB: (user: string, pass: string, type: string, files: FileInterface[], loc: string) => void;
     botStartUploadSuratUkur: (user: string, pass: string, files: FileInterface[], loc: string) => void;
     botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     botStartUpdatePersil: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;

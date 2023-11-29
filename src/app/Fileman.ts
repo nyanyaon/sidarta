@@ -15,12 +15,13 @@ export class Fileman {
     private REGEXBTS = /^(M|GB|GU)(_)(\d{5})(.pdf)/;
     private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})(.pdf)/;
     private REGEXSUS = /^(SU|GS|PLL|SUS|GT)(_)(\d{5})(_)(\d{4})(.pdf)/;
-    private REGEXW = /^(W)(_)(\d{5})(-|~)(\d{5})(_)(\d{4})(.pdf)/;
+    private REGEXW = /^(W)(_)(\d{5})(-|~)?(\d{5})?(_)(\d{4})(.pdf)/;
+    private REGEXW302 = /^(W302)(_)(\d{5})(-|~)?(\d{5})?(_)(\d{4})(.pdf)/;
 
     private files: string[];
-    private type: "SU" | "BT" | "BT-S" | "SU-S" | "W";
+    private type: "SU" | "BT" | "BT-S" | "SU-S" | "W" | "W302";
 
-    constructor(files: string[], type: "SU" | "BT" | "BT-S" | "SU-S" | "W") {
+    constructor(files: string[], type: "SU" | "BT" | "BT-S" | "SU-S" | "W" | "W302") {
         this.files = files;
         this.type = type;
     }
@@ -76,8 +77,21 @@ export class Fileman {
                     nama: data,
                     tipe: regex !== null ? regex[1] : "",
                     nomor: regex !== null ? regex[3] : "",
-                    tipeUrut: regex !== null ? regex[4] : "",
-                    nomorX: regex !== null ? regex[5]: "",
+                    tipeUrut: regex !== null ? regex[4] !== undefined ? regex[4] : "" : "",
+                    nomorX: regex !== null ? regex[5] !== undefined ? regex[5] : "" : "",
+                    tahun: regex !== null ? regex[7] : "",
+                    isValid: regex !== null ? true : false,
+                }
+            }
+
+            if (this.type === "W302") {
+                const regex = filename.match(this.REGEXW302);
+                return {
+                    nama: data,
+                    tipe: regex !== null ? regex[1] : "",
+                    nomor: regex !== null ? regex[3] : "",
+                    tipeUrut: regex !== null ? regex[4] !== undefined ? regex[4] : "" : "",
+                    nomorX: regex !== null ? regex[5] !== undefined ? regex[5] : "" : "",
                     tahun: regex !== null ? regex[7] : "",
                     isValid: regex !== null ? true : false,
                 }

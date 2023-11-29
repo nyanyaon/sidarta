@@ -161,12 +161,7 @@ export class UploadBukuTanahKJSBBot extends Bot {
                 }
                 console.log("Upload File");
                 const fullpath = path.join(loc,file.nama);
-                console.log(fullpath);
-                // const resDocPdf = await page.waitForResponse((res) => res.url().includes("/sweetalert.min.js") && res.status() == 200, {timeout: 0});
                 await page.waitForSelector('body > div.blockUI.blockOverlay', {hidden: true, timeout: 0});
-                // if(resDocPdf.ok() === true) {
-                //     upload = await page.$("#hatsideviewer > div > div.content > div > div:nth-child(1) > div > div > span:nth-child(2) > span > input[type=file]");
-                // }
                 await upload.uploadFile(fullpath);
                 await (new Promise(r => setTimeout(r, 1000)));
                 let preview = await page.$("#previewerCt.pdfobject-container");
