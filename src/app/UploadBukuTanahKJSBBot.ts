@@ -13,6 +13,10 @@ export class UploadBukuTanahKJSBBot extends Bot {
             //     fs.writeFileSync('temp.csv', 'nama,isupload\n');
             // }
 
+            if(!fs.existsSync(path.join(loc, 'sudah'))) {
+                fs.mkdirSync(path.join(loc, 'sudah'));
+            }
+
             // const wStream = fs.createWriteStream('temp.csv', {encoding: "utf-8"});
             // fileSaved = fs.readFileSync('temp.csv', {encoding: "utf-8"});
             // wStream.write(fileSaved);
@@ -195,13 +199,15 @@ export class UploadBukuTanahKJSBBot extends Bot {
                     });
                 }
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
+                fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                    if(err) throw err;
+                    console.log('pindah file');
+                });
                 await (new Promise(r => setTimeout(r, 1000)));
                 await page.reload();
             }
         } catch (err) {
             console.log(err);
-        } finally {
-            this.browser.close();
         }
     }
 }

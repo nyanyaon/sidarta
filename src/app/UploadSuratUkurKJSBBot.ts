@@ -2,12 +2,18 @@ import App from './App';
 import { Bot } from './Bot';
 import { FileInterface } from './Fileman';
 import * as path from 'path';
+import * as fs from 'fs';
 
 
 export class UploadSuratUkurKJSBBot extends Bot {
 
     async start(user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) {
         try {
+
+            if(!fs.existsSync(path.join(loc, 'sudah'))) {
+                fs.mkdirSync(path.join(loc, 'sudah'));
+            }
+
             this.browser = await this.init(false);
 
             const page = await this.browser.newPage();
@@ -166,6 +172,10 @@ export class UploadSuratUkurKJSBBot extends Bot {
                     });
                 }
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
+                fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                    if(err) throw err;
+                    console.log('pindah file');
+                });
                 await (new Promise(r => setTimeout(r, 1000)));
                 await page.reload();
             }

@@ -209,7 +209,7 @@ export default defineComponent({
         ...mapWritableState(useAppStore, ['showSawer'])
     },
     mounted() {
-        document.title = "AutoMate by VEEA UTAMA TECH";
+        document.title = "AutoMate v1.2.6";
         this.showSawer = true;
     },
 })

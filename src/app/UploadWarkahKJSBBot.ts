@@ -3,6 +3,7 @@ import App from './App';
 import { Bot } from './Bot';
 import { FileInterface } from './Fileman';
 import * as path from 'path';
+import * as fs from 'fs';
 
 
 export class UploadWarkahKJSBBot extends Bot {
@@ -10,6 +11,11 @@ export class UploadWarkahKJSBBot extends Bot {
     async start(user: string, pass: string, type: string, files: FileInterface[], loc: string) {
         try {
             const timeSecOut = 1000;
+
+            if(!fs.existsSync(path.join(loc, 'sudah'))) {
+                fs.mkdirSync(path.join(loc, 'sudah'));
+            }
+            
             this.browser = await this.init(false);
             
             const page = await this.browser.newPage();
@@ -151,6 +157,10 @@ export class UploadWarkahKJSBBot extends Bot {
 
                     await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
+                    fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                        if(err) throw err;
+                        console.log('pindah file');
+                    });
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                     await page.reload();
                     continue;
@@ -205,6 +215,11 @@ export class UploadWarkahKJSBBot extends Bot {
                     });
 
                     await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
+
+                    fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                        if(err) throw err;
+                        console.log('pindah file');
+                    });
 
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                     await page.$eval('#carihak-tab', (el: HTMLAnchorElement) => el.click());
