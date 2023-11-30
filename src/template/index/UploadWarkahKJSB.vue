@@ -246,7 +246,7 @@ export default defineComponent({
             const blob = new Blob([text], { type: "text/csv" });
 
             const link = document.createElement('a');
-            link.download = `test.csv`;
+            link.download = `Report Upload Warkah`;
 
             link.href = URL.createObjectURL(blob);
             link.click();
@@ -272,7 +272,7 @@ export default defineComponent({
             }
         },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
-            this.files = data[1];
+            this.files = (data[1] as FileInterface[]).filter(item => item.isValid === true);
             this.cFiles = (data[1] as FileInterface[]).filter(item => item.isValid === true).length;
 
             this.fileLocBtnTxt = data[0];

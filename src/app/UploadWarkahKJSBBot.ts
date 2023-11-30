@@ -84,12 +84,12 @@ export class UploadWarkahKJSBBot extends Bot {
                 // await page.waitForSelector('body > div.blockUI.blockOverlay', {hidden: true, timeout: 0});
                 const fullpath = path.join(loc, file.nama);
 
-                await (new Promise(r => setTimeout(r, timeSecOut)));
-                await page.waitForSelector("#tipe", {timeout: 0});
-                await page.$eval('#tipe', el => el.value = "warkah");
+                // await (new Promise(r => setTimeout(r, timeSecOut)));
+                // await page.waitForSelector("#tipe", {timeout: 0});
+                // await page.$eval('#tipe', el => el.value = "warkah");
 
                 await (new Promise(r => setTimeout(r, timeSecOut)));
-                await page.type("#nomor", file.tipeUrut !== "" ? `${file.nomor}${file.tipeUrut}${file.nomorX}` : file.nomor);
+                await page.type("#nomor", file.tipeUrut !== "" ? `${file.nomor}-${file.nomorX}` : file.nomor);
 
                 await (new Promise(r => setTimeout(r, timeSecOut)));
                 await page.$eval("#tahun", el => el.value = "");
@@ -156,6 +156,61 @@ export class UploadWarkahKJSBBot extends Bot {
                     continue;
                 }
 
+                const listWarkahTidakAda = await page.$$("#listdiplaceholder > tr > td.hide-warkah");
+                
+                console.log(listWarkahTidakAda.length);
+                
+                if(listWarkahTidakAda.length == 0) {
+                    App.send('bot:statushandler', {
+                        nama: file.nama,
+                        id: "200",
+                        keterangan: "File sudah diupload", 
+                        success: true,
+                    });
+                    await page.reload();
+                    continue;
+                }
+
+                for(const warkahUp of listWarkahTidakAda) {
+                    await warkahUp.$eval('td:nth-child(6) > a', el => el.click());
+                    await page.select('#DokumenId', jenisDok);
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
+                    const uploadWarkahEl = await page.$("#btnUploadDok") as ElementHandle<HTMLInputElement>;
+
+                    await uploadWarkahEl.uploadFile(fullpath);
+                    let filePrev = await page.$("#docViewer > div > iframe");
+                    while (filePrev === null) {
+                        await uploadWarkahEl.uploadFile(fullpath);
+                        filePrev = await page.$("#docViewer > div > iframe");
+                    }
+
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
+                    await page.$eval("#btnunggah", (el: HTMLButtonElement) => el.click());
+
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
+                    await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el) => el.click());
+
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
+                    await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el) => el.click());
+
+                    const resUpload = await page.waitForResponse(res => res.request().url().includes('/CekDokumenUpload') && res.status() == 200, { timeout: 0 });
+                    const statusUpload = await resUpload.json();
+                    const statusMsg = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+
+                    App.send('bot:statushandler', {
+                        nama: file.nama,
+                        id: statusUpload.Pesan,
+                        keterangan: statusMsg, 
+                        success: statusUpload.Status,
+                    });
+
+                    await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
+
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
+                    await page.$eval('#carihak-tab', (el: HTMLAnchorElement) => el.click());
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
+                }
+
                 // const listsu = await page.waitForSelector("#listsuplaceholder > tr", { timeout: 0 });
                 // if (listsu == null) {
                 //     console.log("[ERROR] : " + file.nama + " tidak ditemukan");
@@ -201,20 +256,13 @@ export class UploadWarkahKJSBBot extends Bot {
 
                 // await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
                 // await (new Promise(r => setTimeout(r, timeSecOut)));
-                App.send('bot:statushandler', {
-                    nama: file.nama,
-                    id: "200",
-                    keterangan: "File sudah diupload", 
-                    success: true,
-                });
 
-                await page.reload();
+
+                // await page.reload();
             }
 
         } catch (err) {
             console.log(err);
-        } finally {
-            this.browser.close();
         }
     }
 }
