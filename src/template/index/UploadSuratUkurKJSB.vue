@@ -340,7 +340,7 @@ export default defineComponent({
             this.fileLocBtnTxt = data[0];
         },
         updateStatusValidasi(event: Electron.IpcRenderer, data: any[]) {
-            (this.reportJson as String[]).push(`${data[0].pid},${data[0].nib},${data[0].status},${data[0].success}`);
+            (this.reportJson as String[]).push(`${data[0].nama},${data[0].status},${data[0].success}`);
             if (data[0].success == true) {
                 this.cBerhasil++
             } else {

@@ -200,6 +200,8 @@ export class UploadBukuTanahKJSBBot extends Bot {
             }
         } catch (err) {
             console.log(err);
+        } finally {
+            this.browser.close();
         }
     }
 }
