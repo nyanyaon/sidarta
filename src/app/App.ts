@@ -146,9 +146,11 @@ export default class App {
                 })
             });
 
-            App.updateExecution = setInterval(() => {
-                autoUpdater.checkForUpdates();
-            }, 60 * 1000);
+            autoUpdater.checkForUpdates();
+
+            // App.updateExecution = setInterval(() => {
+            //     autoUpdater.checkForUpdates();
+            // }, 60 * 1000);
         }
 
         //COMM

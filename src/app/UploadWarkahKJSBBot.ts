@@ -155,12 +155,15 @@ export class UploadWarkahKJSBBot extends Bot {
                         success: statusUpload.Status,
                     });
 
+                    if(statusUpload.Status) {
+                        fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                            if(err) throw err;
+                            console.log('pindah file');
+                        });
+                    }
+
                     await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
-                    fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
-                        if(err) throw err;
-                        console.log('pindah file');
-                    });
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                     await page.reload();
                     continue;
@@ -213,6 +216,13 @@ export class UploadWarkahKJSBBot extends Bot {
                         keterangan: statusMsg, 
                         success: statusUpload.Status,
                     });
+
+                    if(statusUpload.Status) {
+                        fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                            if(err) throw err;
+                            console.log('pindah file');
+                        });
+                    }
 
                     await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
@@ -270,10 +280,9 @@ export class UploadWarkahKJSBBot extends Bot {
                 // }
 
                 // await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
-                // await (new Promise(r => setTimeout(r, timeSecOut)));
-
-
-                // await page.reload();
+                
+                await (new Promise(r => setTimeout(r, timeSecOut)));
+                await page.reload();
             }
 
         } catch (err) {

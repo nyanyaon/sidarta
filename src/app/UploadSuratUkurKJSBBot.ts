@@ -163,6 +163,11 @@ export class UploadSuratUkurKJSBBot extends Bot {
                         status: status,
                         success: true,
                     });
+
+                    fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                        if(err) throw err;
+                        console.log('pindah file');
+                    });
                     // wStream.write(`${file.nama},1\n`);
                 } else {
                     App.send('bot:statushandler', {
@@ -172,10 +177,7 @@ export class UploadSuratUkurKJSBBot extends Bot {
                     });
                 }
                 await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
-                fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
-                    if(err) throw err;
-                    console.log('pindah file');
-                });
+
                 await (new Promise(r => setTimeout(r, 1000)));
                 await page.reload();
             }
