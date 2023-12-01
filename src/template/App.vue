@@ -82,7 +82,7 @@ export default {
             isBrowserExist: true,
             isDenied: false,
             update: {
-                isUpdate: false,
+                isUpdate: true,
                 updateMsg: "Update...",
             },
         }

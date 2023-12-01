@@ -146,7 +146,15 @@ export class UploadWarkahKJSBBot extends Bot {
 
                     const resUpload = await page.waitForResponse(res => res.request().url().includes('/CekDokumenUpload') && res.status() == 200, { timeout: 0 });
                     const statusUpload = await resUpload.json();
-                    const statusMsg = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                    let statusMsg: string = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+
+                    while(statusMsg !== 'Dokumen berhasil diunggah') {
+                        statusMsg = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                        if(statusMsg === 'Terjadi Kesalahan') {
+                            break;
+                        }
+                        await (new Promise(r => setTimeout(r, timeSecOut)));
+                    }
 
                     App.send('bot:statushandler', {
                         nama: file.nama,
@@ -155,37 +163,36 @@ export class UploadWarkahKJSBBot extends Bot {
                         success: statusUpload.Status,
                     });
 
-                    if(statusUpload.Status) {
-                        fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
-                            if(err) throw err;
-                            console.log('pindah file');
-                        });
-                    }
-
                     await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
                     await (new Promise(r => setTimeout(r, timeSecOut)));
+                    if(statusUpload.Status) {
+                        fs.renameSync(fullpath, path.join(loc, 'sudah', file.nama));
+                    }
                     await page.reload();
                     continue;
                 }
 
-                const listWarkahTidakAda = await page.$$("#listdiplaceholder > tr > td.hide-warkah");
+                const listWarkahTidakAda = await page.$$("#listdiplaceholder > tr");
                 
                 console.log(listWarkahTidakAda.length);
                 
-                if(listWarkahTidakAda.length == 0) {
-                    App.send('bot:statushandler', {
-                        nama: file.nama,
-                        id: "200",
-                        keterangan: "File sudah diupload", 
-                        success: true,
-                    });
-                    await page.reload();
-                    continue;
-                }
+                // if(listWarkahTidakAda.length == 0) {
+                //     App.send('bot:statushandler', {
+                //         nama: file.nama,
+                //         id: "200",
+                //         keterangan: "File sudah diupload", 
+                //         success: true,
+                //     });
+                //     await page.reload();
+                //     continue;
+                // }
 
                 for(const warkahUp of listWarkahTidakAda) {
+                    await warkahUp.waitForSelector('td:nth-child(6) > a', {timeout:0});
                     await warkahUp.$eval('td:nth-child(6) > a', el => el.click());
+                    
+                    await page.waitForSelector('#DokumenId', {timeout:0});
                     await page.select('#DokumenId', jenisDok);
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                     const uploadWarkahEl = await page.$("#btnUploadDok") as ElementHandle<HTMLInputElement>;
@@ -208,7 +215,15 @@ export class UploadWarkahKJSBBot extends Bot {
 
                     const resUpload = await page.waitForResponse(res => res.request().url().includes('/CekDokumenUpload') && res.status() == 200, { timeout: 0 });
                     const statusUpload = await resUpload.json();
-                    const statusMsg = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                    let statusMsg: string = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+
+                    while(statusMsg !== 'Dokumen berhasil diunggah') {
+                        statusMsg = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
+                        if(statusMsg === 'Terjadi Kesalahan') {
+                            break;
+                        }
+                        await (new Promise(r => setTimeout(r, timeSecOut)));
+                    }
 
                     App.send('bot:statushandler', {
                         nama: file.nama,
@@ -217,21 +232,12 @@ export class UploadWarkahKJSBBot extends Bot {
                         success: statusUpload.Status,
                     });
 
-                    if(statusUpload.Status) {
-                        fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
-                            if(err) throw err;
-                            console.log('pindah file');
-                        });
-                    }
-
                     await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
-                    fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
-                        if(err) throw err;
-                        console.log('pindah file');
-                    });
-
                     await (new Promise(r => setTimeout(r, timeSecOut)));
+                    if(statusUpload.Status) {
+                        fs.renameSync(fullpath, path.join(loc, 'sudah', file.nama));
+                    }
                     await page.$eval('#carihak-tab', (el: HTMLAnchorElement) => el.click());
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                 }

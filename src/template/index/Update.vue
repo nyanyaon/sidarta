@@ -1,5 +1,10 @@
 <template>
     <div class="toast-update show">
+        <div class="part">
+            <button @click="close">
+                <Fa icon="fa-solid fa-xmark fa-xl" class="icon" />
+            </button>
+        </div>
         <p>{{ msg }}</p>
     </div>
 </template>
@@ -24,14 +29,29 @@
     }
 }
 
+.part {
+    margin-left: 0.4em;
+    margin-right: 1em;
+}
+
+button {
+    background: rgba(0, 0, 0, 0);
+    color: #000;
+    border: none;
+    padding: 0.2em 0.4em;
+    font-size: 1em;
+}
+
 .toast-update {
+    display: flex;
     position: absolute;
+    align-items: center;
     width: 170px;
     height: 42px;
     border-bottom: 5px solid #00B2FF;
-    border-top: 1px solid #00B2FF;
-    border-left: 1px solid #00B2FF;
-    border-right: 1px solid #00B2FF;
+    border-top: 0.3px solid #00B2FF;
+    border-left: 0.3px solid #00B2FF;
+    border-right: 0.3px solid #00B2FF;
     background: #ffffff;
     box-shadow: 0px 6px 18px -3px rgba(0, 0, 0, 0.25);
 }
@@ -70,6 +90,28 @@ export default defineComponent({
         }
     },
     methods: {
+        close() {
+            clearTimeout(this.hideHandle);
+            const time = 500;
+            const toast = document.querySelector('.toast-update');
+            toast.animate([
+                {
+                    opacity: 1,
+                    bottom: "3em",
+                    offset: 0,
+                },
+                {
+                    bottom: "0",
+                    opacity: 0,
+                    offset: 1
+                }
+            ], time);
+            
+            setTimeout(() => {
+                toast.classList.replace('show', 'hide');
+                toast.remove();
+            }, time-20);
+        },
         hide() {
             const time = 500;
             const toast = document.querySelector('.toast-update');
@@ -87,13 +129,14 @@ export default defineComponent({
             ], time);
             setTimeout(() => {
                 toast.classList.replace('show', 'hide');
+                toast.remove();
             }, time-20);
         }
     },
     mounted() {
-        setTimeout(() => {
+        this.hideHandle = setTimeout(() => {
             this.hide();
-        }, 3000);
+        }, 8000);
     }
 })
 </script>
