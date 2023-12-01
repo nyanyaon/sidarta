@@ -95,6 +95,7 @@ export class UploadWarkahKJSBBot extends Bot {
                 // await page.$eval('#tipe', el => el.value = "warkah");
 
                 await (new Promise(r => setTimeout(r, timeSecOut)));
+                await page.waitForSelector('#nomor', { timeout: 0 });
                 await page.type("#nomor", file.tipeUrut !== "" ? `${file.nomor}-${file.nomorX}` : file.nomor);
 
                 await (new Promise(r => setTimeout(r, timeSecOut)));
@@ -150,7 +151,7 @@ export class UploadWarkahKJSBBot extends Bot {
 
                     while(statusMsg !== 'Dokumen berhasil diunggah') {
                         statusMsg = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
-                        if(statusMsg === 'Terjadi Kesalahan') {
+                        if(statusMsg.includes('Terjadi Kesalahan') || statusMsg.includes("not enough space")) {
                             break;
                         }
                         await (new Promise(r => setTimeout(r, timeSecOut)));
@@ -191,10 +192,32 @@ export class UploadWarkahKJSBBot extends Bot {
                 for(const warkahUp of listWarkahTidakAda) {
                     await warkahUp.waitForSelector('td:nth-child(6) > a', {timeout:0});
                     await warkahUp.$eval('td:nth-child(6) > a', el => el.click());
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
                     
                     await page.waitForSelector('#DokumenId', {timeout:0});
                     await page.select('#DokumenId', jenisDok);
                     await (new Promise(r => setTimeout(r, timeSecOut)));
+                    
+                    const handleCheckBerkas = await page.$('#docViewer > div > iframe');
+                    await (new Promise(r => setTimeout(r, timeSecOut)));
+
+                    if(handleCheckBerkas !== null) {
+                        console.log('Berkas Ada');
+                        App.send('bot:statushandler', {
+                            nama: file.nama,
+                            id: "Berkas Sudah Terupload",
+                            keterangan: 200, 
+                            success: true,
+                        });
+                        fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                            if(err) throw err;
+                            console.log('Sudah');
+                        });
+                        await page.$eval('#carihak-tab', (el: HTMLAnchorElement) => el.click());
+                        await (new Promise(r => setTimeout(r, timeSecOut)));
+                        continue;
+                    }
+
                     const uploadWarkahEl = await page.$("#btnUploadDok") as ElementHandle<HTMLInputElement>;
 
                     await uploadWarkahEl.uploadFile(fullpath);
@@ -219,7 +242,7 @@ export class UploadWarkahKJSBBot extends Bot {
 
                     while(statusMsg !== 'Dokumen berhasil diunggah') {
                         statusMsg = await page.$eval("body > div.sweet-alert.showSweetAlert.visible > p", el => el.textContent);
-                        if(statusMsg === 'Terjadi Kesalahan') {
+                        if(statusMsg.includes('Terjadi Kesalahan') || statusMsg === "There is not enough space on the disk.") {
                             break;
                         }
                         await (new Promise(r => setTimeout(r, timeSecOut)));
