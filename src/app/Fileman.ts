@@ -2,6 +2,7 @@ export interface FileInterface {
     nama: string,
     tipe: string,
     nomor: string,
+    isDouble?: string,
     kodedesa?: string,
     tahun?: string,
     nomorX?: string,
@@ -15,8 +16,8 @@ export class Fileman {
     private REGEXBTS = /^(M|GB|GU)(_)(\d{5})(.pdf)/;
     private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})(.pdf)/;
     private REGEXSUS = /^(SU|GS|PLL|SUS|GT)(_)(\d{5})(_)(\d{4})(.pdf)/;
-    private REGEXW = /^(W)(_)(\d{5})(-|~)?(\d{5})?(_)(\d{4})(.pdf)/;
-    private REGEXW302 = /^(W302)(_)(\d{5})(-|~)?(\d{5})?(_)(\d{4})(.pdf)/;
+    private REGEXW = /^(W)(_)(\d{5})(A|B)?(-|~)?(\d{5})?(_)(\d{4})(.pdf)/;
+    private REGEXW302 = /^(W302)(_)(\d{5})(A|B)?(-|~)?(\d{5})?(_)(\d{4})(.pdf)/;
 
     private files: string[];
     private type: "SU" | "BT" | "BT-S" | "SU-S" | "W" | "W302";
@@ -77,9 +78,10 @@ export class Fileman {
                     nama: data,
                     tipe: regex !== null ? regex[1] : "",
                     nomor: regex !== null ? regex[3] : "",
-                    tipeUrut: regex !== null ? regex[4] !== undefined ? regex[4] : "" : "",
-                    nomorX: regex !== null ? regex[5] !== undefined ? regex[5] : "" : "",
-                    tahun: regex !== null ? regex[7] : "",
+                    isDouble: regex !== null ? regex[4] !== undefined ? regex[4] : "" : "",
+                    tipeUrut: regex !== null ? regex[5] !== undefined ? regex[5] : "" : "",
+                    nomorX: regex !== null ? regex[6] !== undefined ? regex[6] : "" : "",
+                    tahun: regex !== null ? regex[8] : "",
                     isValid: regex !== null ? true : false,
                 }
             }
@@ -90,9 +92,10 @@ export class Fileman {
                     nama: data,
                     tipe: regex !== null ? regex[1] : "",
                     nomor: regex !== null ? regex[3] : "",
-                    tipeUrut: regex !== null ? regex[4] !== undefined ? regex[4] : "" : "",
-                    nomorX: regex !== null ? regex[5] !== undefined ? regex[5] : "" : "",
-                    tahun: regex !== null ? regex[7] : "",
+                    isDouble: regex !== null ? regex[4] !== undefined ? regex[4] : "" : "",
+                    tipeUrut: regex !== null ? regex[5] !== undefined ? regex[5] : "" : "",
+                    nomorX: regex !== null ? regex[6] !== undefined ? regex[6] : "" : "",
+                    tahun: regex !== null ? regex[8] : "",
                     isValid: regex !== null ? true : false,
                 }
             }

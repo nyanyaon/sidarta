@@ -109,16 +109,18 @@ export class UploadWarkahKJSBBot extends Bot {
                 const responseDaftarDI = await page.waitForResponse((res) => res.url().includes(linkDI) && res.status() == 200, { timeout: 0 });
 
                 const statusDaftarDok = await responseDaftarDI.text();
-                if (statusDaftarDok === "noresults") {
+                if (statusDaftarDok === "noresults" || file.isDouble !== "") {
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                     console.log("Nggak ada");
-                    await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
+                    if(statusDaftarDok === "noresults") {
+                        await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
+                    }
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                     await page.$eval("#btnbaru", (el: HTMLButtonElement) => el.click());
                     await page.waitForSelector('body > div.blockUI.blockOverlay', { hidden: true, timeout: 0 });
 
                     await (new Promise(r => setTimeout(r, timeSecOut)));
-                    await page.type("#NomorWarkah", file.tipeUrut !== "" ? `${file.nomor}${file.tipeUrut}${file.nomorX}` : file.nomor);
+                    await page.type("#NomorWarkah", file.tipeUrut !== "" ? `${file.nomor}${file.tipeUrut}${file.nomorX}` : file.isDouble !== "" ? file.nomor+file.isDouble : file.nomor);
 
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                     await page.type("#TahunWarkah", file.tahun);
@@ -189,6 +191,7 @@ export class UploadWarkahKJSBBot extends Bot {
                 //     continue;
                 // }
 
+                let warkahUpId = 1;
                 for(const warkahUp of listWarkahTidakAda) {
                     await warkahUp.waitForSelector('td:nth-child(6) > a', {timeout:0});
                     await warkahUp.$eval('td:nth-child(6) > a', el => el.click());
@@ -202,19 +205,24 @@ export class UploadWarkahKJSBBot extends Bot {
                     await (new Promise(r => setTimeout(r, timeSecOut)));
 
                     if(handleCheckBerkas !== null) {
+                        
                         console.log('Berkas Ada');
-                        App.send('bot:statushandler', {
-                            nama: file.nama,
-                            id: "Berkas Sudah Terupload",
-                            keterangan: 200, 
-                            success: true,
-                        });
-                        fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
-                            if(err) throw err;
-                            console.log('Sudah');
-                        });
+                        if(warkahUpId == listWarkahTidakAda.length) {
+                            App.send('bot:statushandler', {
+                                nama: file.nama,
+                                id: "Berkas Sudah Terupload",
+                                keterangan: 200, 
+                                success: true,
+                            });
+                            
+                            fs.rename(fullpath, path.join(loc, 'sudah', file.nama), (err) => {
+                                if(err) throw err;
+                                console.log('Sudah');
+                            });
+                        }
                         await page.$eval('#carihak-tab', (el: HTMLAnchorElement) => el.click());
                         await (new Promise(r => setTimeout(r, timeSecOut)));
+                        warkahUpId++;
                         continue;
                     }
 
@@ -258,9 +266,10 @@ export class UploadWarkahKJSBBot extends Bot {
                     await page.$eval("body > div.sweet-alert.showSweetAlert.visible > div.sa-button-container > div > button", (el: HTMLButtonElement) => el.click());
 
                     await (new Promise(r => setTimeout(r, timeSecOut)));
-                    if(statusUpload.Status) {
+                    if(statusUpload.Status && warkahUpId == listWarkahTidakAda.length) {
                         fs.renameSync(fullpath, path.join(loc, 'sudah', file.nama));
                     }
+                    warkahUpId++;
                     await page.$eval('#carihak-tab', (el: HTMLAnchorElement) => el.click());
                     await (new Promise(r => setTimeout(r, timeSecOut)));
                 }
