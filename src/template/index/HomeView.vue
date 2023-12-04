@@ -6,7 +6,7 @@
                 <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Validasi<br /> Persil</p>
             </div>
-            <div @click="goToUploadBukuTanah" class="feature-box status-warn available">
+            <div @click="goToUploadBukuTanah" class="feature-box status-ready available">
                 <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Upload <br /> BT</p>
             </div>
@@ -209,7 +209,7 @@ export default defineComponent({
         ...mapWritableState(useAppStore, ['showSawer'])
     },
     mounted() {
-        document.title = "AutoMate v1.2.9";
+        document.title = "AutoMate v1.3.0";
         this.showSawer = true;
     },
 })

@@ -12,8 +12,8 @@ export interface FileInterface {
 }
 
 export class Fileman {
-    private REGEXBT = /^(M|GB|GU)(_)(\d{14})(.pdf)/;
-    private REGEXBTS = /^(M|GB|GU)(_)(\d{5})(.pdf)/;
+    private REGEXBT = /^(M|GB|GU|P|PL|MSRS|W)(_)(\d{14})(.pdf)/;
+    private REGEXBTS = /^(M|GB|GU|P|PL|MSRS|W)(_)(\d{5})(.pdf)/;
     private REGEXSU = /^(SU|GS|PLL|SUS|GT)(_)(\d{8})(_)(\d{5})(_)(\d{4})(.pdf)/;
     private REGEXSUS = /^(SU|GS|PLL|SUS|GT)(_)(\d{5})(_)(\d{4})(.pdf)/;
     private REGEXW = /^(W)(_)(\d{5})(A|B)?(-|~)?(\d{5})?(_)(\d{4})(.pdf)/;
