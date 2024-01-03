@@ -47,6 +47,35 @@ export class Bot {
     browser: puppeteer.Browser;
     EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
 
+    async login(user: string, pass: string) {
+        this.browser = await this.init(false);
+
+        const page = await this.browser.newPage();
+
+        await page.goto("https://entridokumen.atrbpn.go.id/");
+
+        await page.waitForNetworkIdle({ timeout: 0 });
+
+        const isLogin = await page.$('#right_col > div.x_panel > div.x_title > h2');
+
+        if (isLogin == null) {
+            await page.type('#username', user);
+            await page.type('#inputPassword', pass);
+
+            await page.click('#kc-next');
+
+            await page.waitForNavigation({
+                timeout: 0
+            });
+        } else {   
+            await page.waitForNetworkIdle({
+                timeout: 0,
+            });
+        }
+
+        return page;
+    }
+
     async init(headless = true): Promise<puppeteer.Browser> {
 
         return await puppeteer.launch({
@@ -59,5 +88,9 @@ export class Bot {
             headless,
             executablePath: this.EDGE_PATH,
         });
+    }
+
+    async prejob(concurency: number) {
+        console.log("run job: ", concurency);
     }
 }

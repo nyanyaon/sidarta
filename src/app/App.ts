@@ -179,9 +179,10 @@ export default class App {
             const bot = new UploadBukuTanahKJSBBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         });
-        App.ipc.handle('bot:startUploadSuratUkurKJSB', (event, ...args) => {
+        App.ipc.handle('bot:startUploadSuratUkurKJSB', async (event, ...args) => {
             const bot = new UploadSuratUkurKJSBBot();
-            bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+            const page = await bot.login(args[0], args[1]);
+            await bot.start(args[2], args[3], args[4], args[5], args[6], page);
         });
         App.ipc.handle('bot:startUploadWarkahKJSB', (event, ...args) => {
             const bot = new UploadWarkahKJSBBot();
@@ -189,7 +190,7 @@ export default class App {
         });
         App.ipc.handle('bot:startUploadSuratUkur', async (event, ...args) => {
             const bot = new UploadSuratUkurBot();
-            bot.start(args[0], args[1], args[2], args[3]);
+            await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         });
         App.ipc.handle('bot:startValidasiPersil', async (event, ...args) => {
             const bot = new ValidasiPersilBot();

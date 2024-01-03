@@ -3,40 +3,16 @@ import { Bot } from './Bot';
 import { FileInterface } from './Fileman';
 import * as path from 'path';
 import * as fs from 'fs';
+import type { Page } from 'puppeteer-core';
 
 
 export class UploadSuratUkurKJSBBot extends Bot {
 
-    async start(user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) {
+    async start(kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string, page: Page) {
         try {
 
             if(!fs.existsSync(path.join(loc, 'sudah'))) {
                 fs.mkdirSync(path.join(loc, 'sudah'));
-            }
-
-            this.browser = await this.init(false);
-
-            const page = await this.browser.newPage();
-
-            await page.goto("https://entridokumen.atrbpn.go.id/");
-
-            await page.waitForNetworkIdle({ timeout: 0 });
-
-            const isLogin = await page.$('#right_col > div.x_panel > div.x_title > h2');
-
-            if (isLogin == null) {
-                await page.type('#username', user);
-                await page.type('#inputPassword', pass);
-
-                await page.click('#kc-next');
-
-                await page.waitForNavigation({
-                    timeout: 0
-                });
-            } else {   
-                await page.waitForNetworkIdle({
-                    timeout: 0,
-                });
             }
 
             await page.goto("https://entridokumen.atrbpn.go.id/DokumenPengukuran/SuratUkur/", {

@@ -1,54 +1,78 @@
 <template>
     <div class="content">
-        <h2>TOOL UPLOAD SURAT UKUR</h2>
+        <h2>TOOL UPLOAD SURAT UKUR INTERNAL</h2>
         <div class="section">
             <div class="form-loc">
-                <label for="user">Username</label>
-                <input @change="updateUser" v-model="user" type="text" id="user" name="user">
-                <label for="pass">Password</label>
-                <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
-                <label for="file-loc">Lokasi Dokumen</label>
-                <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
+                <div class="input-type">
+                    <input v-model="inputType" type="radio" id="suSimple" value="suSimple" name="suSimple" checked>
+                    <label for="suSimple">SU Simple</label>
+                    <input v-model="inputType" type="radio" id="suFull" value="suFull" name="suFull">
+                    <label for="suFull">SU Full</label>
+                </div>
+                <div class="input-group">
+                    <label for="user">Username</label>
+                    <input @change="updateUser" v-model="user" type="text" id="user" name="user">
+                </div>
+                <div class="input-group">
+                    <label for="pass">Password</label>
+                    <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
+                </div>
+                <div class="input-group">
+                    <label for="kabupaten">Kabupaten</label>
+                    <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
+                        :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
+                    <datalist id="listkabupaten">
+                        <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
+                            :value="parseWil(item.nama, item.tipewilayahid)"></option>
+                    </datalist>
+                </div>
+                <div class="input-group">
+                    <label for="kecamatan">Kecamatan</label>
+                    <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
+                        :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
+                    <datalist id="listkecamatan">
+                        <option :data-kec-id="item.wilayahid" v-for="item, index in getListKecamatan"
+                            :value="index + 1 + '.' + item.nama">
+                        </option>
+                    </datalist>
+                </div>
+                <div class="input-group">
+                    <label for="desa">Desa</label>
+                    <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
+                    <datalist id="listdesa">
+                        <option :data-kel-id="item.wilayahid" v-for="item in getListDesa"
+                            :value="parseWil(item.nama, item.tipewilayahid)"></option>
+                    </datalist>
+                </div>
+                <div class="input-group">
+                    <label for="file-loc">Pilih Folder</label>
+                    <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
+                </div>
                 <button @click="start" class="start">Mulai</button>
             </div>
             <div class="doc-container">
-                <h3>List Dokumen ({{ getCountFiles }}) : ❌{{ getFilesError }} ✔{{ getFilesOk }}</h3>
-                <div v-for="file, index in getFiles" class="doc-item">
-                    <Fa icon="fa-solid fa-file-pdf" :class="file.isValid ? 'icon-ready' : 'icon-error'" />
-                    <p>{{ file.nama }} <span v-if="file.isUploaded">👍</span></p>
+                <div class="berhasil">
+                    <h3>JUMLAH :</h3>
+                    <p>{{ cFiles }} Berkas</p>
                 </div>
+                <div class="berhasil">
+                    <h3>BERHASIL :</h3>
+                    <p>{{ cBerhasil }} Berkas</p>
+                </div>
+                <div class="gagal">
+                    <h3>GAGAL :</h3>
+                    <p>{{ cGagal }} Berkas</p>
+                </div>
+                <button @click="downloadReport" class="report-btn">
+                    <Fa icon="fa-solid fa-download" size="xl" style="color: #ffffff;" />
+                    <p class="text"> REPORT HASIL</p>
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-
-.doc-item {
-    display: flex;
-    margin: 0;
-    align-items: center;
-}
-
-.doc-item .icon-error {
-    color: #FF3636;
-    font-size: 15px;
-    text-align: center;
-}
-
-.doc-item .icon-ready {
-    color: #02B334;
-    font-size: 15px;
-    text-align: center;
-}
-
-.doc-item p {
-    font-size: 0.625em;
-    font-weight: 700;
-    color: #393939;
-    margin-left: 0.5em;
-}
-
 .section {
     display: flex;
     margin-top: 1em;
@@ -86,6 +110,7 @@
 
 .doc-container p {
     color: #393939;
+    font-size: 1rem;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -122,14 +147,40 @@
     margin-right: 2em;
 }
 
-.form-loc label {
+.input-type {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.input-type label {
+    font-size: 0.625em;
+    font-weight: 700;
+    color: #7B7B7B;
+    margin-bottom: 0;
+    margin-right: 0.5em;
+}
+
+.input-type input {
+    font-size: 0.625em;
+    font-weight: 700;
+    color: #7B7B7B;
+    margin-top: 0;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
     font-size: 0.625em;
     font-weight: 700;
     color: #7B7B7B;
     margin-bottom: 0.625em;
 }
 
-.form-loc input {
+.input-group input {
     background: none;
     border: 1px solid #00B2FF;
     font-size: .8em;
@@ -174,15 +225,16 @@
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
-import type { Kecamatan, Desa } from '../../app/Bot';
-import { FileInterface } from '../../app/Fileman';
+import type { Kecamatan, Desa, Kabupaten } from '../../app/Bot';
+import type { FileInterface } from '../../app/Fileman';
+
+import kabJson from '../json/ntb_kabk.json';
 
 export default defineComponent({
-    name: "UploadSuratUkur",
+    name: "UploadSuratUkurKJSB",
     data() {
         return {
             fileLocBtnTxt: "Pilih",
-            files: [] as FileInterface[],
             kecJson: [] as Kecamatan[],
             desaJson: [] as Desa[],
             reportJson: [],
@@ -194,32 +246,56 @@ export default defineComponent({
             desa: "",
             user: "",
             pass: "",
+            cBerhasil: 0,
+            cGagal: 0,
+            cFiles: 0,
+            inputType: "suSimple",
         }
     },
     computed: {
-        getFiles(): FileInterface[] {
-            return this.files.map((val: FileInterface) => val).sort((valA: FileInterface, valB: FileInterface) => (valA.isValid === valB.isValid) ? 0 : valA.isValid ? -1 : 1).splice(0, 10);
+        getListKabupaten(): Kabupaten[] {
+            if (this.kabupaten == "") return kabJson;
+
+            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_kec.json')
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
+            fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_desa.json')
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
+
+            return kabJson;
         },
-        getFilesError(): number {
-            return this.files.filter((val: FileInterface) => !val.isValid).length;
+        getListKecamatan(): Kecamatan[] {
+            return (this.kecJson as Kecamatan[]).filter(value => value.validsampai === null);
         },
-        getFilesOk(): number {
-            return this.files.filter((val: FileInterface) => val.isValid).length;
-        },
-        getCountFiles(): number {
-            return this.files.length;
-        },
+        getListDesa(): Desa[] {
+            const listdesa = (this.desaJson as Desa[]).filter(value => value.validsampai === null)
+            if (this.kecamatan === "") return listdesa;
+
+            return listdesa.filter(value => value.induk === this.kecamatanId);
+        }
     },
     methods: {
-        selectFolder() {
-            window.COMM.folderSelect('SU');
-        },
-        start() {
-            window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
-            const text = JSON.stringify(this.files);
-            const files = JSON.parse(text) as FileInterface[];
+        parseWil(nama: string, tipe: number) {
+            let namaParsed = ''
+            switch (tipe) {
+                case 3:
+                    namaParsed = `Kota ${nama}`
+                    break;
+                case 2:
+                    namaParsed = `Kab. ${nama}`
+                    break;
+                case 6:
+                    namaParsed = `Desa ${nama}`
+                    break;
+                case 7:
+                    namaParsed = `Kel. ${nama}`
+                    break;
+                default:
+                    break;
+            }
 
-            window.COMM.botStartUploadSuratUkur(this.user, this.pass, files, this.fileLocBtnTxt);
+            return namaParsed
         },
         updateUser(ev: Event) {
             window.localStorage.setItem("USER", this.user);
@@ -227,16 +303,101 @@ export default defineComponent({
         updatePass(ev: Event) {
             window.localStorage.setItem("PASS", this.pass);
         },
+        selectFolder() {
+            if (this.inputType == 'suFull') {
+                window.COMM.folderSelect('SU');
+                return;
+            }
+            if (this.inputType == 'suSimple') {
+                window.COMM.folderSelect('SU-S');
+                return;
+            }
+        },
+        downloadReport() {
+            if ((this.reportJson as String[]).length < 2) {
+                alert('no data');
+                return;
+            }
+            const text: string = (this.reportJson as String[]).join('\n');
+            const blob = new Blob([text], { type: "text/csv" });
+
+            const link = document.createElement('a');
+            link.download = `${this.kabupaten}_${this.kecamatan}_${this.desa}.csv`;
+
+            link.href = URL.createObjectURL(blob);
+            link.click();
+
+            URL.revokeObjectURL(link.href);
+        },
+        start() {
+            // window.COMM.appOpenExternal('https://www.highcpmrevenuegate.com/qfmnuap5z?key=4c47fd32a3fe0a592119563c8f704443')
+            const text = JSON.stringify(this.files);
+            const files = JSON.parse(text) as FileInterface[];
+
+            window.COMM.botStartUploadSuratUkur(this.user, this.pass, this.kabupatenId, this.kecamatanId, this.desaId, files, this.fileLocBtnTxt);
+        },
+        updateFileSelect(event: Electron.IpcRenderer, data: any[]) {
+            this.fileLocBtnTxt = data[0];
+        },
+        updateStatusValidasi(event: Electron.IpcRenderer, data: any[]) {
+            (this.reportJson as String[]).push(`${data[0].nama},${data[0].status},${data[0].success}`);
+            if (data[0].success == true) {
+                this.cBerhasil++
+            } else {
+                this.cGagal++
+            }
+        },
+        updateKabupaten(event: Event) {
+            if (this.kabupaten === "") return;
+            this.updateKabId();
+            const kab = kabJson.find(value => value.wilayahid === this.kabupatenId);
+            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_kec.json')
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
+            fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
+            window.localStorage.setItem("USER_KAB", this.kabupaten + "," + this.kabupatenId);
+        },
+        updateKecamatan(event: Event) {
+            if (this.kecamatan === "") return;
+
+            this.updateKecId()
+        },
+        updateDesa(event: Event) {
+            if (this.desa === "") return;
+            const listdesa = (document.querySelector('#listdesa') as HTMLDataListElement).options;
+            const desa = Array.from(listdesa);
+            this.desaId = desa.find(val => val.value === this.desa).dataset.kelId;
+            const induk = (this.desaJson as Desa[]).find(val => val.wilayahid === this.desaId).induk;
+            const listkec = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
+            const kec = Array.from(listkec);
+
+            this.kecamatanId = induk;
+            this.kecamatan = kec.find(val => val.dataset.kecId === induk).value;
+        },
+        updateKabId() {
+            const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;
+            const dataArr = Array.from(datalist);
+            this.kabupatenId = dataArr.find(val => val.value === this.kabupaten).dataset.kabId;
+        },
+        updateKecId() {
+            const datalist = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
+            const dataArr = Array.from(datalist);
+            this.kecamatanId = dataArr.find(val => val.value === this.kecamatan).dataset.kecId;
+        },
         updateFolderSelect(event: Electron.IpcRenderer, data: any[]) {
             this.files = data[1];
+            this.cFiles = (data[1] as FileInterface[]).filter(item => item.isValid === true).length;
 
             this.fileLocBtnTxt = data[0];
         },
     },
     mounted() {
-        document.title = "AutoMate - Upload Surat Ukur";
+        document.title = "AutoMate - Upload Surat Ukur Internal";;
         window.COMM.folderSelected(this.updateFolderSelect);
-        this.reportJson.push('pid,nib,message,isberhasil');
+        window.COMM.botStatusHandler(this.updateStatusValidasi);
+        this.reportJson.push('nama,message,isberhasil');
         this.user = window.localStorage.getItem("USER");
         this.pass = window.localStorage.getItem("PASS");
         if (window.localStorage.getItem("USER_KAB") !== null) {

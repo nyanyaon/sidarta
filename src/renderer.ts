@@ -87,7 +87,7 @@ interface PreloadComm {
     botStartUploadBukuTanahKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadSuratUkurKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadWarkahKJSB: (user: string, pass: string, type: string, files: FileInterface[], loc: string) => void;
-    botStartUploadSuratUkur: (user: string, pass: string, files: FileInterface[], loc: string) => void;
+    botStartUploadSuratUkur: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     botStartUpdatePersil: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
     botStartEntryFisikPTSL: (user: string, pass: string, listtype: string, kabupatenId: string, kecamatanId: string, desaId: string, fileLoc: string) => void;
