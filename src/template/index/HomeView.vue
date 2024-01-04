@@ -209,7 +209,7 @@ export default defineComponent({
         ...mapWritableState(useAppStore, ['showSawer'])
     },
     mounted() {
-        document.title = "AutoMate v1.3.0";
+        document.title = "AutoMate v1.3.2";
         this.showSawer = true;
     },
 })

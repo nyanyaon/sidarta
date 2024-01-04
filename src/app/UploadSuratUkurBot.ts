@@ -17,7 +17,7 @@ export class UploadSuratUkurBot extends Bot {
 
             const page = await this.browser.newPage();
 
-            await page.goto("https://aplikasi.atrbpn.go.id/");
+            await page.goto("https://aplikasi.atrbpn.go.id/pintasan");
 
             await page.waitForNetworkIdle({ timeout: 0 });
 
