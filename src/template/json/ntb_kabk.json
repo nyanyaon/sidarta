@@ -108,5 +108,15 @@
         "validsejak": "5/18/2017, 20:44",
         "validsampai": null,
         "statusgeometri": 1
+    },
+    {
+        "wilayahid": "bbf1528a39cd43519753c87647b9d4b3",
+        "kode": "2006",
+        "nama": "PANGKAJENE DAN KEPULAUAN",
+        "tipewilayahid": 2,
+        "induk": "e6a73ee159284b898656894aab36a987",
+        "validsejak": "/Date(1495115059000)/",
+        "validsampai": null,
+        "statusgeometri": 1
     }
 ]

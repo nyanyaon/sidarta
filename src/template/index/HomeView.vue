@@ -34,7 +34,7 @@
                 <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Entry Fisik<br /> PTSL</p>
             </div>
-            <div @click="gotoSuratUkurKJSB" class="feature-box status-ready available">
+            <!-- <div @click="gotoSuratUkurKJSB" class="feature-box status-ready available">
                 <img src="../img/logo-lura.png" alt="PT Lura Karya" />
                 <p class="context">Upload<br /> SU</p>
             </div>
@@ -44,7 +44,7 @@
             </div>
             <div @click="gotoWarkahKJSB" class="feature-box status-ready available">
                 <img src="../img/logo-lura.png" alt="PT Lura Karya" />
-                <p class="context">Upload<br /> Warkah</p>
+                <p class="context">Upload<br /> Warkah</p> -->
             </div>
         </div>
     </div>
@@ -209,7 +209,7 @@ export default defineComponent({
         ...mapWritableState(useAppStore, ['showSawer'])
     },
     mounted() {
-        document.title = "AutoMate v1.3.2";
+        document.title = "AutoMate v1.3.3";
         this.showSawer = true;
     },
 })
