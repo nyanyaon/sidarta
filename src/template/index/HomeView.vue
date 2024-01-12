@@ -45,7 +45,7 @@
             <div @click="gotoWarkahKJSB" class="feature-box status-ready available">
                 <img src="../img/logo-lura.png" alt="PT Lura Karya" />
                 <p class="context">Upload<br /> Warkah</p> -->
-            </div>
+            <!-- </div> -->
         </div>
     </div>
     <div class="logoveea">
