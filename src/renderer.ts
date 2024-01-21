@@ -44,6 +44,7 @@ import { faUser, faFilePdf, faDownload, faXmark, faGear } from '@fortawesome/fre
 import { FileInterface } from './app/Fileman';
 import HomeView from './template/index/HomeView.vue';
 import UploadBukuTanahKJSB from './template/index/UploadBukuTanahKJSB.vue';
+import BukaValidasiPersil from './template/index/BukaValidasiPersil.vue';
 
 library.add(faUser, faFilePdf, faDownload, faXmark, faGear);
 
@@ -60,6 +61,7 @@ const router = createRouter({
         { path: '/suratukurkjsb', component: UploadSuratUkurKJSB },
         { path: '/bukutanahkjsb', component: UploadBukuTanahKJSB },
         { path: '/warkahkjsb', component: UploadWarkahKJSB },
+        { path: '/bukavalidasipersil', component: BukaValidasiPersil },
     ]
 });
 
@@ -83,6 +85,7 @@ interface PreloadComm {
     databaseCheck: (col: string, nama: string) => Promise<boolean>;
     databaseGetAll: (col: string) => Promise<any[]>;
     botGetOption: () => void;
+    botStartBukaValidasiPersil: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, data: any[], loc: string) => void;
     botStartUploadBukuTanah: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadBukuTanahKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;
     botStartUploadSuratUkurKJSB: (user: string, pass: string, kabupatenId: string, kecamatanId: string, desaId: string, files: FileInterface[], loc: string) => void;

@@ -13,6 +13,7 @@ import { EntryFisikPTSLBot } from './EntryFisikPTSLBot';
 import { UploadSuratUkurKJSBBot } from './UploadSuratUkurKJSBBot';
 import { UploadBukuTanahKJSBBot } from './UploadBukuTanahKJSBBot';
 import { UploadWarkahKJSBBot } from './UploadWarkahKJSBBot';
+import { BukaValidasiPersil } from './BukaValidasiPersil';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -175,6 +176,10 @@ export default class App {
             const bot = new UploadBukuTanahBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         });
+        App.ipc.handle('bot:startBukaValidasiPersil', async (event, ...args) => {
+            const bot = new BukaValidasiPersil();
+            bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        });
         App.ipc.handle('bot:startUploadBukuTanahKJSB', async (event, ...args) => {
             const bot = new UploadBukuTanahKJSBBot();
             await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
@@ -238,9 +243,11 @@ export default class App {
                 ]
             }).then(async (result) => {
                 if (result.canceled) return;
+                const readCsv = (await import('./Dataman')).readCsv
 
-                console.log(result.filePaths);
-                App.send('file:selected', result.filePaths[0]);
+                const data = await readCsv(result.filePaths[0])
+
+                App.send('file:selected', result.filePaths[0], data);
             }).catch(err => {
                 console.log(err);
             });

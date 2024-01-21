@@ -34,6 +34,10 @@
                 <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
                 <p class="context">Entry Fisik<br /> PTSL</p>
             </div>
+            <div @click="gotoBukaValidasiPersil" class="feature-box status-error available">
+                <img src="../img/logo-atrbpn.png" alt="ATRBPN" />
+                <p class="context">Buka Validasi<br /> Persil</p>
+            </div>
             <!-- <div @click="gotoSuratUkurKJSB" class="feature-box status-ready available">
                 <img src="../img/logo-lura.png" alt="PT Lura Karya" />
                 <p class="context">Upload<br /> SU</p>
@@ -204,6 +208,10 @@ export default defineComponent({
         gotoWarkahKJSB() {
             this.$router.replace('/warkahkjsb');
         },
+        gotoBukaValidasiPersil() {
+            this.$router.replace('/bukavalidasipersil');
+        },
+        
     },
     computed: {
         ...mapWritableState(useAppStore, ['showSawer'])
