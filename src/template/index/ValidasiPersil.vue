@@ -7,23 +7,33 @@
                 <input @change="updateUser" v-model="user" type="text" id="user" name="user">
                 <label for="pass">Password</label>
                 <input @change="updatePass" v-model="pass" type="password" id="pass" name="pass">
-                <label for="kabupaten">Kabupaten</label>
-                <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
-                    :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
-                <datalist id="listkabupaten">
-                    <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten" :value="item.tipewilayahid == 3 ? 'Kota ' + item.nama : 'Kab. ' + item.nama"></option>
-                </datalist>
-                <label for="kecamatan">Kecamatan</label>
-                <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
-                    :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
-                <datalist id="listkecamatan">
-                    <option :data-kec-id="item.wilayahid" v-for="item in getListKecamatan" :value="item.nama"></option>
-                </datalist>
-                <label for="desa">Desa</label>
-                <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
-                <datalist id="listdesa">
-                    <option :data-kec-id="item.wilayahid" v-for="item in getListDesa" :value="item.nama"></option>
-                </datalist>
+                <div class="input-group">
+                    <label for="kabupaten">Kabupaten</label>
+                    <input @change="updateKabupaten" v-model="kabupaten" list="listkabupaten" type="text"
+                        :data-kabid="kabupatenId" id="kabupaten" name="kabupaten">
+                    <datalist id="listkabupaten">
+                        <option :data-kab-id="item.wilayahid" v-for="item in getListKabupaten"
+                            :value="parseWil(item.nama, item.tipewilayahid)"></option>
+                    </datalist>
+                </div>
+                <div class="input-group">
+                    <label for="kecamatan">Kecamatan</label>
+                    <input @change="updateKecamatan" v-model="kecamatan" list="listkecamatan" type="text"
+                        :data-kecid="kecamatanId" id="kecamatan" name="kecamatan">
+                    <datalist id="listkecamatan">
+                        <option :data-kec-id="item.wilayahid" v-for="item, index in getListKecamatan"
+                            :value="index + 1 + '.' + item.nama">
+                        </option>
+                    </datalist>
+                </div>
+                <div class="input-group">
+                    <label for="desa">Desa</label>
+                    <input @change="updateDesa" v-model="desa" list="listdesa" type="text" name="desa" id="desa">
+                    <datalist id="listdesa">
+                        <option :data-kel-id="item.wilayahid" v-for="item, index in getListDesa"
+                            :value="index + 1 + parseWil(item.nama, item.tipewilayahid)"></option>
+                    </datalist>
+                </div>
                 <label for="file-loc">Daftar NIB (*.csv)</label>
                 <button @click="selectFolder">{{ fileLocBtnTxt }}</button>
                 <button @click="start" class="start">Mulai</button>
@@ -80,6 +90,28 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.625em;
+    font-weight: 700;
+    color: #7B7B7B;
+    margin-bottom: 0.625em;
+}
+
+.input-group input {
+    background: none;
+    border: 1px solid #00B2FF;
+    font-size: .8em;
+    font-weight: 400;
+    padding: 0.5em 1em;
+    margin-bottom: 0.625em;
+    border-radius: 1rem;
 }
 
 .doc-container p {
@@ -201,26 +233,46 @@ export default defineComponent({
             if (this.kabupaten == "") return kabJson;
 
             fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_kec.json')
-            .then(res => res.json())
-            .then(json => { this.kecJson = json });
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
             fetch('https://nyanyaon.github.io/sidarta_server/' + this.kabupatenId + '_desa.json')
-            .then(res => res.json())
-            .then(json => { this.desaJson = json });
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
 
             return kabJson;
         },
         getListKecamatan(): Kecamatan[] {
-            return this.kecJson;
+            return (this.kecJson as Kecamatan[]).filter(value => value.validsampai === null);
         },
         getListDesa(): Desa[] {
-            if (this.kecamatanId === "") return this.desaJson;
+            const listdesa = (this.desaJson as Desa[]).filter(value => value.validsampai === null)
+            if (this.kecamatan === "") return listdesa;
 
-            const listdesa = (this.desaJson as Desa[]).filter(value => value.induk === this.kecamatanId);
-
-            return listdesa;
+            return listdesa.filter(value => value.induk === this.kecamatanId);
         }
     },
     methods: {
+        parseWil(nama: string, tipe: number) {
+            let namaParsed = ''
+            switch (tipe) {
+                case 3:
+                    namaParsed = `Kota ${nama}`
+                    break;
+                case 2:
+                    namaParsed = `Kab. ${nama}`
+                    break;
+                case 6:
+                    namaParsed = `Desa ${nama}`
+                    break;
+                case 7:
+                    namaParsed = `Kel. ${nama}`
+                    break;
+                default:
+                    break;
+            }
+
+            return namaParsed
+        },
         updateUser(ev: Event) {
             window.localStorage.setItem("USER", this.user);
         },
@@ -266,24 +318,29 @@ export default defineComponent({
             this.updateKabId();
             const kab = kabJson.find(value => value.wilayahid === this.kabupatenId);
             fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_kec.json')
-            .then(res => res.json())
-            .then(json => { this.kecJson = json });
+                .then(res => res.json())
+                .then(json => { this.kecJson = json });
             fetch('https://nyanyaon.github.io/sidarta_server/' + kab.wilayahid + '_desa.json')
-            .then(res => res.json())
-            .then(json => { this.desaJson = json });
+                .then(res => res.json())
+                .then(json => { this.desaJson = json });
             window.localStorage.setItem("USER_KAB", this.kabupaten + "," + this.kabupatenId);
         },
         updateKecamatan(event: Event) {
             if (this.kecamatan === "") return;
+
+            this.updateKecId()
         },
         updateDesa(event: Event) {
             if (this.desa === "") return;
-            const desa = (this.desaJson as Desa[]).find(value => value.nama === this.desa);
-            const kec = (this.kecJson as Kecamatan[]).find(value => value.wilayahid === desa.induk);
+            const listdesa = (document.querySelector('#listdesa') as HTMLDataListElement).options;
+            const desa = Array.from(listdesa);
+            this.desaId = desa.find(val => val.value === this.desa).dataset.kelId;
+            const induk = (this.desaJson as Desa[]).find(val => val.wilayahid === this.desaId).induk;
+            const listkec = (document.querySelector('#listkecamatan') as HTMLDataListElement).options;
+            const kec = Array.from(listkec);
 
-            this.kecamatan = kec.nama;
-            this.kecamatanId = kec.wilayahid;
-            this.desaId = desa.wilayahid;
+            this.kecamatanId = induk;
+            this.kecamatan = kec.find(val => val.dataset.kecId === induk).value;
         },
         updateKabId() {
             const datalist = (document.querySelector('#listkabupaten') as HTMLDataListElement).options;

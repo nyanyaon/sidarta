@@ -2,7 +2,7 @@
     <Modal v-if="!isBrowserExist" btn="Unduh" content="Maaf, edge tidak ditemukan silahkan mengunduh terlebih dahulu"
         :handler="unduh" />
     <!-- <Sawer v-if="showSawer" /> -->
-    <Update v-if="update.isUpdate" :msg="update.updateMsg" />
+    <!-- <Update v-if="update.isUpdate" :msg="update.updateMsg" /> -->
     <Loader />
     <DisclaimerModal v-if="showDisclaimer" />
     <LoginModal v-if="showLogin" />

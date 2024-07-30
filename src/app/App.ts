@@ -4,7 +4,6 @@ import { AuthSSO } from './AuthSSO';
 import * as fs from 'fs';
 import { UploadBukuTanahBot } from './UploadBukuTanahBot';
 import { Fileman } from './Fileman';
-import { Database } from './db/Database';
 import { UploadSuratUkurBot } from './UploadSuratUkurBot';
 import type { Browser } from 'puppeteer-core';
 import { ValidasiPersilBot } from './ValidasiPersilBot';
@@ -92,67 +91,67 @@ export default class App {
             App.onReady();
         });
 
-        if (App.application.isPackaged) {
-            const server = 'https://update.electronjs.org';
-            const feed = `${server}/nyanyaon/sidarta/${process.platform}-${process.arch}/${App.application.getVersion()}`;
+        // if (App.application.isPackaged) {
+        //     const server = 'https://update.electronjs.org';
+        //     const feed = `${server}/nyanyaon/sidarta/${process.platform}-${process.arch}/${App.application.getVersion()}`;
 
-            autoUpdater.setFeedURL({ url: feed });
+        //     autoUpdater.setFeedURL({ url: feed });
 
-            autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-                const dialogOpts = {
-                    type: 'info',
-                    buttons: ['Restart'],
-                    title: 'Application Update',
-                    message: process.platform === 'win32' ? releaseNotes : releaseName,
-                    detail:
-                        'A new version has been downloaded. Restart the application to apply the updates.'
-                } as MessageBoxOptions;
+        //     autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+        //         const dialogOpts = {
+        //             type: 'info',
+        //             buttons: ['Restart'],
+        //             title: 'Application Update',
+        //             message: process.platform === 'win32' ? releaseNotes : releaseName,
+        //             detail:
+        //                 'A new version has been downloaded. Restart the application to apply the updates.'
+        //         } as MessageBoxOptions;
 
-                dialog.showMessageBox(dialogOpts).then((returnValue) => {
-                    if (returnValue.response === 0) autoUpdater.quitAndInstall();
-                });
-            });
+        //         dialog.showMessageBox(dialogOpts).then((returnValue) => {
+        //             if (returnValue.response === 0) autoUpdater.quitAndInstall();
+        //         });
+        //     });
 
-            autoUpdater.on('update-available', () => {
+        //     autoUpdater.on('update-available', () => {
 
-                const notif = new Notification({
-                    title: "Update Available",
-                    body: "We will donwload it for you",
-                    icon: nativeImage.createFromPath("../template/img/logo.png"),
-                });
+        //         const notif = new Notification({
+        //             title: "Update Available",
+        //             body: "We will donwload it for you",
+        //             icon: nativeImage.createFromPath("../template/img/logo.png"),
+        //         });
 
-                notif.addListener("click", async () => {
-                    await shell.openExternal('https://nyanyaonn.my.id/');
-                });
+        //         notif.addListener("click", async () => {
+        //             await shell.openExternal('https://nyanyaonn.my.id/');
+        //         });
 
-                notif.show();
+        //         notif.show();
 
-                App.send('app:update', {
-                    isUpdate: true,
-                    msg: 'There\'s update!'
-                });
-            });
+        //         App.send('app:update', {
+        //             isUpdate: true,
+        //             msg: 'There\'s update!'
+        //         });
+        //     });
 
-            autoUpdater.once('update-not-available', () => {
-                App.send('app:update', {
-                    isUpdate: true,
-                    msg: 'Updated to last version'
-                });
-            });
+        //     autoUpdater.once('update-not-available', () => {
+        //         App.send('app:update', {
+        //             isUpdate: true,
+        //             msg: 'Updated to last version'
+        //         });
+        //     });
 
-            autoUpdater.on('error', (message) => {
-                App.send('app:update', {
-                    isUpdate: true,
-                    msg: 'Update error',
-                })
-            });
+        //     autoUpdater.on('error', (message) => {
+        //         App.send('app:update', {
+        //             isUpdate: true,
+        //             msg: 'Update error',
+        //         })
+        //     });
 
-            autoUpdater.checkForUpdates();
+        //     autoUpdater.checkForUpdates();
 
-            // App.updateExecution = setInterval(() => {
-            //     autoUpdater.checkForUpdates();
-            // }, 60 * 1000);
-        }
+        //     // App.updateExecution = setInterval(() => {
+        //     //     autoUpdater.checkForUpdates();
+        //     // }, 60 * 1000);
+        // }
 
         //COMM
         App.ipc.handle('app:checkBrowser', (event, ...args) => {
@@ -168,9 +167,9 @@ export default class App {
             }
         });
 
-        App.ipc.handle('app:update', async (event, ...args) => {
-            autoUpdater.checkForUpdates();
-        });
+        // App.ipc.handle('app:update', async (event, ...args) => {
+        //     autoUpdater.checkForUpdates();
+        // });
         App.ipc.handle('app:openExternal', async (event, ...args) => { await shell.openExternal(args[0]) });
         App.ipc.handle('bot:startUploadBukuTanah', async (event, ...args) => {
             const bot = new UploadBukuTanahBot();
@@ -203,7 +202,7 @@ export default class App {
         });
         App.ipc.handle('bot:startEntryFisikPTSL', async (event, ...args) => {
             const bot = new EntryFisikPTSLBot();
-            await bot.start(args[0], args[1], args[2], args[3], args[4], args[5]);
+            await bot.start(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
         });
         App.ipc.handle('bot:startUpdatePersil', async (event, ...args) => {
             const bot = new UpdatePersilBot();
@@ -253,31 +252,6 @@ export default class App {
             });
         });
 
-        App.ipc.handle('database:check', async (event, ...args) => {
-            const db = new Database();
-            await db.connect();
-
-            const col = db.getCollection(args[0]);
-
-            const data = await col.findOne({
-                nama: args[1]
-            });
-
-            if (data !== null) return true;
-
-            return false;
-        });
-
-        App.ipc.handle('database:getAll', async (event, ...args) => {
-            const db = new Database();
-            await db.connect();
-
-            const col = db.getCollection(args[0]);
-
-            const data = await col.find({}).toArray();
-
-            return data;
-        });
 
         App.ipc.handle('auth:save', async (event, ...args) => {
             App.sso = new AuthSSO();

@@ -43,7 +43,7 @@
                     <label for="file-loc">Daftar Entry (*.csv)</label>
                     <button @click="selectFile">{{ fileLocBtnTxt }}</button>
                 </div>
-                <button @click="start" class="start">Mulai</button>
+                <button @click="start" :disabled="!eligibleUser" class="start">Mulai</button>
             </div>
             <div class="doc-container">
                 <div class="berhasil">
@@ -262,6 +262,9 @@ export default defineComponent({
             const listdesa = (this.desaJson as Desa[]).filter(value => value.induk === this.kecamatanId);
 
             return listdesa;
+        },
+        eligibleUser(): String {
+            return (this.user == "widiyantoro" || this.user == "martana") ? "Ya" : "";
         }
     },
     methods: {
@@ -298,8 +301,8 @@ export default defineComponent({
             this.fileLocBtnTxt = data[0];
         },
         updateStatusValidasi(event: Electron.IpcRenderer, data: any[]) {
-            (this.reportJson as String[]).push(`${data[0].pid},${data[0].nib},${data[0].status},${data[0].success}`);
-            if (data[0].success == true) {
+            (this.reportJson as String[]).push(`${data[0].Pesan},${data[0].Status}`);
+            if (data[0].Status == true) {
                 this.cBerhasil++
             } else {
                 this.cGagal++
